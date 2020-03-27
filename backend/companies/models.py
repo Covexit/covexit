@@ -32,6 +32,8 @@ class Company(models.Model):
         },
     )
     mail = models.EmailField(_('e-mail address'), max_length=80)
+    website = models.CharField(_('website'), max_length=80, blank=True,
+                               null=True)
     street = models.CharField(_('street address'), max_length=60)
     city = models.CharField(_('city'), max_length=45)
     phone = models.CharField(_('phone'), max_length=45)
@@ -47,3 +49,6 @@ class Company(models.Model):
                  TOYS, COFFEE, LIVING],
         default='CL',
     )
+
+    def __str__(self):
+        return self.name
