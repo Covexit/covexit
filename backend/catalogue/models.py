@@ -8,7 +8,7 @@ class ProductCategory(models.Model):
     Useful to filter products by their features
     """
 
-    name = models.CharField(_("name"), max_length=100)
+    name = models.CharField(_("name"), max_length=100, unique=True)
 
     class Meta:
         verbose_name = _("product category")
