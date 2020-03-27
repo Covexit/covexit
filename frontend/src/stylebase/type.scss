@@ -1,0 +1,17 @@
+body {
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+  font-weight: 600;
+  font-size: 2.14em;
+  margin-bottom: .2em;
+}
+
+.intro {
+  font-weight: 300;
+  font-size: 1.42em;
+  margin-bottom: .65em;
+}

@@ -1,0 +1,23 @@
+// colors
+$primary-color: #FF7F48;
+$light-gray: #FBFBFB;
+$gray: #E9E9E9;
+$dark-gray: #4A4A4A;
+$black: #000000;
+
+// styles
+$medium-emphasis: rgba($black, 0.6);
+$high-emphasis: rgba($black, 0.87);
+
+$border-radius: 10px;
+
+// font
+$font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+$base-font-size: 87.5%; // 14px - mobile
+$base-line-height: 125%;
+
+// transitions
+$primary-transition: .3s cubic-bezier(0.25, 0.8, 0.5, 1);
+$secondary-transition: .2s cubic-bezier(0.4, 0, 0.6, 1);
