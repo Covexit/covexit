@@ -8,6 +8,8 @@ For easier handling there is a Makefile included. Currently there are two script
 
 This starts the django server after you've correctly set it up and also starts the frontend service watching for files.
 
+The API will be available at localhost:8000/api/v1/
+
 ### `make init`
 
 Once you have installed Python3.8 you can run this command to setup the backend, having the scripts mentioned in the backend
@@ -68,13 +70,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Setup
 
-Have python 3.8 installed, then install pipenv via `pip install pipenv`. In the root directory then run 
+Have python 3.8 installed, then install pipenv via `pip install pipenv`. In the root directory then run
 `pipenv install --dev` to install python packages. Activate the virtual environment with `pipenv shell` and apply migrations with
-`python ./backend/manage.py migrate`. 
+`python ./backend/manage.py migrate`.
 
 ## Starting Server
 
-After having completed the setup, to start the server type `python ./backend/manage.py runserver` or 
-`./backend/manage.py runserver`. At this point, if all the commands were entered correctly, we should see an instance of 
-a Django application running on this address — http://localhost:8000. Make sure to apply migrations every now and then, 
+After having completed the setup, to start the server type `python ./backend/manage.py runserver` or
+`./backend/manage.py runserver`. At this point, if all the commands were entered correctly, we should see an instance of
+a Django application running on this address — http://localhost:8000. Make sure to apply migrations every now and then,
 the console should tell you if there are unapplied migrations.
