@@ -1,5 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Makefile
+
+For easier handling there is a Makefile included. Currently there are two scripts:
+
+### `make` & `make run`
+
+This starts the django server after you've correctly set it up and also starts the frontend service watching for files.
+
+### `make init`
+
+Once you have installed Python3.8 you can run this command to setup the backend, having the scripts mentioned in the backend
+section below run (if everything has been done correctly).
+
 # Frontend
 
 Frontend packages are found in the `./frontend/` directory, so run all these commands in there as well as the install script.
