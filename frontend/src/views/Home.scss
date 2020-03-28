@@ -1,0 +1,33 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: $padding-wrapper;
+}
+
+.Home-hero {
+  text-align: left;
+}
+
+.Home-heading {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+}
+
+.Home-text {
+  margin-top: 16px;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.Home-btns {
+  display: flex;
+  flex-direction: column;
+
+  > * + * {
+    margin-top: 12px;
+  }
+}
