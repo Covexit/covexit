@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+body {
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+}
+
+p {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.Intro {
+  margin-bottom: .65em;
+
+  p {
+    margin-top: 16px;
+  }
+}

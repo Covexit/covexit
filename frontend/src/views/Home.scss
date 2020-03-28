@@ -1,0 +1,8 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: $padding-wrapper;
+  background: center / cover no-repeat url('../assets/home_bg.png');
+}

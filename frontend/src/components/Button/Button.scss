@@ -1,0 +1,25 @@
+.Btn {
+  padding: .75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  background: $color-primary;
+  cursor: pointer;
+
+  &--secondary {
+    color: $color-dark-gray;
+    background: $color-gray;
+  }
+}
+
+.Btn-group {
+  display: flex;
+  flex-direction: column;
+
+  > * + * {
+    margin-top: 12px;
+  }
+}
