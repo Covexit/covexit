@@ -17,12 +17,15 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from companies import views
+from companies.views import CompanyViewSet
+from catalogue.views import ProductViewSet, ProductCategoryViewSet
 
 router = DefaultRouter()
-router.register(r'company', views.CompanyViewSet)
+router.register(r'company', CompanyViewSet)
+router.register(r'product', ProductViewSet)
+router.register(r'product-category', ProductCategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/v1/', include(router.urls)),
 ]
