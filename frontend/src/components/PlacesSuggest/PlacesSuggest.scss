@@ -43,19 +43,3 @@ $input-padding-right: 1.4em;
 .PlacesSuggest-suggestion--selected {
   color: $color-primary;
 }
-
-.Input {
-  border-radius: $border-radius;
-  border: 1px solid $color-dark-gray;
-  background: $color-light-gray;
-  padding: .85em $input-padding-right 1.25em $input-padding-left;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  caret-color: $color-primary;
-
-  &:focus {
-    outline: 0;
-    border-color: $color-primary
-  }
-}

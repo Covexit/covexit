@@ -2,6 +2,7 @@ import React from 'react'
 import Script from 'react-load-script';
 
 import './PlacesSuggest.scss';
+import TextInput from "../TextInput/TextInput";
 
 let placesService;
 
@@ -17,7 +18,7 @@ class PlacesSuggest extends React.Component {
       selectedIndex: -1,
     };
 
-    this.textInput = React.createRef()
+    this.wrapper = React.createRef()
   }
 
   handleScriptLoad() {
@@ -68,7 +69,7 @@ class PlacesSuggest extends React.Component {
         const selected = this.state.suggestions[this.state.selectedIndex];
         this.props.onSelected(selected, this.state.selectedIndex);
         this.setState({ value: selected.description });
-        this.textInput.current.blur();
+        this.wrapper.current.querySelector('.TextInput-field').blur();
       }
     }
   }
@@ -78,11 +79,11 @@ class PlacesSuggest extends React.Component {
     const shouldShowSuggestions = this.state.hasFocus && this.state.value;
 
     return (
-      <div className="PlacesSuggest" onKeyDown={(e) => this.onKeyDown(e)}>
-        <input type="text" className="Input" onChange={this.onChange} ref={this.textInput}
-               onFocus={() => this.setState({ hasFocus: true })}
-               onBlur={() => this.setState({ hasFocus: false })}
-               value={this.state.value} placeholder="Your business name as on Google"/>
+      <div className="PlacesSuggest" ref={this.wrapper}>
+        <TextInput type="text" value={this.state.value} placeholder="Your business name as on Google"
+                   onChange={this.onChange} onKeyDown={(e) => this.onKeyDown(e)}
+                   onFocus={() => this.setState({ hasFocus: true })}
+                   onBlur={() => this.setState({ hasFocus: false })} />
         <div className={'PlacesSuggest-wrapper ' + (shouldShowSuggestions ? 'PlacesSuggest-wrapper--active' : '')}>
           {shouldShowSuggestions ? this.state.suggestions.map(this.renderSuggestion.bind(this)) : ''}
         </div>
