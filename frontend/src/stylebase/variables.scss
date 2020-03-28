@@ -1,18 +1,21 @@
 // colors
-$primary-color: #FF7F48;
-$light-gray: #FBFBFB;
-$gray: #E9E9E9;
-$dark-gray: #4A4A4A;
-$black: #000000;
+$color-primary: #FF7F48;
+$color-light-gray: #FBFBFB;
+$color-gray: #E9E9E9;
+$color-dark-gray: #4A4A4A;
+$color-black: #000000;
+
+// layout
+$padding-wrapper: 25px;
 
 // styles
-$medium-emphasis: rgba($black, 0.6);
-$high-emphasis: rgba($black, 0.87);
+$medium-emphasis: rgba($color-black, 0.6);
+$high-emphasis: rgba($color-black, 0.87);
 
 $border-radius: 10px;
 
 // font
-$font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+$font-stack: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 $base-font-size: 87.5%; // 14px - mobile

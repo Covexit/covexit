@@ -1,0 +1,15 @@
+.Btn {
+  padding: .75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: white;
+  background: $color-primary;
+  cursor: pointer;
+
+  &--secondary {
+    color: $color-dark-gray;
+    background: $color-gray;
+  }
+}

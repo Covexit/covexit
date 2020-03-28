@@ -5,10 +5,7 @@ import Routes from "./Routes";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>This is covexit! Woo!</h1>
-      </header>
-      <Routes/>
+      <Routes />
     </div>
   );
 }

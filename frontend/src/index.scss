@@ -1,8 +1,8 @@
 @import "stylebase/variables";
-
 @import "stylebase/type";
 @import "stylebase/utils";
+@import "stylebase/global";
 
-body {
-  margin: 0;
-}
+@import "components/Button/Button";
+
+@import "views/Home";

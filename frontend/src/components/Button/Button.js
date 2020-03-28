@@ -1,11 +1,10 @@
-import React from 'react';
-import './Button.scss';
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Button(props) {
-  return (
-    <Link to={props.to} className={'button' + (props.type ? ' button--' + props.type : '')}>{props.label}</Link>
-  );
-}
+const Button = ({ to, label, secondary }) => (
+  <Link to={to} className={`Btn ${secondary && `Btn--secondary`}`}>
+    {label}
+  </Link>
+)
 
-export default Button;
+export default Button
