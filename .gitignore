@@ -7,7 +7,7 @@
 /mediafiles/*
 __pycache__/
 /.vscode/
-/product-images
+product-images/
 
 # coverage result
 .coverage
