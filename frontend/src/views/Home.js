@@ -4,7 +4,7 @@ import Button from '../components/Button/Button';
 const Home = () => (
   <div className="Home">
     <div className="Home-hero">
-      <h1 className="Home-heading">Two line describtion of the idea and service.</h1>
+      <h1 className="Home-heading">Two line description<br />of the idea and service.</h1>
       <p className="Home-text">Just a tiny bit more explanation, since two lines probably won’t tell enough.</p>
     </div>
 
