@@ -8,12 +8,20 @@ body {
 
 h1, .h1 {
   font-weight: 600;
-  font-size: 2.14em;
-  margin-bottom: .2em;
+  font-size: 30px;
+  line-height: 35px;
 }
 
-.intro {
+p {
   font-weight: 300;
-  font-size: 1.42em;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.Intro {
   margin-bottom: .65em;
+
+  p {
+    margin-top: 16px;
+  }
 }
