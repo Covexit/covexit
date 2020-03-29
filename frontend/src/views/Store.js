@@ -42,7 +42,6 @@ const Store = () => {
 
     <section className="Store-actions">
       <Button to="/store" label="Make a call" secondary />
-      <Button to="/store" label="Show products" />
     </section>
 
     <ProductList />
