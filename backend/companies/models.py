@@ -1,12 +1,16 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _
 
 
 class Company(models.Model):
+    """
+    Model to store company information
+    """
     class Meta:
-        verbose_name_plural = 'Companies'
+        verbose_name = _('Company')
+        verbose_name_plural = _('Companies')
 
     CLOTHES = 'CL', _('Clothes and shoes')
     ELECTRONICS = 'EC', _('Electronics')
@@ -19,6 +23,9 @@ class Company(models.Model):
     LIVING = 'LV', _('Household and Living')
 
     name_validator = UnicodeUsernameValidator()
+
+    created = models.DateTimeField(_("Created"), auto_now_add=True)
+    updated = models.DateTimeField(_("Last updated"), auto_now=True)
 
     name = models.CharField(
         _('registered company name'),
