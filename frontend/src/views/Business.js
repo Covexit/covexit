@@ -6,11 +6,12 @@ import shareIcon from '../assets/share.svg';
 import backArrowIcon from '../assets/back-arrow.svg';
 import chevronDown from '../assets/chevron-down.svg';
 import businessImage from "../assets/business.jpg";
+import smallBusiness from "../assets/business1.jpg";
 import plusIcon from "../assets/plus.svg";
 
 const businessData = [
   { name: 'business 1', businessImage },
-  { name: 'business 2', businessImage },
+  { name: 'business 2', businessImage: smallBusiness },
   { name: 'business 3', businessImage },
   { name: 'business 4', businessImage },
   { name: 'business 5', businessImage },

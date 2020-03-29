@@ -40,7 +40,7 @@ const Carousel = ({ showControl, carouselData }) => {
       </ol>
       <div className="Carousel-slides">
         {carouselData.map( (eachData, index) =>
-        <div className={`Carousel-item fade ${index === activeSlide ? ' active' : ''}`} key={'carousel' + index}>
+        <div className={`Carousel-item secondary-transition ${index === activeSlide ? ' active' : ''}`} key={'carousel' + index}>
           <img src={eachData.businessImage} alt="Los Angeles" style={{ width: "100%" }} />
         </div>
         )}
