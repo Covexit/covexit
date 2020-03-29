@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GoogleMap, LoadScript, OverlayView, Marker } from '@react-google-maps/api'
-import mapStyles from '../../utils/mapStyles.json'
+import mapStyles from '../../shared/mapStyles.json'
 import banner from '../../assets/info_banner.png'
 import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
