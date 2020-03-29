@@ -59,7 +59,7 @@ const Business = () => {
       <h2 className="high-emphasis product-heading">Products</h2>
 
       <div className="Product-lists">
-        {products.map(product => <a href={`#${product}`} className={`Product-list ${product === currentProduct ? 'active': ''}`} key={product}>{product}</a>)}
+        {products.map(product => <a href={`#${product}`} onClick={() => setCurrentProduct(product)} className={`Product-list ${product === currentProduct ? 'active': ''}`} key={product}>{product}</a>)}
       </div>
 
       {products.map(product =>
