@@ -1,0 +1,55 @@
+@import "stylebase/variables";
+
+$dimensions: 55px;
+.Stepper {
+  position: relative;
+  margin-bottom: 55px;
+  padding: 0 15px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    margin-top: -1px;
+    height: 2px;
+    left: $dimensions / 2;
+    right: $dimensions / 2;
+    background-color: $color-middle-gray;
+  }
+}
+
+.Stepper-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.Stepper-index {
+  height: $dimensions;
+  width: $dimensions;
+  border-radius: 50%;
+  background: $color-middle-gray;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &--active {
+    background: $color-primary;
+  }
+}
+
+.Stepper-indicator {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  margin-top: -1px;
+  height: 2px;
+  left: 0;
+  transition: width .4s ease-in-out;
+  background-color: $color-primary;
+}
