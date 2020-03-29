@@ -4,7 +4,9 @@
 @import "stylebase/global";
 
 @import "components/Button/Button";
-@import "components/Carousel/Carousel.scss";
+@import "components/Carousel/Carousel";
+@import "components/ProductItem/ProductItem";
+@import "components/ProductList/ProductList";
 
 @import "views/Home";
-@import "views/Business";
+@import "views/Store";

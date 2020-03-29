@@ -1,0 +1,27 @@
+.product-item {
+  .product-section {
+    display: flex;
+    .product-img {
+      width: 20%;
+    }
+  }
+}
+
+.product-content {
+  margin-left: 10px;
+  border-bottom: 1px solid $color-gray;
+  display: flex;
+  width: calc(80% - 10px);;
+  .add-product {
+    width: 20%;
+  }
+  .product-review {
+    width: 80%;
+    padding: 15px 0 10px 0;
+    font-size: 14px;
+    p {
+      font-size: 14px;
+      line-height: 15px;
+    }
+  }
+}
