@@ -10,9 +10,9 @@ const ProductItem = ({ products }) => (
 
       {products.map(product =>
       <div key={'product-section ' + product} className="Product-section">
-        <img className="product-img" src={businessImage} alt="product image" />
-        <div className="product-content">
-          <div className="product-review">
+        <img className="Product-img" src={businessImage} alt="product image" />
+        <div className="Product-content">
+          <div className="Product-review">
             <h4>Very great bread indeed</h4>
             <p>mix of some flourish stuff and water, plus some salty crystals looking like salt</p>
           </div>
