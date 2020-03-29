@@ -1,0 +1,89 @@
+/*
+ The Carousel - main container
+*/
+.Carousel {
+  position: relative;
+}
+
+/*
+ This is the container for all slides show
+*/
+.Carousel-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    .Carousel-item {
+      height: 100%;
+      width: 100%;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    @media (min-width: 767px) {
+        max-height: 400px;
+    }
+}
+
+/*
+ The container for the dots indicator on the carousel slide
+*/
+.Carousel-indicator-wrapper {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    top: 80%;
+    width: 100%;
+    z-index: 1;
+    padding-left: 0;
+    /* Each indicators styling */
+    li {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      background-color: $color-dark-gray;
+      border-radius: 50%;
+      margin: 0 $padding-wrapper;
+      &.active {
+          background-color: $color-black;
+      }
+    }
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* Carousel control general styling */
+.Carousel-control {
+  position: absolute;
+  padding: 10px;
+  top: calc(50% - 20px);
+  z-index: 1;
+  cursor: pointer;
+  color: white;
+  &.prev {
+    left: 10%;
+  }
+  &.next {
+    right: 10%;
+  }
+}

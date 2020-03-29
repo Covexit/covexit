@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom"
 import React from "react"
 import NoMatch from "views/NoMatch"
 import Home from "views/Home"
+import Business from "views/Business"
 import Map from "components/Map/Map"
 
 // Placeholders for now
@@ -22,6 +23,7 @@ function Routes() {
       </Route>
       <Route path="/map" component={Map} />
       <Route exact path="/" component={Home} />
+      <Route exact path="/business" component={Business} />
       <Route component={NoMatch} />
     </Switch>
   )

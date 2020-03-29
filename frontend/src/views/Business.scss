@@ -1,0 +1,138 @@
+.Business {
+  height: 100%;
+  overflow-y: scroll;
+  .small-icon {
+    height: 28px;
+    width: 16px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+  .medium-icon {
+    width: 28px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+}
+
+.Business-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: $padding-wrapper;
+   .Business-header-item {
+     display: flex;
+     align-items: center;
+     color: $color-primary;
+   }
+   .md-size {
+     padding-left: 0.5rem;
+     @media (min-width: 767px) {
+      font-size: 38px;
+     }
+   }
+}
+
+.Business-showcase {
+  .Business-Details {
+    padding: $padding-wrapper;
+    .Business-Detail {
+      padding-top: $padding-wrapper;
+      color: $color-dark-gray;
+      font-family: $font-stack;
+      transition: $primary-transition;
+      @media (max-width: 767px) {
+        font-size: $base-font-size;
+      }
+    }
+    .show-more-detail {
+      padding-top: $padding-wrapper;
+      display: flex;
+      cursor: pointer;
+      .left-spacing {
+          padding-left: 5px;
+          position: relative;
+          top: 4px;
+      }
+      .rotate-up {
+          transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.Business-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: $padding-wrapper;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-top: 1px solid $color-gray;
+  border-bottom: 1px solid $color-gray;
+  @media (min-width: 992px) {
+    & >.Btn:nth-child(1) {
+        display: none
+    }
+  }
+  @media (max-width: 450px) {
+    .Btn {
+        font-size: 14px;
+    }
+  }
+}
+
+.Business-Products {
+  padding-bottom: $padding-wrapper;
+  .product-heading {
+    padding: $padding-wrapper;
+  }
+  .Product-lists {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-gray;
+    padding-left: 0;
+    overflow: hidden;
+    position: sticky;
+    background-color: #FFFFFF;
+    top: 0px;
+    z-index: 4;
+    .Product-list {
+      padding: $padding-wrapper;
+      text-transform: capitalize;
+      text-decoration: none;
+      color: $color-black;
+      &.active {
+        border-bottom: 1px solid $color-primary;
+        color: $color-primary;
+      }
+    }
+  }
+  .product-catalogs {
+    .product-section {
+      display: flex;
+      .product-img {
+        width: 20%;
+      }
+      .product-content {
+        margin-left: 10px;
+        border-bottom: 1px solid $color-gray;
+        display: flex;
+        width: calc(80% - 10px);;
+        .add-product {
+          width: 20%;
+        }
+        .product-review {
+          width: 80%;
+          padding: 15px 0 10px 0;
+          font-size: 14px;
+          p {
+            font-size: 14px;
+            line-height: 15px;
+          }
+        }
+      }
+    }
+  }
+}
