@@ -80,11 +80,6 @@
   margin-bottom: 15px;
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
-  @media (min-width: 992px) {
-    & >.Btn:nth-child(1) {
-      display: none
-    }
-  }
   @media (max-width: 450px) {
     .Btn {
       font-size: 14px;
