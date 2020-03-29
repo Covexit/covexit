@@ -31,12 +31,13 @@ jobs:
 
     - if: github.event_name == 'push'
       name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.0.7
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-avzr --delete"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PORT: 18765
-          SOURCE: "frontend/build/"
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+      uses: SamKirkland/FTP-Deploy-Action@3.0.0
+      with:
+        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
+        ftp-server: ${{ secrets.REMOTE_HOST }}${{ secrets.REMOTE_TARGET }}
+        # FTP account username
+        ftp-username: ${{ secrets.REMOTE_USER }}
+        # FTP account password
+        ftp-password: ${{ secrets.REMOTE_PASS }}
+        # The local folder to copy, defaults to root project folder
+        local-dir: "frontend/build/"
