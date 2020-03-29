@@ -20,4 +20,4 @@ class Migration(migrations.Migration):
         ('companies', '0001_add_company_base'),
     ]
 
-    operations = [migrations.RunPython(insert_data)]
+    operations = [migrations.RunPython(insert_data, reverse_code=migrations.RunPython.noop)]

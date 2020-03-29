@@ -5,11 +5,11 @@ import plusIcon from "../../assets/plus.svg";
 
 const ProductItem = ({ products }) => (
   products.map(product =>
-    <article id={product} key={'product-item ' + product} className="product-item">
+    <article id={product} key={'product-item ' + product} className="Product-item">
       <h3 className="high-emphasis product-heading text-capitalize">{product}</h3>
 
       {products.map(product =>
-      <div key={'product-section ' + product} className="product-section">
+      <div key={'product-section ' + product} className="Product-section">
         <img className="product-img" src={businessImage} alt="product image" />
         <div className="product-content">
           <div className="product-review">
