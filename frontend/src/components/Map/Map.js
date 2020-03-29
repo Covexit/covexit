@@ -69,7 +69,7 @@ const Map = () => {
           <div className={`Map-infoWrapper ${showInfo && 'Map-infoWrapper--visible'}`}>
             <img className="Map-infoImg" src={banner} alt="banner" />
             <div className="Map-info">
-              <h1>Manfred's Bakery</h1>
+              <h2>Manfred's Bakery</h2>
               <p>Only the finest, hand sorted ingredients</p>
               <Button to="/page" label="Show Products & Info" />
             </div>
