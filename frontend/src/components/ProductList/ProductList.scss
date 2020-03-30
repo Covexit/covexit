@@ -1,0 +1,29 @@
+.Product-list {
+  padding-bottom: $padding-wrapper;
+  .product-heading {
+    padding: $padding-wrapper;
+  }
+  .Product-catelogs {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-gray;
+    padding-left: 0;
+    overflow: hidden;
+    position: sticky;
+    background-color: #FFFFFF;
+    top: 0px;
+    z-index: 4;
+    .Product-catelog {
+      padding: $padding-wrapper;
+      text-transform: capitalize;
+      text-decoration: none;
+      color: $color-black;
+      &.active {
+        border-bottom: 1px solid $color-primary;
+        color: $color-primary;
+      }
+    }
+  }
+}
+  

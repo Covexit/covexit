@@ -11,10 +11,24 @@
   text-align: center;
   background: $color-primary;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);;
 
   &--secondary {
     color: $color-dark-gray;
     background: $color-gray;
+  }
+
+  &--pay {
+    background: $color-blue;
+  }
+
+  &--inverted {
+    background: #fff;
+    color: $color-black;
+  }
+
+  &--confirm {
+    background: $color-green;
   }
 }
 

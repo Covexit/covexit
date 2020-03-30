@@ -3,7 +3,9 @@ import React from "react"
 import NoMatch from "views/NoMatch"
 import Home from "views/Home"
 import PhotoSelect from "views/PhotoSelect"
+import Store from "views/Store"
 import Map from "components/Map/Map"
+import OrderForm from "../views/OrderForm";
 
 // Placeholders for now
 // use the route for the HomeView as reference for all others
@@ -11,17 +13,16 @@ import Map from "components/Map/Map"
 function Routes() {
   return (
     <Switch>
-      <Route path="/stores">
+      <Route exact path="/stores">
         <h2>Insert stores list/map</h2>
       </Route>
-      <Route path="/stores/:id">
-        <h2>Insert store detail view</h2>
-      </Route>
-      <Route path="/company" exact>
+      <Route exact path="/stores/:id" component={Store} />
+      <Route exact path="/company">
         <h2>Insert company backend view (falls back to login) if user has a
           company show edit, otherwise create view</h2>
       </Route>
       <Route path="/company/photo-select" component={PhotoSelect} />
+      <Route path="/order/:step" component={OrderForm} />
       <Route path="/map" component={Map} />
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
