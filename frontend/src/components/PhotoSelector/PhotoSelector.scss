@@ -1,0 +1,44 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
+.PhotoSelector {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+}
+
+.PhotoSelector-option {
+  position: relative;
+
+  & + & {
+    margin-top: 15px;
+  }
+}
+
+.PhotoSelector-radio {
+  display: none;
+}
+
+.PhotoSelector-photo {
+  transition: filter .1s ease-in-out;
+
+  .PhotoSelector-option--selected & {
+    filter: opacity(50%) saturate(20%);
+  }
+}
+
+.PhotoSelector-checkmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92px;
+}
+
+.PhotoSelector-nextBtn {
+  margin-top: 15px;
+
+  &--disabled {
+    @include disabled;
+  }
+}
