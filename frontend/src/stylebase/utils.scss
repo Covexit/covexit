@@ -14,3 +14,8 @@
   width: 1px;
   word-wrap: normal;
 }
+
+@mixin disabled {
+  pointer-events: none;
+  opacity: .75;
+}
