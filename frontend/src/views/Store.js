@@ -2,8 +2,6 @@ import React, { useState, Fragment } from 'react';
 import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 
-import shareIcon from '../assets/share.svg';
-import backArrowIcon from '../assets/back-arrow.svg';
 import businessImage from "../assets/business.jpg";
 import chevronDown from '../assets/chevron-down.svg';
 
@@ -13,16 +11,6 @@ const Store = () => {
 
   return (
   <div className="Store">
-    <header className="Store-header">
-      <div className="Store-header-item">
-        <img src={backArrowIcon} alt="back icon" className="small-icon" /> <span className="pl-1 text-capitalize md-size">back</span>
-      </div>
-      <div className="text-capitalize md-size high-emphasis">menfred's bakery</div>
-      <div>
-        <img className="medium-icon" alt="next icon" src={shareIcon} />
-      </div>
-    </header>
-
     <section className="Store-showcase">
       <div className="Store-image">
         <img src={businessImage} alt="Los Angeles" style={{ width: "100%" }} />
