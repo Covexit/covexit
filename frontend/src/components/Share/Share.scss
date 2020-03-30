@@ -1,0 +1,14 @@
+@import "stylebase/variables";
+
+.Share-toggle {
+  color: $color-primary;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.Share-icon {
+  margin-right: 5px;
+  display: block;
+  width: 25px;
+}
