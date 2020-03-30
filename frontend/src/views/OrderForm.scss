@@ -1,0 +1,86 @@
+@import "stylebase/variables";
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0) rotateZ(4deg);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0) rotateZ(-4deg);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-2px, 0, 0) rotateZ(4deg);
+  }
+
+  40%, 60% {
+    transform: translate3d(2px, 0, 0) rotateZ(-4deg);
+  }
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+  50% {
+    background-position: 0 80%, 0 20%, 10% 40%, 20% 0, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+  100% {
+    background-position: 0 70%, 0 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+}
+
+.OrderForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $padding-wrapper;
+
+  .TextInput {
+    margin-bottom: 15px;
+  }
+
+  &--3 {
+    background: $color-green;
+
+    .SteppedForm-body {
+      margin: auto;
+      text-align: center;
+      color: white;
+      position: relative;
+
+      &:before {
+        content: '';
+        top: -65%;
+        position: absolute;
+        display: block;
+        width: 70%;
+        height: 100%;
+        left: 20%;
+        transition: all ease-in-out 0.5s;
+        background-repeat: no-repeat;
+        animation: topBubbles 1.5s;
+        animation-fill-mode: forwards;
+        transform: scale(0.9);
+        background-image: radial-gradient(circle, rgb(232, 107, 170) 20%, transparent 20%),
+        radial-gradient(circle, transparent 20%, rgb(232, 232, 107) 20%, transparent 30%),
+        radial-gradient(circle, rgb(255, 195, 130) 20%, transparent 20%),
+        radial-gradient(circle, rgb(232, 232, 107) 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, rgb(121, 117, 255) 15%, transparent 20%),
+        radial-gradient(circle, rgb(255, 195, 130) 20%, transparent 20%),
+        radial-gradient(circle, rgb(91, 255, 168) 20%, transparent 20%),
+        radial-gradient(circle, rgb(232, 107, 170) 20%, transparent 20%),
+        radial-gradient(circle, rgb(91, 255, 168) 20%, transparent 20%);
+        background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+      }
+    }
+
+    img {
+      margin: 0 auto 20px;
+      transform-origin: center 0;
+      animation: shake 0.6s;
+    }
+  }
+}
+

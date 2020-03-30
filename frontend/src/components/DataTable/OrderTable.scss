@@ -1,0 +1,40 @@
+@import "stylebase/variables";
+
+.OrderTable {
+  display: block;
+  text-align: left;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 50px (-$padding-wrapper) 0;
+
+  th {
+    width: 90px;
+  }
+
+  td {
+    width: 100%;
+  }
+
+  td, th {
+    vertical-align: top;
+    padding: 10px $padding-wrapper;
+    border-top: 1px solid $color-middle-gray;
+  }
+
+  h2 {
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+.OrderTable-total {
+  text-align: right;
+}
+
+.OrderTable-product {
+  display: flex;
+}
+
+.OrderTable-price {
+  margin-left: auto;
+}

@@ -4,6 +4,7 @@ import NoMatch from "views/NoMatch"
 import Home from "views/Home"
 import Store from "views/Store"
 import Map from "components/Map/Map"
+import OrderForm from "../views/OrderForm";
 
 // Placeholders for now
 // use the route for the HomeView as reference for all others
@@ -19,6 +20,7 @@ function Routes() {
         <h2>Insert company backend view (falls back to login) if user has a
           company show edit, otherwise create view</h2>
       </Route>
+      <Route path="/order/:step" component={OrderForm} />
       <Route path="/map" component={Map} />
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
