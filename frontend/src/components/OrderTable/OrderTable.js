@@ -4,6 +4,7 @@ import './OrderTable.scss';
 function OrderTable(props) {
   return (
     <table className="OrderTable">
+      <tbody>
       <tr>
         <th>Name:</th>
         <td><h2>{props.name}</h2></td>
@@ -29,6 +30,7 @@ function OrderTable(props) {
           <p>incl. 19% VAT</p>
         </td>
       </tr>
+      </tbody>
     </table>
   );
 }
