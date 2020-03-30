@@ -12,8 +12,8 @@
     overflow: hidden;
     position: sticky;
     background-color: #FFFFFF;
-    top: 0px;
-    z-index: 4;
+    top: 0;
+    z-index: $cat-filters-index;
     .Product-catelog {
       padding: $padding-wrapper;
       text-transform: capitalize;
@@ -26,4 +26,3 @@
     }
   }
 }
-  
