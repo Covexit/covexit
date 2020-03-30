@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './TextInput.scss';
+import './Fields.scss';
 
 
 const TextInput = (props) => {
@@ -16,4 +16,4 @@ const TextInput = (props) => {
   );
 };
 
-export default TextInput
+export default { TextInput }
