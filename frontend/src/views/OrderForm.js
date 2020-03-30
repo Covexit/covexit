@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import './OrderForm.scss';
 import gift from 'assets/gift.svg';
 import Button from "../components/Button/Button";
-import OrderTable from "../components/DataTable/OrderTable";
-import Stepper from "../components/Stepper/Stepper";
+import OrderTable from "../components/OrderTable/OrderTable";
 import SteppedForm from "../components/SteppedForm/SteppedForm";
 
 

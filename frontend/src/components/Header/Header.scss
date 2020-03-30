@@ -1,0 +1,25 @@
+@import "stylebase/variables";
+
+.Header {
+  height: $header-height;
+  border-bottom: 1px solid $color-primary;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: $header-index;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  font-size: 16px;
+}
+
+.Header-logo {
+  margin: 0 auto;
+  width: 90px;
+}
+
+.Header-share {
+  height: 100%;
+}

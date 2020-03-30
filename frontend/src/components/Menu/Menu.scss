@@ -1,0 +1,112 @@
+@import "stylebase/variables";
+
+.Menu-toggle {
+  color: $color-primary;
+  font-weight: 600;
+  background: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+
+  &:hover {
+
+  }
+}
+
+.Menu-icon {
+  vertical-align: 3px;
+  margin-right: 5px;
+}
+
+.Menu-icon,
+.Menu-icon:before,
+.Menu-icon:after {
+  content: '';
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  width: 18px;
+  background: $color-primary;
+  border-radius: 2px;
+  transition: transform $primary-transition;
+}
+
+.Menu-icon:before,
+.Menu-icon:after {
+  position: absolute;
+  left: 50%;
+}
+
+.Menu-icon:before {
+  margin-left: -5px;
+  margin-top: -6px;
+  width: 10px;
+}
+
+.Menu-icon:after {
+  margin-left: -2px;
+  margin-top: 6px;
+  width: 4px;
+}
+
+.Menu-body {
+  display: none;
+}
+
+.Menu--opened {
+
+  .Menu-body {
+    display: flex;
+  }
+
+  &:after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    background: rgba($color-dark-gray, 0.5);
+  }
+}
+
+.Menu-body {
+  position: fixed;
+  z-index: $header-index;
+  display: none;
+  flex-direction: column;
+  top: $header-height;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  background: $color-gray;
+}
+
+.Menu-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: auto;
+}
+
+.Menu-link {
+  padding: 15px;
+  display: block;
+  background: $color-light-gray;
+  margin-bottom: 2px;
+  color: $color-dark-gray;
+  text-decoration: none;
+  font-weight: 600;
+
+  &--meta {
+    font-weight: 400;
+    background: 0;
+    padding: 10px 0 0 15px;
+  }
+}
+
+.Menu-footer {
+  background: $color-primary;
+  padding: 15px;
+  color: #fff;
+}
