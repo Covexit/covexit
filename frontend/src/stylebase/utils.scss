@@ -5,3 +5,16 @@
 .high-emphasis {
   color: $high-emphasis;
 }
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+@mixin a11y-visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}

@@ -1,0 +1,88 @@
+.Store {
+  height: 100%;
+  overflow-y: scroll;
+  .small-icon {
+    height: 28px;
+    width: 16px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+  .medium-icon {
+    width: 28px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+}
+
+.Store-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: $padding-wrapper;
+   .Store-header-item {
+     display: flex;
+     align-items: center;
+     color: $color-primary;
+   }
+   .md-size {
+     padding-left: 0.5rem;
+     @media (min-width: 767px) {
+      font-size: 38px;
+     }
+   }
+}
+
+.Store-showcase {
+  .Store-Details {
+    padding: $padding-wrapper;
+    .Store-Detail {
+      padding-top: $padding-wrapper;
+      color: $color-dark-gray;
+      font-family: $font-stack;
+      transition: $primary-transition;
+      @media (max-width: 767px) {
+        font-size: $base-font-size;
+      }
+    }
+    .show-more-detail {
+      padding-top: $padding-wrapper;
+      display: flex;
+      cursor: pointer;
+      .left-spacing {
+        padding-left: 5px;
+        position: relative;
+        top: 4px;
+      }
+      .rotate-up {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .Store-image {
+    height: 100%;
+    width: 100%;
+    img {
+      object-fit: cover;
+      @media (min-width: 767px) {
+        max-height: 400px;
+      }
+    }
+  }
+}
+
+.Store-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: $padding-wrapper;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-top: 1px solid $color-gray;
+  border-bottom: 1px solid $color-gray;
+  @media (max-width: 450px) {
+    .Btn {
+      font-size: 14px;
+    }
+  }
+}

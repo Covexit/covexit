@@ -1,0 +1,45 @@
+@import "stylebase/variables";
+
+$overlap: 10px;
+$input-padding-left: 1.125em;
+$input-padding-right: 1.4em;
+
+.PlacesSuggest {
+  position: relative;
+}
+
+.PlacesSuggest-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - #{$overlap});
+  background: $color-light-gray;
+  padding-top: $overlap;
+  transition: opacity $secondary-transition, transform $primary-transition;
+  transform-origin: top center;
+  border: 1px solid $color-gray;
+  border-top: 0;
+  border-radius: 0 0 $border-radius $border-radius;
+
+  opacity: 0;
+  transform: scale(0.98) translateY(-10px);
+
+  &--active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.PlacesSuggest-suggestion {
+  padding: 0.2em $input-padding-right 0.5em $input-padding-left;
+  border-top: 1px solid $color-gray;
+  transition: color $primary-transition;
+
+  &:first-child {
+    border-top: 0;
+  }
+}
+
+.PlacesSuggest-suggestion--selected {
+  color: $color-primary;
+}
