@@ -31,7 +31,7 @@ const ProductList = ({ type, editorView }) => {
   );
 }
 
-ProductList.default = {
+ProductList.defaultProps = {
   type: 'add'
 }
 
