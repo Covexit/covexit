@@ -3,6 +3,7 @@
     display: flex;
     .Product-img {
       width: 20%;
+      object-fit: cover;
     }
   }
 }
@@ -22,6 +23,19 @@
     p {
       font-size: 14px;
       line-height: 15px;
+    }
+    .variant-price {
+      font-size: 16px;
+      line-height: 19px;
+      color: $color-primary;
+      padding-top: 5px;
+    }
+  }
+  .medium-icon {
+    width: 28px;
+    margin-left: 10px;
+    @media (min-width: 767px) {
+       width: 46px;
     }
   }
 }

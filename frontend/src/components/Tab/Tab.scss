@@ -1,0 +1,17 @@
+.Tab {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 13px 0;
+    padding-bottom: 0;
+    border-bottom: 1px solid $color-gray;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17.5px;
+    .inactive-tab, .active-tab {
+        width: 50%;
+    }
+    .active-tab {
+      border-bottom: 1px solid $color-primary;
+    }
+}

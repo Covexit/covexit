@@ -4,6 +4,7 @@ import NoMatch from "views/NoMatch"
 import Home from "views/Home"
 import PhotoSelect from "views/PhotoSelect"
 import Store from "views/Store"
+import CompanyPage from "views/CompanyPage"
 import Map from "components/Map/Map"
 import OrderForm from "../views/OrderForm";
 
@@ -17,10 +18,7 @@ function Routes() {
         <h2>Insert stores list/map</h2>
       </Route>
       <Route exact path="/stores/:id" component={Store} />
-      <Route exact path="/company">
-        <h2>Insert company backend view (falls back to login) if user has a
-          company show edit, otherwise create view</h2>
-      </Route>
+      <Route exact path="/company" component={CompanyPage} />
       <Route path="/company/photo-select" component={PhotoSelect} />
       <Route path="/order/:step" component={OrderForm} />
       <Route path="/map" component={Map} />
