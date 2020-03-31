@@ -5,3 +5,12 @@
 .ViewSplitter--padded {
   padding: $padding-wrapper;
 }
+
+.View {
+  display: flex;
+  height: 100%;
+}
+
+.ViewSplitter {
+  flex: 1 1 100%;
+}
