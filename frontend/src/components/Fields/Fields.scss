@@ -1,6 +1,7 @@
 @import "stylebase/variables";
 @import "stylebase/utils";
 
+.FileUpload-field,
 .TextInput-label-text {
   @include a11y-visually-hidden;
 }
@@ -17,6 +18,30 @@
 
   &:focus {
     outline: 0;
-    border-color: $color-primary
+    border-color: $color-primary;
+    color: $color-primary;
   }
+}
+
+.TextInput-helpText {
+  margin-top: 5px;
+  display: block;
+  color: $color-dark-gray;
+  font-style: italic;
+}
+
+.FileUpload {
+  margin-top: 10px;
+}
+
+.FileUpload-preview {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.FileUpload-img {
+  height: 50px;
+  margin: (-.85em) 15px (-1.25em) (-$input-padding-left);
+  border-radius: $border-radius 0 0 $border-radius;
 }
