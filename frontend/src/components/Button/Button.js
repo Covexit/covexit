@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './Button.scss';
 
 const Button = ({ to, onClick, label, secondary, type, span }) => {
   const classes = `Btn ${secondary && `Btn--secondary`} ${type && `Btn--${type}`}`;
