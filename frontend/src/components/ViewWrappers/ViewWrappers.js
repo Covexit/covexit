@@ -33,11 +33,11 @@ const View = ({ children, withPadding }) => (
   </div>
 );
 
-const ViewSplitter = ({ children, omitOnMobile, withPadding }) => {
+const ViewSplitter = ({ children, omitOnMobile, withPadding, small }) => {
   const isBigScreen = useMediaQuery({ minWidth: 960 });
 
   return omitOnMobile && !isBigScreen ? false : (
-    <div className={`ViewSplitter ${withPadding && 'ViewSplitter--padded'}`}>
+    <div className={`ViewSplitter ${withPadding && 'ViewSplitter--padded'} ${small && 'ViewSplitter--small'}`}>
       {children}
     </div>
   );
