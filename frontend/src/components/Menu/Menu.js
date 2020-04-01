@@ -10,6 +10,7 @@ function Menu() {
     { to: '/map', label: 'Map test' },
     { to: '/order/0', label: 'Order test' },
     { to: '/stores/1', label: 'Store test' },
+    { to: '/stores/1/onboarding/0', label: 'Onboarding test' },
     { to: '/imprint', label: 'Imprint', meta: true },
     { to: '/privacy', label: 'Privacy', meta: true },
   ];
