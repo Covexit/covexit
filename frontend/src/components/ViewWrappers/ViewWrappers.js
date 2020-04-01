@@ -35,16 +35,12 @@ const View = ({ children, withPadding }) => (
 
 const ViewSplitter = ({ children, omitOnMobile, withPadding }) => {
   const isBigScreen = useMediaQuery({ minWidth: 960 });
-  const jsx = (
+
+  return omitOnMobile && !isBigScreen ? false : (
     <div className={`ViewSplitter ${withPadding && 'ViewSplitter--padded'}`}>
       {children}
     </div>
   );
-
-  if (omitOnMobile)
-    return isBigScreen && jsx;
-
-  return jsx;
 };
 
 const SplitViewWithFooter = ({ left, right, footer }) => {

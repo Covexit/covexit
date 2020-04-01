@@ -13,4 +13,8 @@
 
 .ViewSplitter {
   flex: 1 1 100%;
+
+  & + & {
+    border-left: 1px solid $color-middle-gray;
+  }
 }
