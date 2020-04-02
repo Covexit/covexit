@@ -1,31 +1,30 @@
 import React from 'react';
 
 import {
-    useLocation
+    useLocation, Link
   } from "react-router-dom";
-
-import Button from 'components/Button/Button';
 
 import homeIcon from 'assets/home.svg';
 import inboxIcon from 'assets/inbox.svg';
 
 const Tab = () => {
   const location = useLocation();
-  const locationUrls = ['/stores/1', '/order-view'];
+  const links = [
+    { url: '/stores/1', label: 'Home', image: homeIcon },
+    { url: '/order-view', label: 'Order', image: inboxIcon }
+  ];
 
   const handleFocusClass = (arg) => 
     location.pathname === arg ? 'active-tab' : 'inactive-tab';
 
   return(
     <section className="Tab">
-      <Button to="/stores/1" type={handleFocusClass(locationUrls[0])} >
-        <img src={homeIcon} alt="home icon" />
-        <p>Home</p>
-      </Button>
-      <Button to="/order-view" type={handleFocusClass(locationUrls[1])}>
-        <img src={inboxIcon} alt="inbox icon" />
-        <p>Order</p>
-      </Button>
+      {links.map( ({url, label, image}) =>
+        <Link to={url} className={`Tab-button ${handleFocusClass(url)}`} >
+          <img src={image} alt="home icon" />
+          <p>{label}</p>
+        </Link>
+      )}
     </section>
   );
 }

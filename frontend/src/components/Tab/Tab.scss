@@ -1,32 +1,36 @@
 .Tab {
-    width: 100%;
-    display: flex;
-    position: sticky;
-    bottom: 0px;
-    justify-content: space-around;
-    padding: 13px 0px;
-    padding-bottom: 0px;
-    background: white;
-    border-bottom: 1px solid $color-gray;
-    text-align: center;
-    font-size: 14px;
-    line-height: 17.5px;
-    .Btn {
-      width: 43% !important;
-      font-size: 14px;
-      line-height: 17.5px;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      box-shadow: none;
-      color: #4A4A4A;
-      border-radius: 0px;
-      background: white;
-    }
-    .Btn--active-tab {
-      border-bottom: 1px solid $color-primary;
-      color: $color-primary;
-    }
+  width: 100%;
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  justify-content: space-around;
+  padding: 13px 0;
+  padding-bottom: 0;
+  background: white;
+  border-bottom: 1px solid $color-gray;
+  text-align: center;
+  font-size: 14px;
+  line-height: 17.5px;
+}
+
+.Tab-button {
+  width: 43%;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 17.5px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  color: #4A4A4A;
+  border-radius: 0;
+  background: white;
+  padding-bottom: 5px;
+}
+
+.Tab-button-active {
+  border-bottom: 1px solid $color-primary;
+  color: $color-primary;
 }
