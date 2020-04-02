@@ -5,6 +5,7 @@ import gift from 'assets/gift.svg';
 import Button from "../components/Button/Button";
 import OrderTable from "../components/OrderTable/OrderTable";
 import SteppedForm from "../components/SteppedForm/SteppedForm";
+import Fields from "../components/Fields/Fields";
 
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
@@ -17,6 +18,10 @@ const OrderForm = (props) => {
   const match = props.match;
   const step = match.params.step;
 
+  const onChange = (event) => {
+    setFormInput({ ...formInput, [event.target.name]: event.target.value });
+  };
+
   const steps = [
     {
       head: (<>
@@ -26,14 +31,14 @@ const OrderForm = (props) => {
       </>),
       footer: <Button label="Next" to={'/order/1'}/>,
       stepperProps: {count: 3, activeIndex: 1},
-      inputs: [
-        { placeholder: 'Name', name: 'name' },
-        { placeholder: 'Surname', name: 'surname' },
-        { placeholder: 'E-mail', type: 'email', name: 'email' },
-        { placeholder: 'Phone number', name: 'phone' },
-        { placeholder: 'Delivery Address', name: 'address' },
-        { placeholder: 'Zip and City', name: 'zipcity' },
-      ],
+      body: <>
+        <Fields.TextInput onChange={onChange} placeholder="Name" name="name" value={formInput.name}/>
+        <Fields.TextInput onChange={onChange} placeholder="Surname" name="surname" value={formInput.surname}/>
+        <Fields.TextInput onChange={onChange} placeholder="E-mail" name="email" value={formInput.email}/>
+        <Fields.TextInput onChange={onChange} placeholder="Phone number" name="phone" value={formInput.phone}/>
+        <Fields.TextInput onChange={onChange} placeholder="Delivery Address" name="address" value={formInput.address}/>
+        <Fields.TextInput onChange={onChange} placeholder="Zip and City" name="zipcity" value={formInput.zipcity}/>
+      </>,
     },
     {
       head: (<>
@@ -63,14 +68,9 @@ const OrderForm = (props) => {
     },
   ];
 
-  const onChange = (event) => {
-    setFormInput({ ...formInput, [event.target.name]: event.target.value });
-  };
-
-
   return (
     <div className={`OrderForm OrderForm--${step}`}>
-      <SteppedForm {...steps[step]} onChange={onChange}/>
+      <SteppedForm {...steps[step]} />
     </div>
   );
 };
