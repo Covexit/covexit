@@ -9,11 +9,6 @@ import PersonalForm from './NewStore/PersonalForm';
 import BusinessForm from './NewStore/BusinessForm';
 
 
-const getItemFromAddress = (wantedType, haystack) => {
-  const needle = haystack.find(item => item.types.some(type => type === wantedType))
-  return needle ? needle.long_name : '';
-};
-
 const NewStore = (props) => {
   const match = props.match;
 
@@ -24,34 +19,18 @@ const NewStore = (props) => {
   const [person, setPerson] = useState({
     name: '', surname: '', address: '', phone: '', zipcity: '', email: '' });
 
-  const onChange = (event, action) => {
-    if (action === 'person')
-      setPerson({ ...person, [event.target.name]: event.target.value });
-    else if (action === 'resetPlacesApi')
-      setBusiness({ ...business, mapsPlaceObject: ''});
-    else if (action === 'placesApi')
-      setBusiness({ ...business, website: event.website,
-        name: event.structured_formatting && event.structured_formatting.main_text,
-        phone: event.formatted_phone_number,
-        address: getItemFromAddress('route', event.address_components) + ' ' +
-          getItemFromAddress('street_number', event.address_components),
-        zipcity: getItemFromAddress('postal_code', event.address_components) + ' ' +
-          getItemFromAddress('locality', event.address_components),
-        mapsPlaceObject: event });
-    else
-      setBusiness({ ...business, [event.target.name]: event.target.files || event.target.value, });
-  };
 
   return (
     <ViewWrappers.View withPadding>
       <Switch>
         {/* create a business */}
         <Route path={`${match.path}/business`} render={(routeProps) =>
-          <BusinessForm onChange={onChange} business={business} {...routeProps} />
+          <BusinessForm onChange={data => setBusiness(data ? { ...business, ...data} : {})}
+                        business={business} {...routeProps} />
         }/>
         {/* create an owner */}
         <Route path={`${match.path}/owner`}>
-          <PersonalForm onChange={onChange} person={person} />
+          <PersonalForm onChange={data => setPerson({ ...person,  ...data})} person={person} />
         </Route>
         {/* initial view */}
         <Route path={match.path}>
