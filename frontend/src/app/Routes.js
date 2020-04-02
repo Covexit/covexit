@@ -7,6 +7,7 @@ import Store from "views/Store"
 import Map from "components/Map/Map"
 import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding";
+import NewStore from "../views/NewStore";
 
 // Placeholders for now
 // use the route for the HomeView as reference for all others
@@ -17,6 +18,7 @@ function Routes() {
       <Route exact path="/stores">
         <h2>Insert stores list/map</h2>
       </Route>
+      <Route path="/stores/new" component={NewStore} />
       <Route exact path="/stores/:id" component={Store} />
       <Route excat path="/stores/:id/onboarding/:step" component={Onboarding} />
       <Route exact path="/company">
