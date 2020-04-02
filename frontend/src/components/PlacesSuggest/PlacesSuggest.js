@@ -40,6 +40,7 @@ class PlacesSuggest extends React.Component {
       return (
         <div onMouseEnter={() => this.setState({ selectedIndex: index })}
              onMouseLeave={() => this.setState({ selectedIndex: -1 })}
+             onMouseDown={(e) => e.preventDefault()}
              onClick={() => this.emitSelection(suggestion, index)} key={suggestion.place_id}
              className={'PlacesSuggest-suggestion' + (index === this.state.selectedIndex ? ' PlacesSuggest-suggestion--selected' : '')}>
           {suggestion.description}
@@ -48,7 +49,6 @@ class PlacesSuggest extends React.Component {
   }
 
   emitSelection(suggestion) {
-    console.log(suggestion);
     placesService.getDetails({
       fields: ['website', /* 'photos',*/ 'formatted_phone_number', 'address_components', 'geometry.location'],
       placeId: suggestion.place_id,
