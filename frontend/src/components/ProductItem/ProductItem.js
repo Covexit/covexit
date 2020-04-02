@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { bakeryImages } from '../../shared/businessImages'
-
 import roundedPlusIcon from "../../assets/rounded_plus.svg";
 import penIcon from "../../assets/pen.svg";
 
@@ -14,7 +12,7 @@ const ProductItem = ({ type, price, image }) => {
 
   return (
     <div className="Product-item">
-      <img className="Product-img" src={image} alt="product image" />
+      <img className="Product-img" src={image} alt="product" />
       <div className="Product-content">
         <div className="Product-review">
           <h4>Very great bread indeed</h4>
