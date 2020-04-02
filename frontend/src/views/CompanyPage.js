@@ -36,7 +36,7 @@ const CompanyPage = () => {
       <Button to="/store" label="Edit account" type="group" />
     </section>
 
-    <Tab home />
+    <Tab />
 
     <ProductList type="edit" editorView />
     <Footer />
