@@ -10,7 +10,9 @@ function Menu() {
     { to: '/map', label: 'Map test' },
     { to: '/order/0', label: 'Order test' },
     { to: '/stores/1', label: 'Store test' },
+    { to: '/stores/1/company', label: 'Company test' },
     { to: '/stores/1/onboarding/0', label: 'Onboarding test' },
+    { to: 'https://covexit.webflow.io/', label: 'How it works', external: true },
     { to: '/imprint', label: 'Imprint', meta: true },
     { to: '/privacy', label: 'Privacy', meta: true },
   ];
@@ -25,7 +27,8 @@ function Menu() {
         <ul className="Menu-list">
           {links.map(e =>
             <li className="Menu-list-item" key={e.label}>
-              <NavLink to={e.to} onClick={() => setMenuOpen(false)} className={`Menu-link ${e.meta && 'Menu-link--meta'}`}>{e.label}</NavLink>
+              {(e.external && <a href={e.to} className="Menu-link">{e.label}</a>) ||
+              <NavLink to={e.to} onClick={() => setMenuOpen(false)} className={`Menu-link ${e.meta && 'Menu-link--meta'}`}>{e.label}</NavLink>}
             </li>)}
         </ul>
         <div className="Menu-footer">© 2020 Covexit</div>
