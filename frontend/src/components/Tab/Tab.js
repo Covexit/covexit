@@ -29,8 +29,4 @@ const Tab = () => {
   );
 }
 
-Tab.defaultProps = {
-  home: false
-}
-
 export default Tab;
