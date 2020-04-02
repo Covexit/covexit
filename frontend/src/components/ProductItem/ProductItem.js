@@ -1,27 +1,28 @@
 import React from 'react';
 
-import businessImage from "../../assets/business.jpg";
-import plusIcon from "../../assets/plus.svg";
+import roundedPlusIcon from "../../assets/rounded_plus.svg";
+import penIcon from "../../assets/pen.svg";
 
-const ProductItem = ({ products }) => (
-  products.map(product =>
-    <article id={product} key={'product-item ' + product} className="Product-item">
-      <h3 className="high-emphasis product-heading text-capitalize">{product}</h3>
+const ProductItem = ({ type, price, image }) => {
+  const productIcons = {
+    add: roundedPlusIcon,
+    edit: penIcon,
+    remove: penIcon,
+  }
 
-      {products.map(product =>
-      <div key={'product-section ' + product} className="Product-section">
-        <img className="Product-img" src={businessImage} alt="product image" />
-        <div className="Product-content">
-          <div className="Product-review">
-            <h4>Very great bread indeed</h4>
-            <p>mix of some flourish stuff and water, plus some salty crystals looking like salt</p>
-          </div>
-          <img className="add-product" src={plusIcon} alt="add product" className="medium-icon" />
+  return (
+    <div className="Product-item">
+      <img className="Product-img" src={image} alt="product" />
+      <div className="Product-content">
+        <div className="Product-review">
+          <h4>Very great bread indeed</h4>
+          <p>mix of some flourish stuff and water, plus some salty crystals looking like salt</p>
+          <h4 className="variant-price">{price}€</h4>
         </div>
+        <img className="medium-icon" src={productIcons[type]} alt={`${type} product`} />
       </div>
-      )}
-    </article>
-  )
-);
+    </div>
+  );
+}
 
 export default ProductItem;

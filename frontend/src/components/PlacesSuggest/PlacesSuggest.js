@@ -2,7 +2,7 @@ import React from 'react'
 import Script from 'react-load-script';
 
 import './PlacesSuggest.scss';
-import TextInput from "../TextInput/TextInput";
+import Fields from "../Fields/Fields";
 
 let placesService;
 
@@ -80,10 +80,10 @@ class PlacesSuggest extends React.Component {
 
     return (
       <div className="PlacesSuggest" ref={this.wrapper}>
-        <TextInput type="text" value={this.state.value} placeholder="Your business name as on Google"
-                   onChange={this.onChange} onKeyDown={(e) => this.onKeyDown(e)}
-                   onFocus={() => this.setState({ hasFocus: true })}
-                   onBlur={() => this.setState({ hasFocus: false })} />
+        <Fields.TextInput type="text" value={this.state.value} placeholder="Your business name as on Google"
+                onChange={this.onChange} onKeyDown={(e) => this.onKeyDown(e)}
+                onFocus={() => this.setState({ hasFocus: true })}
+                onBlur={() => this.setState({ hasFocus: false })} />
         <div className={'PlacesSuggest-wrapper ' + (shouldShowSuggestions ? 'PlacesSuggest-wrapper--active' : '')}>
           {shouldShowSuggestions ? this.state.suggestions.map(this.renderSuggestion.bind(this)) : ''}
         </div>
