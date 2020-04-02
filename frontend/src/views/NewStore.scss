@@ -1,0 +1,13 @@
+@import "stylebase/variables";
+
+.Onboarding {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $padding-wrapper;
+
+  .TextInput {
+    margin-bottom: 15px;
+  }
+}
+
