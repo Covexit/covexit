@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import HomeIcon from '../Icons/Home';
-import InboxIcon from '../Icons/Inbox';
+import {
+    useLocation
+  } from "react-router-dom";
 
-const Tab = ({ home }) => {
-  const [isFocus, setFocus] = useState(home);
+import Button from 'components/Button/Button';
 
-  const handleFocusColor = (arg) => arg ? 'FF7F48' : '4A4A4A';
+import homeIcon from 'assets/home.svg';
+import inboxIcon from 'assets/inbox.svg';
 
-  const handleFocusClass = (arg) => arg ? 'active-tab' : 'inactive-tab';
+const Tab = () => {
+  const location = useLocation();
+  const locationUrls = ['/stores/1', '/order-view'];
+
+  const handleFocusClass = (arg) => 
+    location.pathname == arg ? 'active-tab' : 'inactive-tab';
 
   return(
     <section className="Tab">
-      <div onClick={() => setFocus(true)} className={handleFocusClass(isFocus)}>
-        <HomeIcon color={handleFocusColor(isFocus)} />
-        <p style={{ color: `#${handleFocusColor(isFocus)}` }}>Home</p>
-      </div>
-      <div onClick={() => setFocus(false)} className={handleFocusClass(!isFocus)}>
-        <InboxIcon color={handleFocusColor(!isFocus)} />
-        <p style={{ color: `#${handleFocusColor(!isFocus)}` }}>Inbox</p>
-      </div>
+      <Button type="group" to="/stores/1" type={handleFocusClass(locationUrls[0])} >
+        <img src={homeIcon} alt="home icon" />
+        <p>Home</p>
+      </Button>
+      <Button type="group" to="/order-view" type={handleFocusClass(locationUrls[1])}>
+        <img src={inboxIcon} alt="inbox icon" />
+        <p>Order</p>
+      </Button>
     </section>
   );
 }

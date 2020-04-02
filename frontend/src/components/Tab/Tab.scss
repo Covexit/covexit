@@ -8,10 +8,22 @@
     text-align: center;
     font-size: 14px;
     line-height: 17.5px;
-    .inactive-tab, .active-tab {
-        width: 50%;
+    .Btn {
+      width: 43% !important;
+      font-size: 14px;
+      line-height: 17.5px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      background: white;
+      flex-direction: column;
+      box-shadow: none;
+      color: #4A4A4A;
     }
-    .active-tab {
+    .Btn--active-tab {
       border-bottom: 1px solid $color-primary;
+      color: $color-primary;
+      border-radius: 0;
     }
 }

@@ -1,18 +1,23 @@
 import React, { useState, Fragment } from 'react';
 
 import Button from '../Button/Button';
-import ProductItem from '../ProductItem/ProductItem';
+import ProductGroup from '../ProductGroup/ProductGroup';
 
+import { bakeryImages } from '../../shared/businessImages'
 import magnifierIcon from '../../assets/magnifier.svg'
 
 const products = ['bread', 'teas', 'oils', 'pots'];
 
 const ProductList = ({ type, editorView }) => {
   const [currentProduct, setCurrentProduct] = useState('bread');
+  const prices = [5.60, 3.45, 3.45, 3.45, 3.45];
+  const variants = bakeryImages
+    .map((eachBackeryImage, index) => ({ image: eachBackeryImage, price: prices[index] }));
+
 
   return (
     <section className="Product-list">
-      <h2 className="high-emphasis product-heading">Products</h2>
+      <h2 className="Product-heading high-emphasis">Products</h2>
 
      {editorView &&
       <section className="Store-actions product-actions-group product-border-padding-top--0">
@@ -26,7 +31,9 @@ const ProductList = ({ type, editorView }) => {
         {products.map(product => <a href={`#${product}`} onClick={() => setCurrentProduct(product)} className={`Product-catelog ${product === currentProduct ? 'active': ''}`} key={product}>{product}</a>)}
       </div>
 
-      <ProductItem products={products} type={type} />
+      {products.map(product => 
+        <ProductGroup key={'product-group ' + product} variants={variants} groupName={product} type={type} />
+      )}
     </section>
   );
 }

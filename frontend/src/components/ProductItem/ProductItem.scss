@@ -1,10 +1,8 @@
 .Product-item {
-  .Product-section {
-    display: flex;
-    .Product-img {
-      width: 20%;
-      object-fit: cover;
-    }
+  display: flex;
+  .Product-img {
+    width: 20%;
+    object-fit: cover;
   }
 }
 
@@ -13,9 +11,6 @@
   border-bottom: 1px solid $color-gray;
   display: flex;
   width: calc(80% - 10px);
-  .add-product {
-    width: 20%;
-  }
   .Product-review {
     width: 80%;
     padding: 15px 0 10px 0;
