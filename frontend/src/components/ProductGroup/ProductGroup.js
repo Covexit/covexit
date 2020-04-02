@@ -7,9 +7,9 @@ const ProductGroup = ({ type, variants, groupName }) => {
     <article id={groupName} className="Product-group">
       <h3 className="Product-heading high-emphasis text-capitalize">{groupName}</h3>
 
-      {variants.map(variant =>
+      {variants.map((variant, idx) =>
       <ProductItem
-        key={'product-section ' + variant.price}
+        key={'product-section ' + idx}
         price={variant.price}
         image={variant.image}
         type={type}
