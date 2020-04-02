@@ -9,6 +9,11 @@
 .View {
   display: flex;
   height: 100%;
+
+  > *:not(.ViewSplitter) {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .ViewSplitter {
