@@ -10,6 +10,7 @@ django = "<3"
 djangorestframework = "*"
 django-cors-headers = "*"
 django-oscar = "*"
+django-oscar-api = "*"
 
 [requires]
 python_version = "3.8"

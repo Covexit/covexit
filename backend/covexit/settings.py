@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     'treebeard',
     'django_tables2',
 
+    'rest_framework',
+    'oscarapi',
+
     'companies',
 ]
 
@@ -161,3 +164,5 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Cancelled': (),
 }
 OSCAR_DEFAULT_CURRENCY = '€'
+
+OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
