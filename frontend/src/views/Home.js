@@ -7,7 +7,7 @@ import './Home.scss';
 
 const Home = () => (
   <ViewWrappers.View>
-    <ViewWrappers.ViewSplitter>
+    <ViewWrappers.ViewSplitter small>
       <div className="Home">
         <div className="Intro">
           <h1>Support your favourite local store online.</h1>

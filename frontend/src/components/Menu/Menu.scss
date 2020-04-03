@@ -1,4 +1,12 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
+
+.Menu {
+  @include bp-large() {
+    order: 3;
+    margin-left: auto;
+  }
+}
 
 .Menu-toggle {
   color: $color-primary;
@@ -8,8 +16,8 @@
   border: 0;
   border-radius: 0;
 
-  &:hover {
-
+  @include bp-large() {
+    display: none;
   }
 }
 
@@ -81,6 +89,13 @@
   left: 0;
   width: 70%;
   background: $color-gray;
+
+  @include bp-large() {
+    display: flex;
+    position: static;
+    background: 0;
+    width: auto;
+  }
 }
 
 .Menu-list {
@@ -102,6 +117,20 @@
     font-weight: 400;
     background: 0;
     padding: 10px 0 0 15px;
+    @include bp-large() {
+      padding: 15px;
+    }
+  }
+
+  @include bp-large() {
+    background: 0;
+    font-weight: 400;
+  }
+}
+
+.Menu-list-item {
+  @include bp-large() {
+    display: inline-block;
   }
 }
 
@@ -109,4 +138,8 @@
   background: $color-primary;
   padding: 15px;
   color: #fff;
+
+  @include bp-large() {
+    display: none;
+  }
 }

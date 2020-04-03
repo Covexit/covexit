@@ -1,0 +1,16 @@
+.CompanyPage {
+  .small-icon {
+    height: 28px;
+    width: 16px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+  .medium-icon {
+    width: 28px;
+    @media (min-width: 767px) {
+       width: 46px;
+    }
+  }
+}
+
