@@ -5,6 +5,10 @@
   display: flex;
   align-items: center;
   font-weight: 600;
+  background: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 .Share-icon {
@@ -12,3 +16,19 @@
   display: block;
   width: 25px;
 }
+
+
+.Share-body {
+
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    background: rgba($color-light-gray, 0.5);
+  }
+
+
+
+

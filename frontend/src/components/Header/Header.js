@@ -3,6 +3,7 @@ import './Header.scss';
 
 import logo from 'assets/logo.svg';
 import Menu from "../Menu/Menu";
+import Modal from "../Modal/Modal";
 import Share from "../Share/Share";
 
 function Header() {
@@ -16,3 +17,4 @@ function Header() {
 }
 
 export default Header;
+
