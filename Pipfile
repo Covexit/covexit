@@ -9,6 +9,7 @@ verify_ssl = true
 django = "<3"
 djangorestframework = "*"
 django-cors-headers = "*"
+django-oscar = "*"
 
 [requires]
 python_version = "3.8"
