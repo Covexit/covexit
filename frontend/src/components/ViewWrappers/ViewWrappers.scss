@@ -1,4 +1,5 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 
 .View--padded,
@@ -21,5 +22,13 @@
 
   & + & {
     border-left: 1px solid $color-middle-gray;
+  }
+}
+
+.ViewSplitter--small {
+  @include bp-large() {
+    flex: 0 0 40vw;
+    max-width: 700px;
+    min-width: 500px;
   }
 }

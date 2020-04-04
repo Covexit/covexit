@@ -1,6 +1,11 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .App {
   height: 100%;
   padding-top: $header-height;
+
+  @include bp-large() {
+    padding-top: $header-height--desktop;
+  }
 }

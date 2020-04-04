@@ -1,4 +1,5 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Home {
   display: flex;
@@ -7,4 +8,19 @@
   height: 100%;
   padding: $padding-wrapper;
   background: center / cover no-repeat url('../assets/home_bg.png');
+
+  @include bp-large() {
+    padding: 60px 40px;
+
+    .Intro {
+      max-width: 400px;
+    }
+
+    .Intro p {
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 26px;
+      font-weight: 400;
+    }
+  }
 }
