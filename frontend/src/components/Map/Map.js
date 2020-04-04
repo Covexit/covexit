@@ -47,7 +47,7 @@ const Map = () => {
         fontWeight: 'bold',
         fontSize: '12px',
       }}
-      onClick={() => setShowInfo(true)}
+      onClick={() => setShowInfo(!showInfo)}
     />
 
     <Marker
@@ -72,7 +72,7 @@ const Map = () => {
         <div className="Map-info">
           <h2>Manfred's Bakery</h2>
           <p>Only the finest, hand sorted ingredients</p>
-          <Button to="/page" label="Show Products & Info"/>
+          <Button to="/stores/1" label="Show Products & Info"/>
         </div>
       </div>
     </OverlayView>

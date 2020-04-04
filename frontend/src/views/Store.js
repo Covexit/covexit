@@ -18,7 +18,7 @@ const Store = () => {
         <img src={businessImage} alt="Los Angeles" style={{ width: "100%" }} />
       </div>
       <article className="Store-Details">
-        <h3 className="high-emphasis text-capitalize">Mafred's bakery</h3>
+        <h1 className="high-emphasis h4 text-capitalize">Manfred's bakery</h1>
         <p className="Store-Detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, perferendis harum! Incidunt hic corrupti dolores ex vel veniam explicabo corporis quis harum molestiae totam earum magni architecto, dolore quo qui deserunt! Excepturi veritatis sed voluptate. Officiis fuga molestias iusto earum numquam labore eius nihil totam facere non, quas voluptas ab asperiores soluta quos odit qui, quidem adipisci aspernatur? Ea repellat error fuga doloremque vitae a, nisi quod ipsa labore officiis veniam illum magni minus ad numquam quos quas sint molestiae ducimus? Est quibusdam corporis officia iure tempora illo, maxime minus odit,ullam quod dolor magni earum ipsam quasi beatae hic.</p>
         {!showMore && <p onClick={() => requestMore(true)} className="show-more-detail">Show me more info <img src={chevronDown} alt="chevronDown" className="left-spacing" /></p>}
         {showMore &&
