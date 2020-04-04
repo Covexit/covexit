@@ -16,6 +16,7 @@ import Stores from '../views/Stores';
 function Routes() {
   return (
     <Switch>
+
       <Route path="/stores/new" component={NewStore} />
       <Route exact path="/stores/:id/company" component={CompanyPage} />
       <Route excat path="/stores/:id/onboarding/:step" component={Onboarding} />
