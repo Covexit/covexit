@@ -5,6 +5,9 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @include bp-large() {
+    font-size: 20px;
+  }
 }
 
 h1, .h1 {
@@ -21,6 +24,18 @@ h1, .h1 {
 h2, .h2 {
   font-size: 20px;
   line-height: 35px;
+}
+
+h3, .h3 {
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.27;
+}
+
+h4, .h4 {
+  font-size: 1em;
+  line-height: 1.2;
+  font-weight: 600;
 }
 
 .Intro {
