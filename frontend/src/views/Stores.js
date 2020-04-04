@@ -5,7 +5,7 @@ import Map from "../components/Map/Map";
 import { matchPath, Route } from 'react-router-dom';
 import Store from './Store';
 
-const StoreList = ({ location, match }) => (
+const Stores = ({ location, match }) => (
   <ViewWrappers.View>
     <ViewWrappers.ViewSplitter small omitOnMobile>
       StoreList
@@ -21,4 +21,4 @@ const StoreList = ({ location, match }) => (
   </ViewWrappers.View>
 );
 
-export default StoreList
+export default Stores
