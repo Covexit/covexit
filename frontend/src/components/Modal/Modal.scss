@@ -1,0 +1,44 @@
+@import "stylebase/variables";
+
+.modal {
+    background: white;
+    padding: 25px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50vh;
+    filter: blur(0);
+    visibility: visible;
+    left: 0vh;
+    z-index: 1040;
+    overflow: auto;
+    overflow-y: auto;
+}
+
+.modal.off {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  transform: scale(0.33);
+  box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
+}
+.content {
+    background: white;
+}
+.message{
+  padding: 20px;
+}
+input#copy {
+    padding: 10px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 100%;
+    border-color: orange;
+    text-align: center;
+}
+Button.skip{
+  background-color: transparent;
+  border: transparent;
+  padding: 25px;
+}
