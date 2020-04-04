@@ -1,3 +1,6 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
 .Btn {
   display: inline-block;
   width: 100%;
@@ -12,7 +15,12 @@
   text-align: center;
   background: $color-primary;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+
+  @include bp-large() {
+    font-size: 20px;
+    padding: 18px 25px;
+  }
 
   &--secondary {
     color: $color-dark-gray;
@@ -39,5 +47,9 @@
 
   > * + * {
     margin-top: 12px;
+
+    @include bp-large() {
+      margin-top: 20px;
+    }
   }
 }

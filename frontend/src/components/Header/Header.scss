@@ -1,4 +1,5 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Header {
   height: $header-height;
@@ -13,13 +14,27 @@
   width: 100%;
   background: #fff;
   font-size: 16px;
+
+  @include bp-large() {
+    border-bottom-color: $color-middle-gray;
+    font-size: 20px;
+    padding: 5px 40px;
+    height: $header-height--desktop;
+  }
+
+  .Share {
+    @include bp-large() {
+      display: none;
+    }
+  }
 }
 
 .Header-logo {
   margin: 0 auto;
   width: 90px;
-}
 
-.Header-share {
-  height: 100%;
+  @include bp-large() {
+    margin: 0;
+    width: 120px;
+  }
 }

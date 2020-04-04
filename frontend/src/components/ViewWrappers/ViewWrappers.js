@@ -22,22 +22,19 @@ import './ViewWrappers.scss';
              |   L  |      |    |    | Mobile: Left main top, Right in middle,
              |   R  |      | L  | R  | left footer at the bottom (usually buttons)
              |___F__|      |_F__|____| <SplitViewWithFooter left={<Component />} footer={<Component />} right={<Component />} />
-
-
-
  */
 
-const View = ({ children, withPadding }) => (
-  <div className={`View ${withPadding && 'View--padded'}`}>
+const View = ({ children, withPadding, className }) => (
+  <div className={`View ${withPadding ? 'View--padded': ''} ${className}`}>
     {children}
   </div>
 );
 
-const ViewSplitter = ({ children, omitOnMobile, withPadding }) => {
+const ViewSplitter = ({ children, className, omitOnMobile, withPadding, small }) => {
   const isBigScreen = useMediaQuery({ minWidth: 960 });
 
   return omitOnMobile && !isBigScreen ? false : (
-    <div className={`ViewSplitter ${withPadding && 'ViewSplitter--padded'}`}>
+    <div className={`ViewSplitter ${className} ${withPadding ? 'ViewSplitter--padded' : ''} ${small ? 'ViewSplitter--small' : ''}`}>
       {children}
     </div>
   );

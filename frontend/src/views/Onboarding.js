@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './Onboarding.scss';
 import Button from "../components/Button/Button";
-import SteppedForm from "../components/SteppedForm/SteppedForm";
+import Form from "../components/Form/Form";
 import InlineInputs from "../components/InlineInputs/InlineInputs";
 import Fields from "../components/Fields/Fields";
 
@@ -56,7 +56,7 @@ const Onboarding = (props) => {
 
   return (
     <div className={`Onboarding Onboarding--${step}`}>
-      <SteppedForm {...steps[step]} />
+      <Form {...steps[step]} />
     </div>
   );
 };

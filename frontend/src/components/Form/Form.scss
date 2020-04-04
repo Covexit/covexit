@@ -1,13 +1,17 @@
-.SteppedForm {
+.Form {
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  .TextInput {
+    margin-bottom: 15px;
+  }
 }
 
-.SteppedForm-body {
+.Form-body {
   margin: 0 0 35px;
 }
 
-.SteppedForm-footer {
+.Form-footer {
   margin-top: auto;
 }
