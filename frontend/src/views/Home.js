@@ -15,7 +15,7 @@ const Home = () => (
         </div>
 
         <div className="Btn-group">
-          <Button to="/map" label="Search for shops nearby!" />
+          <Button to="/stores" label="Search for shops nearby!" />
           <Button to="/stores/new" label="Register your business" secondary />
         </div>
       </div>
