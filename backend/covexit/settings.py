@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'oscarapi',
 
-    'partner.apps.PartnerConfig',
+    'covexit.core',
+    'covexit.partner.apps.PartnerConfig',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -166,4 +167,4 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 OSCAR_DEFAULT_CURRENCY = '€'
 
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
-OSCARAPI_OVERRIDE_MODULES = ["api_extensions"]
+OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]

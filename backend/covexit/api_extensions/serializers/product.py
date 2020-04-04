@@ -2,7 +2,7 @@ from oscarapi.serializers.product import PartnerSerializer as _PartnerSerializer
 from rest_framework.fields import ModelField
 from rest_framework import serializers
 
-from partner.models import PartnerAddress, Partner
+from covexit.partner.models import PartnerAddress, Partner
 
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class AddressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PartnerAddress
-        exclude = ['partner']
+        exclude = ['covexit.partner']
 
 
 class PartnerSerializer(_PartnerSerializer):
@@ -25,7 +25,7 @@ class PartnerSerializer(_PartnerSerializer):
         partner.save()
         # store owners
         partner.users.set(owners)
-        # create partner with their main address
+        # create covexit.partner with their main address
         partner.addresses.create(**address, is_main=True)
         return partner
 
