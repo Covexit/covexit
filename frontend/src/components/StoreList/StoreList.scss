@@ -1,0 +1,29 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
+.StoreList-heading {
+  margin-bottom: 15px;
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.StoreList-store {
+  display: flex;
+  background: #fff;
+  color: $color-black;
+  text-decoration: none;
+}
+
+.StoreList-store-img {
+  flex: 1 1 0;
+}
+
+.StoreList-store-body {
+  flex: 2 1 0;
+  padding: 20px 40px 20px 10px;
+  border-bottom: 1px solid $color-middle-gray;
+
+  h4 {
+    margin-bottom: 10px;
+  }
+}

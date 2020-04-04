@@ -4,11 +4,13 @@ import Map from "../components/Map/Map";
 
 import { matchPath, Route } from 'react-router-dom';
 import Store from './Store';
+import StoreList from '../components/StoreList/StoreList';
+
 
 const Stores = ({ location, match }) => (
   <ViewWrappers.View>
     <ViewWrappers.ViewSplitter small omitOnMobile>
-      StoreList
+      <StoreList />
     </ViewWrappers.ViewSplitter>
     <ViewWrappers.ViewSplitter omitOnMobile={!!matchPath(location.pathname, { path: "/stores/:id", exact: true })}>
       <Map/>
