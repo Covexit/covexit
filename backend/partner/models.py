@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from oscar.apps.address.abstract_models import AbstractPartnerAddress
 from oscar.apps.partner.abstract_models import AbstractPartner
 
 
@@ -44,6 +45,22 @@ class Partner(AbstractPartner):
 
     def __str__(self):
         return self.name
+
+
+class PartnerAddress(AbstractPartnerAddress):
+    class Meta:
+        verbose_name = _('address')
+        verbose_name_plural = _('addresses')
+
+    is_main = models.BooleanField(_('is main address'), default=False)
+    mail = models.EmailField(_('e-mail address'), max_length=80, default='')
+    website = models.CharField(_('website'), max_length=80, blank=True,
+                               null=True)
+    phone = models.CharField(_('phone'), max_length=45, default='')
+    latitude = models.DecimalField(_('latitude'), max_digits=9,
+                                   decimal_places=6, default=0)
+    longitude = models.DecimalField(_('longitude'), max_digits=9,
+                                    decimal_places=6, default=0)
 
 
 from oscar.apps.partner.models import *  # noqa isort:skip
