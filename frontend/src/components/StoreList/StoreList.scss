@@ -12,6 +12,12 @@
   background: #fff;
   color: $color-black;
   text-decoration: none;
+
+  transition: color $primary-transition;
+
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .StoreList-store-img {

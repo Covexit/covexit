@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { businessImages } from '../../shared/businessImages'
 import './StoreList.scss';
 import { Link } from 'react-router-dom';
 
 
-const StoreList = ({ type, editorView }) => {
+const StoreList = () => {
   const stores = [
     { name: 'Manfreds Bakery', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
     { name: 'BlueMen', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
     { name: 'DanyOils', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-  ]
+  ];
 
   return (
     <section className="StoreList">
@@ -32,6 +32,6 @@ const StoreList = ({ type, editorView }) => {
 
     </section>
   );
-}
+};
 
 export default StoreList;
