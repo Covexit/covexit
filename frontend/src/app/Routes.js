@@ -3,7 +3,6 @@ import React from "react"
 import NoMatch from "views/NoMatch"
 import Home from "views/Home"
 import PhotoSelect from "views/PhotoSelect"
-import Store from "views/Store"
 import CompanyPage from "views/CompanyPage"
 import Map from "components/Map/Map"
 import OrderForm from "../views/OrderForm";
