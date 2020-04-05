@@ -18,6 +18,32 @@ const TextInput = ({ onKeyDown, placeholder, type, onChange, onFocus, onBlur, na
   );
 };
 
+const NewPasswordInput = ({ onKeyDown, onChange, onFocus, onBlur, name, value }) => {
+  const [ passwordRepeat, setPasswordRepeat ] = useState('');
+
+  return (
+    <>
+      <div className="TextInput TextInput--password" onKeyDown={onKeyDown}>
+        <label>
+          <span className="TextInput-label-text">Password</span>
+          <input type="password" className="TextInput-field" onChange={onChange}
+                 onFocus={onFocus} onBlur={onBlur} name={name} autoComplete="new-password"
+                 value={value} placeholder="Password" required minLength="8"/>
+        </label>
+      </div>
+      <div className="TextInput TextInput--password" onKeyDown={onKeyDown}>
+        <label>
+          <span className="TextInput-label-text">Password (repeat)</span>
+          <input type="password" className="TextInput-field" required minLength="8"
+                 onFocus={onFocus} onBlur={onBlur} name={`${name}-repeat`}
+                 autoComplete="new-password" placeholder="Password (repeat)"
+                 onChange={e => setPasswordRepeat(e.target.value)}/>
+        </label>
+      </div>
+    </>
+  );
+};
+
 const TextArea = ({ onKeyDown, placeholder, rows, onChange, onFocus, onBlur, name,
                     value }) => {
   return (
@@ -59,4 +85,4 @@ const FileUpload = ({ helpText, label, onChange, name, value }) => {
   );
 };
 
-export default { TextInput, TextArea, FileUpload }
+export default { TextInput, TextArea, FileUpload, NewPasswordInput }
