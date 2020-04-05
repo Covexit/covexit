@@ -5,6 +5,7 @@ import './PlacesSuggest.scss';
 import Fields from "../Fields/Fields";
 
 let placesService;
+let autoSuggestionService;
 
 /* global google */
 class PlacesSuggest extends React.Component {
@@ -19,10 +20,19 @@ class PlacesSuggest extends React.Component {
     };
 
     this.wrapper = React.createRef()
+    this.attribution = React.createRef()
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+    if (this.scriptReady) {
+      this.handleScriptLoad();
+    }
   }
 
   handleScriptLoad() {
-    placesService = new google.maps.places.AutocompleteService();
+    autoSuggestionService = new google.maps.places.AutocompleteService();
+    placesService = new google.maps.places.PlacesService(this.attribution.current);
   }
 
   renderSuggestion(suggestion, index) {
@@ -30,17 +40,31 @@ class PlacesSuggest extends React.Component {
       return (
         <div onMouseEnter={() => this.setState({ selectedIndex: index })}
              onMouseLeave={() => this.setState({ selectedIndex: -1 })}
-             onClick={() => this.props.onSelected(suggestion, index)} key={suggestion.place_id}
+             onMouseDown={(e) => e.preventDefault()}
+             onClick={() => this.emitSelection(suggestion, index)} key={suggestion.place_id}
              className={'PlacesSuggest-suggestion' + (index === this.state.selectedIndex ? ' PlacesSuggest-suggestion--selected' : '')}>
           {suggestion.description}
         </div>
       )
   }
 
+  emitSelection(suggestion) {
+    placesService.getDetails({
+      fields: ['website', /* 'photos',*/ 'formatted_phone_number', 'address_components', 'geometry.location'],
+      placeId: suggestion.place_id,
+    }, (result, status) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        console.error(status);
+        return;
+      }
+      this.props.onSelected( {...suggestion, ...result });
+    })
+  }
+
   onChange = (event) => {
     const newValue = event.target.value;
-    if (placesService && newValue) {
-      placesService.getPlacePredictions({ input: newValue.toLowerCase().trim(), types: ['establishment'] }, (predictions, status) => {
+    if (autoSuggestionService && newValue) {
+      autoSuggestionService.getPlacePredictions({ input: newValue.toLowerCase().trim(), types: ['establishment'] }, (predictions, status) => {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
           console.error(status);
           return;
@@ -67,7 +91,7 @@ class PlacesSuggest extends React.Component {
       }
       if (e.keyCode === 13 && this.state.selectedIndex < 4 && this.state.selectedIndex > -1) {
         const selected = this.state.suggestions[this.state.selectedIndex];
-        this.props.onSelected(selected, this.state.selectedIndex);
+        this.emitSelection(selected, this.state.selectedIndex);
         this.setState({ value: selected.description });
         this.wrapper.current.querySelector('.TextInput-field').blur();
       }
@@ -87,8 +111,9 @@ class PlacesSuggest extends React.Component {
         <div className={'PlacesSuggest-wrapper ' + (shouldShowSuggestions ? 'PlacesSuggest-wrapper--active' : '')}>
           {shouldShowSuggestions ? this.state.suggestions.map(this.renderSuggestion.bind(this)) : ''}
         </div>
+        <div ref={this.attribution} />
         <Script url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc&libraries=places`}
-                onLoad={this.handleScriptLoad}
+                onLoad={() => {this.mounted ? this.handleScriptLoad() : this.scriptReady = true}}
         />
       </div>
     );

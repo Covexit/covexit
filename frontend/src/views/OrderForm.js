@@ -4,7 +4,7 @@ import './OrderForm.scss';
 import gift from 'assets/gift.svg';
 import Button from "../components/Button/Button";
 import OrderTable from "../components/OrderTable/OrderTable";
-import SteppedForm from "../components/SteppedForm/SteppedForm";
+import Form from "../components/Form/Form";
 import Fields from "../components/Fields/Fields";
 
 
@@ -70,7 +70,7 @@ const OrderForm = (props) => {
 
   return (
     <div className={`OrderForm OrderForm--${step}`}>
-      <SteppedForm {...steps[step]} />
+      <Form {...steps[step]} />
     </div>
   );
 };
