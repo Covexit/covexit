@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
 
+
     'oscar',
     'oscar.apps.analytics',
     'oscar.apps.checkout',
@@ -32,7 +33,6 @@ INSTALLED_APPS = [
     'oscar.apps.shipping',
     'oscar.apps.catalogue',
     'oscar.apps.catalogue.reviews',
-    'oscar.apps.partner',
     'oscar.apps.basket',
     'oscar.apps.payment',
     'oscar.apps.offer',
@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'oscar.apps.wishlists',
     'oscar.apps.dashboard',
     'oscar.apps.dashboard.reports',
-    'oscar.apps.dashboard.reviews',
-    'oscar.apps.dashboard.vouchers',
     'oscar.apps.dashboard.users',
     'oscar.apps.dashboard.orders',
     'oscar.apps.dashboard.catalogue',
@@ -52,6 +50,8 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.partners',
     'oscar.apps.dashboard.pages',
     'oscar.apps.dashboard.ranges',
+    'oscar.apps.dashboard.reviews',
+    'oscar.apps.dashboard.vouchers',
     'oscar.apps.dashboard.communications',
     'oscar.apps.dashboard.shipping',
 
@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'oscarapi',
 
-    'companies',
+    'covexit.core',
+    'covexit.partner.apps.PartnerConfig',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -166,3 +167,4 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 OSCAR_DEFAULT_CURRENCY = '€'
 
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
+OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
