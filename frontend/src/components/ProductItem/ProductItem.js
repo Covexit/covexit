@@ -1,13 +1,11 @@
 import React from 'react';
-
+import { useCartContext } from '../../context/CartContext'
 import roundedPlusIcon from "../../assets/rounded_plus.svg";
 
-const ProductItem = ({ name, description, price, image }) => {
-  // const productIcons = {
-  //   add: roundedPlusIcon,
-  //   edit: penIcon,
-  //   remove: penIcon,
-  // }
+const ProductItem = ({ id, name, description, category, price, image }) => {
+  const { addProduct } = useCartContext()
+
+  const product = { id, name, description, category, price, image }
 
   return (
     <div className="Product-item">
@@ -19,7 +17,12 @@ const ProductItem = ({ name, description, price, image }) => {
           <h4 className="variant-price">{price}€</h4>
         </div>
 
-        <img className="medium-icon" src={roundedPlusIcon} alt="add product" />
+        <img
+          onClick={() => addProduct(product)}
+          className="medium-icon"
+          src={roundedPlusIcon}
+          alt="add product"
+        />
       </div>
     </div>
   );
