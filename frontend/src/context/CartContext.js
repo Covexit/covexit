@@ -14,23 +14,32 @@ const reducer = (state, action) => {
       const id = action.payload.product.id
       let addedProduct = state.cart.find(product => product.id === id)
 
-      if(addedProduct) {
+      console.log('add product')
+
+      if (addedProduct) {
+        let newCart = state.cart.filter(product => product.id !== id)
+
+        console.log(addedProduct.quantity)
+
         addedProduct.quantity += 1
+
+        console.log(addedProduct.quantity)
+
+        newCart.push(addedProduct)
 
         return {
           ...state,
+          cart: newCart,
           total: state.total + addedProduct.price
         }
       } else {
         addedProduct = action.payload.product
         addedProduct.quantity = 1
 
-        let newTotal = state.total + addedProduct.price
-
         return {
           ...state,
           cart: [...state.cart, addedProduct],
-          total: newTotal
+          total: state.total + addedProduct.price
         }
       }
     case 'DEL_PRODUCT':
