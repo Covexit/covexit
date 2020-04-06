@@ -1,11 +1,17 @@
 import React from 'react';
-import { useCartContext } from '../../context/CartContext'
+import { useCartContext } from '../../context/CartContext';
 import roundedPlusIcon from "../../assets/rounded_plus.svg";
+import penIcon from "../../assets/pen.svg";
 
-const ProductItem = ({ id, name, description, category, price, image }) => {
+const ProductItem = ({ product, type }) => {
   const { addProduct } = useCartContext()
+  const { name, description, price, image } = product
 
-  const product = { id, name, description, category, price, image }
+  const productIcons = {
+    add: roundedPlusIcon,
+    edit: penIcon,
+    remove: penIcon,
+  }
 
   return (
     <div className="Product-item">
@@ -20,7 +26,7 @@ const ProductItem = ({ id, name, description, category, price, image }) => {
         <img
           onClick={() => addProduct(product)}
           className="medium-icon"
-          src={roundedPlusIcon}
+          src={productIcons[type]}
           alt="add product"
         />
       </div>

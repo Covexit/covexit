@@ -8,7 +8,7 @@ const ProductGroup = ({ products, type, groupName }) => {
       <h3 className="Product-heading high-emphasis text-capitalize">{groupName}</h3>
 
       {products.map(product =>
-        <ProductItem key={product.id} {...product} />
+        <ProductItem key={product.id} product={product} type={type} />
       )}
     </article>
   );
