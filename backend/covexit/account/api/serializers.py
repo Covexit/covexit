@@ -8,7 +8,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ("id", "phone", "address", "zip_or_city")
+        exclude = [
+            "user"
+        ]
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -41,7 +43,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         Profile.objects.create(
             user=user,
             phone=profile_data['phone'],
-            zip_or_city=profile_data['zip_or_city'],
+            zip_and_city=profile_data['zip_and_city'],
             address=profile_data['address'],
+            accepted_tos=profile_data['accepted_tos'],
+            accepted_privacy_policy=profile_data['accepted_privacy_policy'],
         )
         return user
