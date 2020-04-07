@@ -10,7 +10,7 @@ class AddressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PartnerAddress
-        exclude = ['covexit.partner']
+        exclude = ['partner']
 
 
 class PartnerSerializer(_PartnerSerializer):
@@ -28,4 +28,3 @@ class PartnerSerializer(_PartnerSerializer):
         # create covexit.partner with their main address
         partner.addresses.create(**address, is_main=True)
         return partner
-

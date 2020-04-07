@@ -63,8 +63,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'oscarapi',
-
     'covexit.core',
+    'covexit.account',
     'covexit.partner.apps.PartnerConfig',
 ]
 
