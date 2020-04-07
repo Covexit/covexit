@@ -1,75 +1,96 @@
 import React from 'react';
 import './Share.scss';
-import Modal from "../Modal/Modal"
 import share from "../../assets/share.svg";
 
 class Share extends React.Component {
-  state = {
-    show: false
-  };
-  showModal = e => {
-    this.setState({
-      show: !this.state.show
-    });
-  };
-    constructor(props) {
-       super(props)
+  constructor() {
+    super();
 
-        this.state = {
-        copySuccess: false
-    }
+    this.handleClick = this.handleClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+
+
+    this.state = {
+      showModal: false,
+      copySuccess: false,
+
+    };
   }
- copyCodeToClipboard = () => {
+
+  handleClick() {
+    if (!this.state.showModal) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener('click', this.handleOutsideClick, false);
+    }
+
+    this.setState(prevState => ({
+       showModal: !prevState.showModal,
+    }));
+  }
+
+  handleOutsideClick(e) {
+    // ignore clicks on the component itself
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.handleClick();
+  }
+
+   copyCodeToClipboard = () => {
     const urlRef= window.location.href;
     this.urlRef.select();
-
+    this.urlRef=urlRef;
     document.execCommand("copy")
     this.setState({copySuccess: true})
-
   }
 
-  handleCopy (e) {
-    e.preventDefault();
-    e.clipboardData.setData("url","www.covexit.de");
-  }
+
   render() {
     return (
-      <div className="Share">
-        <button
-          class="toggle-button"
-          id="centered-toggle-button"
-          onClick={e => {
-            this.showModal(e);
-          }}
+      <div className="Share" ref={node => { this.node = node; }}>
+        <button className="Share-toggle"
+          onClick={this.handleClick}
         ><img src={share} alt="Share Icon" className="Share-icon" />
-          {" "}
-         Share{" "}
+         Share
         </button>
+        {this.state.showModal && (
+          <div className="modal">
+          <div className ="message">Share Covexit with others and help during this crisis.
+          </div>
 
-        <Modal onClose={this.showModal} show={this.state.show}>
-          <p class="message">Share Covexit and help others with this crisis.</p>
-         {
-          this.state.copySuccess ?
-            <div id="success">
-           ∞ copied!
-            </div> : null
-
-           }
           <input id="copy"
             disabled
             ref={(urlRef) => this.urlRef = urlRef}
             placeholder="www.covexit.de"
           />
 
+            {
+          this.state.copySuccess ?
+            <div id="copy">
+           ∞ copied!
+            </div> : null
 
-   <button class="Btn" onClick={() => this.copyCodeToClipboard()}>
+           }
+
+          <button class="Btn" onClick={() => this.copyCodeToClipboard()}>
             Copy Link
           </button>
 
-        </Modal>
-</div>
+
+          <button class="skip" onClick={this.handleClick}>
+            Skip
+          </button>
+          </div>
+
+         )}
+      </div>
     );
   }
 }
+
+
 
 export default Share;

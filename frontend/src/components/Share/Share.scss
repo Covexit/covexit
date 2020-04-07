@@ -16,3 +16,46 @@
   display: block;
   width: 25px;
 }
+
+.modal {
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+input#copy {
+    padding: 10px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 100%;
+    border-color: orange;
+    text-align: center;
+    border-style: solid;
+}
+.skip{
+  background-color: transparent;
+  border: transparent;
+  padding: 25px;
+}
+
+.Btn{
+  margin-top:10px;
+}
+
+.message{
+  font-size: large;
+  padding: 25px;
+  color: black;
+
+}
+
+#success{
+  margin-bottom: 10px;
+}
