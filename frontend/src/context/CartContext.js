@@ -8,28 +8,22 @@ const initialState = {
   total: 0
 }
 
-const reducer = (state, action) => {
+const reducer = (originalState, action) => {
+  const state = Object.assign({}, originalState);
   switch (action.type) {
     case 'ADD_PRODUCT':
       const id = action.payload.product.id
       let addedProduct = state.cart.find(product => product.id === id)
 
-      console.log('add product')
-
       if (addedProduct) {
-        let newCart = state.cart.filter(product => product.id !== id)
-
-        console.log(addedProduct.quantity)
-
-        addedProduct.quantity += 1
-
-        console.log(addedProduct.quantity)
-
-        newCart.push(addedProduct)
 
         return {
           ...state,
-          cart: newCart,
+          cart: state.cart.map(product => {
+            const productCopy = Object.assign({}, product)
+            if (productCopy.id === id) productCopy.quantity += 1
+            return productCopy
+          }),
           total: state.total + addedProduct.price
         }
       } else {
