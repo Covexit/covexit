@@ -17,7 +17,6 @@ class RegisterView(CreateAPIView):
 
     POST(username, password):
     1. A new user will be created.
-    2. The anonymous user will be logged in as the new user.
 
     GET (enabled in DEBUG mode only):
     Get the details of the user.
