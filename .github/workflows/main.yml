@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: test django
       run: |
-        pip install pipenv
+        pip3 install pipenv
         pipenv install
         pipenv run ./backend/manage.py makemigrations --dry-run --check --noinput
 
