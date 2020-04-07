@@ -16,8 +16,6 @@ const NewStore = (props) => {
     name: '', hours: '', mapsPlaceObject: '',
     address: '', zipcity: '', email: '', phone: '', website: '', desc: '',
   });
-  const [person, setPerson] = useState({
-    name: '', surname: '', address: '', phone: '', zipcity: '', email: '' });
 
 
   return (
@@ -29,9 +27,7 @@ const NewStore = (props) => {
                         business={business} {...routeProps} />
         }/>
         {/* create an owner */}
-        <Route path={`${match.path}/owner`}>
-          <PersonalForm onChange={data => setPerson({ ...person,  ...data})} person={person} />
-        </Route>
+        <Route path={`${match.path}/owner`} component={PersonalForm} />
         {/* initial view */}
         <Route path={match.path}>
           <Form
