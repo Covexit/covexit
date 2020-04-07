@@ -16,4 +16,4 @@ django-oscar-api = "*"
 python_version = "3.8"
 
 [scripts]
-deploy = "[pipenv install] && pipenv run pip install -e production.txt"
+deploy = "(pipenv install --skip-lock) && (pipenv run pip install -r production.txt) && ./manage.py migrate "
