@@ -21,13 +21,43 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      
+    - name: Cache python modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-python-modules
+      with:
+        path: ~/.cache/pipenv
+        key: ${{ runner.os }}-build-python-${{ env.cache-name }}-${{ hashFiles('**/Pipfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-python-${{ env.cache-name }}-
+          ${{ runner.os }}-build-python-
+          ${{ runner.os }}-
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+
     - name: test django
       run: |
-        pip3 install pipenv
+        python -m pip install --upgrade pip setuptools wheel
+        pip install pipenv
         pipenv install
         pipenv run ./backend/manage.py makemigrations --dry-run --check --noinput
 
-    # Runs a set of commands using the runners shell
+    - name: Cache node modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+        key: ${{ runner.os }}-build-npm-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-npm-${{ env.cache-name }}-
+          ${{ runner.os }}-build-npm-
+          ${{ runner.os }}-
+
     - name: test frontend build
       run: |
         npm install
