@@ -73,5 +73,14 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.KEY }}
       with:
-        source: "backend/,frontend/build/"
+        source: "."
         target: "~"
+    
+    - name: execute remote deploy.sh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        KEY: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: sh deploy.sh
