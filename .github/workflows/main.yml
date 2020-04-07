@@ -21,7 +21,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      
+
     - name: Cache python modules
       uses: actions/cache@v1
       env:
@@ -73,10 +73,11 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.KEY }}
       with:
-        source: "./frontend/build,./backend,Pipfile"
+        source: "./frontend/build,./backend,Pipfile,production.txt"
         target: "~"
-    
-    - name: execute remote deploy.sh
+
+    - if: github.event_name == 'push'
+      name: execute remote deploy.sh
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
