@@ -21,9 +21,14 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: test django
+      run: |
+        pip install pipenv
+        pipenv install
+        pipenv run ./backend/manage.py makemigrations --dry-run --check --noinput
 
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: test frontend build
       run: |
         npm install
         npm run build
@@ -31,13 +36,12 @@ jobs:
 
     - if: github.event_name == 'push'
       name: Deploy to Server
-      uses: SamKirkland/FTP-Deploy-Action@3.0.0
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.KEY }}
       with:
-        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
-        ftp-server: ${{ secrets.REMOTE_HOST }}${{ secrets.REMOTE_TARGET }}
-        # FTP account username
-        ftp-username: ${{ secrets.REMOTE_USER }}
-        # FTP account password
-        ftp-password: ${{ secrets.REMOTE_PASS }}
-        # The local folder to copy, defaults to root project folder
-        local-dir: "frontend/build/"
+        source: "backend/,frontend/build/"
+        target: "~"
