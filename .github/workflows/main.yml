@@ -73,7 +73,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.KEY }}
       with:
-        source: "."
+        source: "./frontend,./backend,Pipfile"
         target: "~"
     
     - name: execute remote deploy.sh
