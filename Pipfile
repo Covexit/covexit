@@ -14,3 +14,6 @@ django-oscar-api = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+deploy = "pipenv install && pipenv run pip install -e production.txt"
