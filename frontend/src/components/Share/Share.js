@@ -9,7 +9,6 @@ class Share extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
 
-
     this.state = {
       showModal: false,
       copySuccess: false,
@@ -40,12 +39,17 @@ class Share extends React.Component {
   }
 
    copyCodeToClipboard = () => {
-    this.urlRef.select();
-
+    this.urlRef.select()
     document.execCommand("copy")
     this.setState({copySuccess: true})
-  }
+      setTimeout(() => {
+          this.setState(prevState => ({
+       copySuccess: !prevState.copySuccess,
+       showModal: !prevState.showModal,
+    }))
+         }, 3000);
 
+  }
 
   render() {
     return (
