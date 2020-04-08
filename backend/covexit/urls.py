@@ -20,15 +20,8 @@ from covexit.account.api.urls import urlpatterns as account_patterns
 from django.apps import apps
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('api/v1/', include(oscarapi_urls)),
-    # path('api/v1/', include(account_patterns)),
-    path('i18n/', include('django.conf.urls.i18n')),  # > Django-2.0
-
-    # The Django admin is not officially supported; expect breakage.
-    # Nonetheless, it's often useful for debugging.
-
-    path('admin/', admin.site.urls),  # > Django-2.0
-
-    path('', include(apps.get_app_config('oscar').urls[0])),  # > Django-2.0
+    path('admin/', admin.site.urls),
+    path('api/v1/', include(oscarapi_urls)),
+    path('api/v1/', include(account_patterns)),
+    
 ]
