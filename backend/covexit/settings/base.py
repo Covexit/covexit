@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'haystack',
     'treebeard',
+    'sorl.thumbnail',
     'django_tables2',
 
     'rest_framework',
@@ -81,6 +82,8 @@ MIDDLEWARE = [
     'oscar.apps.basket.middleware.BasketMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oscar.apps.basket.middleware.BasketMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'covexit.urls'
@@ -96,6 +99,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'oscar.apps.search.context_processors.search_form',
+                'oscar.apps.checkout.context_processors.checkout',
+                'oscar.apps.customer.notifications.context_processors.notifications',
+                'oscar.core.context_processors.metadata',
             ],
         },
     },
@@ -130,6 +137,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 """
 Oscar Setting
@@ -151,3 +159,7 @@ OSCAR_DEFAULT_CURRENCY = '€'
 
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
 OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
+
+
+# To deactivate on production server
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
