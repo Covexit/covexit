@@ -12,20 +12,11 @@ import BusinessForm from './NewStore/BusinessForm';
 const NewStore = (props) => {
   const match = props.match;
 
-  const [business, setBusiness] = useState({
-    name: '', hours: '', mapsPlaceObject: '',
-    address: '', zipcity: '', email: '', phone: '', website: '', desc: '',
-  });
-
-
   return (
     <ViewWrappers.View withPadding>
       <Switch>
         {/* create a business */}
-        <Route path={`${match.path}/business`} render={(routeProps) =>
-          <BusinessForm onChange={data => setBusiness(data ? { ...business, ...data} : {})}
-                        business={business} {...routeProps} />
-        }/>
+        <Route path={`${match.path}/business`} component={BusinessForm} />
         {/* create an owner */}
         <Route path={`${match.path}/owner`} component={PersonalForm} />
         {/* initial view */}
