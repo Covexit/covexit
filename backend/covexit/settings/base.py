@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'haystack',
     'treebeard',
-    'sorl.thumbnail',
     'django_tables2',
 
     'rest_framework',
