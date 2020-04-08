@@ -1,5 +1,5 @@
 from decimal import Decimal as D
-from oscar.apps.partner import strategy, prices
+from oscar.apps.partner import strategy
 
 
 class Selector(object):
