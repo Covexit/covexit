@@ -161,5 +161,3 @@ OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
 OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
 
 
-# To deactivate on production server
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
