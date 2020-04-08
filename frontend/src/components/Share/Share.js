@@ -40,9 +40,8 @@ class Share extends React.Component {
   }
 
    copyCodeToClipboard = () => {
-    const urlRef= window.location.href;
     this.urlRef.select();
-    this.urlRef=urlRef;
+
     document.execCommand("copy")
     this.setState({copySuccess: true})
   }
@@ -62,9 +61,10 @@ class Share extends React.Component {
           </div>
 
           <input id="copy"
-            disabled
+
             ref={(urlRef) => this.urlRef = urlRef}
-            placeholder="www.covexit.de"
+            value={window.location.href}
+
           />
 
             {
