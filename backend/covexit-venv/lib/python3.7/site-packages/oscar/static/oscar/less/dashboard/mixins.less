@@ -1,0 +1,16 @@
+// OSC MIXINS
+// --------------------------------------------------
+.horiz_col() {
+  padding: 0px;
+  margin: 0px;
+  .clearfix();
+  > li {
+    list-style: none;
+  }
+  li {
+    float: left;
+    li {
+      float: none;
+    }
+  }
+}

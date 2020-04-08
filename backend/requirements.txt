@@ -1,0 +1,6 @@
+sorl-thumbnail==12.6.3
+django-oscar==2.0.0
+djangorestframework==3.11.0
+django-oscar-api==2.0.2
+django-cors-headers==3.2.1
+pycountry==19.8.18
