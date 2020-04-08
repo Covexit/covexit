@@ -5,14 +5,10 @@ Django settings for covexit project.
 import os
 from oscar.defaults import *
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = 'pc23$c6=qt5t2a9v8yatrb16_rkk&f45_6smrzckvxsdt0z*85'
-DEBUG = True
-
-ALLOWED_HOSTS = []
+BASE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    '..')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,7 +20,6 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'django.contrib.flatpages',
-
 
     'oscar',
     'oscar.apps.analytics',
@@ -88,12 +83,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    "http://covexit.de",
-    "http://127.0.0.1:3000"
-]
-
 ROOT_URLCONF = 'covexit.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -112,17 +103,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'covexit.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -144,9 +129,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
-
 
 """
 Oscar Setting
