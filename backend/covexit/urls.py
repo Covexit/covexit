@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from oscarapi.urls import urlpatterns as oscarapi_urls
 from covexit.account.api.urls import urlpatterns as account_patterns
-from django.apps import apps
 
 urlpatterns = [
     path('admin/', admin.site.urls),
