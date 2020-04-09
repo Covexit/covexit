@@ -1,0 +1,18 @@
+{
+  "address.head": "",
+  "address.button": "",
+  "address.name": "",
+  "address.surname": "",
+  "address.email": "",
+  "address.phoneNumber": "",
+  "address.deliveryAddress": "",
+  "address.zipAndCity": "",
+  "pay.head": "",
+  "pay.text": "",
+  "pay.button": "",
+  "overview.head": "",
+  "overview.text": "",
+  "overview.button": "",
+  "finish.text": "",
+  "finish.button": ""
+}

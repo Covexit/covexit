@@ -6,6 +6,7 @@ import Button from "../components/Button/Button";
 import OrderTable from "../components/OrderTable/OrderTable";
 import Form from "../components/Form/Form";
 import Fields from "../components/Fields/Fields";
+import { useTranslation } from 'react-i18next';
 
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
@@ -14,6 +15,7 @@ const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '784
   ]};
 
 const OrderForm = (props) => {
+  const [t] = useTranslation('order-form');
   const [formInput, setFormInput] = useState({});
   const match = props.match;
   const step = match.params.step;
@@ -25,46 +27,43 @@ const OrderForm = (props) => {
   const steps = [
     {
       head: (<>
-        <h1>Contact Details</h1>
-        <p>Thank You for your support. You are a big help in fighting against
-          this crisis. Follow the steps below to finish your order.</p>
+        <h1>{t('address.head')}</h1>
+        <p>{t('address.text')}</p>
       </>),
-      footer: <Button label="Next" to={'/order/1'}/>,
+      footer: <Button label={t('address.button')} to={'/order/1'}/>,
       stepperProps: {count: 3, activeIndex: 1},
       body: <>
-        <Fields.TextInput onChange={onChange} placeholder="Name" name="name" value={formInput.name}/>
-        <Fields.TextInput onChange={onChange} placeholder="Surname" name="surname" value={formInput.surname}/>
-        <Fields.TextInput onChange={onChange} placeholder="E-mail" name="email" value={formInput.email}/>
-        <Fields.TextInput onChange={onChange} placeholder="Phone number" name="phone" value={formInput.phone}/>
-        <Fields.TextInput onChange={onChange} placeholder="Delivery Address" name="address" value={formInput.address}/>
-        <Fields.TextInput onChange={onChange} placeholder="Zip and City" name="zipcity" value={formInput.zipcity}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.name')} name="name" value={formInput.name}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.surname')} name="surname" value={formInput.surname}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.email')} name="email" value={formInput.email}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.phoneNumber')} name="phone" value={formInput.phone}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.deliveryAddress')} name="address" value={formInput.address}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('address.zipAndCity')} name="zipcity" value={formInput.zipcity}/>
       </>,
     },
     {
       head: (<>
-        <h1>Pay with Paypal</h1>
-        <p>Click on the button below to proceed with PayPal.</p>
+        <h1>{t('pay.head')}</h1>
+        <p>{t('pay.text')}</p>
       </>),
       stepperProps: {count: 3, activeIndex: 2},
-      footer: <Button label="Pay with Paypal" type="pay" to={'/order/2'}/>,
+      footer: <Button label={t('pay.button')} type="pay" to={'/order/2'}/>,
     },
     {
       head: (<>
-        <h1>Order Overview</h1>
-        <p>Please give your order a final check.</p>
+        <h1>{t('overview.head')}</h1>
+        <p>{t('overview.text')}</p>
       </>),
       body: <OrderTable {...orderTable}/>,
       stepperProps: {count: 3, activeIndex: 3},
-      footer: <Button label="Buy now" type="confirm" to={'/order/3'}/>,
+      footer: <Button label={t('overview.button')} type="confirm" to={'/order/3'}/>,
     },
     {
       body: <>
         <img src={gift} alt="Gift"/>
         <h1>Yippey!</h1>
-        <p>Thank you for your support.<br />
-          You will be notified via Email when
-          your package is on the way.</p></>,
-      footer: <Button label="Find More Local Shops" secondary to={'/map'}/>,
+        <p>{t('finish.text')}</p></>,
+      footer: <Button label={t('finish.button')} secondary to={'/map'}/>,
     },
   ];
 

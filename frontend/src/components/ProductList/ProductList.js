@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import ProductGroup from '../ProductGroup/ProductGroup';
 import magnifierIcon from '../../assets/magnifier.svg'
+import { useTranslation } from 'react-i18next';
 
 const ProductList = ({ products, type, editorView }) => {
   const [segment, setSegment] = useState('bread');
-
+  const [t] = useTranslation('product-list');
   const categories = products.reduce((acc, current) => {
     const x = acc.find(item => item.category === current.category)
 
@@ -15,12 +16,12 @@ const ProductList = ({ products, type, editorView }) => {
 
   return (
     <section className="Product-list">
-      <h2 className="Product-heading high-emphasis">Products</h2>
+      <h2 className="Product-heading high-emphasis">{t('head')}</h2>
 
      {editorView &&
       <section className="Store-actions product-actions-group product-border-padding-top--0">
-        <Button to="/store" label="Manage product" secondary type="group" />
-        <Button to="/store" label="Add new product" secondary type="group" />
+        <Button to="/store" label={t('manageProduct')} secondary type="group" />
+        <Button to="/store" label={t('addProduct')} secondary type="group" />
       </section>
       }
 

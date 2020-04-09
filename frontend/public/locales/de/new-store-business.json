@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "address": "",
+  "zipAndCity": "",
+  "email": "",
+  "phoneNumber": "",
+  "website": "",
+  "description": "",
+  "intro.head": "",
+  "intro.text": "",
+  "googleConfirm.head": "",
+  "googleConfirm.text": "",
+  "searchGoogle.head": "",
+  "searchGoogle.text": "",
+  "manually.head": "",
+  "manually.text": "",
+  "intro.button_google": "",
+  "intro.button_manually": "",
+  "manually.continue": "",
+  "googleConfirm.continue": ""
+}
