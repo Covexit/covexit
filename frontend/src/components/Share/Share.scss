@@ -51,7 +51,7 @@
 }
 
 
-.Copy-Link {
+.Share-copy {
     padding: 10px;
     margin-left: 0;
     margin-bottom: 10px;
@@ -62,17 +62,18 @@
     border-style: solid;
 }
 
-.Message {
+.Share-message {
   padding: $padding-wrapper;
   color: $color-black;
 
 }
 
-.Success {
+.Share-success {
   margin-bottom: 10px;
 }
 
-.Btn--Secondary {
-  background: transparent;
-  border: none;
+button.Btn.Btn--secondary.undefined {
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
