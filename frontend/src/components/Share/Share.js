@@ -1,22 +1,22 @@
 import React, { useState, useRef } from "react";
 import "./Share.scss";
 import share from "../../assets/share.svg";
+import Button from "../Button/Button";
 
 function Share() {
 
   const [modalShow, setModalShow] = useState(false);
-  const [copySuccess, setcopySuccess] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const message = "Share Covexit with others and help during this crisis.";
-  const inputRef = useRef(null);
+  const inputRef = useRef();
   const urlRef = window.location.href;
 
   function copyLink() {
     inputRef.current.select();
-    document.execCommand("copy");
-    setcopySuccess("∞ copied!");
+    setCopySuccess("∞ copied!");
     setTimeout(() => {
       setModalShow(false);
-      setcopySuccess(false);
+      setCopySuccess(false);
     }, 3000);
   }
 
@@ -29,26 +29,22 @@ function Share() {
 
       <div className={`Modal Modal--${modalShow ? "opened" : "closed"}`}>
         <div className="Modal-body">
-          <div className="Message">{message}</div>
-          <input className="Copy-Link" ref={inputRef} value={urlRef} />
+          <div className="Share-message">{message}</div>
+          <input className="Share-copy" ref={inputRef} value={urlRef} />
 
-          <div class="Success">{copySuccess}</div>
+          <div className="Share-success">{copySuccess}</div>
 
           <div className="Btn-group">
-            <button
-              className="Btn"
+            <Button
+              label="Copy Link"
               onClick={() => copyLink(document.execCommand("copy"))}
-            >
-              Copy Link
-            </button>
+            />
 
-            <button
-              className="Btn--Secondary"
+            <Button
+              label="Skip"
               onClick={() => setModalShow(false)}
-            >
-              Skip
-            </button>
-
+              secondary
+            />
           </div>
         </div>
       </div>
