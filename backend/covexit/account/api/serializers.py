@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from covexit.account.models import Profile
+from ..models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -9,7 +9,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         exclude = [
-            "user"
+            "user",
+            "verified"
         ]
 
 
@@ -30,11 +31,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
+        """Create a new user + an associated profile."""
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
+            is_active=False,  # inactive until email is verified
         )
         user.set_password(validated_data['password'])
         user.save()
