@@ -17,45 +17,62 @@
   width: 25px;
 }
 
-.modal {
-    padding: 20px;
-    background: #fff;
-    border-radius: 4px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.Modal--opened {
+
+  .Modal-body {
+    display: flex;
     text-align: center;
+    background-color: #ffffff;
+    padding: $padding-wrapper;
+  }
+
+  &:after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    background: rgba($color-dark-gray, 0.5);
+  }
 }
 
-input#copy {
+.Modal-body {
+  position: fixed;
+  z-index: $header-index;
+  display: none;
+  flex-direction: column;
+  top: 50vh;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $color-gray;
+}
+
+
+.Copy-Link {
     padding: 10px;
     margin-left: 0;
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: $border-radius;
     width: 100%;
-    border-color: orange;
+    border-color: $color-primary;
     text-align: center;
     border-style: solid;
 }
-.skip{
-  background-color: transparent;
-  border: transparent;
-  padding: 25px;
-}
 
-.Btn{
-  margin-top:10px;
-}
-
-.message{
-  font-size: large;
-  padding: 25px;
-  color: black;
+.Message {
+  padding: $padding-wrapper;
+  color: $color-black;
 
 }
 
-#success{
+.Success {
   margin-bottom: 10px;
+}
+
+.Btn--Secondary {
+  background: transparent;
+  border: none;
 }
