@@ -38,7 +38,6 @@ const PhotoSelector = ({ images }) => {
         `}
       >
         {/* TODO: add upload image */}
-        <Button to="/" label="Next →" />
       </div>
     </div>
   )
