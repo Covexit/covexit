@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Button from '../Button/Button'
 import checkmark from '../../assets/checkmark.svg'
 
 import './PhotoSelector.scss'
