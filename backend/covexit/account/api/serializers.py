@@ -1,7 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from ..models import Profile, create_verification_key, VERIFICATION_KEY_LENGTH
+from ..models import (
+    Profile,
+    VERIFICATION_KEY_LENGTH,
+    create_verification_key,
+    send_verification_email,
+)
 
 
 class ProfileRegisterSerializer(serializers.ModelSerializer):
@@ -53,6 +58,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             verified=False,
             verification_key=create_verification_key(),
         )
+        send_verification_email(user)
         return user
 
 
