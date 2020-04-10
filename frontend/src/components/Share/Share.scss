@@ -43,7 +43,7 @@
   z-index: $header-index;
   display: none;
   flex-direction: column;
-  top: 50vh;
+  top: 50%;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -54,7 +54,7 @@
 .Share-copy {
     padding: 10px;
     margin-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     border-radius: $border-radius;
     width: 100%;
     border-color: $color-primary;
@@ -65,15 +65,10 @@
 .Share-message {
   padding: $padding-wrapper;
   color: $color-black;
-
 }
 
 .Share-success {
-  margin-bottom: 10px;
-}
-
-button.Btn.Btn--secondary.undefined {
-    background: transparent;
-    border: none;
-    box-shadow: none;
+    position: absolute;
+    top: 170px;
+    right: 150px;
 }

@@ -3,6 +3,7 @@ import "./Share.scss";
 import share from "../../assets/share.svg";
 import Button from "../Button/Button";
 
+
 function Share() {
 
   const [modalShow, setModalShow] = useState(false);
@@ -13,7 +14,7 @@ function Share() {
 
   function copyLink() {
     inputRef.current.select();
-    setCopySuccess("∞ copied!");
+    setCopySuccess(" ∞ copied! ");
     setTimeout(() => {
       setModalShow(false);
       setCopySuccess(false);
@@ -32,20 +33,20 @@ function Share() {
           <div className="Share-message">{message}</div>
           <input className="Share-copy" ref={inputRef} value={urlRef} />
 
-          <div className="Share-success">{copySuccess}</div>
+             <div className="Share-success">{copySuccess}</div>
 
-          <div className="Btn-group">
+      <div className="Btn-group">
             <Button
               label="Copy Link"
               onClick={() => copyLink(document.execCommand("copy"))}
             />
 
             <Button
+              type="dismiss"
               label="Skip"
               onClick={() => setModalShow(false)}
-              secondary
-            />
-          </div>
+             />
+        </div>
         </div>
       </div>
     </div>
@@ -53,3 +54,4 @@ function Share() {
 }
 
 export default Share;
+
