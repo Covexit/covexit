@@ -11,6 +11,7 @@ function Share() {
   const message = "Share Covexit with others and help during this crisis.";
   const inputRef = useRef();
   const urlRef = window.location.href;
+  const url = window.location.href;
 
   function copyLink() {
     inputRef.current.select();
@@ -27,26 +28,18 @@ function Share() {
         <img src={share} alt="Share Icon" className="Share-icon" />
         Share
       </button>
-
       <div className={`Modal Modal--${modalShow ? "opened" : "closed"}`}>
         <div className="Modal-body">
           <div className="Share-message">{message}</div>
-          <input className="Share-copy" ref={inputRef} value={urlRef} />
-
-             <div className="Share-success">{copySuccess}</div>
-
-      <div className="Btn-group">
-            <Button
-              label="Copy Link"
-              onClick={() => copyLink(document.execCommand("copy"))}
-            />
-
-            <Button
-              type="dismiss"
-              label="Skip"
-              onClick={() => setModalShow(false)}
-             />
-        </div>
+          <input type='value' className="TextInput-field"
+            defaultValue={url}
+            ref={urlRef}
+          />
+          <div className="Alert">{copySuccess}</div>
+          <div className="Btn-group">
+            <Button label="Copy Link" onClick={() => copyLink()} />
+            <Button type="dismiss" label="Skip" onClick={() => setModalShow(false)} />
+          </div>
         </div>
       </div>
     </div>

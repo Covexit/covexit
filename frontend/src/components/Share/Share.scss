@@ -21,9 +21,7 @@
 
   .Modal-body {
     display: flex;
-    text-align: center;
-    background-color: #ffffff;
-    padding: $padding-wrapper;
+
   }
 
   &:after {
@@ -40,26 +38,15 @@
 
 .Modal-body {
   position: fixed;
+  text-align: center;
+  background-color: #ffffff;
+  padding: $padding-wrapper;
   z-index: $header-index;
   display: none;
   flex-direction: column;
-  top: 50%;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: $color-gray;
-}
-
-
-.Share-copy {
-    padding: 10px;
-    margin-left: 0;
-    margin-bottom: 40px;
-    border-radius: $border-radius;
-    width: 100%;
-    border-color: $color-primary;
-    text-align: center;
-    border-style: solid;
 }
 
 .Share-message {
@@ -67,8 +54,7 @@
   color: $color-black;
 }
 
-.Share-success {
-    position: absolute;
-    top: 170px;
-    right: 150px;
+.Alert {
+  padding: $padding-wrapper;
 }
+
