@@ -1,5 +1,5 @@
-import hashlib
 import random
+import string
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -13,12 +13,13 @@ To activate your account, please visit this link:
 {}
 """
 
-def create_activation_key(user):
-    """Cribbed from github.com/arpheno/django-rest-framework-registration"""
-    salt_bytes = str(random.random()).encode('utf-8')
-    salt = hashlib.sha1(salt_bytes).hexdigest()[:5]
-    hash_input = (salt + user.username).encode('utf-8')
-    return hashlib.sha1(hash_input).hexdigest()
+VERIFICATION_KEY_LENGTH = 30
+
+
+def create_verification_key():
+    """Return a random string."""
+    return ''.join(random.choices(string.ascii_letters,
+                                  k=VERIFICATION_KEY_LENGTH))
 
 
 def send_verification_email(user):
@@ -30,7 +31,6 @@ def send_verification_email(user):
         ['chris@zullo.dev'],
         fail_silently=False,
     )
-
 
 
 def validate_true(value):
@@ -48,3 +48,5 @@ class Profile(models.Model):
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
                                                   validators=[validate_true])
     verified = models.BooleanField(_('Email Verified'), default=False)
+    verification_key = models.CharField(_('Verification Key'),
+                                        max_length=VERIFICATION_KEY_LENGTH)

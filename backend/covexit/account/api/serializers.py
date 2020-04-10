@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from ..models import Profile
+from ..models import Profile, create_verification_key, VERIFICATION_KEY_LENGTH
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-
+class ProfileRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         exclude = [
@@ -15,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(required=True)
+    profile = ProfileRegisterSerializer(required=True)
     password = serializers.CharField(write_only=True)
 
     class Meta:
@@ -50,5 +49,25 @@ class RegisterSerializer(serializers.ModelSerializer):
             address=profile_data['address'],
             accepted_tos=profile_data['accepted_tos'],
             accepted_privacy_policy=profile_data['accepted_privacy_policy'],
+            verified=False,
+            verification_key=create_verification_key(),
         )
         return user
+
+
+class VerifySerializer(serializers.Serializer):
+    user_id = serializers.IntegerField(required=True)
+    verification_key = serializers.CharField(
+        max_length=VERIFICATION_KEY_LENGTH, required=True
+    )
+
+    def validate(self, attrs):
+        """Check for correct user ID and verification_key."""
+        try:
+            user = User.objects.get(pk=attrs['user_id'])
+        except User.DoesNotExist:
+            raise serializers.ValidationError("User does not exist")
+        if user.profile.verification_key != attrs['verification_key']:
+            raise serializers.ValidationError("Incorrect verification key!")
+        self.instance = user
+        return attrs
