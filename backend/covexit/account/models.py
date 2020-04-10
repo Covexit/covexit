@@ -6,14 +6,21 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+from django.conf import settings
 
-VERIFICATION_MESSAGE = """Thanks for signing up for Covexit!
+VERIFICATION_MESSAGE = """Thank you for signing up for Covexit!
 
 To activate your account, please visit this link:
 {}
 """
 
 VERIFICATION_KEY_LENGTH = 30
+# Note: this will have to be set up on the frontend:
+VERIFICATION_URL = 'https://covexit.de/verify/'
+
+
+def create_verification_link(user):
+    return VERIFICATION_URL + user.profile.verification_key
 
 
 def create_verification_key():
@@ -25,10 +32,10 @@ def create_verification_key():
 def send_verification_email(user):
     link = create_verification_link(user)
     send_mail(
-        'Subject here',
+        'Covexit Email Verification',
         VERIFICATION_MESSAGE.format(link),
-        'from@example.com',
-        ['chris@zullo.dev'],
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
         fail_silently=False,
     )
 
