@@ -15,6 +15,7 @@ from rest_framework.reverse import reverse
 def PUBLIC_APIS(r, f):
     return [
         ("register", reverse("api-register", request=r, format=f)),
+        ("verify", reverse("api-verify", request=r, format=f)),
         ("login", reverse("api-login", request=r, format=f)),
         ("basket", reverse("api-basket", request=r, format=f)),
         ("basket-add-product", reverse("api-basket-add-product", request=r, format=f)),

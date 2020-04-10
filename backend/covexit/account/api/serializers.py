@@ -9,7 +9,8 @@ class ProfileRegisterSerializer(serializers.ModelSerializer):
         model = Profile
         exclude = [
             "user",
-            "verified"
+            "verified",
+            "verification_key",
         ]
 
 
