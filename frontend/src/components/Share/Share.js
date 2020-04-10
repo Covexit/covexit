@@ -1,100 +1,51 @@
-import React from 'react';
-import './Share.scss';
+import React, { useState, useRef } from "react";
+import "./Share.scss";
 import share from "../../assets/share.svg";
+import Button from "../Button/Button";
 
-class Share extends React.Component {
-  constructor() {
-    super();
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+function Share() {
 
-    this.state = {
-      showModal: false,
-      copySuccess: false,
+  const [modalShow, setModalShow] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const message = "Share Covexit with others and help during this crisis!";
+  const urlRef = useRef();
+  const url = window.location.href;
 
-    };
+  function copyLink() {
+
+    urlRef.current.select();
+    document.execCommand("copy");
+    setCopySuccess(" ∞ copied! ");
+    setTimeout(() => {
+      setModalShow(false);
+      setCopySuccess(false);
+    }, 3000);
   }
 
-  handleClick() {
-    if (!this.state.showModal) {
-      // attach/remove event handler
-      document.addEventListener('click', this.handleOutsideClick, false);
-    } else {
-      document.removeEventListener('click', this.handleOutsideClick, false);
-    }
-
-    this.setState(prevState => ({
-       showModal: !prevState.showModal,
-    }));
-  }
-
-  handleOutsideClick(e) {
-    // ignore clicks on the component itself
-    if (this.node.contains(e.target)) {
-      return;
-    }
-
-    this.handleClick();
-  }
-
-   copyCodeToClipboard = () => {
-    this.urlRef.select()
-    document.execCommand("copy")
-    this.setState({copySuccess: true})
-      setTimeout(() => {
-          this.setState(prevState => ({
-       copySuccess: !prevState.copySuccess,
-       showModal: !prevState.showModal,
-    }))
-         }, 3000);
-
-  }
-
-  render() {
-    return (
-      <div className="Share" ref={node => { this.node = node; }}>
-        <button className="Share-toggle"
-          onClick={this.handleClick}
-        ><img src={share} alt="Share Icon" className="Share-icon" />
-         Share
-        </button>
-        {this.state.showModal && (
-          <div className="modal">
-          <div className ="message">Share Covexit with others and help during this crisis.
-          </div>
-
-          <input id="copy"
-
-            ref={(urlRef) => this.urlRef = urlRef}
-            value={window.location.href}
-
+  return (
+    <div className="Share">
+      <button className="Share-toggle" onClick={() => setModalShow(!modalShow)}>
+        <img src={share} alt="Share Icon" className="Share-icon" />
+        Share
+      </button>
+      <div className={`Modal Modal--${modalShow ? "opened" : "closed"}`}>
+        <div className="Modal-body">
+          <div className="Share-message">{message}</div>
+          <input type='value' className="TextInput-field"
+            defaultValue={url}
+            ref={urlRef}
           />
-
-            {
-          this.state.copySuccess ?
-            <div id="copy">
-           ∞ copied!
-            </div> : null
-
-           }
-
-          <button class="Btn" onClick={() => this.copyCodeToClipboard()}>
-            Copy Link
-          </button>
-
-
-          <button class="skip" onClick={this.handleClick}>
-            Skip
-          </button>
+          <div className="Alert">{copySuccess}</div>
+          <div className="Btn-group">
+            <Button label="Copy Link" onClick={() => copyLink()} />
+            <Button type="dismiss" label="Skip" onClick={() => setModalShow(false)} />
           </div>
-
-         )}
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-
-
 export default Share;
+
