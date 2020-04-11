@@ -19,12 +19,13 @@ class PartnerSerializer(_PartnerSerializer):
 
     def create(self, validated_data):
         address = validated_data.pop('address')
-        owners = validated_data.pop('users')
         partner = Partner(**validated_data)
         # save so we can add users and addresses
         partner.save()
         # store owners
-        partner.users.set(owners)
+        if 'users' in validated_data:
+            owners = validated_data.pop('users')
+            partner.users.set(owners)
         # create covexit.partner with their main address
         partner.addresses.create(**address, is_main=True)
         return partner
