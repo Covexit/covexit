@@ -22,5 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(oscarapi_urls)),
     path('api/v1/', include(account_patterns)),
-    
 ]
