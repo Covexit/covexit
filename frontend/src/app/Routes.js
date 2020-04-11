@@ -9,6 +9,7 @@ import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding";
 import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
+import ProductCreateEdit from '../views/ProductCreateEdit';
 
 // Placeholders for now
 // use the route for the HomeView as reference for all others
@@ -19,6 +20,7 @@ function Routes() {
 
       <Route path="/stores/new" component={NewStore} />
       <Route exact path="/stores/:id/company" component={CompanyPage} />
+      <Route path="/stores/:id/product/:id?" component={ProductCreateEdit} />
       <Route excat path="/stores/:id/onboarding/:step" component={Onboarding} />
       <Route path="/stores" component={Stores} />
       <Route exact path="/company">
