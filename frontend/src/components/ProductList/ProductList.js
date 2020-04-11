@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 
 import Button from '../Button/Button';
 import ProductGroup from '../ProductGroup/ProductGroup';
-
-import { bakeryImages } from '../../shared/businessImages'
 import magnifierIcon from '../../assets/magnifier.svg'
 
-const products = ['bread', 'teas', 'oils', 'pots'];
+const ProductList = ({ products, type, editorView }) => {
+  const [segment, setSegment] = useState('bread');
 
-const ProductList = ({ type, editorView }) => {
-  const [currentProduct, setCurrentProduct] = useState('bread');
-  const prices = [5.60, 3.45, 3.45, 3.45, 3.45];
-  const variants = bakeryImages
-    .map((eachBackeryImage, index) => ({ image: eachBackeryImage, price: prices[index] }));
+  const categories = products.reduce((acc, current) => {
+    const x = acc.find(item => item.category === current.category)
 
+    return x ? acc : acc.concat([current])
+  }, []).map(category => category.category)
 
   return (
     <section className="Product-list">
@@ -28,12 +26,21 @@ const ProductList = ({ type, editorView }) => {
 
       <div className="Product-catelogs">
         <img src={magnifierIcon} alt="magnifier" />
-        {products.map(product => <a href={`#${product}`} onClick={() => setCurrentProduct(product)} className={`Product-catelog ${product === currentProduct ? 'active': ''}`} key={product}>{product}</a>)}
+        {categories.map(category => <a href={`#${category}`} onClick={() => setSegment(category)} className={`Product-catelog ${category === segment ? 'active': ''}`} key={category}>{category}</a>)}
       </div>
 
-      {products.map(product => 
-        <ProductGroup key={'product-group ' + product} variants={variants} groupName={product} type={type} />
-      )}
+      {categories.map(category => {
+        const filteredProducts = products.filter(product => product.category === category)
+
+        return (
+          <ProductGroup
+            key={category}
+            groupName={category}
+            products={filteredProducts}
+            type={type}
+          />
+        )
+      })}
     </section>
   );
 }

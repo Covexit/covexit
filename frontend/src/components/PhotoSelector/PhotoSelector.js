@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Button from '../Button/Button'
 import checkmark from '../../assets/checkmark.svg'
 
 import './PhotoSelector.scss'
@@ -38,7 +37,6 @@ const PhotoSelector = ({ images }) => {
         `}
       >
         {/* TODO: add upload image */}
-        <Button to="/" label="Next →" />
       </div>
     </div>
   )

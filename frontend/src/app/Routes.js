@@ -7,11 +7,14 @@ import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding";
 import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
+import ProductCreateEdit from '../views/ProductCreateEdit';
 
 function Routes() {
   return (
     <Switch>
       <Route path="/stores/new" component={NewStore} />
+      <Route exact path="/stores/:id/company" component={CompanyPage} />
+      <Route path="/stores/:id/product/:id?" component={ProductCreateEdit} />
       <Route excat path="/stores/:id/onboarding/:step" component={Onboarding} />
       <Route path="/stores" component={Stores} />
       <Route path="/company/photo-select" component={PhotoSelect} />

@@ -1,9 +1,12 @@
 import React from 'react';
-
+import { useCartContext } from '../../context/CartContext';
 import roundedPlusIcon from "../../assets/rounded_plus.svg";
 import penIcon from "../../assets/pen.svg";
 
-const ProductItem = ({ type, price, image }) => {
+const ProductItem = ({ product, type }) => {
+  const { addProduct } = useCartContext()
+  const { name, description, price, image } = product
+
   const productIcons = {
     add: roundedPlusIcon,
     edit: penIcon,
@@ -15,11 +18,17 @@ const ProductItem = ({ type, price, image }) => {
       <img className="Product-img" src={image} alt="product" />
       <div className="Product-content">
         <div className="Product-review">
-          <h4>Very great bread indeed</h4>
-          <p>mix of some flourish stuff and water, plus some salty crystals looking like salt</p>
+          <h4>{name}</h4>
+          <p>{description}</p>
           <h4 className="variant-price">{price}€</h4>
         </div>
-        <img className="medium-icon" src={productIcons[type]} alt={`${type} product`} />
+
+        <img
+          onClick={() => addProduct(product)}
+          className="medium-icon"
+          src={productIcons[type]}
+          alt="add product"
+        />
       </div>
     </div>
   );
