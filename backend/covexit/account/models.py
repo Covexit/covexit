@@ -1,7 +1,7 @@
 import random
 import string
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
@@ -46,7 +46,7 @@ def validate_true(value):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     address = models.CharField(_('Address'), max_length=500)
     zip_and_city = models.CharField(_('Zip and City'), max_length=200)
     phone = models.CharField(_('Phone'), max_length=45, default='')
@@ -57,3 +57,8 @@ class Profile(models.Model):
     verified = models.BooleanField(_('Email Verified'), default=False)
     verification_key = models.CharField(_('Verification Key'),
                                         max_length=VERIFICATION_KEY_LENGTH)
+
+
+from django.contrib.auth.models import AbstractUser
+class UserAccount(AbstractUser):
+    pass

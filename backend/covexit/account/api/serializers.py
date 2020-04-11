@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 from rest_framework import serializers
 
 from ..models import (
@@ -24,7 +24,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     class Meta:
-        model = User
+        model = settings.AUTH_USER_MODEL
         fields = (
             "id",
             "username",
@@ -37,7 +37,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new user + an associated profile."""
-        user = User.objects.create(
+        user = settings.AUTH_USER_MODEL.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],

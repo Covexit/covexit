@@ -2,7 +2,7 @@
   display: flex;
   .Product-img {
     width: 20%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
