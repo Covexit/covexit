@@ -26,6 +26,8 @@ class Partner(AbstractPartner):
         },
     )
 
+    description = models.TextField(_('description'), max_length=300, blank=True)
+
     def __str__(self):
         return self.name
 
