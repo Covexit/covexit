@@ -8,6 +8,7 @@ import Onboarding from "../views/Onboarding";
 import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
 import ProductCreateEdit from '../views/ProductCreateEdit';
+import CompanyPage from '../views/CompanyPage';
 
 function Routes() {
   return (
