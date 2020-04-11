@@ -1,0 +1,35 @@
+@import "stylebase/variables";
+
+.ProductCreateEdit {
+
+  .Form-head,
+  .ProductCreateEdit-wrap,
+  .Form-footer {
+    padding: $padding-wrapper;
+  }
+
+  .Form-head {
+    padding-bottom: 0;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .Form-body {
+    margin-bottom: 0;
+  }
+
+
+  .FileUpload--editView {
+    margin-top: 0;
+
+    span {
+      display: none;
+    }
+  }
+
+  .TextInput-helpText {
+    padding: 0 $padding-wrapper;
+  }
+}

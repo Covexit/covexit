@@ -1,17 +1,19 @@
 import React from 'react';
-import './App.scss';
+import { CartProvider } from '../context/CartContext'
+
 import Routes from "./Routes";
 import Header from "../components/Header/Header";
 
-function App() {
-  return (
-    <>
-      <Header/>
-      <div className="App">
-        <Routes />
-      </div>
-    </>
-  );
-}
+import './App.scss';
 
-export default App;
+const App = () => (
+  <CartProvider>
+    <Header />
+
+    <div className="App">
+      <Routes />
+    </div>
+  </CartProvider>
+)
+
+export default App
