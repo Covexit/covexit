@@ -21,7 +21,7 @@ import './ViewWrappers.scss';
               ______        _________  Left main content
              |   L  |      |    |    | Mobile: Left main top, Right in middle,
              |   R  |      | L  | R  | left footer at the bottom (usually buttons)
-             |___F__|      |_F__|____| <SplitViewWithFooter left={<Component />} footer={<Component />} right={<Component />} />
+             |___F__|      |_F__|____| <MobileView renderFn={ (isBigScreen) => return Components depending on isBigScreen }/>
  */
 
 const View = ({ children, withPadding, className }) => (
@@ -40,21 +40,14 @@ const ViewSplitter = ({ children, className, omitOnMobile, withPadding, small })
   );
 };
 
-const SplitViewWithFooter = ({ left, right, footer }) => {
+const MobileView = ({ renderFn }) => {
   const isBigScreen = useMediaQuery({ minWidth: 960 });
 
   return (
-    <View>
-      <ViewSplitter>
-        {left}
-        {isBigScreen && footer}
-      </ViewSplitter>
-      <ViewSplitter>
-        {right}
-      </ViewSplitter>
-      {!isBigScreen && <div className="ViewSplitter-footer">{footer}</div>}
+    <View className="View--mobile">
+      {renderFn(isBigScreen)}
     </View>
   );
 };
 
-export default { View, ViewSplitter, SplitViewWithFooter }
+export default { View, ViewSplitter, MobileView }

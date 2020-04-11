@@ -1,5 +1,17 @@
-@import "stylebase/variables";
+@import "stylebase/utils";
 
 .PhotoSelect {
-  padding: $padding-wrapper;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+
+  @include bp-large() {
+    flex-shrink: 1;
+  }
+}
+
+.PhotoSelect .Intro {
+  @include bp-large() {
+    margin-bottom: auto;
+  }
 }
