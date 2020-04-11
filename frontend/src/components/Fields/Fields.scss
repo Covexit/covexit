@@ -1,6 +1,7 @@
 @import "stylebase/variables";
 @import "stylebase/utils";
 
+.CheckBox-field,
 .FileUpload-field,
 .TextInput-label-text {
   @include a11y-visually-hidden;
@@ -76,4 +77,70 @@
   left: 50%;
   margin-top: -35px;
   margin-left: -35px;
+}
+
+.CheckBox {
+  position: relative;
+  margin-top: 1.2em;
+
+  path {
+    fill: none;
+    stroke: $color-primary;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 71px;
+    stroke-dashoffset: 71px;
+    transition: stroke-dashoffset .6s ease;
+  }
+
+  &:hover path, &:focus-within path {
+    stroke-dashoffset: 0
+  }
+
+  polyline {
+    fill: none;
+    stroke: #FFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 18px;
+    stroke-dashoffset: 18px;
+    transition: stroke-dashoffset .3s ease;
+  }
+}
+
+.CheckBox-label {
+  padding-left: 2em;
+}
+
+.CheckBox-check {
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $color-dark-gray;
+  border-radius: 3px;
+  display: inline-block;
+  position: absolute;
+
+  svg {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+  }
+}
+
+.CheckBox-field {
+
+  &:checked + .CheckBox-check {
+    border-color: $color-primary;
+
+    path {
+      fill: $color-primary;
+    }
+
+    polyline {
+      stroke-dashoffset: 0;
+    }
+  }
 }
