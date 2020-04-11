@@ -15,6 +15,8 @@ const PersonalForm = ({ history }) => {
     phone: '',
     password: '',
     password_repeat: '',
+    tos: false,
+    privacy: false
   });
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const PersonalForm = ({ history }) => {
   });
 
   const changeHandler = (event) => {
-    setData({...data, [event.target.name]: event.target.value })
+    setData({...data, [event.target.name]: event.target.checked || event.target.value })
   };
 
   const submitHandler = (e) => {
@@ -50,6 +52,8 @@ const PersonalForm = ({ history }) => {
             <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder="Password"/>
             <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
                                   placeholder="Password (repeat)" ref={passwordRepeat}/>
+            <Fields.CheckBox onChange={changeHandler} name="tos" checked={data.tos} placeholder="I have read and I accept the Terms & Conditions."/>
+            <Fields.CheckBox onChange={changeHandler} name="privacy" checked={data.privacy} placeholder="I have read and I accept the Privacy Policy"/>
           </>}
           footer={<Button label="Next" />}
     />
