@@ -1,5 +1,7 @@
 *.pyc
 /backend/db.sqlite3
+/backend/static/
+/backend/media/
 .DS_Store
 .env
 **/settings/local.py
