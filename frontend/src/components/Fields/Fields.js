@@ -75,10 +75,10 @@ const FileUpload = ({ helpText, label, onChange, name, value, editView }) => {
   );
 };
 
-const CheckBox = ({ onChange, onFocus, onBlur, name, value, placeholder, checked }) => (
+const CheckBox = ({ onChange, onFocus, onBlur, name, value, placeholder, checked, optional }) => (
   <div className="CheckBox" >
     <label>
-      <input className="CheckBox-field" onChange={onChange} type="checkbox"
+      <input className="CheckBox-field" onChange={onChange} type="checkbox" required={!optional}
                 onFocus={onFocus} onBlur={onBlur} name={name} checked={checked}
                 value={value} placeholder={placeholder}/>
       <span className="CheckBox-check">
