@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-
+from oscarapi.urls import urlpatterns as oscarapi_urls
+from covexit.account.api.urls import urlpatterns as account_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('oscarapi.urls')),
+    path('api/v1/', include(oscarapi_urls)),
+    path('api/v1/', include(account_patterns)),
+    
 ]
