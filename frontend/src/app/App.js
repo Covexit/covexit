@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
       <div className="App">
         <Routes />
       </div>

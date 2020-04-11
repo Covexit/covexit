@@ -1,0 +1,52 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+.shoppingcart-container{
+    background-color: #ff7f48;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: sticky;
+    font-size: 15px;
+    font-weight: 600;
+    top: 50px;
+    z-index: 5;
+}
+
+.shoppingcart-title{
+    color: white;
+    // padding-top: 15px;
+}
+
+.dropdown { position: absolute; top: 100%; left: 0; width: 300px; z-index: 2; border: 1px solid rgba(0, 0, 0, 0.04); box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14); } ul { list-style: none; padding: 0; margin: 0; } li { padding: 8px 12px; } li:hover { background-color: rgba(0, 0, 0, 0.14); cursor: pointer; }
+
+.cartBtn{
+    display: inline-block;
+    width: 50%;
+    padding: .75rem 1.5rem;
+    border-radius: 10px;
+    border: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    background: #FF7F48;
+    cursor: pointer;
+    box-shadow: 0 3
+}
+
+.cartBtnContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.total{
+    font-size: 20px;
+}
+
+.cartSpace{
+    padding-bottom: 100px;
+}

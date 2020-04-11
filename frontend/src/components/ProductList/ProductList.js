@@ -19,19 +19,19 @@ const ProductList = ({ type, editorView }) => {
     <section className="Product-list">
       <h2 className="Product-heading high-emphasis">Products</h2>
 
-     {editorView &&
-      <section className="Store-actions product-actions-group product-border-padding-top--0">
-        <Button to="/store" label="Manage product" secondary type="group" />
-        <Button to="/store" label="Add new product" secondary type="group" />
-      </section>
+      {editorView &&
+        <section className="Store-actions product-actions-group product-border-padding-top--0">
+          <Button to="/store" label="Manage product" secondary type="group" />
+          <Button to="/store" label="Add new product" secondary type="group" />
+        </section>
       }
 
       <div className="Product-catelogs">
         <img src={magnifierIcon} alt="magnifier" />
-        {products.map(product => <a href={`#${product}`} onClick={() => setCurrentProduct(product)} className={`Product-catelog ${product === currentProduct ? 'active': ''}`} key={product}>{product}</a>)}
+        {products.map(product => <a href={`#${product}`} onClick={() => setCurrentProduct(product)} className={`Product-catelog ${product === currentProduct ? 'active' : ''}`} key={product}>{product}</a>)}
       </div>
 
-      {products.map(product => 
+      {products.map(product =>
         <ProductGroup key={'product-group ' + product} variants={variants} groupName={product} type={type} />
       )}
     </section>
