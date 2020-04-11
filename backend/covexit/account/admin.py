@@ -1,5 +1,5 @@
 from django.contrib import admin
-from covexit.account.models import Profile
+from django.contrib.auth.admin import UserAdmin
+from .models import UserAccount
 
-
-admin.site.register(Profile)
+admin.site.register(UserAccount, UserAdmin)

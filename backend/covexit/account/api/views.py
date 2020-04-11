@@ -7,7 +7,6 @@ from covexit.account.api.serializers import RegisterSerializer
 
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
-from django.contrib.auth.models import User
 
 
 class RegisterView(CreateAPIView):
@@ -24,7 +23,7 @@ class RegisterView(CreateAPIView):
     the fields the ``UserSerializer`` will render.
     """
 
-    model = User
+    model = settings.AUTH_USER_MODEL
     permission_classes = [
         permissions.AllowAny  # Or anon users can't register
     ]
