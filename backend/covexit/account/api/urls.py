@@ -1,5 +1,4 @@
 from django.urls import path
-from covexit.account.api.views import RegisterView
 from rest_framework.authtoken.views import obtain_auth_token
 from covexit.account.api.views import RegisterView, VerifyView
 
