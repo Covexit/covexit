@@ -8,11 +8,11 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.conf import settings
 
-VERIFICATION_MESSAGE = """Thank you for signing up for Covexit!
+VERIFICATION_MESSAGE = _("""Thank you for signing up for Covexit!
 
 To activate your account, please visit this link:
 {}
-"""
+""")
 
 VERIFICATION_KEY_LENGTH = 30
 # Note: this will have to be set up on the frontend:
