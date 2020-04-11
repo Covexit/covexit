@@ -38,3 +38,12 @@ class RegisterView(CreateAPIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         raise MethodNotAllowed("GET")
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response({'user': serializer.data,
+                         'token': serializer.instance.auth_token.key},
+                        status=status.HTTP_201_CREATED, headers=headers)

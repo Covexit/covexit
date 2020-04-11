@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django_tables2',
 
     'rest_framework',
+    'rest_framework.authtoken',
     'oscarapi',
     'covexit.core',
     'covexit.account',
@@ -67,6 +68,12 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 
 SITE_ID = 1
