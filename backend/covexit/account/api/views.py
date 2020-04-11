@@ -1,4 +1,6 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
+
 from rest_framework import status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
@@ -7,6 +9,9 @@ from covexit.account.api.serializers import RegisterSerializer, VerifySerializer
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
+
+
+UserAccount = get_user_model()
 
 
 class RegisterView(CreateAPIView):
@@ -23,7 +28,7 @@ class RegisterView(CreateAPIView):
     the fields the ``UserSerializer`` will render.
     """
 
-    model = settings.AUTH_USER_MODEL
+    model = UserAccount
     permission_classes = [
         permissions.AllowAny  # Or anon users can't register
     ]
@@ -44,8 +49,8 @@ class VerifyView(APIView):
     Api for verifying user emails.
 
     POST(user_id, verification_key):
-    - Check the verification key against the one in the user's profile.
-    - If the key is correct, activate the user and set profile.verified = True
+    - Check the verification key against the one associated with the user.
+    - If the key is correct, activate the user and set user.verified = True
     - If not, return an error
     """
     serializer_class = VerifySerializer
@@ -55,8 +60,7 @@ class VerifyView(APIView):
         if ser.is_valid():
             user = ser.instance
             user.is_active = True
-            user.profile.verified = True
+            user.verified = True
             user.save()
-            user.profile.save()
             return Response("User verified")
         return Response(ser.errors, status=status.HTTP_401_UNAUTHORIZED)
