@@ -18,7 +18,7 @@ const StoreList = () => {
 
       <div className="StoreList-stores">
         {stores.map((e, i) => (
-          <Link to={`/stores/${i + 1}`} className="StoreList-store">
+          <Link key={i} to={`/stores/${i + 1}`} className="StoreList-store">
             <div className="StoreList-store-img">
               <img src={businessImages[i]} alt="" />
             </div>
