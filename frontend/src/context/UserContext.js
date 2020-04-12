@@ -49,16 +49,16 @@ const useUser = () => {
     })
   };
 
-  const setVerified = (verified) => {
+  const setVerified = (isVerified) => {
     dispatch({
-      type: 'SET_USER',
-      data: { verified }
+      type: 'SET_VERIFIED',
+      data: { isVerified }
     })
   };
 
   const loginSuccess = (user, token) => {
     dispatch({
-      type: 'SET_USER',
+      type: 'LOGIN_SUCCESSFUL',
       data: { token }
     })
   };

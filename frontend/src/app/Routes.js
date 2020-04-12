@@ -9,6 +9,7 @@ import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
 import ProductCreateEdit from '../views/ProductCreateEdit';
 import CompanyPage from '../views/CompanyPage';
+import Verify from '../views/Verify';
 
 function Routes() {
   return (
@@ -20,6 +21,7 @@ function Routes() {
       <Route path="/stores" component={Stores} />
       <Route path="/company/photo-select" component={PhotoSelect} />
       <Route path="/order/:step" component={OrderForm} />
+      <Route path="/verify/:id/:token" component={Verify} />
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
     </Switch>

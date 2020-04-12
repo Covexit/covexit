@@ -19,6 +19,7 @@ const API = {
   product: createEndpoint('product'),
   productCategory: createEndpoint('product-category'),
   register: { post: (data) => axiosInstance.post('register/', data) },
+  verify: { post: (data) => axiosInstance.post('verify/', data) },
   partners: createEndpoint('admin/partners'),
 };
 

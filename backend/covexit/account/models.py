@@ -22,7 +22,8 @@ VERIFICATION_URL = '/verify/'
 
 
 def create_verification_link(user):
-    return (Site.objects.get_current().domain + VERIFICATION_URL + user.verification_key)
+    return (Site.objects.get_current().domain + VERIFICATION_URL +
+            + user.pk + '/' + user.verification_key)
 
 
 def create_verification_key():
