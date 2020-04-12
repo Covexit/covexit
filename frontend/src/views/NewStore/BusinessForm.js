@@ -15,7 +15,7 @@ const getItemFromAddress = (wantedType, haystack) => {
 const BusinessForm = ({ location, history }) => {
   const state = !location.state ? 'init' :
     location.state.useGoogle ? 'google' : 'manual';
-  const { user } = useUserContext();
+  const { token } = useUserContext();
 
   const [data, setData] = useState({
     name: '',
@@ -57,7 +57,7 @@ const BusinessForm = ({ location, history }) => {
     e.preventDefault();
     const response = await API.partners.post({
       ...data, address: { ...data }
-    },{headers: {'Authorization': `Token ${user.token}`}});
+    },{headers: {'Authorization': `Token ${token}`}});
     if (response.status === 201) {
       history.push(`/stores/${response.data.id}/onboarding`);
     } else {

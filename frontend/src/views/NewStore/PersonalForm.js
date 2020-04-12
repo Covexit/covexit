@@ -36,7 +36,7 @@ const PersonalForm = ({ history }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await API.register.post({ ...data, username: data.email });
-    setUser({ id: response.data.user.id, email: response.data.user.email, token: response.data.token });
+    setUser({ id: response.data.user.id, email: response.data.user.email }, response.data.token);
     history.push('/stores/new/business');
   };
 
