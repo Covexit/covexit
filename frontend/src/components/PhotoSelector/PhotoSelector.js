@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import checkmark from '../../assets/checkmark.svg'
 
 import './PhotoSelector.scss'
 
-const PhotoSelector = ({ images }) => {
-  const [selectedPhoto, setSelectedPhoto] = useState(false)
+const PhotoSelector = ({ images, selectedName, onSelected, photo }) => {
 
   return (
     <div className="PhotoSelector">
@@ -12,20 +11,20 @@ const PhotoSelector = ({ images }) => {
         <label
           key={i}
           className={`PhotoSelector-option
-            ${selectedPhoto === i && 'PhotoSelector-option--selected'}
+            ${photo === image && 'PhotoSelector-option--selected'}
           `}
         >
           <input
             className="PhotoSelector-radio"
             type="radio"
             value={i}
-            checked={selectedPhoto === i}
-            onChange={e => setSelectedPhoto(parseInt(e.target.value))}
+            checked={photo === image}
+            onChange={() => onSelected(image)}
           />
 
-          <img className="PhotoSelector-photo" src={image} alt={i} />
+          <img className="PhotoSelector-photo" src={`/photos/${image}`} alt={i} />
 
-          {selectedPhoto === i &&
+          {photo === image &&
             <img className="PhotoSelector-checkmark" src={checkmark} alt="checkmark" />
           }
         </label>
@@ -33,7 +32,7 @@ const PhotoSelector = ({ images }) => {
 
       <div
         className={`PhotoSelector-nextBtn
-          ${!selectedPhoto && 'PhotoSelector-nextBtn--disabled'}
+          ${!photo && 'PhotoSelector-nextBtn--disabled'}
         `}
       >
         {/* TODO: add upload image */}

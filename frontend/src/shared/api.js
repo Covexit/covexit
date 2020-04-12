@@ -8,7 +8,8 @@ const axiosInstance = axios.create({
 function createEndpoint(endpoint) {
   return {
     get: (id) => axiosInstance.get(`${endpoint}/${id ? id : ''}/`),
-    put: (id, data) => axiosInstance.put(`${endpoint}/${id ? id : ''}/`, data),
+    put: (id, data, config) => axiosInstance.put(`${endpoint}/${id ? id : ''}/`, data, config),
+    patch: (id, data, config) => axiosInstance.patch(`${endpoint}/${id ? id : ''}/`, data, config),
     post: (data, config) => axiosInstance.post(`${endpoint}/`, data, config),
   }
 }
