@@ -1,3 +1,4 @@
+from oscarapi.serializers.login import UserSerializer
 from oscarapi.serializers.product import PartnerSerializer as _PartnerSerializer
 from rest_framework.fields import ModelField
 from rest_framework import serializers
@@ -16,6 +17,7 @@ class AddressSerializer(serializers.ModelSerializer):
 class PartnerSerializer(_PartnerSerializer):
     address = AddressSerializer(write_only=True)
     addresses = AddressSerializer(many=True, read_only=True)
+    users = UserSerializer(many=True, write_only=True)
 
     def create(self, validated_data):
         address = validated_data.pop('address')
