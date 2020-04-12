@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
+import React  from 'react';
 
 import './Onboarding.scss';
-import Button from "../components/Button/Button";
-import Form from "../components/Form/Form";
-import InlineInputs from "../components/InlineInputs/InlineInputs";
-import Fields from "../components/Fields/Fields";
 import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import { Route, Switch } from 'react-router-dom';
 import BusinessForm from './NewStore/BusinessForm';
@@ -13,8 +9,8 @@ import PhotoSelect from './Onboarding/PhotoSelect';
 
 const Onboarding = (props) => {
   const match = props.match;
-  const id = match.params.id;
 
+  /*
   const [categories, setCategories] = useState([]);
   const categoriesAreSet = categories.some(e => !!e);
 
@@ -56,7 +52,7 @@ const Onboarding = (props) => {
                            helpText="JPEG .JPG .PNG (Just these file formats will work)"/>
       </>,
     },
-  ];
+  ];*/
 
 
   return (
