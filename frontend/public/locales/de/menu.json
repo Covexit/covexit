@@ -1,7 +1,7 @@
 {
-  "order": "",
-  "store": "",
-  "company": "",
+  "order": "Bestellungen",
+  "store": "Geschäft",
+  "company": "Unternehmen",
   "onboarding": "",
   "howItWorks": "",
   "imprint": "",
