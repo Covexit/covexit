@@ -1,39 +1,31 @@
 import React, { useState } from 'react'
 import './Cart.scss'
-// import '../Button/Button.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
-import { makeStyles } from '@material-ui/core/styles';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ProductItem from '../ProductItem/ProductItem'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
+import { useCartContext } from '../../context/CartContext'
 
 
 
 
-const useStyles = makeStyles({
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-});
+const Cart = ({ product, type }) => {
+    const { delProduct, total, cart } = useCartContext()
 
+    console.log('cart:', cart)
 
-
-const Cart = () => {
-
-    // const productIcon = {
-    //     remove: penIcon
-    // }
 
     const [state, setState] = React.useState({
-        bottom: false,
-        // itemCount: 0
+        bottom: false
     });
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -44,34 +36,81 @@ const Cart = () => {
         setState({ ...state, [anchor]: open });
     };
 
+
     const list = (anchor) => (
         <div
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
+
             <List>
 
-                <ListItem button >
-                    <ProductItem />
-                    {/* <FontAwesomeIcon icon={faMinusCircle} /> */}
-                    <img class="medium-icon" src="/static/media/rounded_plus.f80afa5e.svg" alt="add product"></img>
-                </ListItem>
+                {cart.map(item => {
+                    return (
+                        <div className="Product-item">
+                            <ListItem>
+
+                                <div key={item.id} className="Product-content">
+                                    <img className="Product-img" src={item.image} alt="product" />
+                                    <div className="Product-review">
+                                        <h4>{item.name}</h4>
+                                        <p>{item.description}</p>
+                                        <h4 className="variant-price">{item.price}€</h4>
+
+                                        <FormControl variant="outlined">
+                                            <InputLabel id="demo-simple-select-outlined-label" className='label'>
+                                                <div className='stk'>
+                                                    Stk: {item.quantity}
+                                                </div>
+                                            </InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-outlined-label"
+                                                id="demo-simple-select-outlined"
+                                                // value={item.quantity}
+                                                // onChange={}
+                                                label="Age"
+                                            >
+                                                <MenuItem value={item.quantity}>{item.quantity}</MenuItem>
+                                                <MenuItem value={item.quantity + 1}>{item.quantity + 1}</MenuItem>
+                                                <MenuItem value={item.quantity + 2}>{item.quantity + 2}</MenuItem>
+                                                <MenuItem value={item.quantity + 3}>{item.quantity + 3}</MenuItem>
+                                                <MenuItem value={item.quantity + 4}>{item.quantity + 4}</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        {/* </div> */}
+                                    </div>
+                                    <img
+                                        onClick={() => delProduct(item.id)}
+                                        className="medium-icon"
+                                        src="/static/media/rounded_plus.f80afa5e.svg"
+                                        alt="add product"
+                                    />
+                                </div>
+
+                            </ListItem>
+                        </div>
+                    )
+                })}
+
 
             </List>
             <Divider />
-            <div className='cartSpace'>
-                <List>
-                    <ListItem button >
-                    </ListItem>
-
-                </List>
-            </div>
-            <Divider />
             <List>
 
                 <ListItem button >
-                    <h4 className='total'>Total:</h4>
+                    <div className='total-checkout'>
+                        <div className='total-title'>
+                            <h4>Total:</h4>
+                        </div>
+                        <div className='total'>
+                            <h4>{total}€</h4>
+                        </div>
+                        <div className='percent'>
+                            <p>incl. 19% VAT</p>
+                        </div>
+                    </div>
+
                 </ListItem>
                 <div className='cartBtnContainer'>
                     <button className='cartBtn'>Buy Now</button>
@@ -80,37 +119,45 @@ const Cart = () => {
         </div>
     );
 
-    return (
-        <div className='shoppingcart-container'>
-            {['bottom'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>
-                        <h4 className='shoppingcart-title'>
-                            <FontAwesomeIcon icon={faShoppingCart} />
-                            Shopping Cart()
+    if (cart.length === 0) {
+        return (
+            <div className='shoppingcart-container'>
+                {['bottom'].map((anchor) => (
+                    <React.Fragment key={anchor}>
+                        <Button onClick={toggleDrawer(anchor, true)}>
+                            <h4 className='shoppingcart-title'>
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                Your cart is empty!
                         </h4>
 
-                    </Button>
-                    <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                        {list(anchor)}
-                    </Drawer>
-                </React.Fragment>
-            ))}
-        </div>
-    );
+                        </Button>
+                        <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                            {list(anchor)}
+                        </Drawer>
+                    </React.Fragment>
+                ))}
+            </div>
+        )
+    } else {
+        return (
+            <div className='shoppingcart-container'>
+                {['bottom'].map((anchor) => (
+                    <React.Fragment key={anchor}>
+                        <Button onClick={toggleDrawer(anchor, true)}>
+                            <h4 className='shoppingcart-title'>
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                Shopping Cart({cart.length})
+                        </h4>
 
-
-    // return (
-    //     <div className='shoppingcart-container'>
-    //         <button>
-    //             <h4 className='shoppingcart-title'>
-    //                 <FontAwesomeIcon icon={faShoppingCart} />
-    //                 Shopping Cart({itemCount})
-    //                 </h4>
-    //         </button>
-
-    //     </div>
-    // )
+                        </Button>
+                        <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                            {list(anchor)}
+                        </Drawer>
+                    </React.Fragment>
+                ))}
+            </div>
+        )
+    }
 
 }
 

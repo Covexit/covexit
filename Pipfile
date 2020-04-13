@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django-oscar = "*"
 django-oscar-api = "*"
+model-bakery = "*"
 
 [requires]
 python_version = "3.8"

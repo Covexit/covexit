@@ -43,6 +43,10 @@
     padding-top: 20px;
 }
 
+.total-title{
+    font-size: 20px;
+}
+
 .total{
     font-size: 20px;
 }
@@ -50,3 +54,150 @@
 .cartSpace{
     padding-bottom: 100px;
 }
+
+.Product-item {
+    display: flex;
+    .Product-img {
+      width: 30%;
+      object-fit: contain;
+    }
+  }
+
+  .Product-content {
+    margin-left: 10px;
+    border-bottom: 1px solid $color-gray;
+    display: flex;
+    width: calc(80% - 10px);
+    .Product-review {
+      width: 100%;
+      padding: 15px 0 10px 0;
+      font-size: 14px;
+      p {
+        font-size: 14px;
+        line-height: 15px;
+        position: relative;
+        top: 10px;
+      }
+      .variant-price {
+        font-size: 16px;
+        line-height: 19px;
+        color: $color-primary;
+        padding-top: 5px;
+        position: relative;
+        top: 30px;
+        left: 115px;
+      }
+    }
+    .medium-icon {
+      width: 40px;
+      margin-left: 10px;
+      @media (min-width: 767px) {
+         width: 46px;
+      }
+    }
+  }
+
+  .MuiSelect-outlined.MuiSelect-outlined {
+    padding-right: 32px;
+    width: 50px;
+    height: 1px;
+    background-color: darkslategrey;
+    border-radius: 25px;
+}
+
+.stk{
+    color: white;
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+}
+
+.MuiSvgIcon-root {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+    .MuiSelect-icon {
+        top: calc(50% - 12px);
+        color: white;
+        right: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    .MuiSelect-iconOutlined {
+        right: 7px;
+    }
+}
+
+
+
+//   .dropbtn {
+//     background-color: darkslategrey;
+//     color: white;
+//     padding: 16px;
+//     font-size: 16px;
+//     border: none;
+//     border-radius: 25px;
+//     cursor: pointer;
+//     height: 2px;
+//     width: 100px;
+//   }
+  
+//   .dropdown {
+//     position: relative;
+//     display: inline-block;
+//     width: 0;
+//   }
+  
+//   .dropdown-content {
+//     display: none;
+//     position: absolute;
+//     background-color: #f9f9f9;
+//     min-width: 160px;
+//     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+//     z-index: 1;
+//   }
+  
+//   .dropdown-content a {
+//     color: black;
+//     padding: 12px 16px;
+//     text-decoration: none;
+//     display: block;
+//   }
+  
+//   .dropdown-content a:hover {background-color: #f1f1f1}
+  
+//   .dropdown:hover .dropdown-content {
+//     display: block;
+//   }
+  
+//   .dropdown:hover .dropbtn {
+//     background-color: #3e8e41;
+//   }
+
+//   .dropdown-title{
+//     position: relative;
+//     bottom: 10px;
+//   }
+
+
+
+  .percent{
+    display: flex;
+    position: relative;
+    left: 250px;
+    bottom: 24px;
+  }
+
+  .total{
+    display: flex;
+    position: relative;
+    left: 250px;
+    bottom: 25px;
+  }
+
+  

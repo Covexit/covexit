@@ -8,6 +8,7 @@ import Cart from '../components/Cart/Cart';
 import businessImage from "../assets/business.jpg";
 import chevronDown from '../assets/chevron-down.svg';
 
+import products from '../shared/productData.js'
 
 const Store = () => {
   const [showMore, requestMore] = useState(false);
@@ -34,10 +35,9 @@ const Store = () => {
       <section className="Store-actions">
         <Button to="/store" label="Make a call" secondary />
       </section>
-
       <Cart />
 
-      <ProductList type="add" />
+      <ProductList products={products} type="add" />
       <Footer />
     </div>
   );
