@@ -11,7 +11,7 @@ import { useUserContext } from '../../context/UserContext';
 
 const PhotoSelect = ({ match, history }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(false);
-  const { user } = useUserContext();
+  const { token } = useUserContext();
   const googleBusiness = false;
 
   const getImages = () => {
@@ -35,7 +35,7 @@ const PhotoSelect = ({ match, history }) => {
     const response = await API.partners.patch(
       match.params.id,
       { image: selectedPhoto },
-      { headers: {'Authorization': `Token ${user.token}`}}
+      { headers: {'Authorization': `Token ${token}`}}
       );
     if (response.status === 201) {
       //history.push(`/stores/${response.data.id}/onboarding`);
