@@ -14,6 +14,18 @@ class Partner(AbstractPartner):
 
     created = models.DateTimeField(_("Created"), auto_now_add=True)
     updated = models.DateTimeField(_("Last updated"), auto_now=True)
+    image = models.CharField(max_length=50, blank=True, null=True, choices=[
+        ('business_books.jpg', _('books')),
+        ('business_clothes.jpg', _('clothes')),
+        ('business_coffee.jpg', _('coffee')),
+        ('business_drugstore.jpg', _('drugstore')),
+        ('business_electronics.jpg', _('electronics')),
+        ('business_garden.jpg', _('garden')),
+        ('business_jewellry.jpg', _('jewellry')),
+        ('business_living.jpg', _('living')),
+        ('business_other.jpg', _('other')),
+        ('business_toys.jpg', _('toys'))
+    ])
 
     name = models.CharField(
         _('registered company name'),
@@ -25,6 +37,8 @@ class Partner(AbstractPartner):
             'unique': _('A company with that name already exists.'),
         },
     )
+
+    description = models.TextField(_('description'), max_length=300, blank=True)
 
     def __str__(self):
         return self.name

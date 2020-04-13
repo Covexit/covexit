@@ -32,14 +32,14 @@ const PasswordInput = React.forwardRef(({ onKeyDown, onChange, onFocus, placehol
 ));
 
 const TextArea = ({ onKeyDown, placeholder, rows, onChange, onFocus, onBlur, name,
-                    value }) => {
+                    value, optional, maxLength }) => {
   return (
     <div className="TextArea" onKeyDown={onKeyDown}>
       <label>
         <span className="TextInput-label-text">{placeholder}</span>
-        <textarea className="TextInput-field" onChange={onChange}
+        <textarea className="TextInput-field" onChange={onChange} required={!optional}
                   onFocus={onFocus} onBlur={onBlur} name={name} rows={rows || 3}
-                  value={value} placeholder={placeholder}/>
+                  value={value} placeholder={placeholder} maxLength={maxLength}/>
       </label>
     </div>
   );

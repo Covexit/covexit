@@ -20,7 +20,7 @@ const StoreList = () => {
         {stores.map((e, i) => (
           <Link key={i} to={`/stores/${i + 1}`} className="StoreList-store">
             <div className="StoreList-store-img">
-              <img src={businessImages[i]} alt="" />
+              <img src={`/photos/${businessImages[i]}`} alt="" />
             </div>
             <div className="StoreList-store-body">
               <h4>{e.name}</h4>

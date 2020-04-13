@@ -8,8 +8,9 @@ const axiosInstance = axios.create({
 function createEndpoint(endpoint) {
   return {
     get: (id) => axiosInstance.get(`${endpoint}/${id ? id : ''}/`),
-    put: (id, data) => axiosInstance.put(`${endpoint}/${id ? id : ''}/`, data),
-    post: (data) => axiosInstance.post(`${endpoint}/`, data),
+    put: (id, data, config) => axiosInstance.put(`${endpoint}/${id ? id : ''}/`, data, config),
+    patch: (id, data, config) => axiosInstance.patch(`${endpoint}/${id ? id : ''}/`, data, config),
+    post: (data, config) => axiosInstance.post(`${endpoint}/`, data, config),
   }
 }
 
@@ -18,6 +19,8 @@ const API = {
   product: createEndpoint('product'),
   productCategory: createEndpoint('product-category'),
   register: { post: (data) => axiosInstance.post('register/', data) },
+  verify: { post: (data) => axiosInstance.post('verify/', data) },
+  partners: createEndpoint('admin/partners'),
 };
 
 export { axiosInstance };

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React  from 'react';
 
 import './Onboarding.scss';
-import Button from "../components/Button/Button";
-import Form from "../components/Form/Form";
-import InlineInputs from "../components/InlineInputs/InlineInputs";
-import Fields from "../components/Fields/Fields";
+import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
+import { Route, Switch } from 'react-router-dom';
+import BusinessForm from './NewStore/BusinessForm';
+import PersonalForm from './NewStore/PersonalForm';
+import PhotoSelect from './Onboarding/PhotoSelect';
 
 const Onboarding = (props) => {
   const match = props.match;
-  const step = match.params.step;
 
+  /*
   const [categories, setCategories] = useState([]);
   const categoriesAreSet = categories.some(e => !!e);
 
@@ -51,13 +52,20 @@ const Onboarding = (props) => {
                            helpText="JPEG .JPG .PNG (Just these file formats will work)"/>
       </>,
     },
-  ];
+  ];*/
 
 
   return (
-    <div className={`Onboarding Onboarding--${step}`}>
-      <Form {...steps[step]} />
-    </div>
+    <ViewWrappers.View withPadding>
+      <Switch>
+        {/* create a business */}
+        <Route path={`${match.path}/business`} component={BusinessForm} />
+        {/* create an owner */}
+        <Route path={`${match.path}/owner`} component={PersonalForm} />
+        {/* initial view */}
+        <Route path={match.path} component={PhotoSelect}/>
+      </Switch>
+    </ViewWrappers.View>
   );
 };
 
