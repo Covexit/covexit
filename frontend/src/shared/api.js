@@ -17,6 +17,7 @@ const API = {
   company: createEndpoint('company'),
   product: createEndpoint('product'),
   productCategory: createEndpoint('product-category'),
+  register: { post: (data) => axiosInstance.post('register/', data) },
 };
 
 export { axiosInstance };

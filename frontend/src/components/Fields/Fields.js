@@ -75,4 +75,21 @@ const FileUpload = ({ helpText, label, onChange, name, value, editView }) => {
   );
 };
 
-export default { TextInput, TextArea, FileUpload, PasswordInput }
+const CheckBox = ({ onChange, onFocus, onBlur, name, value, placeholder, checked, optional }) => (
+  <div className="CheckBox" >
+    <label>
+      <input className="CheckBox-field" onChange={onChange} type="checkbox" required={!optional}
+                onFocus={onFocus} onBlur={onBlur} name={name} checked={checked}
+                value={value} placeholder={placeholder}/>
+      <span className="CheckBox-check">
+        <svg width="20px" height="20px" viewBox="0 0 20 20">
+          <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z" />
+          <polyline points="4 11 8 15 16 6" />
+        </svg>
+      </span>
+      <span className="CheckBox-label">{placeholder}</span>
+    </label>
+  </div>
+);
+
+export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox }
