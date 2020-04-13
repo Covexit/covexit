@@ -7,12 +7,10 @@ function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { to: '/map', label: 'Map test' },
+    { to: 'https://covexit.webflow.io/', label: 'How it works', external: true },
     { to: '/order/0', label: 'Order test' },
-    { to: '/stores/1', label: 'Store test' },
     { to: '/stores/1/company', label: 'Company test' },
     { to: '/stores/1/onboarding/0', label: 'Onboarding test' },
-    { to: 'https://covexit.webflow.io/', label: 'How it works', external: true },
     { to: '/imprint', label: 'Imprint', meta: true },
     { to: '/privacy', label: 'Privacy', meta: true },
   ];

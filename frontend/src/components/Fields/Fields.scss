@@ -32,6 +32,7 @@
 
 .FileUpload {
   margin-top: 10px;
+  display: block;
 }
 
 .FileUpload-preview {
@@ -44,4 +45,35 @@
   height: 50px;
   margin: (-.85em) 15px (-1.25em) (-$input-padding-left);
   border-radius: $border-radius 0 0 $border-radius;
+}
+
+.FileUpload--editView {
+  position: relative;
+
+  .Btn {
+    display: none;
+  }
+
+  .TextInput-field {
+    background: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .FileUpload-img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    opacity: 0.4;
+  }
+}
+
+.FileUpload-pen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -35px;
 }

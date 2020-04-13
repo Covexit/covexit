@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './NewStore.scss';
 import Button from "components/Button/Button";
@@ -12,26 +12,13 @@ import BusinessForm from './NewStore/BusinessForm';
 const NewStore = (props) => {
   const match = props.match;
 
-  const [business, setBusiness] = useState({
-    name: '', hours: '', mapsPlaceObject: '',
-    address: '', zipcity: '', email: '', phone: '', website: '', desc: '',
-  });
-  const [person, setPerson] = useState({
-    name: '', surname: '', address: '', phone: '', zipcity: '', email: '' });
-
-
   return (
     <ViewWrappers.View withPadding>
       <Switch>
         {/* create a business */}
-        <Route path={`${match.path}/business`} render={(routeProps) =>
-          <BusinessForm onChange={data => setBusiness(data ? { ...business, ...data} : {})}
-                        business={business} {...routeProps} />
-        }/>
+        <Route path={`${match.path}/business`} component={BusinessForm} />
         {/* create an owner */}
-        <Route path={`${match.path}/owner`}>
-          <PersonalForm onChange={data => setPerson({ ...person,  ...data})} person={person} />
-        </Route>
+        <Route path={`${match.path}/owner`} component={PersonalForm} />
         {/* initial view */}
         <Route path={match.path}>
           <Form
