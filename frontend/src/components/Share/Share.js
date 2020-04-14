@@ -16,8 +16,6 @@ function Share() {
   window.addEventListener("click", function (e) {
     if (e.target === modalRef.current) {
       setModalShow(false);
-    } else {
-      return;
     }
   });
 
@@ -44,9 +42,8 @@ function Share() {
       >
         <div className="Modal-body">
           <div className="Share-message">{message}</div>
-          <input
-            type="value"
-            className="TextInput-field"
+          <input className="TextInput-field"
+            readOnly
             defaultValue={url}
             ref={urlRef}
           />
