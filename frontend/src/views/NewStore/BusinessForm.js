@@ -3,6 +3,8 @@ import PlacesSuggest from '../../components/PlacesSuggest/PlacesSuggest';
 import Button from '../../components/Button/Button';
 import Form from '../../components/Form/Form';
 import React, { useState } from 'react';
+import { useUserContext } from '../../context/UserContext';
+import API from '../../shared/api';
 
 
 const getItemFromAddress = (wantedType, haystack) => {
@@ -10,23 +12,25 @@ const getItemFromAddress = (wantedType, haystack) => {
   return needle ? needle.long_name : '';
 };
 
-const BusinessForm = ({ location, business, onChange }) => {
+const BusinessForm = ({ location, history }) => {
   const state = !location.state ? 'init' :
     location.state.useGoogle ? 'google' : 'manual';
+  const { token, user } = useUserContext();
 
   const [data, setData] = useState({
     name: '',
-    hours: '',
-    address: '',
-    zipcity: '',
-    email: '',
-    phone: '',
+    mail: '',
     website: '',
-    desc: '',
+    phone: '',
+    country: 'DE',
+    line1: '',
+    line2: '',
+    description: '',
+    mapsPlaceObject: {},
   });
 
   const changeHandler = (event) => {
-    let _data = {};
+    let _data = {...data, mapsPlaceObject: false};
 
     if (event === false)
       return setData(_data);
@@ -35,12 +39,12 @@ const BusinessForm = ({ location, business, onChange }) => {
       _data = { [event.target.name]: event.target.value };
     } else {
       _data = {
-        website: event.website,
         name: event.structured_formatting && event.structured_formatting.main_text,
+        website: event.website,
         phone: event.formatted_phone_number,
-        address: getItemFromAddress('route', event.address_components) + ' ' +
+        line1: getItemFromAddress('route', event.address_components) + ' ' +
           getItemFromAddress('street_number', event.address_components),
-        zipcity: getItemFromAddress('postal_code', event.address_components) + ' ' +
+        line2: getItemFromAddress('postal_code', event.address_components) + ' ' +
           getItemFromAddress('locality', event.address_components),
         mapsPlaceObject: event,
       };
@@ -49,15 +53,28 @@ const BusinessForm = ({ location, business, onChange }) => {
     setData({ ...data, ..._data });
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const response = await API.partners.post({
+      ...data, address: { ...data }, users: [user.id]
+    },{headers: {'Authorization': `Token ${token}`}});
+    if (response.status === 201) {
+      history.push(`/stores/${response.data.id}/onboarding`);
+    } else {
+      console.error(response);
+    }
+  };
+
   const fields = <>
     <Fields.TextInput onChange={changeHandler} placeholder="Name of your business" name="name" value={data.name}/>
-    <Fields.TextInput onChange={changeHandler} placeholder="Opening hours" name="hours" value={data.hours}/>
-    <Fields.TextInput onChange={changeHandler} placeholder="Business Address" name="address" value={data.address}/>
-    <Fields.TextInput onChange={changeHandler} placeholder="Zip and City of your business" name="zipcity" value={data.zipcity}/>
-    <Fields.TextInput onChange={changeHandler} placeholder="Business e-mail" name="email" value={data.email}/>
+    <Fields.TextInput onChange={changeHandler} placeholder="Business Address" name="line1" value={data.line1}/>
+    <Fields.TextInput onChange={changeHandler} placeholder="Zip and City of your business" name="line2" value={data.line2}/>
+    <Fields.TextInput onChange={changeHandler} placeholder="Business e-mail" name="mail" value={data.mail}/>
     <Fields.TextInput onChange={changeHandler} placeholder="Business Phone number" name="phone" value={data.phone}/>
-    <Fields.TextInput onChange={changeHandler} placeholder="Website (if available)" name="website" value={data.website}/>
-    <Fields.TextArea onChange={changeHandler} placeholder="Short description" name="desc" value={data.desc}/>
+    <Fields.TextInput onChange={changeHandler} placeholder="Website (if available)" optional
+                      name="website" value={data.website}/>
+    <Fields.TextArea onChange={changeHandler} placeholder="Short description" optional maxLength={300}
+                     name="description" value={data.description}/>
   </>;
 
   const formProps = {
@@ -86,13 +103,13 @@ const BusinessForm = ({ location, business, onChange }) => {
                 to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
         <Button label="Set up manually" to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
       </div>,
-      manual: <Button label="Perfect, let’s go" to="/stores/1/onboarding"/>,
-      google: <Button label="Perfect, let’s go" to="/stores/1/onboarding"/>,
+      manual: <Button label="Perfect, let’s go" />,
+      google: <Button label="Perfect, let’s go" />,
     },
   };
 
   return <Form head={formProps.head[state]} body={formProps.body[state]}
-               footer={formProps.footer[state]}/>;
+               onSubmit={submitHandler} footer={formProps.footer[state]}/>;
 };
 
 export default BusinessForm;

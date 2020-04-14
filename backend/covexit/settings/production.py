@@ -21,3 +21,11 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = ['covexit.de', '127.0.0.1']
+
+EMAIL_HOST = os.environ['SMTP_HOST']
+EMAIL_PORT = os.environ['SMTP_PORT']
+EMAIL_HOST_USER = os.environ['SMTP_USER']
+EMAIL_HOST_PASSWORD = os.environ['SMTP_PASS']
+EMAIL_SSL_CERTFILE = os.environ['SMTP_SSL_CERT']
+EMAIL_SSL_KEYFILE = os.environ['SMTP_SSL_KEY']
+EMAIL_USE_SSL = True

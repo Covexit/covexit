@@ -170,3 +170,5 @@ OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
 OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
 
 AUTH_USER_MODEL = 'account.UserAccount'
+
+DEFAULT_FROM_EMAIL = 'noreply@covexit.de'

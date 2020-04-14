@@ -13,13 +13,13 @@ const PersonalForm = ({ history }) => {
     first_name: '',
     last_name: '',
     address: '',
-    zipcity: '',
+    zip_and_city: '',
     email: '',
     phone: '',
     password: '',
     password_repeat: '',
-    tos: false,
-    privacy: false,
+    accepted_tos: false,
+    accepted_privacy_policy: false,
   });
 
   useEffect(() => {
@@ -35,16 +35,8 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.register.post({
-      ...data, username: data.email, profile: {
-        address: data.address,
-        zip_and_city: data.zipcity,
-        phone: data.phone,
-        accepted_tos: data.tos,
-        accepted_privacy_policy: data.privacy
-      },
-    });
-    setUser({ id: response.data.user.id, email: response.data.user.email, token: response.data.token });
+    const response = await API.register.post({ ...data, username: data.email });
+    setUser({ id: response.data.user.id, email: response.data.user.email }, response.data.token);
     history.push('/stores/new/business');
   };
 
@@ -59,14 +51,16 @@ const PersonalForm = ({ history }) => {
             <Fields.TextInput onChange={changeHandler} placeholder="Name" name="first_name" value={data.first_name}/>
             <Fields.TextInput onChange={changeHandler} placeholder="Surname" name="last_name" value={data.last_name}/>
             <Fields.TextInput onChange={changeHandler} placeholder="Address" name="address" value={data.address}/>
-            <Fields.TextInput onChange={changeHandler} placeholder="Zip and City" name="zipcity" value={data.zipcity}/>
+            <Fields.TextInput onChange={changeHandler} placeholder="Zip and City" name="zip_and_city" value={data.zip_and_city}/>
             <Fields.TextInput onChange={changeHandler} placeholder="E-mail" name="email" type="email" value={data.email}/>
             <Fields.TextInput onChange={changeHandler} placeholder="Phone number" name="phone" value={data.phone}/>
             <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder="Password"/>
             <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
                                   placeholder="Password (repeat)" ref={passwordRepeat}/>
-            <Fields.CheckBox onChange={changeHandler} name="tos" checked={data.tos} placeholder="I have read and I accept the Terms & Conditions."/>
-            <Fields.CheckBox onChange={changeHandler} name="privacy" checked={data.privacy} placeholder="I have read and I accept the Privacy Policy"/>
+            <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
+                             placeholder="I have read and I accept the Terms & Conditions."/>
+            <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
+                             placeholder="I have read and I accept the Privacy Policy"/>
           </>}
           footer={<Button label="Next"/>}
     />

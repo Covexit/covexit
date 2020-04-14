@@ -28,8 +28,8 @@ $dimensions: 145px;
     width: 8px;
     border-radius: 8px;
     position: absolute;
-    left: $dimensions / 2 - 4px;
-    top: $dimensions / 2 - 4px;
+    left: $dimensions / 2 - 10px;
+    top: $dimensions / 2 - 10px;
     transform-origin: center 3px;
   }
 
@@ -40,6 +40,6 @@ $dimensions: 145px;
 
   &:after {
     height: $dimensions * 0.25;
-    animation: rotate infinite linear 6s;
+    animation: rotate infinite linear 4s;
   }
 }
