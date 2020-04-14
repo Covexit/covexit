@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react'
 import axios from 'axios';
 import constate from 'constate'
 import logger from './Logger'
-import useLocalStorage from '../shared/useLocalStorage'
+// import useLocalStorage from '../shared/useLocalStorage'
 
 
 const initialState = {
@@ -39,9 +39,9 @@ const reducer = (originalState, action) => {
 const loggerReducer = logger(reducer);
 
 const useCurrentLocation = () => {
-  //  TODO: loader status: 
+  // TODO: loader status:
   // const [isGettingLocation, setIsGettingLocation] = useState(false);
-  const [data, setData] = useLocalStorage('locationData', initialState)
+  const [data, setData] = useState(initialState);
   const [state, dispatch] = useReducer(loggerReducer, data)
 
 
@@ -51,14 +51,14 @@ const useCurrentLocation = () => {
 
   const { selectedLocation, coordinates } = state
 
-  const addCoordinates = coordinates => {
+  const setSelectedLocation = coordinates => {
     dispatch({
       type: 'SET_SELECTED_COORDINATES',
       payload: { coordinates }
     })
   }
 
-  const addCurrentLocation = () => {
+  const setCurrentLocation = () => {
     if (navigator.geolocation) {
       // TODO: loader status: setIsGettingLocation(true);
       navigator.geolocation.getCurrentPosition(
@@ -67,18 +67,19 @@ const useCurrentLocation = () => {
           const longitude = position.coords.longitude;
           const coordinates = [longitude, lattitude];
           // TODO: loader status: setIsGettingLocation(false);
-          addCoordinates(coordinates);
+          setSelectedLocation(coordinates);
         },
-        () =>
-          setIsGettingLocation(false)
+        () => // TODO: loader status: setIsGettingLocation(false)
       );
     } else {
+      // TODO: loader status: setIsGettingLocation(true);
       // Browser doesn't support Geolocation
       axios.get('https://ipapi.co/json/')
       .then((response) => {
         const { latitude, longitude } = response;
         const coordinates = [longitude, latitude];
-        addCoordinates(coordinates);
+        // TODO: loader status: setIsGettingLocation(false);
+        setSelectedLocation(coordinates);
       })
       .catch(() => {
         // TODO: loader status: setIsGettingLocation(false);
@@ -87,14 +88,14 @@ const useCurrentLocation = () => {
     }
   };
 
-  const addGoogleLocation = (suggestion, coordinates) => {
+  const setGoogleLocation = (suggestion, coordinates) => {
     dispatch({
       type: 'SET_SELECTED_LOCATION',
       payload: {suggestion, coordinates}
     })
   }
 
-  return { selectedLocation, coordinates, addCurrentLocation, addGoogleLocation }
+  return { selectedLocation, coordinates, setCurrentLocation, setGoogleLocation }
 };
 
 export const [LocationProvider, useLocationContext] = constate(useCurrentLocation);
