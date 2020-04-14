@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react'
+import axios from 'axios';
 import constate from 'constate'
 import logger from './Logger'
 import useLocalStorage from '../shared/useLocalStorage'
@@ -73,8 +74,16 @@ const useCurrentLocation = () => {
       );
     } else {
       // Browser doesn't support Geolocation
-      // TODO: loader status: setIsGettingLocation(false);
-      console.log('the geolocation service is not supported in your browser');
+      axios.get('https://ipapi.co/json/')
+      .then((response) => {
+        const { latitude, longitude } = response;
+        const coordinates = [longitude, latitude];
+        addCoordinates(coordinates);
+      })
+      .catch(() => {
+        // TODO: loader status: setIsGettingLocation(false);
+        console.log('the geolocation service is not supported in your browser');
+      });
     }
   };
 
