@@ -100,7 +100,7 @@ const Cart = ({ product, type }) => {
                             <h4>Total:</h4>
                         </div>
                         <div className='total'>
-                            <h4>{total}€</h4>
+                            {cart.length ? <h4>{total}€</h4> : <h4>{0}€</h4>}
                         </div>
                         <div className='percent'>
                             <p>incl. 19% VAT</p>
