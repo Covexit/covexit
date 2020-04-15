@@ -69,11 +69,12 @@ const useCurrentLocation = () => {
           // TODO: loader status: setIsGettingLocation(false);
           setSelectedLocation(coordinates);
         },
-        () => // TODO: loader status: setIsGettingLocation(false)
+        (err) => console.warn(`ERROR(${err.code}): ${err.message}`)
+        // TODO: loader status: setIsGettingLocation(false)
       );
     } else {
-      // TODO: loader status: setIsGettingLocation(true);
       // Browser doesn't support Geolocation
+      // TODO: loader status: setIsGettingLocation(true);
       axios.get('https://ipapi.co/json/')
       .then((response) => {
         const { latitude, longitude } = response;
