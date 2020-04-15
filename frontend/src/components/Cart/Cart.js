@@ -11,15 +11,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-
 import { useCartContext } from '../../context/CartContext'
 
 
 
-
 const Cart = ({ product, type }) => {
-    const { delProduct, total, cart } = useCartContext()
+    const { delProduct, updateProduct, total, cart } = useCartContext()
 
     console.log('cart:', cart)
 
@@ -27,6 +24,10 @@ const Cart = ({ product, type }) => {
     const [state, setState] = React.useState({
         bottom: false
     });
+
+    const handleChange = (event) => {
+        updateProduct(event.target.value);
+    };
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -67,9 +68,9 @@ const Cart = ({ product, type }) => {
                                             <Select
                                                 labelId="demo-simple-select-outlined-label"
                                                 id="demo-simple-select-outlined"
-                                                // value={item.quantity}
-                                                // onChange={}
                                                 label="Age"
+                                                // value={}
+                                                onChange={handleChange}
                                             >
                                                 <MenuItem value={item.quantity}>{item.quantity}</MenuItem>
                                                 <MenuItem value={item.quantity + 1}>{item.quantity + 1}</MenuItem>
@@ -78,14 +79,9 @@ const Cart = ({ product, type }) => {
                                                 <MenuItem value={item.quantity + 4}>{item.quantity + 4}</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        {/* </div> */}
                                     </div>
-                                    <img
-                                        onClick={() => delProduct(item.id)}
-                                        className="medium-icon"
-                                        src="/static/media/rounded_plus.f80afa5e.svg"
-                                        alt="add product"
-                                    />
+                                    <div className='circle' onClick={() => delProduct(item.id)} alt="add product">
+                                    </div>
                                 </div>
 
                             </ListItem>
