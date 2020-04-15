@@ -3,7 +3,6 @@ import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import Fields from '../components/Fields/Fields';
 import Form from '../components/Form/Form';
 import Button from '../components/Button/Button';
-import img from 'assets/business_clothes.jpg'
 
 import './ProductCreateEdit.scss';
 
@@ -11,7 +10,8 @@ import './ProductCreateEdit.scss';
 const ProductCreateEdit = ({ match }) => {
   const editId = match.params.id;
   const [product, setProduct] = useState({
-    name: '', category: '', price: '', phone: '', description: '', photo: editId ? img : ''
+    name: '', category: '', price: '', phone: '', description: '',
+    photo: editId ? '/public/photos/business_clothes.jpg' : ''
   });
 
   const onChange = (event) => {
