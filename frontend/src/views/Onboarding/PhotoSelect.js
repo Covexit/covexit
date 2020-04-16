@@ -38,7 +38,7 @@ const PhotoSelect = ({ match, history }) => {
       { headers: {'Authorization': `Token ${token}`}}
       );
     if (response.status === 200) {
-      //history.push(`/stores/${response.data.id}/onboarding`);
+      //history.push(`/stores/${match.params.id}/onboarding`);
     } else {
       console.error(response);
     }
