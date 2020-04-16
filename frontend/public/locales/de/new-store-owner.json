@@ -1,11 +1,15 @@
 {
-  "head": "",
-  "text": "",
-  "name": "",
-  "surname": "",
-  "address": "",
-  "zipAndCity": "",
-  "email": "",
-  "phoneNumber": "",
-  "Next": ""
+  "head": "Kontaktperson",
+  "text": "Tragen Sie hier bitte die Daten Ihrer Kontaktperson für uns ein.“,",
+  "name": "Vorname",
+  "surname": "Nachname",
+  "street": "Straße",
+  "number": "Hausnr.",
+  "zip": "Postleitzahl",
+  "city": "Ort",
+  "email": "E-Mail-Adresse",
+  "phoneNumber": "Telefonnr.",
+  "agb": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiert.",
+  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
+  "Next": "Zustimmen und fortfahren"
 }
