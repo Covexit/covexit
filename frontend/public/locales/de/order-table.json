@@ -1,7 +1,7 @@
 {
-  "nameRow": "",
-  "addressRow": "",
-  "productsRow": "",
-  "totalRow": "",
-  "VAT": ""
+  "nameRow": "Name",
+  "addressRow": "Adresse",
+  "productsRow": "Produkte",
+  "totalRow": "Summe",
+  "VAT": "inkl. 19% MwSt."
 }
