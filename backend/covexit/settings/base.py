@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'oscar.apps.basket',
     'oscar.apps.payment',
     'oscar.apps.offer',
-    'oscar.apps.order',
     'oscar.apps.customer',
     'oscar.apps.search',
     'oscar.apps.voucher',
@@ -62,6 +61,7 @@ INSTALLED_APPS = [
     'covexit.core',
     'covexit.account',
     'covexit.partner.apps.PartnerConfig',
+    'covexit.order.apps.OrderConfig',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -172,3 +172,26 @@ OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
 AUTH_USER_MODEL = 'account.UserAccount'
 
 DEFAULT_FROM_EMAIL = 'noreply@covexit.de'
+OSCARAPI_ORDER_FIELDS = [
+    "number",
+    "basket",
+    "url",
+    "lines",
+    "owner",
+    "billing_address",
+    "currency",
+    "total_incl_tax",
+    "total_excl_tax",
+    "shipping_incl_tax",
+    "shipping_excl_tax",
+    "shipping_address",
+    "shipping_method",
+    "shipping_code",
+    "status",
+    "guest_email",
+    "date_placed",
+    "payment_url",
+    "offer_discounts",
+    "voucher_discounts",
+    "read",
+]
