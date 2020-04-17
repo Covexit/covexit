@@ -20,8 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     (requestLocation && coordinates.length) && push('/stores');
-    return () => setRequestLocation(false);
-  }, [coordinates])
+  }, [coordinates, requestLocation, push])
 
   return (
     <ViewWrappers.View>
