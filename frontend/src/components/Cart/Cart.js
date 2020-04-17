@@ -22,11 +22,13 @@ const Cart = ({ product, type }) => {
 
 
     const [state, setState] = React.useState({
-        bottom: false
+        bottom: false,
+        // selectedValue: ''
     });
 
     const handleChange = (event) => {
-        updateProduct(event.target.value);
+        const value = updateProduct(event.target.value);
+        // setState({ selectedValue: value });
     };
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -69,7 +71,7 @@ const Cart = ({ product, type }) => {
                                                 labelId="demo-simple-select-outlined-label"
                                                 id="demo-simple-select-outlined"
                                                 label="Age"
-                                                // value={}
+                                                value={state.selectedValue}
                                                 onChange={handleChange}
                                             >
                                                 <MenuItem value={item.quantity}>{item.quantity}</MenuItem>

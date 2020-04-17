@@ -59,14 +59,19 @@ const reducer = (originalState, action) => {
       //if they match then set the product.quantity to the action.payload.quantity?
 
       const quantity = action.payload
-      console.log('QUANTITY', quantity)
+      console.log('quantity', quantity)
+
+      // const productToUpdate = state.cart.find(product => product.id === action.payload.id)
+      // console.log(productToUpdate, 'productToUpdate')
+
+
+
 
       let productQuantity = state.cart.find(product => product.quantity === quantity)
       console.log('productQuantity', productQuantity)
 
       const updatedQuantity = state.cart.filter(product => product.quantity !== quantity)
       console.log('updatedQuantity', updatedQuantity)
-
 
 
       const newState = { ...state }
@@ -114,6 +119,7 @@ const useCart = () => {
       // payload: { product },
       // id,
       payload: quantity
+      // payload: id
 
     })
   }
