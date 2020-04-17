@@ -21,6 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # the providers you want to enable:
+    'allauth.socialaccount.providers.google',
+
     'oscar',
     'oscar.apps.analytics',
     'oscar.apps.checkout',
@@ -60,7 +66,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'oscarapi',
     'covexit.core',
-    'covexit.account',
+    'covexit.accounts',
     'covexit.partner.apps.PartnerConfig',
 ]
 
@@ -119,6 +125,8 @@ WSGI_APPLICATION = 'covexit.wsgi.application'
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -169,6 +177,6 @@ OSCAR_DEFAULT_CURRENCY = '€'
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
 OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
 
-AUTH_USER_MODEL = 'account.UserAccount'
+AUTH_USER_MODEL = 'accounts.UserAccount'
 
 DEFAULT_FROM_EMAIL = 'noreply@covexit.de'

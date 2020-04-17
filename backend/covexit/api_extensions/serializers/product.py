@@ -1,7 +1,7 @@
 from oscarapi.serializers.product import PartnerSerializer as _PartnerSerializer
 from rest_framework import serializers
 
-from covexit.account.models import UserAccount
+from covexit.accounts.models import UserAccount
 from covexit.partner.models import PartnerAddress, Partner
 
 

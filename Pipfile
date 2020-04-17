@@ -12,6 +12,7 @@ django-cors-headers = "*"
 django-oscar = "*"
 django-oscar-api = "*"
 model-bakery = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"

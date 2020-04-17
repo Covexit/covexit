@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.test import TestCase
 from django.core import mail
-from covexit.account.models import (
+from covexit.accounts.models import (
     send_verification_email,
     create_verification_link,
     VERIFICATION_URL,

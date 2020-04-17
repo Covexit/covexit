@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from oscarapi.urls import urlpatterns as oscarapi_urls
-from covexit.account.api.urls import urlpatterns as account_patterns
+from covexit.accounts.api.urls import urlpatterns as account_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(oscarapi_urls)),
     path('api/v1/', include(account_patterns)),
+    path('accounts/', include('allauth.urls')),
     
 ]
+ 

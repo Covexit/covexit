@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 
-from covexit.account.api.serializers import RegisterSerializer, VerifySerializer
+from covexit.accounts.api.serializers import RegisterSerializer, VerifySerializer
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
