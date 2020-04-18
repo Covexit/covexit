@@ -6,16 +6,15 @@ import { Route, Switch } from 'react-router-dom';
 import PhotoSelect from './Onboarding/PhotoSelect';
 import FirstProduct from './Onboarding/FirstProduct';
 
-const Onboarding = (props) => {
-  const match = props.match;
+const Onboarding = ({ match }) => {
 
   return (
     <ViewWrappers.View withPadding>
       <Switch>
         {/* create a business */}
-        <Route path={`${match.path}/product`} component={FirstProduct} />
+        <Route path="/stores/:id/onboarding/product" component={FirstProduct} />
         {/* initial view */}
-        <Route path={match.path} component={PhotoSelect}/>
+        <Route path="/stores/:id/onboarding/" component={PhotoSelect}/>
       </Switch>
     </ViewWrappers.View>
   );
