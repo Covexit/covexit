@@ -6,6 +6,7 @@ import API from '../../shared/api';
 import { useUserContext } from '../../context/UserContext';
 import Form from '../../components/Form/Form';
 import Fields from '../../components/Fields/Fields';
+import CategorySelect from '../../components/CategorySelect/CategorySelect';
 
 
 const FirstProduct = ({ match }) => {
@@ -43,7 +44,7 @@ const FirstProduct = ({ match }) => {
           needed. To create your first online product.</p>
       </>} body={<>
         <Fields.TextInput onChange={onChange} placeholder="Name of the product" name="name" value={product.name}/>
-        <Fields.TextInput onChange={onChange} placeholder="Category" name="category" value={product.category}/>
+        <CategorySelect onSelected={(e) => setProduct({...product, category: e.slug || e})} />
         <Fields.TextInput onChange={onChange} placeholder="Price" name="price" value={product.price}/>
         <Fields.TextInput onChange={onChange} placeholder="Phone number" name="phone" value={product.phone}/>
         <Fields.TextArea onChange={onChange} placeholder="Description of your product" name="description" value={product.description}/>

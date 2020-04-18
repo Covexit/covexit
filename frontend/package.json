@@ -19,7 +19,8 @@
     "react-load-script": "0.0.6",
     "react-responsive": "^8.0.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "slugify": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

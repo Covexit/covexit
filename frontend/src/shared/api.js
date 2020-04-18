@@ -14,10 +14,16 @@ function createEndpoint(endpoint) {
   }
 }
 
+function createHyperlinkedEndpoint(endpoint) {
+  return {
+    get: ({id, url}) => axios.get(url || `/api/v1/${endpoint}/${id ? id : ''}/`),
+  }
+}
+
 const API = {
   company: createEndpoint('company'),
   product: createEndpoint('product'),
-  productCategory: createEndpoint('product-category'),
+  categories: createHyperlinkedEndpoint('categories'),
   register: { post: (data) => axiosInstance.post('register/', data) },
   verify: { post: (data) => axiosInstance.post('verify/', data) },
   partners: createEndpoint('admin/partners'),
