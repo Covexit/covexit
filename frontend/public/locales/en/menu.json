@@ -1,9 +1,18 @@
 {
-  "order": "",
-  "store": "",
-  "company": "",
-  "onboarding": "",
-  "howItWorks": "",
-  "imprint": "",
-  "privacy": ""
+  "logIn": "login",
+  "shoppingCart": "shopping basket",
+  "support": "support",
+  "home": "explore shops",
+  "howItWorks": "how's it working?",
+  "searchbar": "",
+  "categories": "product categories",
+  "store": "for retailers",
+  "helpingTool": "Bringe dein Lieblingsgeschäft online!",
+  "imprint": "Impressum",
+  "privacy": "Datenschutz",
+  "agb": "AGB",
+  "faq": "FAQ",
+  "info": "Über uns",
+  "blog": "Blog",
+  "social media": ""
 }
