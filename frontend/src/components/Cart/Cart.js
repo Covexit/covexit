@@ -25,8 +25,8 @@ const Cart = ({ product, type }) => {
         bottom: false
     });
 
-    const handleChange = (event) => {
-        updateProduct(event.target.value);
+    const handleChange = (event, id) => {
+        updateProduct(event.target.value, id);
     };
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -70,7 +70,7 @@ const Cart = ({ product, type }) => {
                                                 id="demo-simple-select-outlined"
                                                 label="Age"
                                                 // value={}
-                                                onChange={handleChange}
+                                                onChange={(e) => handleChange(e, item.id)}
                                             >
                                                 <MenuItem value={item.quantity}>{item.quantity}</MenuItem>
                                                 <MenuItem value={item.quantity + 1}>{item.quantity + 1}</MenuItem>
