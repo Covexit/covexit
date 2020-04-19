@@ -40,11 +40,8 @@ const reducer = (originalState, action) => {
       }
     case 'DEL_PRODUCT':
       const removedProduct = state.cart.find(product => product.id === action.payload)
-      console.log('removedProduct', removedProduct)
       const updatedCart = state.cart.filter(product => product.id !== action.payload)
-      console.log('updatedCart', updatedCart)
       let newTotal = state.total - (removedProduct.price * removedProduct.quantity)
-      console.log('newTotal', newTotal)
       return {
         ...state,
         cart: updatedCart,
@@ -53,34 +50,25 @@ const reducer = (originalState, action) => {
 
 
     case 'UPDATE_PRODUCT':
-      // const id = action.payload.product.id
-      //id of action.payload.id
-      //id of product
-      //if they match then set the product.quantity to the action.payload.quantity?
 
-      const quantity = action.payload
-      console.log('quantity', quantity)
-
-      // const productToUpdate = state.cart.find(product => product.id === action.payload.id)
-      // console.log(productToUpdate, 'productToUpdate')
-
-
-
-
-      let productQuantity = state.cart.find(product => product.quantity === quantity)
-      console.log('productQuantity', productQuantity)
-
-      const updatedQuantity = state.cart.filter(product => product.quantity !== quantity)
-      console.log('updatedQuantity', updatedQuantity)
+      const updatedProducts = state.cart.map((product) => {
+        if (product.id === action.payload.product_id) {
+          return {
+            ...product,
+            quantity: action.payload.quantity
+          }
+        } else {
+          return product
+        }
+      })
 
 
       const newState = { ...state }
       return {
         ...newState,
-        cart: updatedQuantity,
+        cart: updatedProducts
         // total:
       }
-
 
     default:
       throw new Error()
@@ -113,14 +101,11 @@ const useCart = () => {
     })
   }
 
-  const updateProduct = (quantity) => {
+  const updateProduct = (product) => {
+    console.log('product', product)
     dispatch({
       type: 'UPDATE_PRODUCT',
-      // payload: { product },
-      // id,
-      payload: quantity
-      // payload: id
-
+      payload: product,
     })
   }
 
