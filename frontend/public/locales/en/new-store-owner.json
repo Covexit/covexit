@@ -1,11 +1,15 @@
 {
-  "head": "",
-  "text": "",
-  "name": "",
-  "surname": "",
-  "address": "",
-  "zipAndCity": "",
-  "email": "",
-  "phoneNumber": "",
-  "Next": ""
+  "head": "Contact",
+  "text": "Please enter the data of your contact person for us here.",
+  "name": "First name",
+  "surname": "Last name",
+  "street": "Street",
+  "number": "House number",
+  "zip": "Zip code",
+  "city": "City",
+  "email": "E-mail address",
+  "phoneNumber": "Phone number",
+  "agb": "I have read and accepted the general terms and conditions.",
+  "privacy": "I have read and accepted the privacy policy.",
+  "Next": "Agree & continue"
 }
