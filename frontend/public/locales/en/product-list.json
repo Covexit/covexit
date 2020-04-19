@@ -1,5 +1,5 @@
 {
-  "head": "",
-  "manageProduct": "",
-  "addProduct": ""
+  "head": "Products",
+  "manageProduct": "Manage products",
+  "addProduct": "Add a product"
 }
