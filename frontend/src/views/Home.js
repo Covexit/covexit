@@ -1,26 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import Button from '../components/Button/Button';
 import ViewWrappers from "../components/ViewWrappers/ViewWrappers";
 import Map from "../components/Map/Map";
-import { useLocationContext } from '../context/useCurrentLocation';
 
 import './Home.scss';
+import useHomeLocationQuery from 'context/useHomeLocationQuery';
 
 const Home = () => {
-  const { setCurrentLocation, coordinates } = useLocationContext()
-  const [requestLocation, setRequestLocation] = useState(false)
-  const { push } = useHistory();
-
-  const handleGeoLocation = (e) => {
-    e.preventDefault();
-    setCurrentLocation();
-    setRequestLocation(true);
-  }
-
-  useEffect(() => {
-    (requestLocation && coordinates.length) && push('/stores');
-  }, [coordinates, requestLocation, push])
+  const [handleGeoLocation] = useHomeLocationQuery();
 
   return (
     <ViewWrappers.View>
