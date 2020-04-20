@@ -70,7 +70,6 @@ const Cart = ({ product, type }) => {
                                             <option value={item.quantity + 3}>Stk: {item.quantity + 3}</option>
                                             <option value={item.quantity + 4}>Stk: {item.quantity + 4}</option>
                                         </select>
-
                                     </div>
                                     <div className='circle' onClick={() => delProduct(item.id)} alt="add product">
                                     </div>
