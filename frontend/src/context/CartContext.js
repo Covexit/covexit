@@ -51,22 +51,16 @@ const reducer = (originalState, action) => {
 
     case 'UPDATE_PRODUCT':
 
-      const updatedProducts = state.cart.map((product) => {
-        if (product.id === action.payload.product_id) {
-          return {
-            ...product,
-            quantity: action.payload.quantity
-          }
-        } else {
-          return product
-        }
-      })
+      const quantity = action.payload.quantity;
+      const updateId = action.payload.id;
 
+      const index = state.cart.findIndex(item => item.id === updateId);
+      const cart = [...state.cart];
+      cart[index].quantity = quantity;
 
-      const newState = { ...state }
       return {
-        ...newState,
-        cart: updatedProducts
+        ...state,
+        cart
         // total:
       }
 
@@ -101,11 +95,10 @@ const useCart = () => {
     })
   }
 
-  const updateProduct = (product) => {
-    console.log('product', product)
+  const updateProduct = (quantity, id) => {
     dispatch({
       type: 'UPDATE_PRODUCT',
-      payload: product,
+      payload: { quantity, id }
     })
   }
 

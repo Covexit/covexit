@@ -21,10 +21,8 @@ const Cart = ({ product, type }) => {
         bottom: false,
     });
 
-    const handleChange = (event) => {
-        event.preventDefault()
-        event.stopPropagation()
-        updateProduct(event.target.value);
+    const handleChange = (event, id) => {
+        updateProduct(event.target.value, id);
     };
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -59,19 +57,18 @@ const Cart = ({ product, type }) => {
                                         <select
                                             className='menu'
                                             label="quantity"
-                                            onChange={handleChange}
+                                            onChange={(event) => {handleChange(event, item.id)}}
                                             handleClick={(event) => {
                                                 event.stopPropagation()
                                                 event.preventDefault()
                                             }}
                                         >
-                                            <option value={{ product_id: item.id, quantity: item.quantity }}>Stk: {item.quantity}</option>
-                                            <option value={{ product_id: item.id, quantity: item.quantity + 1 }}>Stk: {item.quantity + 1}</option>
-                                            <option value={{ product_id: item.id, quantity: item.quantity + 2 }}>Stk: {item.quantity + 2}</option>
-                                            <option value={{ product_id: item.id, quantity: item.quantity + 3 }}>Stk: {item.quantity + 3}</option>
-                                            <option value={{ product_id: item.id, quantity: item.quantity + 4 }}>Stk: {item.quantity + 4}</option>
+                                            <option value={item.quantity}>Stk: {item.quantity}</option>
+                                            <option value={item.quantity + 1 }>Stk: {item.quantity + 1}</option>
+                                            <option value={item.quantity + 2 }>Stk: {item.quantity + 2}</option>
+                                            <option value={item.quantity + 3 }>Stk: {item.quantity + 3}</option>
+                                            <option value={item.quantity + 4 }>Stk: {item.quantity + 4}</option>
                                         </select>
-
                                     </div>
                                     <div className='circle' onClick={() => delProduct(item.id)} alt="add product">
                                     </div>
