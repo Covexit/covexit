@@ -39,7 +39,7 @@ const useUser = () => {
     setData(state)
   }, [state, setData]);
 
-  const { user, token, isAuthenticated } = state;
+  const { user, token, isAuthenticated, isVerified } = state;
 
   const setUser = (user, token) => {
     dispatch({
@@ -69,7 +69,7 @@ const useUser = () => {
     })
   };
 
-  return { user, token, isAuthenticated, setUser, loginSuccess, logoutSuccess, setVerified }
+  return { user, token, isAuthenticated, isVerified, setUser, loginSuccess, logoutSuccess, setVerified }
 };
 
 export const [UserProvider, useUserContext] = constate(useUser);
