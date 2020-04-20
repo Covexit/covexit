@@ -4,7 +4,7 @@ import API from '../shared/api';
 import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import { useUserContext } from '../context/UserContext';
 
-function Verify({ match }) {
+function Verify({ match, history }) {
   const [isVerified, setIsVerified] = useState(0);
   const { id, token } = match.params;
   const { setVerified } = useUserContext();
@@ -25,12 +25,17 @@ function Verify({ match }) {
     })(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (isVerified)
+      setTimeout(() => history.push('/stores/new/business'), 5000);
+  }, [history, isVerified]);
+
   return (
     <ViewWrappers.View withPadding>
-      <div>
+      <div className="Intro">
         {!isVerified && <Loader/>}
-        {isVerified === 1 && <div className="Intro"><h1>Successfully verified</h1><p>Everything went right.</p></div>}
-        {isVerified === -1 && <div className="Intro"><h1>Something went wrong.</h1></div>}
+        {isVerified === 1 && <><h1>Successfully verified</h1><p>Everything good. You will be redirected in five seconds.</p></>}
+        {isVerified === -1 && <h1>Something went wrong.</h1>}
       </div>
     </ViewWrappers.View>
   )

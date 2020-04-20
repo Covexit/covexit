@@ -40,11 +40,8 @@ const reducer = (originalState, action) => {
       }
     case 'DEL_PRODUCT':
       const removedProduct = state.cart.find(product => product.id === action.payload)
-      console.log('removedProduct', removedProduct)
       const updatedCart = state.cart.filter(product => product.id !== action.payload)
-      console.log('updatedCart', updatedCart)
       let newTotal = state.total - (removedProduct.price * removedProduct.quantity)
-      console.log('newTotal', newTotal)
       return {
         ...state,
         cart: updatedCart,
@@ -53,10 +50,6 @@ const reducer = (originalState, action) => {
 
 
     case 'UPDATE_PRODUCT':
-      // const id = action.payload.product.id
-      //id of action.payload.id
-      //id of product
-      //if they match then set the product.quantity to the action.payload.quantity?
 
       const quantity = action.payload.quantity;
       const updateId = action.payload.id;
@@ -105,10 +98,7 @@ const useCart = () => {
   const updateProduct = (quantity, id) => {
     dispatch({
       type: 'UPDATE_PRODUCT',
-      // payload: { product },
-      // id,
       payload: { quantity, id }
-
     })
   }
 

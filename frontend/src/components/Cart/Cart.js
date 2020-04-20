@@ -7,10 +7,6 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { useCartContext } from '../../context/CartContext'
 
 
@@ -22,7 +18,7 @@ const Cart = ({ product, type }) => {
 
 
     const [state, setState] = React.useState({
-        bottom: false
+        bottom: false,
     });
 
     const handleChange = (event, id) => {
@@ -41,7 +37,6 @@ const Cart = ({ product, type }) => {
     const list = (anchor) => (
         <div
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
 
@@ -58,32 +53,26 @@ const Cart = ({ product, type }) => {
                                         <h4>{item.name}</h4>
                                         <p>{item.description}</p>
                                         <h4 className="variant-price">{item.price}€</h4>
-
-                                        <FormControl variant="outlined">
-                                            <InputLabel id="demo-simple-select-outlined-label" className='label'>
-                                                <div className='stk'>
-                                                    Stk: {item.quantity}
-                                                </div>
-                                            </InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-outlined-label"
-                                                id="demo-simple-select-outlined"
-                                                label="Age"
-                                                // value={}
-                                                onChange={(e) => handleChange(e, item.id)}
-                                            >
-                                                <MenuItem value={item.quantity}>{item.quantity}</MenuItem>
-                                                <MenuItem value={item.quantity + 1}>{item.quantity + 1}</MenuItem>
-                                                <MenuItem value={item.quantity + 2}>{item.quantity + 2}</MenuItem>
-                                                <MenuItem value={item.quantity + 3}>{item.quantity + 3}</MenuItem>
-                                                <MenuItem value={item.quantity + 4}>{item.quantity + 4}</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                                        <div className="arrow-down"></div>
+                                        <select
+                                            className='menu'
+                                            label="quantity"
+                                            onChange={(event) => {handleChange(event, item.id)}}
+                                            handleClick={(event) => {
+                                                event.stopPropagation()
+                                                event.preventDefault()
+                                            }}
+                                        >
+                                            <option value={item.quantity}>Stk: {item.quantity}</option>
+                                            <option value={item.quantity + 1 }>Stk: {item.quantity + 1}</option>
+                                            <option value={item.quantity + 2 }>Stk: {item.quantity + 2}</option>
+                                            <option value={item.quantity + 3 }>Stk: {item.quantity + 3}</option>
+                                            <option value={item.quantity + 4 }>Stk: {item.quantity + 4}</option>
+                                        </select>
                                     </div>
                                     <div className='circle' onClick={() => delProduct(item.id)} alt="add product">
                                     </div>
                                 </div>
-
                             </ListItem>
                         </div>
                     )
@@ -139,7 +128,7 @@ const Cart = ({ product, type }) => {
             <div className='shoppingcart-container'>
                 {['bottom'].map((anchor) => (
                     <React.Fragment key={anchor}>
-                        <Button onClick={toggleDrawer(anchor, true)}>
+                        <Button onClick={toggleDrawer(anchor, !state[anchor].open)}>
                             <h4 className='shoppingcart-title'>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                                 Shopping Cart({cart.length})
