@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import { useCartContext } from '../../context/CartContext'
+import CustomButton from '../Button/Button'
 
 
 
@@ -96,10 +97,9 @@ const Cart = ({ product, type }) => {
                             <p>incl. 19% VAT</p>
                         </div>
                     </div>
-
                 </ListItem>
                 <div className='cartBtnContainer'>
-                    <button className='cartBtn'>Buy Now</button>
+                    <CustomButton>Buy Now</CustomButton>
                 </div>
             </List>
         </div>
