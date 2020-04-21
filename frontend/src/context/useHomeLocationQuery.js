@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useLocationContext } from './useCurrentLocation';
 
 const useHomeLocationQuery = () => {
@@ -6,15 +6,13 @@ const useHomeLocationQuery = () => {
 
   const mount = () => {
     setCurrentLocation();
-    const unmount = () => {
-      console.log('unmounted')
-    }
+    const unmount = () => console.log('unmounted');
     return unmount
   }
 
   useEffect(mount, []);
 
-  return useMemo(() => coordinates, [coordinates])
+  return coordinates
 };
 
 export default useHomeLocationQuery;

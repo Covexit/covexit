@@ -4,6 +4,8 @@ import mapStyles from '../../shared/mapStyles.json'
 import banner from '../../assets/info_banner.png'
 import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
+import useHomeLocationQuery from '../../context/useHomeLocationQuery';
+
 
 const locations = [
   {
@@ -18,8 +20,9 @@ const locations = [
   }
 ]
 
-const Map = ({ location }) => {
-  const [lng, lat] = location;
+const Map = () => {
+  const [lng, lat] = useHomeLocationQuery();
+
   const [showInfo, setShowInfo] = useState(false)
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
