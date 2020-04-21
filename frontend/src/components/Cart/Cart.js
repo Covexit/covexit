@@ -57,20 +57,20 @@ const Cart = () => {
                         event.preventDefault();
                       }}
                     >
-                      <option value={item.quantity}>
-                        Stk: {item.quantity}
+                      <option value={parseInt(item.quantity)}>
+                        Stk: {parseInt(item.quantity)}
                       </option>
-                      <option value={item.quantity + 1}>
-                        Stk: {item.quantity + 1}
+                      <option value={parseInt(item.quantity) + 1}>
+                        Stk: {parseInt(item.quantity) + 1}
                       </option>
-                      <option value={item.quantity + 2}>
-                        Stk: {item.quantity + 2}
+                      <option value={parseInt(item.quantity) + 2}>
+                        Stk: {parseInt(item.quantity) + 2}
                       </option>
-                      <option value={item.quantity + 3}>
-                        Stk: {item.quantity + 3}
+                      <option value={parseInt(item.quantity) + 3}>
+                        Stk: {parseInt(item.quantity) + 3}
                       </option>
-                      <option value={item.quantity + 4}>
-                        Stk: {item.quantity + 4}
+                      <option value={parseInt(item.quantity) + 4}>
+                        Stk: {parseInt(item.quantity) + 4}
                       </option>
                     </select>
                   </div>
