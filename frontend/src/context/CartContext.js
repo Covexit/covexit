@@ -56,10 +56,12 @@ const reducer = (originalState, action) => {
       const cart = [...state.cart];
       cart[index].quantity = quantity;
 
+      // const updatedTotal = state.cart.map(item => item.quantity * item.price)
+
       return {
         ...state,
         cart
-        // total:
+        // total: updatedTotal
       }
 
     default:

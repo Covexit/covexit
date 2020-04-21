@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Cart.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { useCartContext } from "../../context/CartContext";
 import CustomButton from "../Button/Button";
 
-const Cart = ({ product, type }) => {
+const Cart = () => {
   const { delProduct, updateProduct, total, cart } = useCartContext();
 
   const [state, setState] = React.useState({
