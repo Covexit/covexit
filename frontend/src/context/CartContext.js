@@ -13,9 +13,7 @@ const reducer = (originalState, action) => {
   switch (action.type) {
     case 'ADD_PRODUCT':
       const id = action.payload.product.id
-      console.log('id', id)
       let addedProduct = state.cart.find(product => product.id === id)
-      // console.log('addedProduct', addedProduct)
 
       if (addedProduct) {
 
