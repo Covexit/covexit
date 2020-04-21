@@ -1,24 +1,20 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
 import { useLocationContext } from './useCurrentLocation';
-
 
 const useHomeLocationQuery = () => {
   const { setCurrentLocation, coordinates } = useLocationContext()
-  const [requestLocation, setRequestLocation] = useState(false)
-  const { push } = useHistory();
 
-  const handleGeoLocation = useCallback((e) => {
-    e.preventDefault();
+  const mount = () => {
     setCurrentLocation();
-    setRequestLocation(true);
-  },[setCurrentLocation])
+    const unmount = () => {
+      console.log('unmounted')
+    }
+    return unmount
+  }
 
-  useEffect(() => {
-    (requestLocation && coordinates.length) && push('/stores');
-  }, [coordinates, requestLocation, push])
+  useEffect(mount, []);
 
-  return useMemo(() => [handleGeoLocation], [handleGeoLocation]);
+  return useMemo(() => coordinates, [coordinates])
 };
 
 export default useHomeLocationQuery;

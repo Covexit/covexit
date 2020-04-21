@@ -7,7 +7,7 @@ import './Home.scss';
 import useHomeLocationQuery from 'context/useHomeLocationQuery';
 
 const Home = () => {
-  const [handleGeoLocation] = useHomeLocationQuery();
+  const coordinates = useHomeLocationQuery();
 
   return (
     <ViewWrappers.View>
@@ -19,13 +19,13 @@ const Home = () => {
           </div>
   
           <div className="Btn-group">
-            <Button onClick={handleGeoLocation} to="/stores" label="Search for shops nearby!" />
+            <Button to="/stores" label="Search for shops nearby!" />
             <Button to="/stores/new" label="Register your business" secondary />
           </div>
         </div>
       </ViewWrappers.ViewSplitter>
       <ViewWrappers.ViewSplitter omitOnMobile>
-        <Map/>
+        <Map location={coordinates} />
       </ViewWrappers.ViewSplitter>
     </ViewWrappers.View>
   );
