@@ -21,13 +21,13 @@ const FirstProduct = ({ match }) => {
     stock: '',
     sku: '',
     categories: [],
-    image: '',
+    _images: [],
   });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const response = await API.products.post(
-      {
+    const response = await API.products.post({
+      data: {
         ...product,
         slug: slugify(product.title),
         structure: 'standalone',
@@ -40,10 +40,21 @@ const FirstProduct = ({ match }) => {
           }
         ]
       },
-      { headers: { 'Authorization': `Token ${token}` } },
-    );
-    if (response.status === 200) {
-      console.log(response);
+      config: { headers: { 'Authorization': `Token ${token}` } },
+    });
+    if (response.status === 201) {
+      // if there are images patch them in later because we need form data here
+      if (product._images.length) {
+        const formData = new FormData();
+        Array.from(product._images).forEach(item => {
+          formData.append('original', item);
+        });
+        await API.productImages.post(
+          formData,
+          { headers: { 'Authorization': `Token ${token}` } },
+          response.data.id
+        )
+      }
       //history.push(`/stores/${match.params.id}/onboarding`);
     } else {
       console.error(response);
@@ -72,7 +83,7 @@ const FirstProduct = ({ match }) => {
         <Fields.TextInput onChange={onChange} placeholder="SKU" name="sku" value={product.sku}/>
         <Fields.TextInput onChange={onChange} placeholder="In stock"  type="number" name="stock" value={product.stock}/>
         <Fields.TextArea onChange={onChange} placeholder="Description of your product" name="description" value={product.description}/>
-        <Fields.FileUpload onChange={onChange} label="Upload image" name="image" value={product.image}
+        <Fields.FileUpload onChange={onChange} label="Upload image" name="_images" value={product._images}
                            helpText="JPEG .JPG .PNG (Just these file formats will work)"/>
       </>} footer={<Button label="Next →"/>}
       />
