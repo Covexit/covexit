@@ -31,6 +31,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+## Make strings translateable
+
+We are using [i18next](https://www.i18next.com/) for internationalization. Use it like below:
+```jsx
+  const [t] = useTranslation('menu');
+  return (<a href="#">{t('linktext')}</a>);
+```
+The argument to `useTranslation` should generally be the area of the app, often the file name in snake-case.
+
 # Backend
 
 ## Setup
