@@ -3,9 +3,11 @@ import React from 'react';
 import { businessImages } from '../../shared/businessImages'
 import './StoreList.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const StoreList = () => {
+  const [t] = useTranslation('store-list');
   const stores = [
     { name: 'Manfreds Bakery', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
     { name: 'BlueMen', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
@@ -14,7 +16,7 @@ const StoreList = () => {
 
   return (
     <section className="StoreList">
-      <h1 className="StoreList-heading h3 high-emphasis">Stores nearby</h1>
+      <h1 className="StoreList-heading h3 high-emphasis">{t('heading')}</h1>
 
       <div className="StoreList-stores">
         {stores.map((e, i) => (

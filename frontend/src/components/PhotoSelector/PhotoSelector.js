@@ -1,9 +1,12 @@
-import React  from 'react'
+import React from 'react'
 import checkmark from '../../assets/checkmark.svg'
 
 import './PhotoSelector.scss'
+import { useTranslation } from 'react-i18next';
+import Button from '../Button/Button';
 
-const PhotoSelector = ({ images, selectedName, onSelected, photo }) => {
+const PhotoSelector = ({ images, onSelected, photo }) => {
+  const [t] = useTranslation('owner-photo-select');
 
   return (
     <div className="PhotoSelector">
@@ -36,6 +39,7 @@ const PhotoSelector = ({ images, selectedName, onSelected, photo }) => {
         `}
       >
         {/* TODO: add upload image */}
+        <Button to="/" label={`${t('continueButton')}  →`} />
       </div>
     </div>
   )

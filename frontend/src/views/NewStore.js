@@ -9,9 +9,11 @@ import PersonalForm from './NewStore/PersonalForm';
 import BusinessForm from './NewStore/BusinessForm';
 import WaitingForVerify from './NewStore/WaitingForVerify';
 import { useUserContext } from '../context/UserContext';
+import { useTranslation } from 'react-i18next';
 
 
 const NewStore = (props) => {
+  const [t] = useTranslation('new-store');
   const match = props.match;
   const { isVerified, isAuthenticated } = useUserContext();
 
@@ -30,14 +32,13 @@ const NewStore = (props) => {
             {isVerified && <Redirect to={`${match.path}/business`} />}
             <Form
               head={<>
-                <h1>Awesome decision!</h1>
-                <p>We’ll guide you through the process so you have it as easy as
-                  possible to bring your business online.</p>
+                <h1>{t('head')}</h1>
+                <p>{t('text')}</p>
               </>}
               footer={<>
                 <div className="Btn-group">
-                  <Button label="Register with google" to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
-                  <Button label="Register by email" to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
+                  <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
+                  <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
                 </div>
               </>}
             />

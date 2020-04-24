@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import './Menu.scss';
 import { NavLink } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 
 function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [t] = useTranslation('menu');
 
   const links = [
-    { to: 'https://covexit.webflow.io/', label: 'How it works', external: true },
-    { to: '/order/0', label: 'Order test' },
-    { to: '/stores/1/company', label: 'Company test' },
-    { to: '/stores/1/onboarding/0', label: 'Onboarding test' },
-    { to: '/imprint', label: 'Imprint', meta: true },
-    { to: '/privacy', label: 'Privacy', meta: true },
+    { to: 'https://covexit.webflow.io/', label: t('howItWorks'), external: true },
+    { to: '/order/0', label: t('order') },
+    { to: '/stores/1/company', label: t('company') },
+    { to: '/stores/1/onboarding/0', label: t('onboarding') },
+    { to: '/imprint', label: t('imprint'), meta: true },
+    { to: '/privacy', label: t('privacy'), meta: true },
   ];
 
   return (

@@ -1,0 +1,27 @@
+{
+  "address": {
+    "head": "Delivery address details",
+    "text": "Thank you for your support! You are a big help in the fight against this crisis. Follow the steps bellow to complete your order.",
+    "button": "Continue",
+    "name": "First name",
+    "surname": "Last name",
+    "email": "E-mail address",
+    "phoneNumber": "Phone number",
+    "deliveryAddress": "Address",
+    "zipAndCity": "ZIP and city"
+  },
+  "pay": {
+    "head": "Pay with PayPal",
+    "text": "Click on the button below to continue with PayPal",
+    "button": "Proceed with PayPal"
+  },
+  "overview": {
+    "head": "Order summary",
+    "text": "Please review your order.",
+    "button": "Pay now and complete your order."
+  },
+  "finish": {
+    "text": "Thank you for your order! The local retailer will be very happy about your support!",
+    "button": "Keep on strolling"
+  }
+}
