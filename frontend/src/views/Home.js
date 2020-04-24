@@ -21,7 +21,7 @@ const Home = () => (
       </div>
     </ViewWrappers.ViewSplitter>
     <ViewWrappers.ViewSplitter omitOnMobile>
-      <Map/>
+      <Map />
     </ViewWrappers.ViewSplitter>
   </ViewWrappers.View>
 );
