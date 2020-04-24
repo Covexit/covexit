@@ -31,41 +31,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
 # Backend
 
 ## Setup
@@ -80,3 +45,11 @@ After having completed the setup, to start the server type `python ./backend/man
 `./backend/manage.py runserver`. At this point, if all the commands were entered correctly, we should see an instance of
 a Django application running on this address — http://localhost:8000. Make sure to apply migrations every now and then,
 the console should tell you if there are unapplied migrations.
+
+## Creating a superuser
+
+Once you have done the above steps, run `pipenv run ./backend/manage.py createsuperuser` in the project root when prompted insert the data like email, password, etc. After that is done you can run the server with `make` in project root and go to http://localhost:8000/admin, login there and see a representation of the database.
+
+## Accessing the API Docs
+
+When the server is started, you can go to http://localhost:8000/api/v1/ to see a few of the endpoints. There you can see a representation of the data that is accessible via API. For some you might need an authorisation token. If you want to see these you will have to use a browser plugin like ModHeader, and set a `Authorization: Token [your token]` header. In the admin view there is also a row for "Tokens", click that and you can access your authentication token. 
