@@ -3,13 +3,15 @@
   "text": "Tragen Sie hier bitte die Daten Ihrer Kontaktperson für uns ein.“,",
   "name": "Vorname",
   "surname": "Nachname",
+  "address": "",
+  "zipAndCity": "",
+  "email": "E-Mail-Adresse",
+  "phoneNumber": "Telefonnr.",
+  "Next": "Zustimmen und fortfahren",
   "street": "Straße",
   "number": "Hausnr.",
   "zip": "Postleitzahl",
   "city": "Ort",
-  "email": "E-Mail-Adresse",
-  "phoneNumber": "Telefonnr.",
   "agb": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiert.",
-  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
-  "Next": "Zustimmen und fortfahren"
+  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert."
 }

@@ -17,16 +17,17 @@ const Home = () => {
             <p>{t('text')}</p>
           </div>
 
-        <div className="Btn-group">
-          <Button to="/stores" label={t('searchButton')} />
-          <Button to="/stores/new" label={t('registerButton')} secondary />
+          <div className="Btn-group">
+            <Button to="/stores" label={t('searchButton')}/>
+            <Button to="/stores/new" label={t('registerButton')} secondary/>
+          </div>
         </div>
-      </div>
-    </ViewWrappers.ViewSplitter>
-    <ViewWrappers.ViewSplitter omitOnMobile>
-      <Map />
-    </ViewWrappers.ViewSplitter>
-  </ViewWrappers.View>
-);
+      </ViewWrappers.ViewSplitter>
+      <ViewWrappers.ViewSplitter omitOnMobile>
+        <Map/>
+      </ViewWrappers.ViewSplitter>
+    </ViewWrappers.View>
+  )
+};
 
 export default Home

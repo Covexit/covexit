@@ -3,13 +3,15 @@
   "text": "Please enter the data of your contact person for us here.",
   "name": "First name",
   "surname": "Last name",
+  "address": "Address",
+  "zipAndCity": "ZIP and city",
+  "email": "E-mail address",
+  "phoneNumber": "Phone number",
+  "Next": "Agree & continue",
   "street": "Street",
   "number": "House number",
   "zip": "Zip code",
   "city": "City",
-  "email": "E-mail address",
-  "phoneNumber": "Phone number",
   "agb": "I have read and accepted the general terms and conditions.",
-  "privacy": "I have read and accepted the privacy policy.",
-  "Next": "Agree & continue"
+  "privacy": "I have read and accepted the privacy policy."
 }

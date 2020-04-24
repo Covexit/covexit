@@ -4,8 +4,8 @@ module.exports = {
   defaultNamespace: 'translation',
   defaultValue: '',
   indentation: 2,
-  keepRemoved: false,
-  keySeparator: true,
+  keepRemoved: true,
+  keySeparator: '.',
   lexers: {
     js: ['JsxLexer'], // if you're writing jsx inside .js files, change this to JsxLexer
     default: ['JsxLexer'],
@@ -19,4 +19,4 @@ module.exports = {
   sort: false,
   useKeysAsDefaultValue: false,
   verbose: false,
-}
+};

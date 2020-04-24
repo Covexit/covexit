@@ -1,21 +1,27 @@
 {
-  "address.head": "Lieferadressdaten",
-  "address.text": "Vielen Dank für Ihre Unterstützung! Sie sind eine große Hilfe im Kampf gegen diese Krise. Folgen Sie den untenstehenden Schritten, um Ihre Bestellung abzuschließen.",
-  "address.button": "Weiter",
-  "address.name": "Vorname",
-  "address.surname": "Nachname",
-  "address.email": "E-Mail-Adresse",
-  "address.phoneNumber": "Telefonnr.",
-  "address.deliveryStreet": "Straße",
-  "address.deliveryNumber": "Hausnummer",
-  "address.zip": "Postleitzahl",
-  "address.city": "Ort",
-  "pay.head": "Bezahlen Sie mit PayPal",
-  "pay.text": "Klicken Sie auf die Schaltfläche unten, um mit PayPal fortzufahren.",
-  "pay.button": "Jetzt mit PayPal fortfahren",
-  "overview.head": "Bestellübersicht",
-  "overview.text": "Bitte überprüfen Sie Ihre Bestellung noch einmal.",
-  "overview.button": "Jetzt bezahlen und Kauf abschließen",
-  "finish.text": "Vielen lieben Dank für deine Bestellung! Darüber wird sich der Einzelhändler um die Ecke sehr freuen!",
-  "finish.button": "Weiter Bummeln "
+  "address": {
+    "head": "Lieferadressdaten",
+    "text": "Vielen Dank für Ihre Unterstützung! Sie sind eine große Hilfe im Kampf gegen diese Krise. Folgen Sie den untenstehenden Schritten, um Ihre Bestellung abzuschließen.",
+    "button": "Weiter",
+    "name": "Vorname",
+    "surname": "Nachname",
+    "email": "E-Mail-Adresse",
+    "phoneNumber": "Telefonnr.",
+    "deliveryAddress": "Straße und Hausnummer",
+    "zipAndCity": "Postleitzahl und Ort"
+  },
+  "pay": {
+    "head": "Bezahlen Sie mit PayPal",
+    "text": "Klicken Sie auf die Schaltfläche unten, um mit PayPal fortzufahren.",
+    "button": "Jetzt mit PayPal fortfahren"
+  },
+  "overview": {
+    "head": "Bestellübersicht",
+    "text": "Bitte überprüfen Sie Ihre Bestellung noch einmal.",
+    "button": "Jetzt bezahlen und Kauf abschließen"
+  },
+  "finish": {
+    "text": "Vielen lieben Dank für deine Bestellung! Darüber wird sich der Einzelhändler um die Ecke sehr freuen!",
+    "button": "Weiter bummeln"
+  }
 }

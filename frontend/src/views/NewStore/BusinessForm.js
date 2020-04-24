@@ -82,7 +82,7 @@ const BusinessForm = ({ location, history }) => {
   const formProps = {
     head: {
       init: <><h1>{t('intro.head')}</h1><p>{t('intro.text')}</p></>,
-      google: business.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
+      google: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
           <p>{t('googleConfirm.text')}</p></>
         : // or
         <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
