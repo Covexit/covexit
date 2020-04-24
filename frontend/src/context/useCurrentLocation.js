@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios';
 import constate from 'constate'
 import logger from './Logger'
@@ -36,6 +36,10 @@ const reducer = (originalState, action) => {
 
 };
 
+const geoLocationOptions = {
+  maximumAge: 1000,
+  enableHighAccuracy: true
+};
 const loggerReducer = logger(reducer);
 
 const useCurrentLocation = () => {
@@ -69,8 +73,9 @@ const useCurrentLocation = () => {
           // TODO: loader status: setIsGettingLocation(false);
           setSelectedLocation(coordinates);
         },
-        (err) => console.warn(`ERROR(${err.code}): ${err.message}`)
+        (err) => console.warn(`ERROR(${err.code}): ${err.message}`),
         // TODO: loader status: setIsGettingLocation(false)
+        geoLocationOptions
       );
     } else {
       // Browser doesn't support Geolocation
