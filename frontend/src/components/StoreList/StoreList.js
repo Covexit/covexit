@@ -14,23 +14,11 @@ const StoreList = () => {
     const getStores = async () => {
       let partners = []
       const response = await API.partners.get()
-      response.data.map(store => {
-        return partners.push({
-          id: store.id,
-          name: store.name,
-          desc: store.description
-        })
-      })
-      setStores(partners);
+      setStores(response.data);
     }
     getStores();
 
-  })
-  // [
-  //   { name: 'Manfreds Bakery', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-  //   { name: 'BlueMen', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-  //   { name: 'DanyOils', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-  // ];
+  }, [])
 
 
   return (
@@ -38,14 +26,14 @@ const StoreList = () => {
       <h1 className="StoreList-heading h3 high-emphasis">{t('heading')}</h1>
 
       <div className="StoreList-stores">
-        {stores.map((e, i) => (
-          <Link key={i} to={`/stores/${i + 1}`} className="StoreList-store">
+        {stores.map(store => (
+          <Link key={store.id} to={`/stores/${store.id}`} className="StoreList-store">
             <div className="StoreList-store-img">
-              <img src={`/photos/${businessImages[i]}`} alt="" />
+              <img src={`/photos/${store.image}`} alt="" />
             </div>
             <div className="StoreList-store-body">
-              <h4>{e.name}</h4>
-              <p>{e.desc}</p>
+              <h4>{store.name}</h4>
+              <p>{store.description}</p>
             </div>
           </Link>
         ))}
