@@ -5,6 +5,7 @@
   .Modal-body {
     display: flex;
 
+
   }
 
   &:after {
@@ -32,4 +33,12 @@
   width: 100%;
 }
 
+.Close-modal-btn {
 
+  float: right;
+
+}
+
+.Modal-content {
+  height: 350px;
+}
