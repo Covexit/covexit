@@ -6,23 +6,12 @@ import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useLocationContext } from '../../context/useCurrentLocation';
+import axios from 'axios'
 
-
-const locations = [
-  {
-    text: "Manfred's Bakery",
-    labelOrigin: { x: 85, y: 14 },
-    location: { lat: 47.673862, lng: 9.179261 }
-  },
-  {
-    text: "Jenny's Shop",
-    labelOrigin: { x: 70, y: 14 },
-    location: { lat: 47.671899, lng: 9.179291 }
-  }
-]
 
 const Map = () => {
   const [t] = useTranslation();
+  const [locations, setLocations] = useState([])
   const [showInfo, setShowInfo] = useState(false)
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
@@ -32,6 +21,24 @@ const Map = () => {
 
   const mountOnce = () => {
     setCurrentLocation();
+    const getLocations = async () => {
+      let stores = []
+      const response = await axios('http://localhost:8000/api/v1/admin/partners/')
+      console.log(response.data);
+      response.data.map(store => {
+        stores.push({
+          id: store.id,
+          text: store.name,
+          labelOrigin: { x: 70, y: 14 },
+          location: { lat: Number(store.addresses[0].latitude), lng: Number(store.addresses[0].longitude) },
+          description: store.description
+        })
+      })
+      console.log(stores);
+      setLocations(stores);
+
+    }
+    getLocations();
     const unmount = () => console.log('unmounted');
     return unmount
   }
@@ -72,7 +79,7 @@ const Map = () => {
       <div className={`Map-infoWrapper ${showInfo && 'Map-infoWrapper--visible'}`}>
         <img className="Map-infoImg" src={banner} alt="banner"/>
         <div className="Map-info">
-          <h2>Manfred's Bakery</h2>
+          <h2>Store 2</h2>
           <p>Only the finest, hand sorted ingredients</p>
           <Button to="/stores/1" label={t('goToStoreButton')}/>
         </div>
