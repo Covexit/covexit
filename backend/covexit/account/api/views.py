@@ -76,18 +76,18 @@ class VerifyView(APIView):
     Api for verifying user emails.
 
     POST(user_id, verification_key):
-    - Check the verification key against the one associated with the user.
-    - If the key is correct, activate the user and set user.verified = True
+    - Check the verification key against the one associated with the instance.
+    - If the key is correct, activate the instance and set instance.verified = True
     - If not, return an error
     """
     serializer_class = VerifySerializer
 
-    def post(self, request, format=None):
-        ser = self.serializer_class(data=request.data)
+    def post(self, request, **kwargs):
+        ser = self.serializer_class(data=request.data, context={'request': request})
         if ser.is_valid():
-            user = ser.instance
-            user.is_active = True
-            user.verified = True
-            user.save()
-            return Response("User verified")
+            instance = ser.instance
+            instance.is_active = True
+            instance.verified = True
+            instance.save()
+            return Response("Successfully verified")
         return Response(ser.errors, status=status.HTTP_401_UNAUTHORIZED)
