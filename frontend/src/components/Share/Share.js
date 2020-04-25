@@ -10,15 +10,9 @@ function Share() {
   const message = "Share Covexit with others and help during this crisis!";
   const urlRef = useRef();
   const url = window.location.href;
-  const modalRef = useRef();
   const handleClick = () => {
     setModalShow(!modalShow);
   };
-  window.addEventListener("click", function (e) {
-    if (e.target === modalRef.current) {
-      setModalShow(false);
-    }
-  });
 
   function copyLink() {
     urlRef.current.select();

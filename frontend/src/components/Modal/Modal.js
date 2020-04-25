@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "./Modal.scss";
 
 const Modal = ({ header, children, footer, onClose }) => {
