@@ -6,14 +6,14 @@ import { useUserContext } from '../context/UserContext';
 
 function Verify({ match, history }) {
   const [isVerified, setIsVerified] = useState(0);
-  const { id, token } = match.params;
+  const { id, token, type } = match.params;
   const { setVerified } = useUserContext();
 
   useEffect(() => {
     (async () => {
       if (id && token) {
         try {
-          await API.verify.post({ user_id: id, verification_key: token});
+          await API.verify.post({ user_id: id, verification_key: token}, type);
           setIsVerified(1);
           setVerified(true);
         }
@@ -26,7 +26,7 @@ function Verify({ match, history }) {
   }, []);
 
   useEffect(() => {
-    if (isVerified)
+    if (isVerified === 1)
       setTimeout(() => history.push('/stores/new/business'), 5000);
   }, [history, isVerified]);
 
