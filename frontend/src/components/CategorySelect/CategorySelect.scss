@@ -1,0 +1,33 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
+.CategorySelect__choice,
+.CategorySelect__breadcrumbs,
+.CategorySelect {
+  margin-bottom: 1em;
+}
+
+.CategorySelect__breadcrumb {
+  border: 0;
+  padding: 0;
+  background: 0;
+  border-bottom: 1px solid $color-primary;
+  margin-right: .3em;
+
+  &:last-child:first-child {
+    display: none;
+  }
+
+  &:after {
+    content: '>';
+    margin-left: .3em;
+  }
+
+  &:last-child:after {
+    content: none;
+  }
+}
+
+.CategorySelect__choice {
+  display: block;
+}
