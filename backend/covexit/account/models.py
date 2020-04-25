@@ -10,11 +10,19 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-VERIFICATION_MESSAGE = _("""Thank you for signing up for Covexit!
+VERIFICATION_MESSAGE = {
+    'signup': _("""Thank you for signing up for Covexit!
 
 To activate your account, please visit this link:
 {}
-""")
+"""),
+    'waitinglist': _("""Thank you for joining the waiting list for Covexit!
+
+Please verify that you're the person who initiated this process by visiting
+this link:
+{}
+"""),
+}
 
 VERIFICATION_KEY_LENGTH = 30
 # Note: this will have to be set up on the frontend:
@@ -22,10 +30,12 @@ VERIFICATION_URL = '/verify/'
 
 
 def create_verification_link(user):
-    return '{}{}{}/{}'.format(Site.objects.get_current().domain,
-                              VERIFICATION_URL,
-                              user.pk,
-                              user.verification_key)
+    verify_type = 'waitinglist' if isinstance(user, WaitingListEntry) else 'signup'
+    return '{}{}{}/{}/{}'.format(Site.objects.get_current().domain,
+                                 VERIFICATION_URL,
+                                 user.pk,
+                                 user.verification_key,
+                                 verify_type)
 
 
 def create_verification_key():
@@ -33,7 +43,8 @@ def create_verification_key():
     return ''.join(random.choices(string.ascii_letters, k=VERIFICATION_KEY_LENGTH))
 
 
-def send_verification_email(user, verify_type='registration'):
+def send_verification_email(user):
+    verify_type = 'waitinglist' if isinstance(user, WaitingListEntry) else 'signup'
     link = create_verification_link(user)
     send_mail(
         'Covexit Email Verification',
