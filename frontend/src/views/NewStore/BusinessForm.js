@@ -30,11 +30,48 @@ const BusinessForm = ({ location, history }) => {
     country: "DE",
     line1: "",
     line2: "",
-    latitude: 0,
-    longitude: 0,
     description: "",
     mapsPlaceObject: {}
   });
+
+  const [submit, setSubmit] = useState(false);
+
+  React.useEffect(() => {
+    if (submit === true) {
+      let lat = 0;
+      let lon = 0;
+      const fetchData = async () => {
+        let searchString = data.line1 + " , " + data.line2;
+        const responseLocation = await axios(
+          `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`
+        );
+
+        lat = Number(responseLocation.data[0].lat).toFixed(5);
+        lon = Number(responseLocation.data[0].lon).toFixed(5);
+      };
+      const postData = async () => {
+        console.log(data);
+        const response = await API.partners.post(
+          {
+            ...data,
+            address: { ...data, latitude: lat, longitude: lon },
+            users: [user.id]
+          },
+          { headers: { Authorization: `Token ${token}` } }
+        );
+        if (response.status === 201) {
+          history.push(`/stores/${response.data.id}/onboarding`);
+        } else {
+          console.error(response);
+        }
+      };
+      const submitForm = async () => {
+        await fetchData();
+        await postData();
+      };
+      submitForm();
+    }
+  }, [submit]);
 
   const changeHandler = event => {
     let _data = { ...data, mapsPlaceObject: false };
@@ -64,36 +101,9 @@ const BusinessForm = ({ location, history }) => {
     setData({ ...data, ..._data });
   };
 
-  const submitHandler = async e => {
+  const submitHandler = e => {
     e.preventDefault();
-    let searchString = data.line1 + " , " + data.line2;
-    const getLocation = await axios
-      .get(
-        `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`
-      )
-      .then(response => {
-        setData({
-          ...data,
-          latitude: response.data[0].lat,
-          longitude: response.data[0].lon
-        });
-      });
-
-    const response = await API.partners.post(
-      {
-        ...data,
-        address: {
-          ...data
-        },
-        users: [user.id]
-      },
-      { headers: { Authorization: `Token ${token}` } }
-    );
-    if (response.status === 201) {
-      history.push(`/stores/${response.data.id}/onboarding`);
-    } else {
-      console.error(response);
-    }
+    setSubmit(true);
   };
 
   const fields = (
