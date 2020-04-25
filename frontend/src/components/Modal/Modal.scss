@@ -5,13 +5,13 @@
   .Modal-body {
     display: flex;
 
-
+    
   }
 
   &:after {
     content: '';
     position: fixed;
-    z-index: -1;
+    z-index: 0;
     right: 0;
     left: 0;
     top: $header-height;
@@ -34,11 +34,17 @@
 }
 
 .Close-modal-btn {
-
-  float: right;
-
+  float:right;
 }
 
+.Modal-header {
+  padding: $padding-wrapper;
+}
 .Modal-content {
-  height: 350px;
+  height: fit-content;
+  padding: $padding-wrapper;
+}
+
+.Modal-footer {
+  padding: $padding-wrapper;
 }
