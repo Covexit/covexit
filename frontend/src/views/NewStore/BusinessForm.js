@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
 import API from '../../shared/api';
-import axios from "axios"
+import axios from 'axios'
 
 const getItemFromAddress = (wantedType, haystack) => {
   const needle = haystack.find(item => item.types.some(type => type === wantedType))
