@@ -1,40 +1,44 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Footer from '../components/Footer/Footer';
 import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 
-import businessImage from "../assets/business.jpg";
-import chevronDown from '../assets/chevron-down.svg';
 import { useTranslation } from 'react-i18next';
 
 import products from '../shared/productData.js'
+import API from '../shared/api';
 
-const Store = () => {
+const Store = ({ match }) => {
   const [t] = useTranslation('store-detail');
-  const [showMore, requestMore] = useState(false);
+  const [store, setStore] = useState({
+    name: ''
+  });
+  const { id } = match.params;
+
+  useEffect(() => {
+    const getPartner = async () => {
+      const response = await API.partners.get(id);
+      setStore(response.data);
+    };
+
+    getPartner();
+  }, [ id ]);
 
   return (
     <div className="Store">
       <section className="Store-showcase">
         <div className="Store-image">
-          <img src={businessImage} alt="Los Angeles" style={{ width: "100%" }} />
+          <img src={`/photos/${store.image}`} alt="" style={{ width: "100%" }} />
         </div>
         <article className="Store-Details">
-          <h1 className="high-emphasis h4 text-capitalize">Manfred's bakery</h1>
-          <p className="Store-Detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, perferendis harum! Incidunt hic corrupti dolores ex vel veniam explicabo corporis quis harum molestiae totam earum magni architecto, dolore quo qui deserunt! Excepturi veritatis sed voluptate. Officiis fuga molestias iusto earum numquam labore eius nihil totam facere non, quas voluptas ab asperiores soluta quos odit qui, quidem adipisci aspernatur? Ea repellat error fuga doloremque vitae a, nisi quod ipsa labore officiis veniam illum magni minus ad numquam quos quas sint molestiae ducimus? Est quibusdam corporis officia iure tempora illo, maxime minus odit,ullam quod dolor magni earum ipsam quasi beatae hic.</p>
-          {!showMore && <p onClick={() => requestMore(true)} className="show-more-detail">{t('showMore')} <img src={chevronDown} alt="chevronDown" className="left-spacing" /></p>}
-          {showMore &&
-          <Fragment>
-            <p className="Store-Detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, perferendis harum! Incidunt hic corrupti dolores ex vel veniam explicabo corporis quis harum molestiae totam earum magni architecto, dolore quo qui deserunt! Excepturi veritatis sed voluptate. Officiis fuga molestias iusto earum numquam labore eius nihil totam facere non, quas voluptas ab asperiores soluta quos odit qui, quidem adipisci aspernatur? Ea repellat error fuga doloremque vitae a, nisi quod ipsa labore officiis veniam illum magni minus ad numquam quos quas sint molestiae ducimus? Est quibusdam corporis officia iure tempora illo, maxime minus odit,ullam quod dolor magni earum ipsam quasi beatae hic.</p>
-            <p onClick={() => requestMore(false)} className="show-more-detail">{t('showLess')} <img src={chevronDown} alt="chevronDown" className="rotate-up" /></p>
-          </Fragment>
-          }
+          <h1 className="high-emphasis h4 text-capitalize">{store.name}</h1>
+          <p className="Store-Detail">{store.description}</p>
         </article>
       </section>
 
     <section className="Store-actions">
-      <Button to="/store" label={t('callButton')} secondary />
+      <Button label={t('callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary />
     </section>
 
       <ProductList products={products} type="add" />
