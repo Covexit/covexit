@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./Share.scss";
 import share from "../../assets/share.svg";
 import Button from "../Button/Button";
+import Modal from '../Modal/Modal';
 
 function Share() {
   const [modalShow, setModalShow] = useState(false);
@@ -35,25 +36,20 @@ function Share() {
         <img src={share} alt="Share Icon" className="Share-icon" />
         Share
       </button>
-
-      <div
-        className={`Modal Modal--${modalShow ? "opened" : "closed"}`}
-        ref={modalRef}
-      >
-        <div className="Modal-body">
-          <div className="Share-message">{message}</div>
-          <input className="TextInput-field"
-            readOnly
-            defaultValue={url}
-            ref={urlRef}
-          />
-          <div className="Alert">{copySuccess}</div>
-          <div className="Btn-group">
-            <Button label="Copy Link" onClick={() => copyLink()} />
-            <Button type="dismiss" label="Skip" onClick={handleClick} />
-          </div>
+      {modalShow && <Modal onClose={() => setModalShow(false)} footer={
+        <div className="Btn-group">
+          <Button label="Copy Link" onClick={() => copyLink()} />
+          <Button type="dismiss" label="Skip" onClick={handleClick} />
         </div>
-      </div>
+      }>
+        <div className="Share-message">{message}</div>
+        <input className="TextInput-field"
+          readOnly
+          defaultValue={url}
+          ref={urlRef}
+        />
+        <div className="Alert">{copySuccess}</div>
+      </Modal>}
     </div>
   );
 }

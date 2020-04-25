@@ -1,20 +1,15 @@
 @import "stylebase/variables";
 
-.Modal--opened {
+.Modal:after {
+  content: '';
+  position: fixed;
+  z-index: auto;
+  right: 0;
+  left: 0;
+  top: $header-height;
+  bottom: 0;
+  background: rgba($color-dark-gray, 0.5);
 
-  .Modal-body {
-    display: flex;
-  }
-  &:after {
-    content: '';
-    position: fixed;
-    z-index: auto;
-    right: 0;
-    left: 0;
-    top: $header-height;
-    bottom: 0;
-    background: rgba($color-dark-gray, 0.5);
-  }
 }
 
 .Modal-body {
@@ -23,7 +18,7 @@
   background-color: #ffffff;
   padding: $padding-wrapper;
   z-index: $header-index;
-  display: none;
+  display: flex;
   flex-direction: column;
   bottom: 0;
   left: 0;
@@ -31,17 +26,14 @@
 }
 
 .Close-modal-btn {
-  float: right;
+  position: absolute;
+  right: $padding-wrapper;
+  top: $padding-wrapper;
+  background: 0;
+  border: 0;
+  border-radius: 0;
 }
 
-.Modal-header {
-  padding: $padding-wrapper;
-}
 .Modal-content {
   height: fit-content;
-  padding: $padding-wrapper;
-}
-
-.Modal-footer {
-  padding: $padding-wrapper;
 }
