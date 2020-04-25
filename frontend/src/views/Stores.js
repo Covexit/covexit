@@ -18,10 +18,11 @@ const Stores = ({ location, match }) => (
     <ViewWrappers.ViewSplitter omitOnMobile={!!matchPath(location.pathname, { path: "/stores/:id", exact: true })}>
       <Map/>
     </ViewWrappers.ViewSplitter>
-    <Route path={`${match.path}/:id`}>
+    <Route path={`${match.path}/:id`} render={(props => (
       <ViewWrappers.ViewSplitter small>
-        {isOwner ? <CompanyPage /> : <Store />}
+        {isOwner ? <CompanyPage /> : <Store {...props} />}
       </ViewWrappers.ViewSplitter>
+    ))}>
     </Route>
   </ViewWrappers.View>
 );
