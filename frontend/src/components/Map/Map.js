@@ -20,7 +20,6 @@ const Map = () => {
     showInfo: false
   })
 
-  const [showInfo, setShowInfo] = useState(false)
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
   })
@@ -33,7 +32,7 @@ const Map = () => {
       let stores = []
       const response = await API.partners.get()
       response.data.map(store => {
-        stores.push({
+        return stores.push({
           id: store.id,
           text: store.name,
           labelOrigin: { x: 70, y: 14 },
@@ -77,7 +76,7 @@ const Map = () => {
           id: loc.id,
           description: loc.description,
           title: loc.text,
-          showInfo: !showInfo
+          showInfo: !loc.showInfo
         })  /* setShowInfo(!showInfo) */}
       />
     )}
