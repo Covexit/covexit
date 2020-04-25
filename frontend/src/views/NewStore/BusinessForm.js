@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
 import API from '../../shared/api';
-
+import axios from 'axios'
 
 const getItemFromAddress = (wantedType, haystack) => {
   const needle = haystack.find(item => item.types.some(type => type === wantedType))
@@ -57,8 +57,14 @@ const BusinessForm = ({ location, history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    let searchString = data.line1 + " , " + data.line2;
+    const getLocation = await axios(
+        `https://eu1.locationiq.com/v1/search.php?key=pk.4c61e48b53acaa5cd9ae20ab6f019f18&q=${searchString}&format=json`)
+    const latitude = Number(getLocation.data[0].lat).toFixed(5);
+    const longitude = Number(getLocation.data[0].lon).toFixed(5)
+
     const response = await API.partners.post({
-      ...data, address: { ...data }, users: [user.id]
+      ...data, address: { ...data, latitude, longitude }, users: [user.id]
     },{headers: {'Authorization': `Token ${token}`}});
     if (response.status === 201) {
       history.push(`/stores/${response.data.id}/onboarding`);
@@ -99,8 +105,8 @@ const BusinessForm = ({ location, history }) => {
                 to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
         <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
       </div>,
-      manual: <Button label={t('manually.continue')} to="/stores/1/onboarding"/>,
-      google: <Button label={t('googleConfirm.continue')} to="/stores/1/onboarding"/>,
+      manual: <Button label={t('manually.continue')} />,
+      google: <Button label={t('googleConfirm.continue')} />,
     },
   };
 
