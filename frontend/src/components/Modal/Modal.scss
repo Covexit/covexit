@@ -1,0 +1,35 @@
+@import "stylebase/variables";
+
+.Modal--opened {
+
+  .Modal-body {
+    display: flex;
+
+  }
+
+  &:after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    background: rgba($color-dark-gray, 0.5);
+  }
+}
+
+.Modal-body {
+  position: fixed;
+  text-align: center;
+  background-color: #ffffff;
+  padding: $padding-wrapper;
+  z-index: $header-index;
+  display: none;
+  flex-direction: column;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+
