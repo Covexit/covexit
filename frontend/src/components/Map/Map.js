@@ -6,7 +6,7 @@ import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useLocationContext } from '../../context/useCurrentLocation';
-import axios from 'axios'
+import API from '../../shared/api';
 
 
 const Map = () => {
@@ -31,8 +31,7 @@ const Map = () => {
     setCurrentLocation();
     const getLocations = async () => {
       let stores = []
-      const response = await axios('http://localhost:8000/api/v1/admin/partners/')
-      console.log(response.data);
+      const response = await API.partners.get()
       response.data.map(store => {
         stores.push({
           id: store.id,
@@ -42,9 +41,7 @@ const Map = () => {
           description: store.description
         })
       })
-      console.log(stores);
       setLocations(stores);
-
     }
     getLocations();
     const unmount = () => console.log('unmounted');
