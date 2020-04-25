@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { businessImages } from '../../shared/businessImages'
 import './StoreList.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +11,6 @@ const StoreList = () => {
 
   useEffect(() => {
     const getStores = async () => {
-      let partners = []
       const response = await API.partners.get()
       setStores(response.data);
     }
