@@ -10,6 +10,7 @@ i18n
     fallbackLng: 'de',
     lng: 'de',
     debug: true,
+    nsSeparator: ':',
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

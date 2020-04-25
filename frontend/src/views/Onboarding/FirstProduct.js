@@ -8,10 +8,12 @@ import { useUserContext } from '../../context/UserContext';
 import Form from '../../components/Form/Form';
 import Fields from '../../components/Fields/Fields';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';
+import { useTranslation } from 'react-i18next';
 
 
 const FirstProduct = ({ match }) => {
   const { token } = useUserContext();
+  const [t] = useTranslation(['first-product', 'product-cru']);
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -73,19 +75,18 @@ const FirstProduct = ({ match }) => {
   return (
     <ViewWrappers.View>
       <Form onSubmit={onSubmit} head={<>
-        <h1>Finally, your first product!</h1>
-        <p>You are close to getting your store online! Just one last step is
-          needed. To create your first online product.</p>
+        <h1>{t('first-product:head')}</h1>
+        <p>{t('first-product:text')}</p>
       </>} body={<>
-        <Fields.TextInput onChange={onChange} placeholder="Name of the product" name="title" value={product.title}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
         <CategorySelect onSelected={onCategorySelect} />
-        <Fields.TextInput onChange={onChange} placeholder="Netto Price" name="price" value={product.price}/>
-        <Fields.TextInput onChange={onChange} placeholder="SKU" name="sku" value={product.sku}/>
-        <Fields.TextInput onChange={onChange} placeholder="In stock"  type="number" name="stock" value={product.stock}/>
-        <Fields.TextArea onChange={onChange} placeholder="Description of your product" name="description" value={product.description}/>
-        <Fields.FileUpload onChange={onChange} label="Upload image" name="_images" value={product._images}
-                           helpText="JPEG .JPG .PNG (Just these file formats will work)"/>
-      </>} footer={<Button label="Next →"/>}
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')}  type="number" name="stock" value={product.stock}/>
+        <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
+        <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_images" value={product._images}
+                           helpText={t('product-cru:photoHelp')}/>
+        </>} footer={<Button label={`${t('first-product:next')} →`}/>}
       />
     </ViewWrappers.View>
   )
