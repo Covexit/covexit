@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import UserAccount
+from . import models
 
-admin.site.register(UserAccount, UserAdmin)
+admin.site.register(models.UserAccount, UserAdmin)
+admin.site.register(models.WaitingListEntry)
