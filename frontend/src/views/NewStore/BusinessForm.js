@@ -64,7 +64,7 @@ const BusinessForm = ({ location, history }) => {
     const longitude = Number(getLocation.data[0].lon).toFixed(5)
 
     const response = await API.partners.post({
-      ...data, address: { ...data, latitude: lat, longitude: lon }, users: [user.id]
+      ...data, address: { ...data, latitude, longitude }, users: [user.id]
     },{headers: {'Authorization': `Token ${token}`}});
     if (response.status === 201) {
       history.push(`/stores/${response.data.id}/onboarding`);
