@@ -7,6 +7,7 @@ const initialState = {
   token: '',
   isAuthenticated: null,
   isVerified: false,
+  enlisted: false,
   user: null,
 };
 
@@ -24,6 +25,9 @@ const reducer = (state, action) => {
       return {...state, token: null, user: null,
         isAuthenticated: false};
 
+    case 'ENLIST':
+      return {...state, enlisted: action.data.enlisted};
+
     default:
       return state;
   }
@@ -39,7 +43,7 @@ const useUser = () => {
     setData(state)
   }, [state, setData]);
 
-  const { user, token, isAuthenticated, isVerified } = state;
+  const { user, token, isAuthenticated, isVerified, enlisted } = state;
 
   const setUser = (user, token) => {
     dispatch({
@@ -69,7 +73,14 @@ const useUser = () => {
     })
   };
 
-  return { user, token, isAuthenticated, isVerified, setUser, loginSuccess, logoutSuccess, setVerified }
+  const enlist = (enlisted) => {
+    dispatch({
+      type: 'ENLIST',
+      data: { enlisted }
+    })
+  };
+
+  return { user, token, isAuthenticated, isVerified, enlisted, setUser, loginSuccess, logoutSuccess, setVerified, enlist }
 };
 
 export const [UserProvider, useUserContext] = constate(useUser);
