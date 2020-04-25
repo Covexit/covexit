@@ -57,13 +57,12 @@ const BusinessForm = ({ location, history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let lat = 0;
-    let lon = 0;
+
     let searchString = data.line1 + " , " + data.line2;
     const getLocation = await axios(
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`)
-    lat = Number(getLocation.data[0].lat).toFixed(5);
-    lon = Number(getLocation.data[0].lon).toFixed(5)
+    const lat = Number(getLocation.data[0].lat).toFixed(5);
+    const lon = Number(getLocation.data[0].lon).toFixed(5)
 
     const response = await API.partners.post({
       ...data, address: { ...data, latitude: lat, longitude: lon }, users: [user.id]
