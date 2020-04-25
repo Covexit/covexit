@@ -5,7 +5,7 @@ from covexit.api_extensions.views.admin.product import ProductImageAdminDetail
 
 urlpatterns = oscarapi_urls + [
     path(
-        "admin/products/<int:product_pk>/images",
+        "admin/products/<int:product_pk>/images/",
         ProductImageAdminDetail.as_view(),
         name="admin-product-image-detail",
     ),
