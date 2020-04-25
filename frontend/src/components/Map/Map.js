@@ -12,6 +12,14 @@ import axios from 'axios'
 const Map = () => {
   const [t] = useTranslation();
   const [locations, setLocations] = useState([])
+
+  const [selectedLocation, setSelect] = useState({
+    title: "",
+    description: "",
+    id: 0,
+    showInfo: false
+  })
+
   const [showInfo, setShowInfo] = useState(false)
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
@@ -68,7 +76,12 @@ const Map = () => {
           fontWeight: 'bold',
           fontSize: '12px',
         }}
-        onClick={() => setShowInfo(!showInfo)}
+        onClick={() => setSelect({
+          id: loc.id,
+          description: loc.description,
+          title: loc.text,
+          showInfo: !showInfo
+        })  /* setShowInfo(!showInfo) */}
       />
     )}
 
@@ -76,12 +89,12 @@ const Map = () => {
       position={{lng, lat}}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
-      <div className={`Map-infoWrapper ${showInfo && 'Map-infoWrapper--visible'}`}>
+      <div className={`Map-infoWrapper ${selectedLocation.showInfo && 'Map-infoWrapper--visible'}`}>
         <img className="Map-infoImg" src={banner} alt="banner"/>
         <div className="Map-info">
-          <h2>Store 2</h2>
-          <p>Only the finest, hand sorted ingredients</p>
-          <Button to="/stores/1" label={t('goToStoreButton')}/>
+          <h2>{selectedLocation.title}</h2>
+          <p>{selectedLocation.description}</p>
+          <Button to={`/stores/${selectedLocation.id}`} label={t('goToStoreButton')}/>
         </div>
       </div>
     </OverlayView>
