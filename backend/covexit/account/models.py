@@ -33,11 +33,11 @@ def create_verification_key():
     return ''.join(random.choices(string.ascii_letters, k=VERIFICATION_KEY_LENGTH))
 
 
-def send_verification_email(user):
+def send_verification_email(user, verify_type='registration'):
     link = create_verification_link(user)
     send_mail(
         'Covexit Email Verification',
-        VERIFICATION_MESSAGE.format(link),
+        VERIFICATION_MESSAGE[verify_type].format(link),
         settings.DEFAULT_FROM_EMAIL,
         [user.email],
         fail_silently=False,
@@ -108,3 +108,13 @@ class UserAccount(AbstractUser):
         "accepted_tos",
         "accepted_privacy_policy",
     ]
+
+
+class WaitingListEntry(models.Model):
+    name = models.CharField(max_length=128)
+    email = models.EmailField()
+    verified = models.BooleanField(_('Email Verified'), default=False)
+    verification_key = models.CharField(_('Verification Key'), blank=True,
+                                        max_length=VERIFICATION_KEY_LENGTH)
+    accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
+                                                  validators=[validate_true])
