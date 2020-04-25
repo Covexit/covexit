@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
 import API from '../../shared/api';
+import axios from 'axios'
 
 
 const getItemFromAddress = (wantedType, haystack) => {
@@ -33,10 +34,8 @@ const BusinessForm = ({ location, history }) => {
 
   const changeHandler = (event) => {
     let _data = {...data, mapsPlaceObject: false};
-
     if (event === false)
       return setData(_data);
-
     if (event.target) {
       _data = { [event.target.name]: event.target.value };
     } else {
@@ -57,8 +56,18 @@ const BusinessForm = ({ location, history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log("commited");
+    let lat = 0;
+    let lon = 0;
+    let searchString = data.line1 + " , " + data.line2;
+    const responseLocation = await axios(
+      `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`
+    );
+
+    lat = Number(responseLocation.data[0].lat).toFixed(5);
+    lon = Number(responseLocation.data[0].lon).toFixed(5);
     const response = await API.partners.post({
-      ...data, address: { ...data }, users: [user.id]
+      ...data, address: { ...data, latitude: lat, longitude: lon }, users: [user.id]
     },{headers: {'Authorization': `Token ${token}`}});
     if (response.status === 201) {
       history.push(`/stores/${response.data.id}/onboarding`);
@@ -99,8 +108,8 @@ const BusinessForm = ({ location, history }) => {
                 to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
         <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
       </div>,
-      manual: <Button label={t('manually.continue')} to="/stores/1/onboarding"/>,
-      google: <Button label={t('googleConfirm.continue')} to="/stores/1/onboarding"/>,
+      manual: <Button label={t('manually.continue')} />,
+      google: <Button label={t('googleConfirm.continue')} />,
     },
   };
 
