@@ -1,4 +1,7 @@
-from oscarapi.serializers.product import PartnerSerializer as _PartnerSerializer
+from oscar.apps.catalogue.models import Category
+from oscarapi.serializers.product import \
+    PartnerSerializer as _PartnerSerializer, \
+    BaseProductSerializer as _BaseProductSerializer
 from rest_framework import serializers
 
 from covexit.account.models import UserAccount
@@ -32,3 +35,10 @@ class PartnerSerializer(_PartnerSerializer):
         # create covexit.partner with their main address
         partner.addresses.create(**address, is_main=True)
         return partner
+
+
+class BaseProductSerializer(_BaseProductSerializer):
+    categories = serializers.SlugRelatedField(
+        slug_field="slug", queryset=Category.objects, required=False,
+        many=True,
+    )

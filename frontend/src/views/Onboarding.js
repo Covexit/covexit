@@ -3,22 +3,18 @@ import React  from 'react';
 import './Onboarding.scss';
 import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import { Route, Switch } from 'react-router-dom';
-import BusinessForm from './NewStore/BusinessForm';
-import PersonalForm from './NewStore/PersonalForm';
 import PhotoSelect from './Onboarding/PhotoSelect';
+import FirstProduct from './Onboarding/FirstProduct';
 
-const Onboarding = (props) => {
-  const match = props.match;
+const Onboarding = ({ match }) => {
 
   return (
     <ViewWrappers.View withPadding>
       <Switch>
         {/* create a business */}
-        <Route path={`${match.path}/business`} component={BusinessForm} />
-        {/* create an owner */}
-        <Route path={`${match.path}/owner`} component={PersonalForm} />
+        <Route path="/stores/:id/onboarding/product" component={FirstProduct} />
         {/* initial view */}
-        <Route path={match.path} component={PhotoSelect}/>
+        <Route path="/stores/:id/onboarding/" component={PhotoSelect}/>
       </Switch>
     </ViewWrappers.View>
   );
