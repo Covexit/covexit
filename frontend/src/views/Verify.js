@@ -27,8 +27,8 @@ function Verify({ match, history }) {
 
   useEffect(() => {
     if (isVerified === 1)
-      setTimeout(() => history.push('/stores/new/business'), 5000);
-  }, [history, isVerified]);
+      setTimeout(() => history.push(type === 'waitinglist' ? '/' : '/stores/new/business'), 5000);
+  }, [history, isVerified, type]);
 
   return (
     <ViewWrappers.View withPadding>
