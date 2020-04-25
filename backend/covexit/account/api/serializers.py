@@ -10,7 +10,7 @@ from ..models import (
     VERIFICATION_KEY_LENGTH,
     create_verification_key,
     send_verification_email,
-)
+    WaitingListEntry)
 
 
 UserAccount = get_user_model()
@@ -59,6 +59,25 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class AddToWaitingListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WaitingListEntry
+        fields = ('name', 'email', 'accepted_privacy_policy')
+
+    def create(self, validated_data):
+        entry = WaitingListEntry.objects.create(
+            **validated_data,
+            verified=False,
+            verification_key=create_verification_key(),
+        )
+        entry.save()
+
+        send_verification_email(entry, 'waitinglist')
+
+        return entry
+
+
 class VerifySerializer(serializers.Serializer):
     user_id = serializers.IntegerField(required=True)
     verification_key = serializers.CharField(
@@ -68,10 +87,15 @@ class VerifySerializer(serializers.Serializer):
     def validate(self, attrs):
         """Check for correct user ID and verification_key."""
         try:
-            user = UserAccount.objects.get(pk=attrs['user_id'])
-        except UserAccount.DoesNotExist:
+            verify_type = self.context['request'].resolver_match.kwargs['verify_type']
+            model = WaitingListEntry if verify_type == 'waitinglist' else UserAccount
+        except KeyError:
+            raise serializers.ValidationError("verify_type not existing")
+        try:
+            instance = model.objects.get(pk=attrs['user_id'])
+        except model.DoesNotExist:
             raise serializers.ValidationError("User does not exist")
-        if user.verification_key != attrs['verification_key']:
+        if instance.verification_key != attrs['verification_key']:
             raise serializers.ValidationError("Incorrect verification key!")
-        self.instance = user
+        self.instance = instance
         return attrs

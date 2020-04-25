@@ -5,11 +5,13 @@ from rest_framework import status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 
-from covexit.account.api.serializers import RegisterSerializer, VerifySerializer
+from covexit.account.api.serializers import RegisterSerializer, \
+    VerifySerializer, AddToWaitingListSerializer
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 
+from covexit.account.models import WaitingListEntry
 
 UserAccount = get_user_model()
 
@@ -53,23 +55,39 @@ class RegisterView(CreateAPIView):
                         status=status.HTTP_201_CREATED, headers=headers)
 
 
+class AddToWaitingListView(CreateAPIView):
+    """
+    Api for adding an entry to the waiting list
+
+
+    POST(name, email, accepted_privacy_policy: true):
+    A entry to the waiting list will be added and asked to verify.
+    """
+
+    model = WaitingListEntry
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = AddToWaitingListSerializer
+
+
 class VerifyView(APIView):
     """
     Api for verifying user emails.
 
     POST(user_id, verification_key):
-    - Check the verification key against the one associated with the user.
-    - If the key is correct, activate the user and set user.verified = True
+    - Check the verification key against the one associated with the instance.
+    - If the key is correct, activate the instance and set instance.verified = True
     - If not, return an error
     """
     serializer_class = VerifySerializer
 
-    def post(self, request, format=None):
-        ser = self.serializer_class(data=request.data)
+    def post(self, request, **kwargs):
+        ser = self.serializer_class(data=request.data, context={'request': request})
         if ser.is_valid():
-            user = ser.instance
-            user.is_active = True
-            user.verified = True
-            user.save()
-            return Response("User verified")
+            instance = ser.instance
+            instance.is_active = True
+            instance.verified = True
+            instance.save()
+            return Response("Successfully verified")
         return Response(ser.errors, status=status.HTTP_401_UNAUTHORIZED)

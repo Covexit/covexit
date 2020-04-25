@@ -12,7 +12,7 @@ module.exports = {
   },
   lineEnding: 'auto',
   locales: ['en', 'de'],
-  namespaceSeparator: false,
+  namespaceSeparator: ':',
   output: './public/locales/$LOCALE/$NAMESPACE.json',
   input: ['src/**/*.js'],
   reactNamespace: false,
