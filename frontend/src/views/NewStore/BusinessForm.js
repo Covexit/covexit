@@ -59,7 +59,7 @@ const BusinessForm = ({ location, history }) => {
     e.preventDefault();
     let searchString = data.line1 + " , " + data.line2;
     const getLocation = await axios(
-        `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`)
+        `https://eu1.locationiq.com/v1/search.php?key=pk.4c61e48b53acaa5cd9ae20ab6f019f18&q=${searchString}&format=json`)
     const latitude = Number(getLocation.data[0].lat).toFixed(5);
     const longitude = Number(getLocation.data[0].lon).toFixed(5)
 
