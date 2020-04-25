@@ -57,8 +57,6 @@ const BusinessForm = ({ location, history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let lat = 0;
-    let lon = 0;
     let searchString = data.line1 + " , " + data.line2;
     const getLocation = await axios(
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`)
