@@ -3,19 +3,16 @@ import "./Modal.scss";
 import Button from "../Button/Button";
 
 function Modal(props) {
-     const [modalShow, setModalShow] = useState(false);
+     const [modalShow, setModalShow] = useState(true);
 
      const handleClick = () => {
            setModalShow(false);
            }
 
-     window.onload=
-        setTimeout(() => {
-        setModalShow(true);
-        }, 3000)
+
 
     return (
-<div>
+
       <div
         className={`Modal Modal--${modalShow ? "opened" : "closed"}`}
 
@@ -35,7 +32,7 @@ function Modal(props) {
                 </div>
             </div>
         </div>
-     </div>
+   
     )
 }
 
