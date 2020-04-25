@@ -5,11 +5,13 @@ from rest_framework import status
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 
-from covexit.account.api.serializers import RegisterSerializer, VerifySerializer
+from covexit.account.api.serializers import RegisterSerializer, \
+    VerifySerializer, AddToWaitingListSerializer
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 
+from covexit.account.models import WaitingListEntry
 
 UserAccount = get_user_model()
 
@@ -51,6 +53,22 @@ class RegisterView(CreateAPIView):
         return Response({'user': serializer.data,
                          'token': serializer.instance.auth_token.key},
                         status=status.HTTP_201_CREATED, headers=headers)
+
+
+class AddToWaitingListView(CreateAPIView):
+    """
+    Api for adding an entry to the waiting list
+
+
+    POST(name, email, accepted_privacy_policy: true):
+    A entry to the waiting list will be added and asked to verify.
+    """
+
+    model = WaitingListEntry
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = AddToWaitingListSerializer
 
 
 class VerifyView(APIView):
