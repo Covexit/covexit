@@ -1,224 +1,133 @@
-import Fields from "../../components/Fields/Fields";
-import PlacesSuggest from "../../components/PlacesSuggest/PlacesSuggest";
-import Button from "../../components/Button/Button";
-import Form from "../../components/Form/Form";
-import React, { useState } from "react";
-import { useUserContext } from "../../context/UserContext";
-import API from "../../shared/api";
-import axios from "axios";
+import Fields from '../../components/Fields/Fields';
+import PlacesSuggest from '../../components/PlacesSuggest/PlacesSuggest';
+import Button from '../../components/Button/Button';
+import Form from '../../components/Form/Form';
+import React, { useState } from 'react';
+import { useUserContext } from '../../context/UserContext';
+import API from '../../shared/api';
+import axios from 'axios';
 
 const getItemFromAddress = (wantedType, haystack) => {
-  const needle = haystack.find(item =>
-    item.types.some(type => type === wantedType)
-  );
-  return needle ? needle.long_name : "";
+	const needle = haystack.find(item =>
+		item.types.some(type => type === wantedType)
+	);
+	return needle ? needle.long_name : '';
 };
 
 const BusinessForm = ({ location, history }) => {
-  const state = !location.state
-    ? "init"
-    : location.state.useGoogle
-    ? "google"
-    : "manual";
-  const { token, user } = useUserContext();
+	const state = !location.state
+		? 'init'
+		: location.state.useGoogle
+			? 'google'
+			: 'manual';
+	const { token, user } = useUserContext();
 
-  const [data, setData] = useState({
-    name: "",
-    mail: "",
-    website: "",
-    phone: "",
-    country: "DE",
-    line1: "",
-    line2: "",
-    description: "",
-    mapsPlaceObject: {}
-  });
+	const [data, setData] = useState({
+		name: '',
+		mail: '',
+		website: '',
+		phone: '',
+		country: 'DE',
+		line1: '',
+		line2: '',
+		description: '',
+		mapsPlaceObject: {}
+	});
 
-  const changeHandler = event => {
-    let _data = { ...data, mapsPlaceObject: false };
+	const changeHandler = event => {
+		let _data = { ...data, mapsPlaceObject: false };
 
-    if (event === false) return setData(_data);
+		if (event === false) return setData(_data);
 
-    if (event.target) {
-      _data = { [event.target.name]: event.target.value };
-    } else {
-      _data = {
-        name:
-          event.structured_formatting && event.structured_formatting.main_text,
-        website: event.website,
-        phone: event.formatted_phone_number,
-        line1:
-          getItemFromAddress("route", event.address_components) +
-          " " +
-          getItemFromAddress("street_number", event.address_components),
-        line2:
-          getItemFromAddress("postal_code", event.address_components) +
-          " " +
-          getItemFromAddress("locality", event.address_components),
-        mapsPlaceObject: event
-      };
-    }
+		if (event.target) {
+			_data = { [event.target.name]: event.target.value };
+		} else {
+			_data = {
+				name:
+					event.structured_formatting && event.structured_formatting.main_text,
+				website: event.website,
+				phone: event.formatted_phone_number,
+				line1:
+					getItemFromAddress('route', event.address_components) +
+					' ' +
+					getItemFromAddress('street_number', event.address_components),
+				line2:
+					getItemFromAddress('postal_code', event.address_components) +
+					' ' +
+					getItemFromAddress('locality', event.address_components),
+				mapsPlaceObject: event
+			};
+		}
 
-    setData({ ...data, ..._data });
-  };
+		setData({ ...data, ..._data });
+	};
 
-  const submitHandler = async e => {
-    e.preventDefault();
-    let lat = 0;
-    let lon = 0;
-    let searchString = data.line1 + " , " + data.line2;
-    const responseLocation = await axios(
-      `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`
-    );
-    lat = Number(responseLocation.data[0].lat).toFixed(5);
-    lon = Number(responseLocation.data[0].lon).toFixed(5);
-    const response = await API.partners.post(
-      {
-        ...data,
-        address: { ...data, latitude: lat, longitude: lon },
-        users: [user.id]
-      },
-      { headers: { Authorization: `Token ${token}` } }
-    );
-    if (response.status === 201) {
-      history.push(`/stores/${response.data.id}/onboarding`);
-    } else {
-      console.error(response);
-    }
-  };
+	const submitHandler = async e => {
+		e.preventDefault();
+		let lat = 0;
+		let lon = 0;
+		let searchString = data.line1 + ' , ' + data.line2;
+		const responseLocation = await axios(
+			`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${searchString}&format=json`
+		);
+		lat = Number(responseLocation.data[0].lat).toFixed(5);
+		lon = Number(responseLocation.data[0].lon).toFixed(5);
+		const response = await API.partners.post(
+			{
+				...data,
+				address: { ...data, latitude: lat, longitude: lon },
+				users: [user.id]
+			},
+			{ headers: { Authorization: `Token ${token}` } }
+		);
+		if (response.status === 201) {
+			history.push(`/stores/${response.data.id}/onboarding`);
+		} else {
+			console.error(response);
+		}
+	};
 
-  const fields = (
+	const fields = (
     <>
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Name of your business"
-        name="name"
-        value={data.name}
-      />
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Business Address"
-        name="line1"
-        value={data.line1}
-      />
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Zip and City of your business"
-        name="line2"
-        value={data.line2}
-      />
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Business e-mail"
-        name="mail"
-        value={data.mail}
-      />
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Business Phone number"
-        name="phone"
-        value={data.phone}
-      />
-      <Fields.TextInput
-        onChange={changeHandler}
-        placeholder="Website (if available)"
-        optional
-        name="website"
-        value={data.website}
-      />
-      <Fields.TextArea
-        onChange={changeHandler}
-        placeholder="Short description"
-        optional
-        maxLength={300}
-        name="description"
-        value={data.description}
-      />
-    </>
-  );
+    <Fields.TextInput onChange={changeHandler} placeholder={t('name')} name="name" value={data.name}/>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('address')} name="line1" value={data.line1}/>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('zipAndCity')} name="line2" value={data.line2}/>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('email')} name="mail" value={data.mail}/>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('website')} optional
+                      name="website" value={data.website}/>
+    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} optional maxLength={300}
+                     name="description" value={data.description}/>
+  </>;
+	);
 
   const formProps = {
-    head: {
-      init: (
-        <>
-          <h1>Lets talk business!</h1>
-          <p>
-            Next we want to know about your business. Do you want to enter it
-            manually or import from Google Maps? Don't worry, you can still
-            change it after importing.
-          </p>
-        </>
-      ),
-      google: data.mapsPlaceObject ? (
-        <>
-          <h1>Got them! Wanna change?</h1>
-          <p>
-            We’ve got all the info from your Google Business page. In case you
-            want to change something – just do it.
-          </p>
-        </>
-      ) : (
-        // or
-        <>
-          <h1>Name your business.</h1>
-          <p>
-            By what name is your business known? Type in a name your customers
-            already know or sound familiar to them.
-          </p>
-        </>
-      ),
-      manual: (
-        <>
-          <h1>Business Info</h1>
-          <p>
-            Now, let’s set up your business account! For starters, please fill
-            in the blanks below.
-          </p>
-        </>
-      )
-    },
-    body: {
-      google: data.mapsPlaceObject ? (
-        fields
-      ) : (
-        <PlacesSuggest onSelected={selected => changeHandler(selected)} />
-      ),
-      manual: fields
-    },
-    footer: {
-      init: (
-        <div className="Btn-group">
-          <Button
-            label="Get store data from Google"
-            onClick={() => changeHandler(false)}
-            to={{
-              pathname: "/stores/new/business",
-              state: { useGoogle: true }
-            }}
-          />
-          <Button
-            label="Set up manually"
-            to={{
-              pathname: "/stores/new/business",
-              state: { useGoogle: false }
-            }}
-            secondary
-          />
-        </div>
-      ),
-      manual: <Button label="Perfect, let’s go" />,
-      google: <Button label="Perfect, let’s go" />
-    }
-  };
+   head: {
+     init: <><h1>{t('intro.head')}</h1><p>{t('intro.text')}</p></>,
+     google: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
+         <p>{t('googleConfirm.text')}</p></>
+       : // or
+       <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
+     manual: <><h1>{t('manually.head')}</h1><p>{t('manually.text')}</p></>,
+   },
+   body: {
+     google: data.mapsPlaceObject ? fields :
+       <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
+     manual: fields,
+   },
+   footer: {
+     init: <div className="Btn-group">
+       <Button label={t('intro.button_google')} onClick={() => changeHandler(false)}
+               to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
+       <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
+     </div>,
+     manual: <Button label={t('manually.continue')} to="/stores/1/onboarding"/>,
+     google: <Button label={t('googleConfirm.continue')} to="/stores/1/onboarding"/>,
+   },
+ };
 
-  return (
-    <Form
-      head={formProps.head[state]}
-      body={formProps.body[state]}
-      onSubmit={submitHandler}
-      footer={formProps.footer[state]}
-    />
-  );
+ return <Form head={formProps.head[state]} body={formProps.body[state]}
+              onSubmit={submitHandler} footer={formProps.footer[state]}/>;
 };
 
 export default BusinessForm;
