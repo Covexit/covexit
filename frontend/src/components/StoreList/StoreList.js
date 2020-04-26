@@ -1,32 +1,37 @@
-import React from 'react';
-
-import { businessImages } from '../../shared/businessImages'
+import React, { useState, useEffect } from 'react';
 import './StoreList.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import API from '../../shared/api';
 
 
 const StoreList = () => {
   const [t] = useTranslation('store-list');
-  const stores = [
-    { name: 'Manfreds Bakery', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-    { name: 'BlueMen', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-    { name: 'DanyOils', desc: 'A mix of some flourish stuff and water, plus some salty crystals looking like salt...' },
-  ];
+  const [stores, setStores] = useState([])
+
+  useEffect(() => {
+    const getStores = async () => {
+      const response = await API.partners.get()
+      setStores(response.data);
+    }
+    getStores();
+
+  }, [])
+
 
   return (
     <section className="StoreList">
       <h1 className="StoreList-heading h3 high-emphasis">{t('heading')}</h1>
 
       <div className="StoreList-stores">
-        {stores.map((e, i) => (
-          <Link key={i} to={`/stores/${i + 1}`} className="StoreList-store">
+        {stores.map(store => (
+          <Link key={store.id} to={`/stores/${store.id}`} className="StoreList-store">
             <div className="StoreList-store-img">
-              <img src={`/photos/${businessImages[i]}`} alt="" />
+              <img src={`/photos/${store.image}`} alt="" />
             </div>
             <div className="StoreList-store-body">
-              <h4>{e.name}</h4>
-              <p>{e.desc}</p>
+              <h4>{store.name}</h4>
+              <p>{store.description}</p>
             </div>
           </Link>
         ))}

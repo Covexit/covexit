@@ -11,6 +11,8 @@ class BelongsTo(IsAuthenticatedOrReadOnly):
     """
 
     def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
         if isinstance(obj, Partner):
             return obj.users.filter(pk=request.user.pk).exists()
         if isinstance(obj, Product):
@@ -18,8 +20,6 @@ class BelongsTo(IsAuthenticatedOrReadOnly):
                 .filter(partner__users=request.user.pk).exists()
 
     def has_permission(self, request, view):
-        if request.method in SAFE_METHODS:
-            return True
         if 'product_pk' in request.resolver_match.kwargs:
             return Partner.objects.filter(
                 stockrecords__product_id__exact=

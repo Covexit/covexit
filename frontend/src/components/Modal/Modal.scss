@@ -1,0 +1,39 @@
+@import "stylebase/variables";
+
+.Modal:after {
+  content: '';
+  position: fixed;
+  z-index: auto;
+  right: 0;
+  left: 0;
+  top: $header-height;
+  bottom: 0;
+  background: rgba($color-dark-gray, 0.5);
+
+}
+
+.Modal-body {
+  position: fixed;
+  text-align: center;
+  background-color: #ffffff;
+  padding: $padding-wrapper;
+  z-index: $header-index;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.Close-modal-btn {
+  position: absolute;
+  right: $padding-wrapper;
+  top: $padding-wrapper;
+  background: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.Modal-content {
+  height: fit-content;
+}

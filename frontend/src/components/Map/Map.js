@@ -6,24 +6,20 @@ import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useLocationContext } from '../../context/useCurrentLocation';
+import API from '../../shared/api';
 
-
-const locations = [
-  {
-    text: "Manfred's Bakery",
-    labelOrigin: { x: 85, y: 14 },
-    location: { lat: 47.673862, lng: 9.179261 }
-  },
-  {
-    text: "Jenny's Shop",
-    labelOrigin: { x: 70, y: 14 },
-    location: { lat: 47.671899, lng: 9.179291 }
-  }
-]
 
 const Map = () => {
   const [t] = useTranslation();
-  const [showInfo, setShowInfo] = useState(false)
+  const [locations, setLocations] = useState([])
+
+  const [selectedLocation, setSelect] = useState({
+    title: "",
+    description: "",
+    id: 0,
+    showInfo: false
+  })
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
   })
@@ -32,6 +28,21 @@ const Map = () => {
 
   const mountOnce = () => {
     setCurrentLocation();
+    const getLocations = async () => {
+      let stores = []
+      const response = await API.partners.get()
+      response.data.map(store => {
+        return stores.push({
+          id: store.id,
+          text: store.name,
+          labelOrigin: { x: 70, y: 14 },
+          location: { lat: Number(store.addresses[0].latitude), lng: Number(store.addresses[0].longitude) },
+          description: store.description
+        })
+      })
+      setLocations(stores);
+    }
+    getLocations();
     const unmount = () => console.log('unmounted');
     return unmount
   }
@@ -61,7 +72,12 @@ const Map = () => {
           fontWeight: 'bold',
           fontSize: '12px',
         }}
-        onClick={() => setShowInfo(!showInfo)}
+        onClick={() => setSelect({
+          id: loc.id,
+          description: loc.description,
+          title: loc.text,
+          showInfo: !loc.showInfo
+        })  /* setShowInfo(!showInfo) */}
       />
     )}
 
@@ -69,12 +85,12 @@ const Map = () => {
       position={{lng, lat}}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
-      <div className={`Map-infoWrapper ${showInfo && 'Map-infoWrapper--visible'}`}>
+      <div className={`Map-infoWrapper ${selectedLocation.showInfo && 'Map-infoWrapper--visible'}`}>
         <img className="Map-infoImg" src={banner} alt="banner"/>
         <div className="Map-info">
-          <h2>Manfred's Bakery</h2>
-          <p>Only the finest, hand sorted ingredients</p>
-          <Button to="/stores/1" label={t('goToStoreButton')}/>
+          <h2>{selectedLocation.title}</h2>
+          <p>{selectedLocation.description}</p>
+          <Button to={`/stores/${selectedLocation.id}`} label={t('goToStoreButton')}/>
         </div>
       </div>
     </OverlayView>

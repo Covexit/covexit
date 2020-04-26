@@ -25,6 +25,7 @@
   &--secondary {
     color: $color-dark-gray;
     background: $color-gray;
+    font-weight: 400;
   }
 
   &--pay {
@@ -45,6 +46,10 @@
     border: none;
     box-shadow: none;
     color: black;
+  }
+
+  &--small {
+    padding: .75rem 1.5rem;
   }
 }
 
