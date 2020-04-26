@@ -50,4 +50,3 @@ const NewStore = (props) => {
 };
 
 export default NewStore
-
