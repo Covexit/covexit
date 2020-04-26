@@ -32,15 +32,6 @@ const PhotoSelector = ({ images, onSelected, photo }) => {
           }
         </label>
       )}
-
-      <div
-        className={`PhotoSelector-nextBtn
-          ${!photo && 'PhotoSelector-nextBtn--disabled'}
-        `}
-      >
-        {/* TODO: add upload image */}
-        <Button to="/" label={`${t('continueButton')}  →`} />
-      </div>
     </div>
   )
 }
