@@ -24,23 +24,17 @@ const Map = () => {
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
   })
 
-  const { setCurrentLocation, coordinates: [lng, lat] } = useLocationContext()
+  const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
 
   const mountOnce = () => {
+    console.log(setCurrentLocation);
+
     setCurrentLocation();
     const getLocations = async () => {
-      let stores = []
       const response = await API.partners.get()
-      response.data.map(store => {
-        return stores.push({
-          id: store.id,
-          text: store.name,
-          labelOrigin: { x: 70, y: 14 },
-          location: { lat: Number(store.addresses[0].latitude), lng: Number(store.addresses[0].longitude) },
-          description: store.description
-        })
-      })
-      setLocations(stores);
+      console.log(response.data);
+
+      setLocations(response.data);
     }
     getLocations();
     const unmount = () => console.log('unmounted');
@@ -56,19 +50,19 @@ const Map = () => {
   const mapJsx = <GoogleMap
     mapContainerClassName="Map"
     zoom={16}
-    center={{lng, lat}}
+    center={{lng: 13.401699, lat: 52.518246 }}
     options={{ styles: mapStyles }}
   >
     {locations.map( loc =>
       <Marker
-        key={loc.text}
-        position={loc.location}
+        key={loc.id}
+        position={{lat: parseFloat(loc.addresses[0].latitude), lng: parseFloat(loc.addresses[0].longitude)}}
         icon={{
           url: marker,
           labelOrigin: loc.labelOrigin,
         }}
         label={{
-          text: loc.text,
+          text: loc.name,
           fontWeight: 'bold',
           fontSize: '12px',
         }}
