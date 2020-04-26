@@ -14,6 +14,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 
 from covexit.account.models import MailingListEntry
+from covexit.partner.models import Partner
 
 UserAccount = get_user_model()
 
@@ -29,7 +30,8 @@ class CustomAuthToken(ObtainAuthToken):
             token, created = Token.objects.get_or_create(user=user)
             return Response({
                 'token': token.key,
-                'user': {'id': user.pk, 'email': user.email}
+                'user': {'id': user.pk, 'email': user.email},
+                'partners': Partner.objects.filter(users__exact=user).values_list('id', flat=True)
             })
         return Response(status=status.HTTP_401_UNAUTHORIZED,
                         data="User not verified")
@@ -102,7 +104,8 @@ class VerifyView(APIView):
     serializer_class = VerifySerializer
 
     def post(self, request, **kwargs):
-        ser = self.serializer_class(data=request.data, context={'request': request})
+        ser = self.serializer_class(data=request.data,
+                                    context={'request': request})
         if ser.is_valid():
             instance = ser.instance
             instance.is_active = True

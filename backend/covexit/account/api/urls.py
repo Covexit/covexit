@@ -1,6 +1,6 @@
 from django.urls import path
-from rest_framework.authtoken.views import obtain_auth_token
-from covexit.account.api.views import RegisterView, VerifyView, AddToMailingListView
+from covexit.account.api.views import RegisterView, VerifyView, \
+    CustomAuthToken, AddToMailingListView
 
 
 urlpatterns = [
