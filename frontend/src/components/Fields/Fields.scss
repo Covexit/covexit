@@ -83,6 +83,10 @@
   position: relative;
   margin-top: 1.2em;
 
+  label {
+    display: flex;
+  }
+
   path {
     fill: none;
     stroke: $color-primary;
