@@ -8,7 +8,6 @@ import { useUserContext } from '../../context/UserContext';
 import API from '../../shared/api';
 import axios from 'axios'
 
-
 const getItemFromAddress = (wantedType, haystack) => {
   const needle = haystack.find(item => item.types.some(type => type === wantedType))
   return needle ? needle.long_name : '';

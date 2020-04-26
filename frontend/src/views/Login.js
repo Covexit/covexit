@@ -8,7 +8,7 @@ import API from '../shared/api';
 
 const Login = ({history}) => {
 
-  const { loginSuccess } = useUserContext();
+  const { setUser, setVerified } = useUserContext();
 
   const [user, updateUser] = useState({
     username: "",
@@ -25,8 +25,15 @@ const Login = ({history}) => {
     e.preventDefault();
     const getToken = await API.authToken.post({...user})
     let token = getToken.data.token
+
+    const getUser = await API.users.get()
+    let currentUser = getUser.data.find(x => x.username === user.username )
+
     if(token){
-      loginSuccess(user, token)
+      setUser(currentUser, token)
+      setVerified(true)
+      // for now the user gets redirected to /stores, should be redirected to
+      // order views
       history.push('/stores/');
     }
     else {
