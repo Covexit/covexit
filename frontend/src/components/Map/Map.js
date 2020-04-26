@@ -50,7 +50,6 @@ const Map = () => {
   const mapJsx = <GoogleMap
     mapContainerClassName="Map"
     zoom={6}
-    // lng: 13.401699, lat: 52.518246
     center={{lng: 10.205347, lat: 51.216239}}
     options={{ styles: mapStyles }}
   >
