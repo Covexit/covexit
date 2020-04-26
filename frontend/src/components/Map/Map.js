@@ -11,35 +11,30 @@ import API from '../../shared/api';
 
 const Map = () => {
   const [t] = useTranslation();
-  const [locations, setLocations] = useState([])
+  const [locations, setLocations] = useState([]);
 
   const [selectedLocation, setSelect] = useState({
     title: "",
     description: "",
     id: 0,
     showInfo: false
-  })
+  });
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCHTt_h9Drz0TcymU_qmYQWI2zvnsQkkQc"
-  })
+  });
 
   const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
-
+  console.log(lng,lat);
   const mountOnce = () => {
-    console.log(setCurrentLocation);
-
     setCurrentLocation();
     const getLocations = async () => {
-      const response = await API.partners.get()
-      console.log(response.data);
+      const response = await API.partners.get();
 
       setLocations(response.data);
-    }
+    };
     getLocations();
-    const unmount = () => console.log('unmounted');
-    return unmount
-  }
+  };
 
   useEffect(mountOnce, []);
 
@@ -49,8 +44,8 @@ const Map = () => {
 
   const mapJsx = <GoogleMap
     mapContainerClassName="Map"
-    zoom={16}
-    center={{lng: 13.401699, lat: 52.518246 }}
+    zoom={lng === 10.205347 ? 6 : 12}
+    center={{lng: parseFloat(lng), lat: parseFloat(lat) }}
     options={{ styles: mapStyles }}
   >
     {locations.map( loc =>
