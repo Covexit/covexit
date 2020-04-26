@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
-from covexit.account.api.views import RegisterView, VerifyView, AddToWaitingListView
+from covexit.account.api.views import RegisterView, VerifyView, AddToMailingListView
 
 
 urlpatterns = [
@@ -8,5 +8,5 @@ urlpatterns = [
     path("register/", RegisterView.as_view(), name="api-register"),
     # path("verify/<pk>/", VerifyView.as_view(), name="api-verify"),
     path("verify/<str:verify_type>/", VerifyView.as_view(), name="api-verify"),
-    path("waiting-list/", AddToWaitingListView.as_view(), name="api-waiting-list"),
+    path("mailing-list/", AddToMailingListView.as_view(), name="api-mailing-list"),
 ]

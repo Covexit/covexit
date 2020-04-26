@@ -1,15 +1,19 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Modal:after {
   content: '';
   position: fixed;
-  z-index: auto;
+  z-index: 1;
   right: 0;
   left: 0;
   top: $header-height;
   bottom: 0;
   background: rgba($color-dark-gray, 0.5);
+}
 
+.Modal-header {
+  margin-bottom: 20px;
 }
 
 .Modal-body {
@@ -22,7 +26,14 @@
   flex-direction: column;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
+
+  @include bp-large() {
+    max-width: 600px;
+    margin: auto;
+    bottom: $padding-wrapper;
+  }
 }
 
 .Close-modal-btn {

@@ -1,6 +1,4 @@
-from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from django.conf import settings
 from django.contrib.auth import get_user_model
 
 
@@ -10,7 +8,7 @@ from ..models import (
     VERIFICATION_KEY_LENGTH,
     create_verification_key,
     send_verification_email,
-    WaitingListEntry)
+    MailingListEntry)
 
 
 UserAccount = get_user_model()
@@ -59,21 +57,21 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class AddToWaitingListSerializer(serializers.ModelSerializer):
+class AddToMailingListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = WaitingListEntry
+        model = MailingListEntry
         fields = ('name', 'email', 'accepted_privacy_policy')
 
     def create(self, validated_data):
-        entry = WaitingListEntry.objects.create(
+        entry = MailingListEntry.objects.create(
             **validated_data,
             verified=False,
             verification_key=create_verification_key(),
         )
         entry.save()
 
-        send_verification_email(entry, 'waitinglist')
+        send_verification_email(entry)
 
         return entry
 
@@ -88,7 +86,7 @@ class VerifySerializer(serializers.Serializer):
         """Check for correct user ID and verification_key."""
         try:
             verify_type = self.context['request'].resolver_match.kwargs['verify_type']
-            model = WaitingListEntry if verify_type == 'waitinglist' else UserAccount
+            model = MailingListEntry if verify_type == 'mailinglist' else UserAccount
         except KeyError:
             raise serializers.ValidationError("verify_type not existing")
         try:

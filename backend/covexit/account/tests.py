@@ -6,7 +6,7 @@ from covexit.account.models import (
     send_verification_email,
     create_verification_link,
     VERIFICATION_URL,
-    WaitingListEntry)
+    MailingListEntry)
 
 from model_bakery import baker
 
@@ -14,9 +14,9 @@ from model_bakery import baker
 class AccountTests(TestCase):
     def test_send_verification_email(self):
         user = baker.make(settings.AUTH_USER_MODEL, email='x@y.com')
-        entry = baker.make(WaitingListEntry, email='x@y.com')
+        entry = baker.make(MailingListEntry, email='x@y.com')
         send_verification_email(user)
-        send_verification_email(entry, 'waitinglist')
+        send_verification_email(entry, 'mailinglist')
         self.assertEqual(len(mail.outbox), 2)
         self.assertIn(create_verification_link(user), mail.outbox[0].body)
         self.assertIn(create_verification_link(entry), mail.outbox[1].body)
@@ -28,5 +28,5 @@ class AccountTests(TestCase):
                                             VERIFICATION_URL,
                                             user.pk,
                                             user.verification_key,
-                                            'register')
+                                            'signup')
         self.assertIn(test_string, create_verification_link(user))
