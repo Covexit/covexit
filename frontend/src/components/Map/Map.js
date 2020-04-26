@@ -27,12 +27,10 @@ const Map = () => {
   const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
 
   const mountOnce = () => {
-    console.log(setCurrentLocation);
 
     setCurrentLocation();
     const getLocations = async () => {
       const response = await API.partners.get()
-      console.log(response.data);
 
       setLocations(response.data);
     }
@@ -49,8 +47,8 @@ const Map = () => {
 
   const mapJsx = <GoogleMap
     mapContainerClassName="Map"
-    zoom={16}
-    center={{lng: 13.401699, lat: 52.518246 }}
+    zoom={6}
+    center={{lng: 10.205347, lat: 51.216239}}
     options={{ styles: mapStyles }}
   >
     {locations.map( loc =>
