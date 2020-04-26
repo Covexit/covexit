@@ -27,12 +27,10 @@ const Map = () => {
   const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
 
   const mountOnce = () => {
-    console.log(setCurrentLocation);
 
     setCurrentLocation();
     const getLocations = async () => {
       const response = await API.partners.get()
-      console.log(response.data);
 
       setLocations(response.data);
     }
