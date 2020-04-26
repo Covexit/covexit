@@ -17,8 +17,9 @@ const social = [
 ];
 
 const EnlistModal = () => {
-  const { enlisted, enlist } = useUserContext();
+  const { enlistHide, setEnlistHide } = useUserContext();
   const [ showModal, setShowModal ] = useState(true);
+  const [ sent, setSent ] = useState(false);
   const [ data, setData ] = useState({
     name: '',
     email: '',
@@ -34,7 +35,7 @@ const EnlistModal = () => {
     try {
       await API.mailingList.post(data);
       setData({...data, message: t('mailing-list:success')});
-      dontShowAgain();
+      setSent(true);
     }
     catch (e) {
       setData({...data, message: Object.values(e.response.data)});
@@ -42,11 +43,11 @@ const EnlistModal = () => {
   };
 
   const dontShowAgain = () => {
-    enlist(true);
+    setEnlistHide(true);
     setShowModal(false);
   };
 
-  return !enlisted && showModal && <div className="EnlistModal">
+  return !enlistHide && showModal && <div className="EnlistModal">
     <Modal onClose={() => setShowModal(false)}
            header={<><h2>{t('mailing-list:head')}</h2><p>{t('mailing-list:text')}</p></>}
            footer={
@@ -66,7 +67,7 @@ const EnlistModal = () => {
           {(data.message && <p>{data.message}</p>) || ''}
         </>}
         footer={<>
-          <Button label={t('new-store-owner:Next')}/>
+          {!sent ? <Button label={t('new-store-owner:Next')}/> : ''}
           <Button label={t('mailing-list:dontShowAgain')} type="dismiss" onClick={dontShowAgain}/>
         </>}
       />

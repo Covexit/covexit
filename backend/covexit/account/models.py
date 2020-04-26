@@ -16,11 +16,15 @@ VERIFICATION_MESSAGE = {
 To activate your account, please visit this link:
 {}
 """),
-    'mailinglist': _("""Thank you for joining the mailing list for Covexit!
+    'mailinglist': _("""Vielen Dank, dass du Covexit beigetreten bist.
+Damit wir dir wichtige Informationen und Updates zusenden können, müssen wir
+überprüfen, ob dies auch die richtige Email-Adresse ist.
 
-Please verify that you're the person who initiated this process by visiting
-this link:
 {}
+
+Wir freuen uns über deine Unterstützung!
+Wenn Sie glauben, dass Sie diese E-Mail irrtümlich erhalten haben, können Sie
+dies einfach ignorieren.
 """),
 }
 
