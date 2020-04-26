@@ -7,7 +7,7 @@ import logger from './Logger'
 
 const initialState = {
   selectedLocation: {},
-  coordinates: []
+  coordinates: [10.205347, 51.216239]
 };
 
 
