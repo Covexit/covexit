@@ -21,7 +21,7 @@ const reducer = (originalState, action) => {
         selectedLocation: {},
       }
 
-    case 'SET_SELECTED_LOCATION': 
+    case 'SET_SELECTED_LOCATION':
       const { suggestion, coordinates } = action.payload;
       return {
         ...state,
@@ -67,9 +67,9 @@ const useCurrentLocation = () => {
       // TODO: loader status: setIsGettingLocation(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const lattitude = position.coords.latitude;
+          const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          const coordinates = [longitude, lattitude];
+          const coordinates = [longitude, latitude];
           // TODO: loader status: setIsGettingLocation(false);
           setSelectedLocation(coordinates);
         },
