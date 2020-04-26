@@ -33,10 +33,8 @@ const BusinessForm = ({ location, history }) => {
 
   const changeHandler = (event) => {
     let _data = {...data, mapsPlaceObject: false};
-
     if (event === false)
       return setData(_data);
-
     if (event.target) {
       _data = { [event.target.name]: event.target.value };
     } else {
