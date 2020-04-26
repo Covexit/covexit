@@ -27,7 +27,7 @@
 }
 
 @mixin bp-large {
-  @media (min-width: 960px) {
+  @media (min-width: 0px) {
     @content;
   }
 }

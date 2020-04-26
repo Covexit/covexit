@@ -30,6 +30,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   flex: 0 1 auto;
+  flex-grow: 1;
 
   & + & {
     border-left: 1px solid $color-middle-gray;

@@ -12,7 +12,7 @@ const isOwner = false;
 
 const Stores = ({ location, match }) => (
   <ViewWrappers.View>
-    <ViewWrappers.ViewSplitter small omitOnMobile>
+    <ViewWrappers.ViewSplitter small omitOnMobil>
       <StoreList />
     </ViewWrappers.ViewSplitter>
     <ViewWrappers.ViewSplitter omitOnMobile={!!matchPath(location.pathname, { path: "/stores/:id", exact: true })}>
