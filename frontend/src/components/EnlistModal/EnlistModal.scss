@@ -1,11 +1,25 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Enlist__social {
   margin-top: 10px;
+
+  @include bp-large() {
+    p {
+      font-size: 18px;
+    }
+  }
 }
 
-.EnlistModal .Form {
-  text-align: left;
+.EnlistModal {
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .Form {
+    text-align: left;
+  }
 }
 
 .Enlist__social-links {
@@ -27,7 +41,7 @@
   }
 
   svg {
-    width: 30px;
+    width: 25px;
     height: auto;
   }
 }
