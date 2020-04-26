@@ -1,11 +1,12 @@
 {
-  "button": "Add a product",
   "name": "Name of the product",
-  "category": "Product category",
   "price": "Price in € (E.g. 2,99)",
-  "description": "Product description",
+  "sku": "Product number",
   "quantity": "Please indicate the quantity of the product you can offer. (In pieces)",
-  "size": "Specify a suitable size (if not necessary, check 'none').",
+  "description": "Product description",
   "photo": "Upload a product photo",
-  "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted)."
+  "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted).",
+  "button": "Add a product",
+  "category": "Product category",
+  "size": "Specify a suitable size (if not necessary, check 'none')."
 }
