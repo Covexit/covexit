@@ -31,7 +31,7 @@ const Login = ({history}) => {
 
     const getUser = await API.users.get()
     let currentUser = getUser.data.find(x => x.username === user.username )
-    
+
     if(token){
       setUser(currentUser, token)
       setVerified(true)
