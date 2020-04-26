@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 
@@ -14,6 +16,23 @@ from rest_framework.views import APIView
 from covexit.account.models import WaitingListEntry
 
 UserAccount = get_user_model()
+
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        if user.is_active:
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({
+                'token': token.key,
+                'user': {'id': user.pk, 'email': user.email}
+            })
+        return Response(status=status.HTTP_401_UNAUTHORIZED,
+                        data="User not verified")
 
 
 class RegisterView(CreateAPIView):
