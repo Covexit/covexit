@@ -46,29 +46,32 @@ const EnlistModal = () => {
     setShowModal(false);
   };
 
-  return !enlisted && showModal && <Modal onClose={() => setShowModal(false)} footer={
-    <div className="Enlist__social">
-      <p>{t('mailing-list:social')}</p>
-      <ul className="Enlist__social-links">
-        {social.map(item => <li key={item.link}><a href={item.link} target="_blank" rel="noopener noreferrer">{item.icon}</a></li>)}
-      </ul>
-    </div>
-  }>
-    <Form onSubmit={submitHandler}
-      head={<><h1>{t('mailing-list:head')}</h1><p className="intro">{t('mailing-list:text')}</p></>}
-      body={<>
-        <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:name')} name="name" value={data.name}/>
-        <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:email')} name="email" value={data.email} type="email"/>
-        <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                         placeholder={t('new-store-owner:privacy')}/>
-        {(data.message && <p>{data.message}</p>) || ''}
-      </>}
-      footer={<>
-        <Button label={t('new-store-owner:Next')}/>
-        <Button label={t('mailing-list:dontShowAgain')} type="dismiss" onClick={dontShowAgain}/>
-      </>}
-    />
-  </Modal>
+  return !enlisted && showModal && <div className="EnlistModal">
+    <Modal onClose={() => setShowModal(false)}
+           header={<><h2>{t('mailing-list:head')}</h2><p>{t('mailing-list:text')}</p></>}
+           footer={
+      <div className="Enlist__social">
+        <p>{t('mailing-list:social')}</p>
+        <ul className="Enlist__social-links">
+          {social.map(item => <li key={item.link}><a href={item.link} target="_blank" rel="noopener noreferrer">{item.icon}</a></li>)}
+        </ul>
+      </div>
+    }>
+      <Form onSubmit={submitHandler}
+        body={<>
+          <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:name')} name="name" value={data.name}/>
+          <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:email')} name="email" value={data.email} type="email"/>
+          <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
+                           placeholder={t('new-store-owner:privacy')}/>
+          {(data.message && <p>{data.message}</p>) || ''}
+        </>}
+        footer={<>
+          <Button label={t('new-store-owner:Next')}/>
+          <Button label={t('mailing-list:dontShowAgain')} type="dismiss" onClick={dontShowAgain}/>
+        </>}
+      />
+    </Modal>
+  </div>
 };
 
 export default EnlistModal;
