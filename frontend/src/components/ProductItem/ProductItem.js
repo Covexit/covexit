@@ -20,7 +20,7 @@ const ProductItem = ({ product, type }) => {
         <div className="Product-review">
           <h4>{name}</h4>
           <p>{description}</p>
-          <h4 className="variant-price">{price}€</h4>
+          <h4 className="variant-price">{price.toFixed(2)}€</h4>
         </div>
 
         <img
