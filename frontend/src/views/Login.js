@@ -44,7 +44,7 @@ const Login = ({history}) => {
                   </>}
             body= {<>
                 <Fields.TextInput onChange={changeHandler}
-                  placeholder={t('email')} name="email" value={user.username}/>
+                  placeholder={t('email')} name="email" value={user.email}/>
                 <Fields.PasswordInput onChange={changeHandler}
                 placeholder={t('Passwort')} name="password" value={user.password}/>
                   </>}
