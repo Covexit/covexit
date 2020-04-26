@@ -19,35 +19,28 @@ const Login = ({history}) => {
   })
 
   const changeHandler = event => {
-    updateUser({ ...user, [event.target.name]:event.target.value })
-
+    updateUser({ ...user, [event.target.name]:event.target.value });
   }
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("hello");
-    const getToken = await API.authToken.post({...user})
-    let token = getToken.data.token
-
-    const getUser = await API.users.get()
-    let currentUser = getUser.data.find(x => x.username === user.username )
-
-    if(token){
-      setUser(currentUser, token)
-      setVerified(true)
-      // for now the user gets redirected to /stores, should be redirected to
-      // order views
+    const response = await API.authToken.post({...user});
+    if(response.data.token){
+      setUser(response.data.user, response.data.token);
+      setVerified(true);
+      //redirects to /stores after login, should be changed later to order view
       history.push('/stores/');
+    } else {
+      console.error(response);
     }
-    else {
-      console.error(getToken)
-    }
+
   }
+
   return (
     <ViewWrappers.View withPadding>
             <Form onSubmit={submitHandler}
             head={<>
-              <h1>{t('head')}</h1>
+              <h1>{t('Login')}</h1>
               <p>{t('text')}</p>
                   </>}
             body= {<>

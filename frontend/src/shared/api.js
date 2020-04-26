@@ -37,7 +37,6 @@ const API = {
   partners: createEndpoint('admin/partners/$id/'),
   products: createHyperlinkedEndpoint('admin/products/$id/'),
   productImages: createEndpoint('admin/products/$id/images/'),
-  users: { get: (data) => axiosInstance.get('admin/users/', data)},
   authToken: { post: (data) => axiosInstance.post(`api-token-auth/`, data) }
 };
 
