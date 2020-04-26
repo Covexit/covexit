@@ -14,7 +14,7 @@ const Login = ({history}) => {
   const [t] = useTranslation('new-store-business');
 
   const [user, updateUser] = useState({
-    username: "",
+    email: "",
     password: ""
   })
 
@@ -24,7 +24,7 @@ const Login = ({history}) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.authToken.post({...user});
+    const response = await API.authToken.post({username: user.email, password: user.password});
     if(response.data.token){
       setUser(response.data.user, response.data.token);
       setVerified(true);
@@ -41,11 +41,10 @@ const Login = ({history}) => {
             <Form onSubmit={submitHandler}
             head={<>
               <h1>{t('Login')}</h1>
-              <p>{t('text')}</p>
                   </>}
             body= {<>
                 <Fields.TextInput onChange={changeHandler}
-                  placeholder={t('email')} name="username" value={user.username}/>
+                  placeholder={t('email')} name="email" value={user.username}/>
                 <Fields.PasswordInput onChange={changeHandler}
                 placeholder={t('Passwort')} name="password" value={user.password}/>
                   </>}
