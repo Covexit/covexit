@@ -16,11 +16,15 @@ VERIFICATION_MESSAGE = {
 To activate your account, please visit this link:
 {}
 """),
-    'waitinglist': _("""Thank you for joining the waiting list for Covexit!
+    'mailinglist': _("""Vielen Dank, dass du Covexit beigetreten bist.
+Damit wir dir wichtige Informationen und Updates zusenden können, müssen wir
+überprüfen, ob dies auch die richtige Email-Adresse ist.
 
-Please verify that you're the person who initiated this process by visiting
-this link:
 {}
+
+Wir freuen uns über deine Unterstützung!
+Wenn Sie glauben, dass Sie diese E-Mail irrtümlich erhalten haben, können Sie
+dies einfach ignorieren.
 """),
 }
 
@@ -30,7 +34,7 @@ VERIFICATION_URL = '/verify/'
 
 
 def create_verification_link(user):
-    verify_type = 'waitinglist' if isinstance(user, WaitingListEntry) else 'signup'
+    verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
     return '{}{}{}/{}/{}'.format(Site.objects.get_current().domain,
                                  VERIFICATION_URL,
                                  user.pk,
@@ -44,7 +48,7 @@ def create_verification_key():
 
 
 def send_verification_email(user):
-    verify_type = 'waitinglist' if isinstance(user, WaitingListEntry) else 'signup'
+    verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
     link = create_verification_link(user)
     send_mail(
         'Covexit Email Verification',
@@ -121,9 +125,9 @@ class UserAccount(AbstractUser):
     ]
 
 
-class WaitingListEntry(models.Model):
+class MailingListEntry(models.Model):
     name = models.CharField(max_length=128)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     verified = models.BooleanField(_('Email Verified'), default=False)
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)

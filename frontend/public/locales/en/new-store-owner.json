@@ -1,4 +1,6 @@
 {
+  "privacy": "I have read and accepted the privacy policy.",
+  "Next": "Agree & continue",
   "head": "Contact",
   "text": "Please enter the data of your contact person for us here.",
   "name": "First name",
@@ -7,11 +9,9 @@
   "zipAndCity": "ZIP and city",
   "email": "E-mail address",
   "phoneNumber": "Phone number",
-  "Next": "Agree & continue",
   "street": "Street",
   "number": "House number",
   "zip": "Zip code",
   "city": "City",
-  "agb": "I have read and accepted the general terms and conditions.",
-  "privacy": "I have read and accepted the privacy policy."
+  "agb": "I have read and accepted the general terms and conditions."
 }
