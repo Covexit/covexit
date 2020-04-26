@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "constate": "^2.0.0",
     "i18next": "^19.4.0",
+    "i18next-browser-languagedetector": "^4.1.1",
     "i18next-http-backend": "^1.0.6",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
