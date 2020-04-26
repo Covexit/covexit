@@ -11,11 +11,17 @@
     "axios": "^0.19.2",
     "constate": "^2.0.0",
     "i18next": "^19.4.0",
+    "i18next-browser-languagedetector": "^4.1.1",
     "i18next-http-backend": "^1.0.6",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-i18next": "^11.3.5",
+=======
+    "react-i18next": "^11.3.4",
+    "react-icons": "^3.10.0",
+>>>>>>> 88dd60f735005662306f4c8ffba72e39cc4c9f16
     "react-load-script": "0.0.6",
     "react-responsive": "^8.0.3",
     "react-router-dom": "^5.1.2",

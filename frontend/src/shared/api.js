@@ -33,6 +33,7 @@ const API = {
   categories: createHyperlinkedEndpoint('categories/'),
   register: { post: (data) => axiosInstance.post('register/', data) },
   verify: { post: (data, type) => axiosInstance.post(`verify/${type}/`, data) },
+  mailingList: { post: (data) => axiosInstance.post('mailing-list/', data) },
   partners: createEndpoint('admin/partners/$id/'),
   products: createHyperlinkedEndpoint('admin/products/$id/'),
   productImages: createEndpoint('admin/products/$id/images/'),

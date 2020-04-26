@@ -1,4 +1,6 @@
 {
+  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
+  "Next": "Zustimmen und fortfahren",
   "head": "Kontaktperson",
   "text": "Tragen Sie hier bitte die Daten Ihrer Kontaktperson für uns ein.“,",
   "name": "Vorname",
@@ -7,11 +9,9 @@
   "zipAndCity": "Postleitzahl und Stadt",
   "email": "E-Mail-Adresse",
   "phoneNumber": "Telefonnr.",
-  "Next": "Zustimmen und fortfahren",
   "street": "Straße",
   "number": "Hausnr.",
   "zip": "Postleitzahl",
   "city": "Ort",
-  "agb": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiert.",
-  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert."
+  "agb": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiert."
 }
