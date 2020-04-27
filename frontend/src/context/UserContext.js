@@ -28,7 +28,7 @@ const reducer = (state, action) => {
       return {...state, partners: action.data};
 
     case 'SET_VERIFIED':
-      return {...state, ...action.data, isAuthenticated: true};
+      return {...state, ...action.data, isVerified: true, isAuthenticated: true};
 
     case 'LOGOUT_SUCCESSFUL':
       return {
@@ -63,11 +63,11 @@ const useUser = () => {
     enlistHide
   } = state;
 
-  const setUser = (user, token) => {
+  const setUser = (user, token, partners) => {
     dispatch({
       type: 'SET_USER',
       payload: { user },
-      data: { token }
+      data: { token, partners }
     })
   };
 
