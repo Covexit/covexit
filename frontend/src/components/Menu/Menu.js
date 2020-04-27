@@ -49,10 +49,10 @@ function Menu() {
               {(e.external && <a href={e.to} className="Menu-link">{e.label}</a>) ||
               <NavLink to={e.to} onClick={() => setMenuOpen(false)} className={`Menu-link ${e.meta && 'Menu-link--meta'}`}>{e.label}</NavLink>}
             </li>)}
-            {isAuthenticated ? logoutField : loginField}
             <li className="Menu-list-item Menu-link">
               <Button to="/stores/new" label={t('merchantSignUp')} type="small"/>
             </li>
+            {isAuthenticated ? logoutField : loginField}
         </ul>
         <div className="Menu-footer">© 2020 Covexit</div>
       </div>
