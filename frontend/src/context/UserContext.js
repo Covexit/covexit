@@ -8,7 +8,7 @@ const initialState = {
   isAuthenticated: null,
   isVerified: false,
   enlistHide: false,
-  user: null,
+  user: null
 };
 
 const reducer = (state, action) => {
