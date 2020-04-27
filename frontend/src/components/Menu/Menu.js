@@ -11,7 +11,6 @@ function Menu() {
   const [t] = useTranslation('menu');
   const { isAuthenticated, logoutSuccess} = useUserContext();
 
-
   const links = [
     { to: 'https://covexit.webflow.io/', label: t('howItWorks'), external: true },
     { to: '/stores', label: t('explore') },
@@ -21,20 +20,8 @@ function Menu() {
     logoutSuccess();
   }
 
-  const loginField =
-    <>
-      <li className="Menu-list-item Menu-link">
-        <Button to="/login" label={t('logIn')} type="small"/>
-      </li>
-    </>
-
-  const logoutField =
-  <>
-    <li className="Menu-list-item Menu-link">
-      <Button onClick={logoutHandler} to="/" label={t('logOut')} type="small"/>
-    </li>
-  </>
-
+  const loginField =  <Button to="/login" label={t('logIn')} type="small"/>
+  const logoutField = <Button onClick={logoutHandler} to="/" label={t('logOut')} type="small"/>
 
   return (
     <nav className={`Menu Menu--${menuOpen ? 'opened' : 'closed'}`}>
@@ -52,7 +39,9 @@ function Menu() {
             <li className="Menu-list-item Menu-link">
               <Button to="/stores/new" label={t('merchantSignUp')} type="small"/>
             </li>
-            {isAuthenticated ? logoutField : loginField}
+            <li className="Menu-list-item Menu-link">
+              {isAuthenticated ? logoutField : loginField}
+            </li>
         </ul>
         <div className="Menu-footer">© 2020 Covexit</div>
       </div>
