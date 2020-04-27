@@ -46,7 +46,7 @@ const Login = ({history}) => {
                 <Fields.TextInput onChange={changeHandler}
                   placeholder={t('email')} name="email" value={user.email}/>
                 <Fields.PasswordInput onChange={changeHandler}
-                placeholder={t('Passwort')} name="password" value={user.password}/>
+                placeholder={t('password')} name="password" value={user.password}/>
                   </>}
             footer={<>
                 <div className="Btn-group">

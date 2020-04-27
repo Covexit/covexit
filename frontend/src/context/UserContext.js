@@ -69,7 +69,7 @@ const useUser = () => {
 
   const logoutSuccess = () => {
     dispatch({
-      type: 'LOGOUT_SUCCESS',
+      type: 'LOGOUT_SUCCESSFUL',
     })
   };
 
