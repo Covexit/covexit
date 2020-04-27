@@ -25,12 +25,5 @@
     "head": "Geschäftdaten",
     "text": "Jetzt richten wir Ihr Geschäftskonto ein! Bitte füllen Sie zunächst die unteren Felder aus.",
     "continue": "Speichern & Fortfahren"
-  },
-  "street": "Straße des Geschäfts",
-  "number": "Hausnr.",
-  "zip": "Postleitzahl",
-  "city": "Ort",
-  "taxID": "",
-  "logo": "Logo hochladen",
-  "fotoBG": "Hintergrundfoto hochladen. Dieses Foto erscheint auf Ihrer Firmenseite"
+  }
 }

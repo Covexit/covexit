@@ -1,19 +1,5 @@
 {
   "howItWorks": "Wie funktioniert's?",
   "explore": "Geschäfte erkunden",
-  "logIn": "Anmelden",
-  "logOut": "Abmelden",
-  "merchantSignUp": "Für Händler",
-  "imprint": "Impressum",
-  "privacy": "Datenschutz",
-  "shoppingCart": "Warenkorb",
-  "support": "Support",
-  "searchbar": "",
-  "categories": "Produktkategorien",
-  "helpingTool": "Bringe dein Lieblingsgeschäft online!",
-  "agb": "AGB",
-  "faq": "FAQ",
-  "info": "Über uns",
-  "blog": "Blog",
-  "socialMedia": ""
+  "merchantSignUp": "Für Händler"
 }
