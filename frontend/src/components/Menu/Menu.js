@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import { useUserContext } from '../../context/UserContext';
 
 
-function Menu({history}) {
+function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [t] = useTranslation('menu');
   const { isAuthenticated, logoutSuccess} = useUserContext();
