@@ -3,27 +3,42 @@ import constate from 'constate'
 import logger from './Logger'
 import useLocalStorage from '../shared/useLocalStorage';
 
-const initialState = {
+export const initialState = {
   token: '',
   isAuthenticated: null,
   isVerified: false,
   enlistHide: false,
+<<<<<<< HEAD
   user: null
+=======
+  partners: [],
+  user: null,
+>>>>>>> 21245e5ff54211eabbe46f2350badf8c5e18fb2c
 };
 
 const reducer = (state, action) => {
 
   switch (action.type) {
     case 'SET_USER':
-      return {...state, user: {...state.user, ...action.payload.user }, token: action.data.token, isAuthenticated: true};
+      return {
+        ...state,
+        user: {...state.user, ...action.payload.user },
+        token: action.data.token,
+        partners: action.data.partners,
+        isAuthenticated: true
+      };
+
+    case 'SET_PARTNERS':
+      return {...state, partners: action.data};
 
     case 'SET_VERIFIED':
-    case 'LOGIN_SUCCESSFUL':
-      return {...state, ...action.data, isAuthenticated: true};
+      return {...state, ...action.data, isVerified: true, isAuthenticated: true};
 
     case 'LOGOUT_SUCCESSFUL':
-      return {...state, token: null, user: null,
-        isAuthenticated: false};
+      return {
+        ...initialState,
+        enlistHide: state.enlistHide
+      };
 
     case 'ENLISTHIDE':
       return {...state, enlistHide: action.data.enlistHide};
@@ -43,13 +58,20 @@ const useUser = () => {
     setData(state)
   }, [state, setData]);
 
-  const { user, token, isAuthenticated, isVerified, enlistHide } = state;
+  const {
+    user,
+    token,
+    partners,
+    isAuthenticated,
+    isVerified,
+    enlistHide
+  } = state;
 
-  const setUser = (user, token) => {
+  const setUser = (user, token, partners) => {
     dispatch({
       type: 'SET_USER',
       payload: { user },
-      data: { token }
+      data: { token, partners }
     })
   };
 
@@ -60,10 +82,10 @@ const useUser = () => {
     })
   };
 
-  const loginSuccess = (user, token) => {
+  const setPartners = (partners) => {
     dispatch({
-      type: 'LOGIN_SUCCESSFUL',
-      data: { token }
+      type: 'SET_PARTNERS',
+      data: [partners].flat()
     })
   };
 
@@ -80,7 +102,21 @@ const useUser = () => {
     })
   };
 
-  return { user, token, isAuthenticated, isVerified, enlistHide, setUser, loginSuccess, logoutSuccess, setVerified, setEnlistHide }
+  return {
+    // state
+    user,
+    token,
+    isAuthenticated,
+    isVerified,
+    enlistHide,
+    partners,
+    // methods
+    setUser,
+    setPartners,
+    logoutSuccess,
+    setVerified,
+    setEnlistHide
+  }
 };
 
 export const [UserProvider, useUserContext] = constate(useUser);
