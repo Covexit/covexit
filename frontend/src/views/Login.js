@@ -16,17 +16,17 @@ const Login = ({history}) => {
   const [user, updateUser] = useState({
     email: "",
     password: ""
-  })
+  });
 
   const changeHandler = event => {
     updateUser({ ...user, [event.target.name]:event.target.value });
-  }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await API.authToken.post({username: user.email, password: user.password});
     if(response.data.token){
-      setUser(response.data.user, response.data.token);
+      setUser(response.data.user, response.data.token, response.data.partners);
       setVerified(true);
       //redirects to /stores after login, should be changed later to order view
       history.push('/stores/');
@@ -34,7 +34,7 @@ const Login = ({history}) => {
       console.error(response);
     }
 
-  }
+  };
 
   return (
     <ViewWrappers.View withPadding>
@@ -56,6 +56,6 @@ const Login = ({history}) => {
             />
     </ViewWrappers.View>
   );
-}
+};
 
 export default Login
