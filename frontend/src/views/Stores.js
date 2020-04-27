@@ -5,10 +5,6 @@ import Map from "../components/Map/Map";
 import { matchPath, Route } from 'react-router-dom';
 import Store from './Store';
 import StoreList from '../components/StoreList/StoreList';
-import CompanyPage from './CompanyPage';
-
-// todo: check with stateManagement if User is Owner of this company
-const isOwner = false;
 
 const Stores = ({ location, match }) => (
   <ViewWrappers.View>
@@ -20,7 +16,7 @@ const Stores = ({ location, match }) => (
     </ViewWrappers.ViewSplitter>
     <Route path={`${match.path}/:id`} render={(props => (
       <ViewWrappers.ViewSplitter small>
-        {isOwner ? <CompanyPage /> : <Store {...props} />}
+        <Store {...props} />
       </ViewWrappers.ViewSplitter>
     ))}>
     </Route>

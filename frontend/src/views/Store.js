@@ -6,15 +6,20 @@ import ProductList from '../components/ProductList/ProductList';
 
 import { useTranslation } from 'react-i18next';
 
-import products from '../shared/productData.js'
+import './Store.scss';
+import products from '../shared/productData.js';
 import API from '../shared/api';
+import { useUserContext } from '../context/UserContext';
+import Tab from '../components/Tab/Tab';
 
 const Store = ({ match }) => {
-  const [t] = useTranslation('store-detail');
+  const [t] = useTranslation(['store-detail', 'account']);
+  const { partners, logoutSuccess } = useUserContext();
   const [store, setStore] = useState({
     name: ''
   });
   const { id } = match.params;
+  const ownsStore = partners.some(partner => partner === parseInt(id));
 
   useEffect(() => {
     const getPartner = async () => {
@@ -37,9 +42,17 @@ const Store = ({ match }) => {
         </article>
       </section>
 
-    <section className="Store-actions">
-      <Button label={t('callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary />
-    </section>
+      <section className="Store-actions">
+        {!ownsStore ?
+          <Button label={t('store-detail:callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary/> :
+          <>
+            <Button span label={t('account:edit')} type="group" />
+            <Button onClick={logoutSuccess} label={t('account:logout')} secondary type="group" />
+          </>
+        }
+      </section>
+
+      {ownsStore ? <Tab /> : ''}
 
       <ProductList products={products} type="add" />
       <Footer />

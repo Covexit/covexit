@@ -1,3 +1,5 @@
+@import "stylebase/variables";
+
 .Store {
   .small-icon {
     height: 28px;
@@ -73,9 +75,8 @@
   padding: 18px $padding-wrapper;
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
-  @media (max-width: 450px) {
-    .Btn {
-      font-size: 14px;
-    }
+
+  .Btn + .Btn {
+    margin-left: 20px;
   }
 }
