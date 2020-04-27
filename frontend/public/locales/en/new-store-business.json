@@ -3,7 +3,6 @@
   "address": "Address of your store",
   "zipAndCity": "ZIP and City",
   "email": "E-mail address of your store",
-  "password": "Password",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",
   "description": "Description of your store",

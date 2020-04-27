@@ -18,10 +18,10 @@ function Menu() {
 
   const logoutHandler = () => {
     logoutSuccess();
-  }
+  };
 
-  const loginField =  <Button to="/login" label={t('logIn')} type="small"/>
-  const logoutField = <Button onClick={logoutHandler} to="/" label={t('logOut')} type="small"/>
+  const loginField = <Button to="/login" label={t('logIn')} type="small"/>;
+  const logoutField = <Button onClick={logoutHandler} to="/" label={t('logOut')} type="small"/>;
 
   return (
     <nav className={`Menu Menu--${menuOpen ? 'opened' : 'closed'}`}>

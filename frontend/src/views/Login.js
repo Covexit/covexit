@@ -11,7 +11,7 @@ import API from '../shared/api';
 const Login = ({history}) => {
 
   const { setUser, setVerified } = useUserContext();
-  const [t] = useTranslation('new-store-business');
+  const [t] = useTranslation('login');
 
   const [user, updateUser] = useState({
     email: "",
@@ -50,7 +50,7 @@ const Login = ({history}) => {
                   </>}
             footer={<>
                 <div className="Btn-group">
-                  <Button label={t('Login')}  />
+                  <Button label={t('login')}  />
                 </div>
                   </>}
             />
