@@ -29,7 +29,6 @@ const Store = ({ match }) => {
 
     getPartner();
   }, [ id ]);
-  console.log(match);
   return (
     <div className="Store">
       <section className="Store-showcase">
