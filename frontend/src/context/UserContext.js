@@ -8,12 +8,8 @@ export const initialState = {
   isAuthenticated: null,
   isVerified: false,
   enlistHide: false,
-<<<<<<< HEAD
-  user: null
-=======
   partners: [],
   user: null,
->>>>>>> 21245e5ff54211eabbe46f2350badf8c5e18fb2c
 };
 
 const reducer = (state, action) => {

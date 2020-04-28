@@ -26,6 +26,7 @@ const Login = ({history}) => {
     e.preventDefault();
     const response = await API.authToken.post({username: user.email, password: user.password});
     if(response.data.token){
+      console.log(response.data);
       setUser(response.data.user, response.data.token, response.data.partners);
       setVerified(true);
       //redirects to /stores after login, should be changed later to order view
