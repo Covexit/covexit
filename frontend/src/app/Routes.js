@@ -8,7 +8,6 @@ import Onboarding from "../views/Onboarding";
 import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
 import ProductCreateEdit from '../views/ProductCreateEdit';
-import CompanyPage from '../views/CompanyPage';
 import Verify from '../views/Verify';
 import Login from '../views/Login'
 
@@ -16,7 +15,6 @@ function Routes() {
   return (
     <Switch>
       <Route path="/stores/new" component={NewStore} />
-      <Route exact path="/stores/:id/company" component={CompanyPage} />
       <Route path="/stores/:id/product/:id?" component={ProductCreateEdit} />
       <Route path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />

@@ -8,10 +8,5 @@
   "address": "Straße und Hausnummer",
   "zipAndCity": "Postleitzahl und Stadt",
   "email": "E-Mail-Adresse",
-  "phoneNumber": "Telefonnr.",
-  "street": "Straße",
-  "number": "Hausnr.",
-  "zip": "Postleitzahl",
-  "city": "Ort",
-  "agb": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und akzeptiert."
+  "phoneNumber": "Telefonnr."
 }

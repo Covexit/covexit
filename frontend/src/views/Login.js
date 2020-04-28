@@ -11,7 +11,7 @@ import API from '../shared/api';
 const Login = ({history}) => {
 
   const { setUser, setVerified } = useUserContext();
-  const [t] = useTranslation('new-store-business');
+  const [t] = useTranslation('account');
 
   const [user, updateUser] = useState({
     email: "",
@@ -41,7 +41,7 @@ const Login = ({history}) => {
     <ViewWrappers.View withPadding>
             <Form onSubmit={submitHandler}
             head={<>
-              <h1>{t('Login')}</h1>
+              <h1>{t('login')}</h1>
                   </>}
             body= {<>
                 <Fields.TextInput onChange={changeHandler}
@@ -49,11 +49,7 @@ const Login = ({history}) => {
                 <Fields.PasswordInput onChange={changeHandler}
                 placeholder={t('password')} name="password" value={user.password}/>
                   </>}
-            footer={<>
-                <div className="Btn-group">
-                  <Button label={t('Login')}  />
-                </div>
-                  </>}
+            footer={<Button label={t('login')}  />}
             />
     </ViewWrappers.View>
   );
