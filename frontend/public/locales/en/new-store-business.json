@@ -3,7 +3,6 @@
   "address": "Address of your store",
   "zipAndCity": "ZIP and City",
   "email": "E-mail address of your store",
-  "password": "Password",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",
   "description": "Description of your store",
@@ -26,12 +25,5 @@
     "head": "Business information",
     "text": "Now we set up your business account! Please fill out the form below.",
     "continue": "Save & Continue"
-  },
-  "street": "Street name of your store",
-  "number": "House number",
-  "zip": "Zip code",
-  "city": "City",
-  "taxID": "",
-  "logo": "Upload your logo",
-  "fotoBG": "Upload a background picture. This image is going to appear on your company page"
+  }
 }
