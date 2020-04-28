@@ -26,7 +26,6 @@ const Login = ({history}) => {
     e.preventDefault();
     const response = await API.authToken.post({username: user.email, password: user.password});
     if(response.data.token){
-      console.log(response.data);
       setUser(response.data.user, response.data.token, response.data.partners);
       setVerified(true);
       history.push(`/stores/${response.data.partners[0]}`);
