@@ -7,15 +7,15 @@ import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding";
 import NewStore from "../views/NewStore";
 import Stores from '../views/Stores';
-import ProductCreateEdit from '../views/ProductCreateEdit';
 import Verify from '../views/Verify';
 import Login from '../views/Login'
+import ProductForm from '../components/ProductForm/ProductForm';
 
 function Routes() {
   return (
     <Switch>
       <Route path="/stores/new" component={NewStore} />
-      <Route path="/stores/:id/product/:id?" component={ProductCreateEdit} />
+      <Route path="/stores/:id/product/:editId?" component={ProductForm} />
       <Route path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />
       <Route path="/company/photo-select" component={PhotoSelect} />

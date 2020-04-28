@@ -38,7 +38,6 @@ class PartnerSerializer(_PartnerSerializer):
 
 
 class BaseProductSerializer(_BaseProductSerializer):
-    categories = serializers.SlugRelatedField(
-        slug_field="slug", queryset=Category.objects, required=False,
-        many=True,
-    )
+    categories = serializers.HyperlinkedRelatedField(queryset=Category.objects,
+                                                     view_name='category-detail',
+                                                     required=False, many=True)

@@ -25,7 +25,6 @@ const Map = () => {
   });
 
   const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
-  console.log(lng,lat);
   const mountOnce = () => {
     setCurrentLocation();
     const getLocations = async () => {

@@ -28,8 +28,7 @@ const Login = ({history}) => {
     if(response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
       setVerified(true);
-      //redirects to /stores after login, should be changed later to order view
-      history.push('/stores/');
+      history.push(`/stores/${response.data.partners[0]}`);
     } else {
       console.error(response);
     }
