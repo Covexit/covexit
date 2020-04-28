@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import slugify from 'slugify';
+import React, { useState } from 'react';
 
-import ViewWrappers from 'components/ViewWrappers/ViewWrappers';
-import Button from 'components/Button/Button';
-import API from '../../shared/api';
 import { useUserContext } from '../../context/UserContext';
-import Form from '../../components/Form/Form';
-import Fields from '../../components/Fields/Fields';
-import CategorySelect from '../../components/CategorySelect/CategorySelect';
 import { useTranslation } from 'react-i18next';
+import API from '../../shared/api';
+import slugify from 'slugify';
+import ViewWrappers from '../ViewWrappers/ViewWrappers';
+import Form from '../Form/Form';
+import Fields from '../Fields/Fields';
+import CategorySelect from '../CategorySelect/CategorySelect';
+import Button from '../Button/Button';
 
-
-const FirstProduct = ({ match }) => {
+const ProductForm = ({ match, history }) => {
+  const { partnerId, editId } = match.params;
   const { token } = useUserContext();
-  const [t] = useTranslation(['first-product', 'product-cru']);
+  const [t] = useTranslation('product-cru');
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -23,7 +23,7 @@ const FirstProduct = ({ match }) => {
     stock: '',
     sku: '',
     categories: [],
-    _images: [],
+    _photos: [],
   });
 
   const onSubmit = async (e) => {
@@ -35,7 +35,7 @@ const FirstProduct = ({ match }) => {
         structure: 'standalone',
         stockrecords: [
           {
-            partner: match.params.id,
+            partner: partnerId,
             partner_sku: product.sku,
             price_excl_tax: product.price,
             num_in_stock: product.stock,
@@ -46,9 +46,9 @@ const FirstProduct = ({ match }) => {
     });
     if (response.status === 201) {
       // if there are images patch them in later because we need form data here
-      if (product._images.length) {
+      if (product._photos.length) {
         const formData = new FormData();
-        Array.from(product._images).forEach(item => {
+        Array.from(product._photos).forEach(item => {
           formData.append('original', item);
         });
         await API.productImages.post(
@@ -57,14 +57,14 @@ const FirstProduct = ({ match }) => {
           response.data.id
         )
       }
-      //history.push(`/stores/${match.params.id}/onboarding`);
+      history.push(`/stores/${partnerId}`);
     } else {
       console.error(response);
     }
   };
 
   const onCategorySelect = React.useCallback(
-    (obj) => setProduct(product => ({...product, categories: [obj.slug] || obj, product_class: obj.class})),
+    (obj) => setProduct(product => ({...product, categories: [obj.url] || obj, product_class: obj.class})),
     []
   );
 
@@ -78,18 +78,20 @@ const FirstProduct = ({ match }) => {
         <h1>{t('first-product:head')}</h1>
         <p>{t('first-product:text')}</p>
       </>} body={<>
+        {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_photo" value={product._photos}
+             helpText={t('product-cru:photoHelp')} editView/> : null}
         <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
         <CategorySelect onSelected={onCategorySelect} />
         <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
         <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku}/>
         <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')}  type="number" name="stock" value={product.stock}/>
         <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
-        <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_images" value={product._images}
-                           helpText={t('product-cru:photoHelp')}/>
+        {editId ? null : <Fields.FileUpload onChange={onChange} label="Upload photo" name="_photos" value={product._photos}
+                           helpText="JPEG .JPG .PNG (Just these file formats will work)"/>}
         </>} footer={<Button label={`${t('first-product:next')} →`}/>}
       />
     </ViewWrappers.View>
   )
-};
+}
 
-export default FirstProduct
+export default ProductForm;
