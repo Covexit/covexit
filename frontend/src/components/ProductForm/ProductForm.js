@@ -11,7 +11,7 @@ import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
 
 const ProductForm = ({ match, history }) => {
-  const { partnerId, editId } = match.params;
+  const { id, editId } = match.params;
   const { token } = useUserContext();
   const [t] = useTranslation('product-cru');
   const [product, setProduct] = useState({
@@ -35,7 +35,7 @@ const ProductForm = ({ match, history }) => {
         structure: 'standalone',
         stockrecords: [
           {
-            partner: partnerId,
+            partner: id,
             partner_sku: product.sku,
             price_excl_tax: product.price,
             num_in_stock: product.stock,
@@ -57,7 +57,7 @@ const ProductForm = ({ match, history }) => {
           response.data.id
         )
       }
-      history.push(`/stores/${partnerId}`);
+      history.push(`/stores/${id}`);
     } else {
       console.error(response);
     }
