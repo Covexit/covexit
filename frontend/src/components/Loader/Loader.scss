@@ -1,8 +1,11 @@
+@import "stylebase/variables";
+
 $dimensions: 145px;
+$angle: '';
 
 @keyframes rotate {
   0% {
-    transform: rotateZ(0deg);
+    transform: rotateZ($angle);
   }
   100% {
     transform: rotateZ(360deg);
@@ -21,8 +24,7 @@ $dimensions: 145px;
   border: 8px solid #4A4A4A;
   background: #ffffff;
 
-  &:before,
-  &:after {
+ .hand {
     content: '';
     background: #FF7F48;
     width: 8px;
@@ -31,15 +33,23 @@ $dimensions: 145px;
     left: $dimensions / 2 - 10px;
     top: $dimensions / 2 - 10px;
     transform-origin: center 3px;
-  }
-
-  &:before {
+  &.minute {
     height: $dimensions * 0.4;
-    animation: rotate infinite linear 2s;
+    animation: rotate  infinite linear 2s;
   }
-
-  &:after {
+  &.hour {
     height: $dimensions * 0.25;
     animation: rotate infinite linear 4s;
+    }
   }
+}
+
+.Message {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: $header-height;
+  text-align: center;
+  padding: $padding-wrapper;
+
 }
