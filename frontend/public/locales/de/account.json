@@ -3,5 +3,7 @@
   "logout": "Abmelden",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
-  "edit": "Account bearbeiten"
+  "edit": "Account bearbeiten",
+  "addProduct": "Produkt hinzufügen",
+  "manageProduct": "Produkte bearbeiten"
 }

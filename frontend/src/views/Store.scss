@@ -72,11 +72,17 @@
 .Store-actions {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 18px $padding-wrapper;
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
 
-  .Btn + .Btn {
-    margin-left: 20px;
+  .Btn {
+    flex: 0 1 48%;
+    margin: 10px 0;
+  }
+
+  .Btn:first-child:last-child {
+    flex-grow: 1;
   }
 }

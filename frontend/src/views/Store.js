@@ -29,7 +29,7 @@ const Store = ({ match }) => {
 
     getPartner();
   }, [ id ]);
-
+  console.log(match);
   return (
     <div className="Store">
       <section className="Store-showcase">
@@ -46,8 +46,10 @@ const Store = ({ match }) => {
         {!ownsStore ?
           <Button label={t('store-detail:callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary/> :
           <>
-            <Button span label={t('account:edit')} type="group" />
-            <Button onClick={logoutSuccess} label={t('account:logout')} secondary type="group" />
+            <Button span label={t('account:edit')} />
+            <Button onClick={logoutSuccess} label={t('account:logout')} secondary />
+            <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary />
+            <Button to={`${match.url}/product`} label={t('account:manageProduct')} secondary />
           </>
         }
       </section>
