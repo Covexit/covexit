@@ -92,9 +92,9 @@ class UserAccount(AbstractUser):
     zip_and_city = models.CharField(_('Zip and City'), max_length=200)
     phone = models.CharField(_('Phone'), max_length=45, default='')
     accepted_tos = models.BooleanField(_('Accepted ToS'),
-                                       validators=[validate_true], default=False)
+                                       validators=[validate_true])
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
-                                                  validators=[validate_true], default=False)
+                                                  validators=[validate_true])
     verified = models.BooleanField(_('Email Verified'), default=False)
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
