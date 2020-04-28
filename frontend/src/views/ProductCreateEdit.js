@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import CategorySelect from '../components/CategorySelect/CategorySelect';
 
 
-const FirstProduct = ({ match }) => {
+const ProductCreateEdit = ({ match }) => {
   const { token } = useUserContext();
   const editId = match.params.id;
   const [t] = useTranslation(['first-product', 'product-cru']);
@@ -82,4 +82,4 @@ const FirstProduct = ({ match }) => {
   )
 };
 
-export default FirstProduct
+export default ProductCreateEdit
