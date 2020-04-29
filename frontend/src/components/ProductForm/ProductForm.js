@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useUserContext } from '../../context/UserContext';
 import { useTranslation } from 'react-i18next';
 import API from '../../shared/api';
@@ -28,12 +27,28 @@ const ProductForm = ({ match, history }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log("Hello");
+    console.log(editId);
     if(editId){
+      console.log("trying to patch");
       const response = await API.products.patch({
         id: editId,
-        data: {...product},
+        data: {
+          ...product,
+          slug: slugify(product.title),
+          structure: 'standalone',
+          stockrecords: [
+            {
+              partner: id,
+              partner_sku: product.sku,
+              price_excl_tax: product.price,
+              num_in_stock: product.stock,
+            }
+          ]
+        },
         config: { headers: { 'Authorization': `Token ${token}` }},
       });
+      history.push(`/stores/${id}`);
     } else {
       const response = await API.products.post({
         data: {
@@ -105,8 +120,7 @@ const ProductForm = ({ match, history }) => {
         {editId ? null : <Fields.FileUpload onChange={onChange} label="Upload photo" name="_photos" value={product._photos}
                            helpText="JPEG .JPG .PNG (Just these file formats will work)"/>}
         </>}
-        footer={ editId ? <Button to={`/stores/${id}/`} label={`${t('first-product:edit')} →`}/> :
-                          <Button label={`${t('first-product:next')} →`}/>}
+        footer={ <Button label={editId ? `${t('first-product:edit')} →` : `${t('first-product:add')} →` }/>}
       />
     </ViewWrappers.View>
   )

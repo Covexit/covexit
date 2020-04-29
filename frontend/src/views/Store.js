@@ -5,9 +5,7 @@ import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 
 import { useTranslation } from 'react-i18next';
-
 import './Store.scss';
-// import products from '../shared/productData.js';
 import API from '../shared/api';
 import { useUserContext } from '../context/UserContext';
 import Tab from '../components/Tab/Tab';
