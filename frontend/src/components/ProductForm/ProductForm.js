@@ -22,16 +22,13 @@ const ProductForm = ({ match, history }) => {
     stock: '',
     sku: '',
     categories: [],
-    _photos: [],
+    _photo: [],
   });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Hello");
-    console.log(editId);
     if(editId){
-      console.log("trying to patch");
-      const response = await API.products.patch({
+      await API.products.patch({
         id: editId,
         data: {
           ...product,

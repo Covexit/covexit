@@ -16,10 +16,10 @@ const ProductItem = ({ product, type, storeId }) => {
   }
 
   const iconHandler = () => {
-    if(type == "edit"){
+    if(type === "edit"){
       history.push(`/stores/${storeId}/product/${product.id}`)
     }
-    else if(type == "add"){
+    else if(type === "add"){
       addProduct(product)
     }
   }
