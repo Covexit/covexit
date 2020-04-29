@@ -22,7 +22,7 @@ const ProductForm = ({ match, history }) => {
     stock: '',
     sku: '',
     categories: [],
-    _photo: [],
+    _photos: [],
   });
 
   const onSubmit = async (e) => {
