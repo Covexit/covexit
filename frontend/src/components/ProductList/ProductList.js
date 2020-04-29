@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import Button from '../Button/Button';
 import ProductGroup from '../ProductGroup/ProductGroup';
 import magnifierIcon from '../../assets/magnifier.svg'
 import { useTranslation } from 'react-i18next';
