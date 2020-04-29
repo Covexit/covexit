@@ -28,6 +28,7 @@ const ProductForm = ({ match, history }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(product.categories);
     const response = await API.products.post({
       data: {
         ...product,
