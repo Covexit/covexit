@@ -28,13 +28,14 @@ const ProductForm = ({ match, history }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(editId.length !== 0){
-      const responsePatch = await API.products.patch({
+    if(editId){
+      const response = await API.products.patch({
         id: editId,
         data: {...product},
-        config: { headers: { 'Authorization': `Token ${token}` } });
+        config: { headers: { 'Authorization': `Token ${token}` }},
+      });
     } else {
-      const responsePost = await API.products.post({
+      const response = await API.products.post({
         data: {
           ...product,
           slug: slugify(product.title),
