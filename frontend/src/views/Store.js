@@ -27,7 +27,6 @@ const Store = ({ match }) => {
       const response = await API.partners.get(id);
       setStore(response.data);
       const responseProducts = await API.products.get(id);
-      console.log(responseProducts.data);
       let productArray = responseProducts.data.map(product => {
         return ({
           id: product.id,
@@ -70,7 +69,7 @@ const Store = ({ match }) => {
 
       {ownsStore ? <Tab /> : ''}
 
-      <ProductList products={products} type="edit" />
+      <ProductList products={products} type={ownsStore ? "edit" : "add"} storeId={id} />
       <Footer />
     </div>
   );

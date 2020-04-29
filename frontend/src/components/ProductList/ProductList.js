@@ -5,7 +5,7 @@ import ProductGroup from '../ProductGroup/ProductGroup';
 import magnifierIcon from '../../assets/magnifier.svg'
 import { useTranslation } from 'react-i18next';
 
-const ProductList = ({ products, type, editorView }) => {
+const ProductList = ({ products, type, editorView, storeId }) => {
   const [segment, setSegment] = useState('bread');
   const [t] = useTranslation('product-list');
   const categories = products.reduce((acc, current) => {
@@ -39,6 +39,7 @@ const ProductList = ({ products, type, editorView }) => {
             groupName={category}
             products={filteredProducts}
             type={type}
+            storeId={storeId}
           />
         )
       })}
