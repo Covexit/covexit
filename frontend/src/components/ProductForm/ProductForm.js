@@ -13,7 +13,7 @@ import Button from '../Button/Button';
 const ProductForm = ({ match, history }) => {
   const { id, editId } = match.params;
   const { token } = useUserContext();
-  const [t] = useTranslation('product-cru');
+  const [t] = useTranslation(['product-cru', 'first-product']);
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -80,12 +80,20 @@ const ProductForm = ({ match, history }) => {
     setProduct({ ...product, [event.target.name]: event.target.files || event.target.value });
   };
 
+  const editHeader = <h1>{t('first-product:edit')}</h1>
+  const addHeader =
+  <>
+    <h1>{t('first-product:head')}</h1>
+    <p>{t('first-product:text')}</p>
+  </>
+
+
+
   return (
     <ViewWrappers.View>
-      <Form onSubmit={onSubmit} head={<>
-        <h1>{t('first-product:head')}</h1>
-        <p>{t('first-product:text')}</p>
-      </>} body={<>
+      <Form onSubmit={onSubmit}
+        head={editId ? editHeader : addHeader}
+        body={<>
         {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_photo" value={product._photos}
              helpText={t('product-cru:photoHelp')} editView/> : null}
         <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
@@ -96,7 +104,9 @@ const ProductForm = ({ match, history }) => {
         <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
         {editId ? null : <Fields.FileUpload onChange={onChange} label="Upload photo" name="_photos" value={product._photos}
                            helpText="JPEG .JPG .PNG (Just these file formats will work)"/>}
-        </>} footer={<Button label={`${t('first-product:next')} →`}/>}
+        </>}
+        footer={ editId ? <Button to={`/stores/${id}/`} label={`${t('first-product:edit')} →`}/> :
+                          <Button label={`${t('first-product:next')} →`}/>}
       />
     </ViewWrappers.View>
   )
