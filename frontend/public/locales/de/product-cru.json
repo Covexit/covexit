@@ -1,11 +1,9 @@
 {
+  "photo": "Produktfoto hochladen",
+  "photoHelp": ".JPEG, .JPG, .PNG (Nur diese Dateitypen werden akzeptiert).",
   "name": "Name des Produkts",
   "price": "Preis in € (Bsp: 2,99)",
   "sku": "Produktnummer",
   "quantity": "In welcher Menge können Sie das Produkt anbieten? (In Stück)",
-  "description": "Produktbeschreibung",
-  "photo": "Produktfoto hochladen",
-  "photoHelp": ".JPEG, .JPG, .PNG (Nur diese Dateitypen werden akzeptiert).",
-  "category": "Produktkategorie",
-  "size": "Geben Sie eine passende Größe an (falls nicht notwendig, kreuzen sie 'keine' an)."
+  "description": "Produktbeschreibung"
 }

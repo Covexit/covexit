@@ -50,8 +50,8 @@ const Store = ({ match }) => {
           <>
             <Button span label={t('account:edit')} />
             <Button onClick={logoutSuccess} label={t('account:logout')} secondary />
-            <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary />
             <Button to={`${match.url}/product`} label={t('account:manageProduct')} secondary />
+            <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary />
           </>
         }
       </section>
