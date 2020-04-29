@@ -1,31 +1,22 @@
-.Product-list {
+.ProductList {
   padding-bottom: $padding-wrapper;
-  .Product-heading {
-    padding: $padding-wrapper;
-    padding-bottom: 10px;
-  }
-  .Product-catelogs {
-    list-style: none;
-    display: flex;
-    border-bottom: 1px solid $color-primary;
-    padding-left: 0;
-    overflow: hidden;
-    position: sticky;
-    background-color: #FFFFFF;
-    top: 50px;
-    z-index: $cat-filters-index;
-    img {
-      padding-left: 20px;
-    }
-    .Product-catelog {
-      padding: 15px 20px;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: $color-middle-gray;
-      &.active {
-        color: $color-black;
-      }
-    }
+}
+
+.Product-heading {
+  padding: $padding-wrapper $padding-wrapper 15px;
+  font-size: 30px;
+}
+
+.ProductList-filter {
+  padding: 10px $padding-wrapper 6px;
+  display: flex;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);;
+  position: sticky;
+  background-color: #FFFFFF;
+  top: 0;
+
+  select {
+    margin-left: 25px;
   }
 }
 

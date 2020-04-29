@@ -1,34 +1,28 @@
 import React from 'react';
 import { useCartContext } from '../../context/CartContext';
-import roundedPlusIcon from "../../assets/rounded_plus.svg";
-import penIcon from "../../assets/pen.svg";
+import { MdAddCircleOutline } from 'react-icons/md';
 
-const ProductItem = ({ product, type }) => {
+const ProductItem = ({ product }) => {
   const { addProduct } = useCartContext()
-  const { name, description, price, image } = product
-
-  const productIcons = {
-    add: roundedPlusIcon,
-    edit: penIcon,
-    remove: penIcon,
-  }
+  const { title, description, price, images } = product
 
   return (
-    <div className="Product-item">
-      <img className="Product-img" src={image} alt="product" />
-      <div className="Product-content">
-        <div className="Product-review">
-          <h4>{name}</h4>
+    <div className="ProductItem">
+      {!!images.length && <img className="ProductItem-img" src={images[0].original} alt="" />}
+      <div className="ProductItem-content">
+        <div className="ProductItem-review">
+          <h4>{title}</h4>
           <p>{description}</p>
-          <h4 className="variant-price">{price.toFixed(2)}€</h4>
+          <h4 className="variant-price">{price.incl_tax}€</h4>
         </div>
 
-        <img
-          onClick={() => addProduct(product)}
-          className="medium-icon"
-          src={productIcons[type]}
-          alt="add product"
-        />
+        {
+          // TODO: Maybe change the route to stores/1/edit for edit mode
+          //  and then check with useRouteMatch whether this will be edit or add or delete
+        }
+        <button onClick={() => addProduct(product)}>
+          <MdAddCircleOutline size={50} />
+        </button>
       </div>
     </div>
   );
