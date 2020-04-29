@@ -167,7 +167,9 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 OSCAR_DEFAULT_CURRENCY = '€'
 
 OSCARAPI_BLOCK_ADMIN_API_ACCESS = False
-OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
+OSCARAPI_OVERRIDE_MODULES = ['covexit.api_extensions']
+OSCARAPI_PRODUCT_FIELDS = ['url', 'id', 'images', 'title', 'product_class',
+                           'price']
 
 AUTH_USER_MODEL = 'account.UserAccount'
 
