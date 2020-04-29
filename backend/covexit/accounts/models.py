@@ -10,11 +10,23 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-VERIFICATION_MESSAGE = _("""Thank you for signing up for Covexit!
+VERIFICATION_MESSAGE = {
+    'signup': _("""Thank you for signing up for Covexit!
 
 To activate your account, please visit this link:
 {}
-""")
+"""),
+    'mailinglist': _("""Vielen Dank, dass du Covexit beigetreten bist.
+Damit wir dir wichtige Informationen und Updates zusenden können, müssen wir
+überprüfen, ob dies auch die richtige Email-Adresse ist.
+
+{}
+
+Wir freuen uns über deine Unterstützung!
+Wenn Sie glauben, dass Sie diese E-Mail irrtümlich erhalten haben, können Sie
+dies einfach ignorieren.
+"""),
+}
 
 VERIFICATION_KEY_LENGTH = 30
 # Note: this will have to be set up on the frontend:
@@ -22,10 +34,12 @@ VERIFICATION_URL = '/verify/'
 
 
 def create_verification_link(user):
-    return '{}{}{}/{}'.format(Site.objects.get_current().domain,
-                              VERIFICATION_URL,
-                              user.pk,
-                              user.verification_key)
+    verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
+    return '{}{}{}/{}/{}'.format(Site.objects.get_current().domain,
+                                 VERIFICATION_URL,
+                                 user.pk,
+                                 user.verification_key,
+                                 verify_type)
 
 
 def create_verification_key():
@@ -34,10 +48,11 @@ def create_verification_key():
 
 
 def send_verification_email(user):
+    verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
     link = create_verification_link(user)
     send_mail(
         'Covexit Email Verification',
-        VERIFICATION_MESSAGE.format(link),
+        VERIFICATION_MESSAGE[verify_type].format(link),
         settings.DEFAULT_FROM_EMAIL,
         [user.email],
         fail_silently=False,
@@ -92,9 +107,9 @@ class UserAccount(AbstractUser):
     zip_and_city = models.CharField(_('Zip and City'), max_length=200)
     phone = models.CharField(_('Phone'), max_length=45, default='')
     accepted_tos = models.BooleanField(_('Accepted ToS'),
-                                       validators=[validate_true])
+                                       validators=[validate_true], default=False)
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
-                                                  validators=[validate_true])
+                                                  validators=[validate_true], default=False)
     verified = models.BooleanField(_('Email Verified'), default=False)
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
@@ -108,3 +123,13 @@ class UserAccount(AbstractUser):
         "accepted_tos",
         "accepted_privacy_policy",
     ]
+
+
+class MailingListEntry(models.Model):
+    name = models.CharField(max_length=128)
+    email = models.EmailField(unique=True)
+    verified = models.BooleanField(_('Email Verified'), default=False)
+    verification_key = models.CharField(_('Verification Key'), blank=True,
+                                        max_length=VERIFICATION_KEY_LENGTH)
+    accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
+                                                  validators=[validate_true])

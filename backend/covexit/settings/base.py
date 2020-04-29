@@ -84,6 +84,19 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -180,3 +193,4 @@ OSCARAPI_OVERRIDE_MODULES = ["covexit.api_extensions"]
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
 DEFAULT_FROM_EMAIL = 'noreply@covexit.de'
+

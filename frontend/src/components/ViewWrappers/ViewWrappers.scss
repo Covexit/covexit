@@ -29,15 +29,16 @@
 .ViewSplitter {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
 
-  & + & {
-    border-left: 1px solid $color-middle-gray;
-  }
 
   @include bp-large() {
     flex: 1 1 100%;
     height: 100%;
+
+    & + & {
+      border-left: 1px solid $color-middle-gray;
+    }
   }
 }
 

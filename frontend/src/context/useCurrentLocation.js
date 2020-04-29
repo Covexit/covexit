@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios';
 import constate from 'constate'
 import logger from './Logger'
@@ -7,7 +7,7 @@ import logger from './Logger'
 
 const initialState = {
   selectedLocation: {},
-  coordinates: []
+  coordinates: [10.205347, 51.216239]
 };
 
 
@@ -21,7 +21,7 @@ const reducer = (originalState, action) => {
         selectedLocation: {},
       }
 
-    case 'SET_SELECTED_LOCATION': 
+    case 'SET_SELECTED_LOCATION':
       const { suggestion, coordinates } = action.payload;
       return {
         ...state,
@@ -36,6 +36,10 @@ const reducer = (originalState, action) => {
 
 };
 
+const geoLocationOptions = {
+  maximumAge: 1000,
+  enableHighAccuracy: true
+};
 const loggerReducer = logger(reducer);
 
 const useCurrentLocation = () => {
@@ -63,14 +67,15 @@ const useCurrentLocation = () => {
       // TODO: loader status: setIsGettingLocation(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const lattitude = position.coords.latitude;
+          const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          const coordinates = [longitude, lattitude];
+          const coordinates = [longitude, latitude];
           // TODO: loader status: setIsGettingLocation(false);
           setSelectedLocation(coordinates);
         },
-        (err) => console.warn(`ERROR(${err.code}): ${err.message}`)
+        (err) => console.warn(`ERROR(${err.code}): ${err.message}`),
         // TODO: loader status: setIsGettingLocation(false)
+        geoLocationOptions
       );
     } else {
       // Browser doesn't support Geolocation

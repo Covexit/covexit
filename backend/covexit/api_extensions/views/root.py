@@ -15,7 +15,6 @@ from rest_framework.reverse import reverse
 def PUBLIC_APIS(r, f):
     return [
         ("register", reverse("api-register", request=r, format=f)),
-        ("verify", reverse("api-verify", request=r, format=f)),
         ("login", reverse("api-login", request=r, format=f)),
         ("basket", reverse("api-basket", request=r, format=f)),
         ("basket-add-product", reverse("api-basket-add-product", request=r, format=f)),
@@ -58,7 +57,8 @@ def api_root(request, format=None):  # pylint: disable=redefined-builtin
     apis = PUBLIC_APIS(request, format)
 
     if (
-        not getattr(settings, "OSCARAPI_BLOCK_ADMIN_API_ACCESS", True)
+        getattr(settings, "DEBUG", False)
+        or not getattr(settings, "OSCARAPI_BLOCK_ADMIN_API_ACCESS", True)
         and request.user.is_staff
     ):
         apis += [("admin", collections.OrderedDict(ADMIN_APIS(request, format)))]
