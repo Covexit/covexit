@@ -28,39 +28,45 @@ const ProductForm = ({ match, history }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(product.categories);
-    const response = await API.products.post({
-      data: {
-        ...product,
-        slug: slugify(product.title),
-        structure: 'standalone',
-        stockrecords: [
-          {
-            partner: id,
-            partner_sku: product.sku,
-            price_excl_tax: product.price,
-            num_in_stock: product.stock,
-          }
-        ]
-      },
-      config: { headers: { 'Authorization': `Token ${token}` } },
-    });
-    if (response.status === 201) {
-      // if there are images patch them in later because we need form data here
-      if (product._photos.length) {
-        const formData = new FormData();
-        Array.from(product._photos).forEach(item => {
-          formData.append('original', item);
-        });
-        await API.productImages.post(
-          formData,
-          { headers: { 'Authorization': `Token ${token}` } },
-          response.data.id
-        )
-      }
-      history.push(`/stores/${id}`);
+    if(editId.length !== 0){
+      const responsePatch = await API.products.patch({
+        id: editId,
+        data: {...product},
+        config: { headers: { 'Authorization': `Token ${token}` } });
     } else {
-      console.error(response);
+      const responsePost = await API.products.post({
+        data: {
+          ...product,
+          slug: slugify(product.title),
+          structure: 'standalone',
+          stockrecords: [
+            {
+              partner: id,
+              partner_sku: product.sku,
+              price_excl_tax: product.price,
+              num_in_stock: product.stock,
+            }
+          ]
+        },
+        config: { headers: { 'Authorization': `Token ${token}` } },
+      });
+      if (response.status === 201) {
+        // if there are images patch them in later because we need form data here
+        if (product._photos.length) {
+          const formData = new FormData();
+          Array.from(product._photos).forEach(item => {
+            formData.append('original', item);
+          });
+          await API.productImages.post(
+            formData,
+            { headers: { 'Authorization': `Token ${token}` } },
+            response.data.id
+          )
+        }
+        history.push(`/stores/${id}`);
+      } else {
+        console.error(response);
+      }
     }
   };
 
