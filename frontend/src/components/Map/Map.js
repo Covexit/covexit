@@ -25,7 +25,6 @@ const Map = () => {
   });
 
   const { setCurrentLocation, coordinates: [lng,lat] } = useLocationContext()
-  console.log(lng,lat);
   const mountOnce = () => {
     setCurrentLocation();
     const getLocations = async () => {
@@ -79,7 +78,7 @@ const Map = () => {
         <div className="Map-info">
           <h2>{selectedLocation.title}</h2>
           <p>{selectedLocation.description}</p>
-          <Button to={`/stores/${selectedLocation.id}`} label={t('goToStoreButton')}/>
+          <Button to={`/stores/${selectedLocation.id}`} label={t('goToStoreButton')} type="small"/>
         </div>
       </div>
     </OverlayView>

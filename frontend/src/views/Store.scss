@@ -1,4 +1,8 @@
+@import "stylebase/variables";
+
 .Store {
+  background: $color-light-gray;
+
   .small-icon {
     height: 28px;
     width: 16px;
@@ -70,12 +74,17 @@
 .Store-actions {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 18px $padding-wrapper;
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
-  @media (max-width: 450px) {
-    .Btn {
-      font-size: 14px;
-    }
+
+  .Btn {
+    flex: 0 1 48%;
+    margin: 10px 0;
+  }
+
+  .Btn:first-child:last-child {
+    flex-grow: 1;
   }
 }

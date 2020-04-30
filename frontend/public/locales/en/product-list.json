@@ -1,5 +1,4 @@
 {
   "head": "Products",
-  "manageProduct": "Manage products",
-  "addProduct": "Add a product"
+  "chooseCategory": "Choose filter"
 }

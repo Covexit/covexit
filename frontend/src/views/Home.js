@@ -5,9 +5,12 @@ import Map from "../components/Map/Map";
 
 import './Home.scss';
 import { useTranslation } from 'react-i18next';
+import { useUserContext } from '../context/UserContext';
 
 const Home = () => {
   const [t] = useTranslation('home');
+  const { partners } = useUserContext();
+
   return (
     <ViewWrappers.View>
       <ViewWrappers.ViewSplitter small>
@@ -19,7 +22,10 @@ const Home = () => {
 
           <div className="Btn-group">
             <Button to="/stores" label={t('searchButton')}/>
-            <Button to="/stores/new" label={t('registerButton')} secondary/>
+            {!partners.length ?
+              <Button to="/stores/new" label={t('registerButton')} secondary/> :
+              <Button to={`/stores/${partners[0]}`} label={t('goToMyStore')} secondary/>
+            }
           </div>
         </div>
       </ViewWrappers.ViewSplitter>

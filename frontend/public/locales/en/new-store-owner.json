@@ -8,10 +8,5 @@
   "address": "Address",
   "zipAndCity": "ZIP and city",
   "email": "E-mail address",
-  "phoneNumber": "Phone number",
-  "street": "Street",
-  "number": "House number",
-  "zip": "Zip code",
-  "city": "City",
-  "agb": "I have read and accepted the general terms and conditions."
+  "phoneNumber": "Phone number"
 }

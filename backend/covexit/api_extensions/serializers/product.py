@@ -1,11 +1,14 @@
-from oscar.apps.catalogue.models import Category
+from oscar.apps.catalogue.models import Category, Product
+from oscarapi.serializers.checkout import PriceSerializer
 from oscarapi.serializers.product import \
     PartnerSerializer as _PartnerSerializer, \
-    BaseProductSerializer as _BaseProductSerializer
+    BaseProductSerializer as _BaseProductSerializer, \
+    ProductSerializer as _ProductLinkSerializer
 from rest_framework import serializers
 
 from covexit.account.models import UserAccount
 from covexit.partner.models import PartnerAddress, Partner
+from covexit.partner.strategy import Selector
 
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -38,7 +41,20 @@ class PartnerSerializer(_PartnerSerializer):
 
 
 class BaseProductSerializer(_BaseProductSerializer):
-    categories = serializers.SlugRelatedField(
-        slug_field="slug", queryset=Category.objects, required=False,
-        many=True,
-    )
+    categories = serializers.HyperlinkedRelatedField(queryset=Category.objects,
+                                                     view_name='category-detail',
+                                                     required=False, many=True)
+
+
+class ProductLinkSerializer(_ProductLinkSerializer):
+    price = serializers.SerializerMethodField()
+
+    class Meta(_ProductLinkSerializer.Meta):
+        pass
+
+    def get_price(self, obj: Product):
+        request = self.context['request']
+        strategy = Selector().strategy(request=request, user=request.user)
+        return PriceSerializer(
+            strategy.fetch_for_product(obj).price, context={"request": request}
+        ).data

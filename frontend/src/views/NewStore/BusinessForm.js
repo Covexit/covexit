@@ -16,7 +16,7 @@ const getItemFromAddress = (wantedType, haystack) => {
 const BusinessForm = ({ location, history }) => {
   const state = !location.state ? 'init' :
     location.state.useGoogle ? 'google' : 'manual';
-  const { token, user } = useUserContext();
+  const { token, user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
 
   const [data, setData] = useState({
@@ -57,14 +57,15 @@ const BusinessForm = ({ location, history }) => {
     e.preventDefault();
     let searchString = data.line1 + " , " + data.line2;
     const getLocation = await axios(
-        `https://eu1.locationiq.com/v1/search.php?key=pk.4c61e48b53acaa5cd9ae20ab6f019f18&q=${searchString}&format=json`)
+        `https://eu1.locationiq.com/v1/search.php?key=pk.4c61e48b53acaa5cd9ae20ab6f019f18&q=${searchString}&format=json`);
     const latitude = Number(getLocation.data[0].lat).toFixed(5);
-    const longitude = Number(getLocation.data[0].lon).toFixed(5)
+    const longitude = Number(getLocation.data[0].lon).toFixed(5);
 
     const response = await API.partners.post({
       ...data, address: { ...data, latitude, longitude }, users: [user.id]
     },{headers: {'Authorization': `Token ${token}`}});
     if (response.status === 201) {
+      setPartners(response.data.id);
       history.push(`/stores/${response.data.id}/onboarding`);
     } else {
       console.error(response);
