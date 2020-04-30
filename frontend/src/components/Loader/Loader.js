@@ -6,10 +6,10 @@ function Loader({children}) {
   const currentTime = new Date();
   const hour = currentTime.getHours();
   const minute = currentTime.getMinutes();
-  const minutesDegrees =  (minute/60) * 360 + 90;
-  const hourDegrees = (hour/12) * 360 + 90;
-  const hourStyle = {hourDegrees};
-  const minuteStyle = {minutesDegrees};
+  const minutesDegrees =  (minute/60) *360 + 180;
+  const hourDegrees = (hour/24) *360;
+  const hourStyle = {transform: ` rotateZ(${hourDegrees}deg)`}
+  const minuteStyle = {transform: ` rotateZ(${minutesDegrees}deg)`}
 
   return (
     <div className="Loader-body">
@@ -24,4 +24,3 @@ function Loader({children}) {
 }
 
 export default Loader;
-

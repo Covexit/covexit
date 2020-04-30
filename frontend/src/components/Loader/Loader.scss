@@ -1,11 +1,10 @@
 @import "stylebase/variables";
 
 $dimensions: 145px;
-$angle: '';
 
 @keyframes rotate {
   0% {
-    transform: rotateZ($angle);
+    transform: rotateZ(0deg);
   }
   100% {
     transform: rotateZ(360deg);
@@ -33,13 +32,16 @@ $angle: '';
     left: $dimensions / 2 - 10px;
     top: $dimensions / 2 - 10px;
     transform-origin: center 3px;
+
   &.minute {
     height: $dimensions * 0.4;
-    animation: rotate  infinite linear 2s;
+    animation: rotate infinite linear 2s;
+    animation-delay: -1s;
   }
   &.hour {
     height: $dimensions * 0.25;
     animation: rotate infinite linear 4s;
+    animation-delay: -1s;
     }
   }
 }
