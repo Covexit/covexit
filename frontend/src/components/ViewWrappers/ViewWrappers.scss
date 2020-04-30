@@ -11,6 +11,7 @@
 .View {
   display: flex;
   height: 100%;
+  position: relative;
 
   > *:not(.ViewSplitter) {
     width: 100%;
@@ -30,7 +31,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   flex: 1 1 auto;
-
+  position: relative;
 
   @include bp-large() {
     flex: 1 1 100%;

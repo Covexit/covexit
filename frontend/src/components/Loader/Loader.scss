@@ -12,18 +12,32 @@ $dimensions: 145px;
 }
 
 .Loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-left: $dimensions / -2;
-  margin-top: $dimensions / -2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $color-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Loader-message {
+  bottom: 100%;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: $padding-wrapper;
+}
+
+.Loader-clock {
   width: $dimensions;
   height: $dimensions;
   border-radius: 50%;
   border: 8px solid #4A4A4A;
-  background: #ffffff;
+  position: relative;
 
- .hand {
+  .hand {
     content: '';
     background: #FF7F48;
     width: 8px;
@@ -33,25 +47,14 @@ $dimensions: 145px;
     top: $dimensions / 2 - 10px;
     transform-origin: center 3px;
 
-  &.minute {
-    height: $dimensions * 0.4;
-    animation: rotate infinite linear 2s;
-    animation-delay: -1s;
-  }
-  &.hour {
-    height: $dimensions * 0.25;
-    animation: rotate infinite linear 4s;
-    animation-delay: -1s;
+    &.minute {
+      height: $dimensions * 0.4;
+      animation: rotate infinite linear 2s;
+    }
+
+    &.hour {
+      height: $dimensions * 0.25;
+      animation: rotate infinite linear 4s;
     }
   }
-}
-
-.Message {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: $header-height;
-  text-align: center;
-  padding: $padding-wrapper;
-
 }
