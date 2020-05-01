@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import API from '../../shared/api';
 import slugify from 'slugify';
-import ViewWrappers from '../ViewWrappers/ViewWrappers';
 import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
