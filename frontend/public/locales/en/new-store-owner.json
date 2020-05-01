@@ -1,12 +1,11 @@
 {
-  "privacy": "I have read and accepted the privacy policy.",
-  "Next": "Agree & continue",
   "head": "Contact",
   "text": "Please enter the data of your contact person for us here.",
   "name": "First name",
   "surname": "Last name",
   "address": "Address",
-  "zipAndCity": "ZIP and city",
+  "zip": "",
+  "city": "",
   "email": "E-mail address",
   "phoneNumber": "Phone number"
 }

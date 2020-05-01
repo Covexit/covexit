@@ -1,9 +1,13 @@
 {
+  "privacy": "",
   "login": "Sign in",
   "logout": "Log out",
   "email": "E-Mail address",
   "password": "Password",
+  "passwordMatchError": "",
+  "passwordRepeat": "",
+  "tos": "",
   "edit": "Edit account",
-  "addProduct": "Add product",
-  "manageProduct": "Manage products"
+  "manageProduct": "Manage products",
+  "addProduct": "Add product"
 }

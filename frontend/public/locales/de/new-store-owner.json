@@ -1,12 +1,11 @@
 {
-  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
-  "Next": "Zustimmen und fortfahren",
   "head": "Kontaktperson",
-  "text": "Tragen Sie hier bitte die Daten Ihrer Kontaktperson für uns ein.“,",
+  "text": "Tragen Sie hier bitte die Daten Ihrer Kontaktperson für uns ein.",
   "name": "Vorname",
   "surname": "Nachname",
   "address": "Straße und Hausnummer",
-  "zipAndCity": "Postleitzahl und Stadt",
+  "zip": "",
+  "city": "",
   "email": "E-Mail-Adresse",
   "phoneNumber": "Telefonnr."
 }

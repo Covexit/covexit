@@ -1,7 +1,9 @@
 {
   "name": "Name of your store",
   "address": "Address of your store",
-  "zipAndCity": "ZIP and City",
+  "city": "",
+  "zip": "",
+  "vatNo": "",
   "email": "E-mail address of your store",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",

@@ -1,7 +1,9 @@
 {
   "name": "Name des Geschäfts",
   "address": "Adresse des Geschäfts",
-  "zipAndCity": "Postleitzahl und Stadt",
+  "city": "",
+  "zip": "",
+  "vatNo": "",
   "email": "E-Mail-Adresse des Geschäfts",
   "phoneNumber": "Telefonnummer des Geschäfts",
   "website": "Website (falls vorhanden)",
