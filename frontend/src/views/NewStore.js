@@ -18,7 +18,7 @@ const NewStore = (props) => {
   const { isVerified, isAuthenticated } = useUserContext();
 
   return (
-    <ViewWrappers.View withPadding>
+    <ViewWrappers.View container withPadding>
       {!isVerified && isAuthenticated ? <WaitingForVerify /> :
         <Switch>
           {/* create a business */}

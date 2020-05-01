@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useUserContext } from '../../context/UserContext';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import API from '../../shared/api';
 import slugify from 'slugify';
 import ViewWrappers from '../ViewWrappers/ViewWrappers';
@@ -10,9 +11,9 @@ import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
 
-const ProductForm = ({ match, history }) => {
-  const { id, editId } = match.params;
+const ProductForm = ({ id, editId }) => {
   const { token } = useUserContext();
+  const history = useHistory();
   const [t] = useTranslation('product-cru');
   const [product, setProduct] = useState({
     title: '',
@@ -73,24 +74,19 @@ const ProductForm = ({ match, history }) => {
   };
 
   return (
-    <ViewWrappers.View>
-      <Form onSubmit={onSubmit} head={<>
-        <h1>{t('first-product:head')}</h1>
-        <p>{t('first-product:text')}</p>
-      </>} body={<>
-        {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_photo" value={product._photos}
-             helpText={t('product-cru:photoHelp')} editView/> : null}
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
-        <CategorySelect onSelected={onCategorySelect} />
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku}/>
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')}  type="number" name="stock" value={product.stock}/>
-        <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
-        {editId ? null : <Fields.FileUpload onChange={onChange} label="Upload photo" name="_photos" value={product._photos}
-                           helpText="JPEG .JPG .PNG (Just these file formats will work)"/>}
-        </>} footer={<Button label={`${t('first-product:next')} →`}/>}
-      />
-    </ViewWrappers.View>
+    <Form onSubmit={onSubmit} body={<>
+      {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_photo" value={product._photos}
+           helpText={t('product-cru:photoHelp')} editView/> : null}
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
+      <CategorySelect onSelected={onCategorySelect} />
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')}  type="number" name="stock" value={product.stock}/>
+      <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
+      {editId ? null : <Fields.FileUpload onChange={onChange} label="Upload photo" name="_photos" value={product._photos}
+                         helpText="JPEG .JPG .PNG (Just these file formats will work)"/>}
+      </>} footer={<Button label={`${t('first-product:next')} →`}/>}
+    />
   )
 }
 
