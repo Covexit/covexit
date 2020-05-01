@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <ViewWrappers.View>
-      <ViewWrappers.ViewSplitter small>
+      <ViewWrappers.ViewSplitter size="sm">
         <div className="Home">
           <div className="Intro">
             <h1>{t('head')}</h1>

@@ -2,6 +2,7 @@
 
 .Store {
   background: $color-light-gray;
+  min-height: 100%;
 
   .small-icon {
     height: 28px;
@@ -31,6 +32,8 @@
 }
 
 .Store-showcase {
+     border-bottom: 1px solid $color-gray;
+
   .Store-Details {
     padding: $padding-wrapper;
     padding-bottom: 19px;
@@ -76,7 +79,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 18px $padding-wrapper;
-  border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
 
   .Btn {
