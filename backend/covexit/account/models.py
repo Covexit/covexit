@@ -65,7 +65,7 @@ def validate_true(value):
 
 
 class UserAccountManager(BaseUserManager):
-    def _create_user(self, username, email, password, address, zip_and_city,
+    def _create_user(self, username, email, password, address, city, postcode,
                      phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         if not username:
             raise ValueError('The given username must be set')
@@ -73,7 +73,8 @@ class UserAccountManager(BaseUserManager):
             username=self.model.normalize_username(username),
             email=self.normalize_email(email),
             address=address,
-            zip_and_city=zip_and_city,
+            postcode=postcode,
+            city=city,
             phone=phone,
             accepted_tos=accepted_tos,
             accepted_privacy_policy=accepted_privacy_policy,
@@ -82,15 +83,15 @@ class UserAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, email, password, address, zip_and_city,
+    def create_user(self, username, email, password, address, city, postcode,
                     phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(
-            username, email, password, address, zip_and_city, phone,
+            username, email, password, address, city, postcode, phone,
             accepted_tos, accepted_privacy_policy, **extra_fields)
 
-    def create_superuser(self, username, email, password, address, zip_and_city,
+    def create_superuser(self, username, email, password, address, city, postcode,
                          phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -98,13 +99,14 @@ class UserAccountManager(BaseUserManager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(username, email, password, address, zip_and_city,
+        return self._create_user(username, email, password, address, city, postcode,
                                  phone, accepted_tos, accepted_privacy_policy, **extra_fields)
 
 
 class UserAccount(AbstractUser):
     address = models.CharField(_('Address'), max_length=500)
-    zip_and_city = models.CharField(_('Zip and City'), max_length=200)
+    postcode = models.CharField(_('Postcode'), max_length=20)
+    city = models.CharField(_('City'), max_length=200)
     phone = models.CharField(_('Phone'), max_length=45, default='')
     accepted_tos = models.BooleanField(_('Accepted ToS'),
                                        validators=[validate_true])
@@ -118,7 +120,8 @@ class UserAccount(AbstractUser):
     REQUIRED_FIELDS = [  # used in the create_superuser management command
         "email",
         "address",
-        "zip_and_city",
+        "postcode",
+        "city",
         "phone",
         "accepted_tos",
         "accepted_privacy_policy",
