@@ -29,13 +29,15 @@
   }
 }
 
-.View--container {
-  max-width: 1440px;
-  box-shadow: 2px 3px 20px rgba($color-black, 0.2);
-  height: calc(100% - 80px);
-  width: 100%;
-  margin: 80px auto 0;
-  border-radius: $border-radius $border-radius 0 0;
+@include bp-large() {
+  .View--container {
+    max-width: 1440px;
+    box-shadow: 2px 3px 20px rgba($color-black, 0.2);
+    height: calc(100% - 80px);
+    width: 90%;
+    margin: 80px auto 0;
+    border-radius: $border-radius $border-radius 0 0;
+  }
 }
 
 .ViewSplitter {
