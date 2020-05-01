@@ -45,7 +45,7 @@ const TextArea = ({ onKeyDown, placeholder, rows, onChange, onFocus, onBlur, nam
   );
 };
 
-const FileUpload = ({ helpText, label, onChange, name, value, editView }) => {
+const FileUpload = ({ helpText, label, onChange, name, value, editView, optional }) => {
   const [img, setImg] = useState();
   const file = typeof value === 'string' ? value : value && value[0];
 
@@ -70,13 +70,13 @@ const FileUpload = ({ helpText, label, onChange, name, value, editView }) => {
       <Button secondary label={label} span className="test" />
       <span className="TextInput-helpText">{helpText}</span>
       <input type="file" className="FileUpload-field" onChange={onChange}
-             name={name}/>
+             name={name} required={!optional}/>
     </label>
   );
 };
 
 const CheckBox = ({ onChange, onFocus, onBlur, name, value, placeholder, checked, optional }) => (
-  <div className="CheckBox" >
+  <div className="CheckBox">
     <label>
       <input className="CheckBox-field" onChange={onChange} type="checkbox" required={!optional}
                 onFocus={onFocus} onBlur={onBlur} name={name} checked={checked}
@@ -92,4 +92,14 @@ const CheckBox = ({ onChange, onFocus, onBlur, name, value, placeholder, checked
   </div>
 );
 
-export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox }
+const FieldGroup = ({ children }) => (
+  <div className="FieldGroup">
+    {
+      React.Children.map(children, child => (
+        <div className="FieldGroup-field">{child}</div>
+      ))
+    }
+  </div>
+);
+
+export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox, FieldGroup }
