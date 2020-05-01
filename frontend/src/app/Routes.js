@@ -5,7 +5,7 @@ import Home from "views/Home"
 import PhotoSelect from "views/Onboarding/PhotoSelect"
 import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding/Onboarding";
-import NewStore from "../views/NewStore";
+import NewStore from "../views/NewStore/NewStore";
 import Stores from '../views/Stores';
 import Verify from '../views/Verify';
 import Login from '../views/Login'
