@@ -26,7 +26,7 @@ const EnlistModal = () => {
     accepted_privacy_policy: false,
     message: []
   });
-  const [t] = useTranslation(['mailing-list', 'new-store-owner']);
+  const [t] = useTranslation(['mailing-list', 'account']);
 
   const changeHandler = (event) => setData({...data, [event.target.name]: event.target.checked || event.target.value });
 
@@ -63,11 +63,11 @@ const EnlistModal = () => {
           <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:name')} name="name" value={data.name}/>
           <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:email')} name="email" value={data.email} type="email"/>
           <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                           placeholder={t('new-store-owner:privacy')}/>
+                           placeholder={t('account:privacy')}/>
           {(data.message && <p>{data.message}</p>) || ''}
         </>}
         footer={<>
-          {!sent ? <Button label={t('new-store-owner:Next')}/> : ''}
+          {!sent ? <Button label={t('mailing-list:send')}/> : ''}
           <Button label={t('mailing-list:dontShowAgain')} type="dismiss" onClick={dontShowAgain}/>
         </>}
       />
