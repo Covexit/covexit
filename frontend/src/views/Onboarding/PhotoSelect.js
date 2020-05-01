@@ -46,7 +46,7 @@ const PhotoSelect = ({ match, history }) => {
   const footer = selectedPhoto && <Button onClick={onNext} label="Next →" />;
 
   return (
-    <ViewWrappers.MobileView renderFn={isBigScreen => (
+    <ViewWrappers.View container renderFn={isBigScreen => (
       <>
         <ViewWrappers.ViewSplitter className="PhotoSelect" withPadding>
           <div className="Intro">

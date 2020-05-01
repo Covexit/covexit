@@ -5,6 +5,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 35px;
+
+  @include bp-large() {
+    margin-top: 0;
+  }
 }
 
 .PhotoSelector-option {

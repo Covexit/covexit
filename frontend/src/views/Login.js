@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './NewStore.scss';
+import './NewStore/NewStore.scss';
 import Button from "components/Button/Button";
 import Fields from '../components/Fields/Fields';
 import Form from "components/Form/Form";
@@ -36,7 +36,7 @@ const Login = ({history}) => {
   };
 
   return (
-    <ViewWrappers.View withPadding>
+    <ViewWrappers.View withPadding container>
             <Form onSubmit={submitHandler}
             head={<>
               <h1>{t('login')}</h1>
