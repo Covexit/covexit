@@ -1,15 +1,16 @@
 import React from 'react';
 
-import './NewStore.scss';
+import { Redirect, Route, Switch } from "react-router-dom";
+
+import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Button from "components/Button/Button";
 import Form from "components/Form/Form";
-import { Redirect, Route, Switch } from "react-router-dom";
-import ViewWrappers from "components/ViewWrappers/ViewWrappers";
-import PersonalForm from './NewStore/PersonalForm';
-import BusinessForm from './NewStore/BusinessForm';
-import WaitingForVerify from './NewStore/WaitingForVerify';
-import { useUserContext } from '../context/UserContext';
+import PersonalForm from './PersonalForm';
+import BusinessForm from './BusinessForm';
+import WaitingForVerify from './WaitingForVerify';
+import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
+import './NewStore.scss';
 
 
 const NewStore = (props) => {
@@ -18,7 +19,7 @@ const NewStore = (props) => {
   const { isVerified, isAuthenticated } = useUserContext();
 
   return (
-    <ViewWrappers.View withPadding>
+    <ViewWrappers.View container withPadding>
       {!isVerified && isAuthenticated ? <WaitingForVerify /> :
         <Switch>
           {/* create a business */}

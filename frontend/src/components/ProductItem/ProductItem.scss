@@ -3,26 +3,30 @@
 }
 
 .ProductItem-img {
-  width: 70px;
-  height: 100px;
   object-fit: cover;
+  width: 100px;
+  min-height: 0;
 }
 
 .ProductItem-content {
   margin-left: 10px;
   border-bottom: 1px solid $color-gray;
   display: flex;
-  width: calc(80% - 10px);
+  flex: 1;
 
   svg {
     color: $color-primary;
   }
+
+  button {
+    margin-right: 20px;
+  }
 }
 
 .ProductItem-review {
-  width: 80%;
   padding: 15px 0 10px 0;
   font-size: 14px;
+  margin-right: auto;
 
   p {
     font-size: 14px;

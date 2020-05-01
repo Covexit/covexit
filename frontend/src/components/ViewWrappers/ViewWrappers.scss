@@ -12,10 +12,12 @@
   display: flex;
   height: 100%;
   position: relative;
+  overflow: auto;
+  align-items: flex-start;
+  -webkit-overflow-scrolling: touch;
 
   > *:not(.ViewSplitter) {
-    width: 100%;
-    height: 100%;
+    flex-grow: 1;
   }
 
   &--mobile {
@@ -24,6 +26,17 @@
     @include bp-large() {
       flex-direction: row;
     }
+  }
+}
+
+@include bp-large() {
+  .View--container {
+    max-width: 1440px;
+    box-shadow: 2px 3px 20px rgba($color-black, 0.2);
+    height: calc(100% - 80px);
+    width: 90%;
+    margin: 80px auto 0;
+    border-radius: $border-radius $border-radius 0 0;
   }
 }
 
@@ -43,11 +56,17 @@
   }
 }
 
-.ViewSplitter--small {
-  @include bp-large() {
+@include bp-large() {
+  .ViewSplitter--sm {
     flex: 0 0 40vw;
     max-width: 700px;
     min-width: 500px;
+  }
+
+  .ViewSplitter--xs {
+    flex: 1 0 30vw;
+    max-width: 550px;
+    min-width: 435px;
   }
 }
 

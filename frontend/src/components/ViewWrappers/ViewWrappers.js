@@ -21,33 +21,27 @@ import './ViewWrappers.scss';
               ______        _________  Left main content
              |   L  |      |    |    | Mobile: Left main top, Right in middle,
              |   R  |      | L  | R  | left footer at the bottom (usually buttons)
-             |___F__|      |_F__|____| <MobileView renderFn={ (isBigScreen) => return Components depending on isBigScreen }/>
+             |___F__|      |_F__|____| <View renderFn={ (isBigScreen) => return Components depending on isBigScreen }/>
  */
 
-const View = ({ children, withPadding, className }) => (
-  <div className={`View ${withPadding ? 'View--padded': ''} ${className}`}>
-    {children}
-  </div>
-);
+const View = ({ children, withPadding, className, container, renderFn }) => {
+  const isBigScreen = useMediaQuery({ minWidth: 960 });
 
-const ViewSplitter = ({ children, className, omitOnMobile, withPadding, small }) => {
+  return (
+    <div className={`View ${withPadding && 'View--padded'} ${container && 'View--container'} ${className}`}>
+      {renderFn ? renderFn(isBigScreen) : children}
+    </div>
+  );
+}
+
+const ViewSplitter = ({ children, className, omitOnMobile, withPadding, size }) => {
   const isBigScreen = useMediaQuery({ minWidth: 960 });
 
   return omitOnMobile && !isBigScreen ? false : (
-    <div className={`ViewSplitter ${className} ${withPadding ? 'ViewSplitter--padded' : ''} ${small ? 'ViewSplitter--small' : ''}`}>
+    <div className={`ViewSplitter ${className} ${withPadding ? 'ViewSplitter--padded' : ''} ViewSplitter--${size}`}>
       {children}
     </div>
   );
 };
 
-const MobileView = ({ renderFn }) => {
-  const isBigScreen = useMediaQuery({ minWidth: 960 });
-
-  return (
-    <View className="View--mobile">
-      {renderFn(isBigScreen)}
-    </View>
-  );
-};
-
-export default { View, ViewSplitter, MobileView }
+export default { View, ViewSplitter }
