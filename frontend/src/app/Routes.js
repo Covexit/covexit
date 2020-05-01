@@ -10,6 +10,7 @@ import Stores from '../views/Stores';
 import Verify from '../views/Verify';
 import Login from '../views/Login'
 import ProductCreateEdit from '../views/ProductCreateEdit';
+import createTextPage from '../views/TextPage';
 
 function Routes() {
   return (
@@ -22,6 +23,9 @@ function Routes() {
       <Route path="/order/:step" component={OrderForm} />
       <Route path="/verify/:id/:token/:type" component={Verify} />
       <Route path="/login" component={Login} />
+      <Route exact path="/imprint" component={createTextPage('imprint')} />
+      <Route exact path="/agb" component={createTextPage('agb')} />
+      <Route exact path="/privacy" component={createTextPage('privacy')} />
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
     </Switch>
