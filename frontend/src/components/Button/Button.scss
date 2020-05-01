@@ -11,11 +11,15 @@
   font-weight: 600;
   letter-spacing: .02em;
   text-decoration: none;
-  color: white;
+  color: $color-white;
   text-align: center;
   background: $color-primary;
   cursor: pointer;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+
+  &:hover {
+    color: $color-white;
+  }
 
   @include bp-large() {
     font-size: 20px;
@@ -26,6 +30,10 @@
     color: $color-dark-gray;
     background: $color-gray;
     font-weight: 400;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 
   &--pay {
@@ -35,6 +43,10 @@
   &--inverted {
     background: #fff;
     color: $color-black;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 
   &--confirm {
@@ -45,7 +57,10 @@
     background: transparent;
     border: none;
     box-shadow: none;
-    color: black;
+    color: $color-black;
+    &:hover {
+      color: $color-primary;
+    }
   }
 
   &--small {
