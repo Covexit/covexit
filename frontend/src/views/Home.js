@@ -6,6 +6,7 @@ import Map from "../components/Map/Map";
 import './Home.scss';
 import { useTranslation } from 'react-i18next';
 import { useUserContext } from '../context/UserContext';
+import EnlistModal from '../components/EnlistModal/EnlistModal';
 
 const Home = () => {
   const [t] = useTranslation('home');
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <ViewWrappers.View>
       <ViewWrappers.ViewSplitter size="sm">
+      <EnlistModal/>
         <div className="Home">
           <div className="Intro">
             <h1>{t('head')}</h1>

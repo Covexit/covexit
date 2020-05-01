@@ -7,8 +7,6 @@ import Routes from "./Routes";
 import Header from "../components/Header/Header";
 
 import './App.scss';
-import EnlistModal from '../components/EnlistModal/EnlistModal';
-
 
 const App = () => (
   <CartProvider>
@@ -17,7 +15,6 @@ const App = () => (
         <Header/>
 
         <div className="App">
-          <EnlistModal/>
           <Routes/>
         </div>
       </LocationProvider>
