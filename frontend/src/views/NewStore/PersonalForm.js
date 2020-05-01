@@ -10,12 +10,13 @@ import { useUserContext } from '../../context/UserContext';
 const PersonalForm = ({ history }) => {
   const passwordRepeat = useRef();
   const { setUser } = useUserContext();
-  const [t] = useTranslation('new-store-owner');
+  const [t] = useTranslation(['new-store-owner', 'account']);
   const [data, setData] = useState({
     first_name: '',
     last_name: '',
     address: '',
-    zip_and_city: '',
+    postcode: '',
+    city: '',
     email: '',
     phone: '',
     password: '',
@@ -27,7 +28,7 @@ const PersonalForm = ({ history }) => {
   useEffect(() => {
     if (data.password_repeat && data.password) {
       const passwordsMatch = data.password === data.password_repeat;
-      passwordRepeat.current.setCustomValidity(passwordsMatch ? '' : 'Passwords need to match');
+      passwordRepeat.current.setCustomValidity(passwordsMatch ? '' : t('account:passwordMatchError'));
     }
   });
 
@@ -45,23 +46,26 @@ const PersonalForm = ({ history }) => {
   return (
     <Form onSubmit={submitHandler}
           head={<>
-            <h1>{t('head')}</h1>
-            <p>{t('text')}</p>
+            <h1>{t('new-store-owner:head')}</h1>
+            <p>{t('new-store-owner:text')}</p>
           </>}
           body={<>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('name')} name="first_name" value={data.first_name}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('surname')} name="last_name" value={data.last_name}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('address')} name="address" value={data.address}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('zipAndCity')} name="zip_and_city" value={data.zip_and_city}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('email')} name="email" type="email" value={data.email}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
-            <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder="Password"/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:name')} name="first_name" value={data.first_name}/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:surname')} name="last_name" value={data.last_name}/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:address')} name="address" value={data.address}/>
+            <Fields.FieldGroup>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
+            </Fields.FieldGroup>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
+            <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
             <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
-                                  placeholder="Password (repeat)" ref={passwordRepeat}/>
+                                  placeholder={t('account:passwordRepeat')} ref={passwordRepeat}/>
             <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
-                             placeholder="I have read and I accept the Terms & Conditions."/>
+                             placeholder={t('account:tos')}/>
             <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                             placeholder="I have read and I accept the Privacy Policy"/>
+                             placeholder={t('account:privacy')}/>
           </>}
           footer={<Button label={t('Next')}/>}
     />
