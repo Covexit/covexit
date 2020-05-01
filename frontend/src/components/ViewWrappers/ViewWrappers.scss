@@ -43,11 +43,17 @@
   }
 }
 
-.ViewSplitter--small {
-  @include bp-large() {
+@include bp-large() {
+  .ViewSplitter--sm {
     flex: 0 0 40vw;
     max-width: 700px;
     min-width: 500px;
+  }
+
+  .ViewSplitter--xs {
+    flex: 1 0 30vw;
+    max-width: 550px;
+    min-width: 435px;
   }
 }
 

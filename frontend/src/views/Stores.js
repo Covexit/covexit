@@ -8,14 +8,14 @@ import StoreList from '../components/StoreList/StoreList';
 
 const Stores = ({ location, match }) => (
   <ViewWrappers.View>
-    <ViewWrappers.ViewSplitter small omitOnMobile>
+    <ViewWrappers.ViewSplitter size="xs" omitOnMobile>
       <StoreList />
     </ViewWrappers.ViewSplitter>
     <ViewWrappers.ViewSplitter omitOnMobile={!!matchPath(location.pathname, { path: "/stores/:id", exact: true })}>
       <Map/>
     </ViewWrappers.ViewSplitter>
     <Route path={`${match.path}/:id`} render={(props => (
-      <ViewWrappers.ViewSplitter small>
+      <ViewWrappers.ViewSplitter size="xs">
         <Store {...props} />
       </ViewWrappers.ViewSplitter>
     ))}>

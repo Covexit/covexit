@@ -53,6 +53,7 @@ class PartnerAddress(AbstractPartnerAddress):
     mail = models.EmailField(_('e-mail address'), max_length=80, default='')
     website = models.CharField(_('website'), max_length=80, blank=True,
                                null=True)
+    vat_no = models.CharField(_('VAT number'), max_length=255)
     phone = models.CharField(_('phone'), max_length=45, default='')
     latitude = models.DecimalField(_('latitude'), max_digits=9,
                                    decimal_places=6, default=0)

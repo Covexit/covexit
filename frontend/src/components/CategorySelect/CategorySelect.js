@@ -38,7 +38,7 @@ function CategorySelect({ onSelected }) {
       ))}
     </div>
     {categories.map(item => (
-      <div className="CategorySelect__choice" key={item.slug}><Button onClick={() => updateCategories(item)}>{item.name}</Button></div>
+      <div className="CategorySelect__choice" key={item.slug}><Button secondary onClick={() => updateCategories(item)}>{item.name}</Button></div>
     ))}
   </div>)
 }
