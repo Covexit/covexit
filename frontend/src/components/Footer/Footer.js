@@ -8,7 +8,7 @@ function Footer() {
   const [t] = useTranslation('menu');
   const links = [
     {route: '/imprint', label: t('imprint')},
-    {route: '/tos', label: t('tos')},
+    {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
   ];
 
