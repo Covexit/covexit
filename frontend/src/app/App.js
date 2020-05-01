@@ -5,6 +5,7 @@ import { LocationProvider } from '../context/useCurrentLocation';
 
 import Routes from "./Routes";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 import './App.scss';
 
@@ -17,6 +18,7 @@ const App = () => (
         <div className="App">
           <Routes/>
         </div>
+        <Footer/>
       </LocationProvider>
     </UserProvider>
   </CartProvider>
