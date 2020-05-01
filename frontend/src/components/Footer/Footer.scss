@@ -2,55 +2,40 @@
 @import "stylebase/utils";
 
 .Footer {
-  position: absolute;
   width: 100%;
-  height: 147px;
-  left: 0px;
-  top: 4436px;
-  background: #EFEFEF;
+  height: 150px;
+  background: $color-gray;
+  display: flex;
+  position: relative;
 }
 
-.Footer-body {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  text-align: center;
-  color:$color-black;
-}
+.Footer-links {
+  list-style: none;
+  padding: 0;
 
-.Footer-link {
-  position: absolute;
-  text-decoration: none;
-  left: 89.79%;
-  right: 6.67%;
-  top: 43.54%;
-  bottom: 42.86%;
+  li {
+    display: inline-block;
+    margin-left: 40px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
 
 .Footer-copyright {
-  position: absolute;
-  left: 46.67%;
-  right: 46.67%;
-  top: 43.54%;
-  bottom: 42.86%;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  text-align: center;
-  color:$color-black;
+  margin: auto;
+}
+
+.Footer-body {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .Footer-logo {
-  position: absolute;
-  left: 5.9%;
-  right: 85.83%;
-  top: 39.46%;
-  bottom: 38.78%;
-
   margin: 0 auto;
   width: 90px;
 
@@ -58,5 +43,5 @@
     margin: 0;
     width: 120px;
   }
-  }
+}
 
