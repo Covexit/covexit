@@ -5,6 +5,7 @@ import { LocationProvider } from '../context/useCurrentLocation';
 
 import Routes from "./Routes";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 import './App.scss';
 import EnlistModal from '../components/EnlistModal/EnlistModal';
@@ -20,6 +21,7 @@ const App = () => (
           <EnlistModal/>
           <Routes/>
         </div>
+        <Footer/>
       </LocationProvider>
     </UserProvider>
   </CartProvider>
