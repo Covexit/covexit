@@ -24,18 +24,6 @@ const Store = ({ match }) => {
     const getPartner = async () => {
       const response = await API.partners.get(id);
       setStore(response.data);
-      const responseProducts = await API.products.get(id);
-      let productArray = responseProducts.data.map(product => {
-        return ({
-          id: product.id,
-          name: product.title,
-          description: product.description,
-          category: product.product_class,
-          price: Number(product.stockrecords[0].price_excl_tax),
-          image: product.images[0] ? product.images[0].original : null
-        });
-      });
-      setProducts(productArray);
     };
     const getProducts = async () => {
       const response = await API.productList.get(id);
@@ -45,7 +33,6 @@ const Store = ({ match }) => {
     getPartner();
     getProducts();
   }, [ id ]);
-
   return (
     <div className="Store">
       <section className="Store-showcase">

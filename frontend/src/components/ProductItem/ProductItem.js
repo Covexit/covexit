@@ -6,15 +6,6 @@ const ProductItem = ({ product }) => {
   const { addProduct } = useCartContext()
   const { title, description, price, images } = product
 
-  const iconHandler = () => {
-    if(type === "edit"){
-      history.push(`/stores/${storeId}/product/${product.id}`)
-    }
-    else if(type === "add"){
-      addProduct(product)
-    }
-  }
-
   return (
     <div className="ProductItem">
       {!!images.length && <img className="ProductItem-img" src={images[0].original} alt="" />}
