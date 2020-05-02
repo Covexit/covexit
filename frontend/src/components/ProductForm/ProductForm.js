@@ -43,7 +43,7 @@ const ProductForm = ({ id, editId }) => {
     if (editId){
       const getCurrentProduct = async () => {
         const response = await API.products.get(id);
-        const currentProduct = response.data.find(product => product.id == editId);
+        const currentProduct = response.data.find(product => product.id === Number(editId));
         setProduct({
           title: currentProduct.title,
           categories: currentProduct.url,
@@ -56,11 +56,6 @@ const ProductForm = ({ id, editId }) => {
       };
       getCurrentProduct();
     };
-    // async function currentProduct(id) {
-    //   const response = await API.products.get({id});
-    //   console.log(id);
-    //   console.log(response.data[2]);
-      // setProduct(response.data)
   }, []);
 
 
@@ -76,7 +71,8 @@ const ProductForm = ({ id, editId }) => {
 
       // edit existing Product
     if (editId){
-      const response = await API.products.patch({
+      // const response =
+      await API.products.patch({
         id: editId,
         data,
         config: headers,
@@ -118,15 +114,6 @@ const ProductForm = ({ id, editId }) => {
   const onChange = (event) => {
     setProduct({ ...product, [event.target.name]: event.target.files || event.target.value });
   };
-
-  const editHeader = <h1>{t('first-product:edit')}</h1>
-  const addHeader =
-  <>
-    <h1>{t('first-product:head')}</h1>
-    <p>{t('first-product:text')}</p>
-  </>
-
-
 
   return (
     <Form onSubmit={onSubmit} body={<>

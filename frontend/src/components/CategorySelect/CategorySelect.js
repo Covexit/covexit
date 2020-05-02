@@ -15,7 +15,6 @@ function CategorySelect({ onSelected }) {
   };
 
   useEffect(() => {
-    console.log(breadcrumbs);
     async function fetchCategories(url) {
       const response = await API.categories.get({ url });
       setCategories(response.data);
