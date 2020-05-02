@@ -1,7 +1,55 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
 .Footer {
-  background-color: #E9E9E9;
-  padding: 15px 0;
-  text-align: center;
-  margin-bottom: 80px;
-  margin-top: 20px;
+  width: 100%;
+  height: 150px;
+  background: $color-gray;
+  padding: $padding-wrapper;
+  display: flex;
+  position: relative;
 }
+
+.Footer-links {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin-left: 40px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.Footer-copyright {
+
+  @include bp-large() {
+    margin: 0 auto;
+  }
+}
+
+.Footer-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include bp-large() {
+    margin: 0 auto;
+    max-width: 90%;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.Footer-logo {
+  width: 90px;
+
+  @include bp-large() {
+    width: 120px;
+  }
+}
+

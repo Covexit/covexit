@@ -35,6 +35,7 @@ const API = {
   verify: { post: (data, type) => axiosInstance.post(`verify/${type}/`, data) },
   mailingList: { post: (data) => axiosInstance.post('mailing-list/', data) },
   partners: createEndpoint('admin/partners/$id/'),
+  productList: {get: (partnerId) => axiosInstance.get(`products/${partnerId && '?partner=' + partnerId}`)},
   products: createHyperlinkedEndpoint('admin/products/$id/'),
   productImages: createEndpoint('admin/products/$id/images/'),
   authToken: { post: (data) => axiosInstance.post(`api-token-auth/`, data) }

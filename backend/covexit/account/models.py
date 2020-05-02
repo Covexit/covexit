@@ -20,7 +20,7 @@ To activate your account, please visit this link:
 Damit wir dir wichtige Informationen und Updates zusenden können, müssen wir
 überprüfen, ob dies auch die richtige Email-Adresse ist.
 
-{}
+<a href="{}">E-Mail-Adresse bestätigen</a>
 
 Wir freuen uns über deine Unterstützung!
 Wenn Sie glauben, dass Sie diese E-Mail irrtümlich erhalten haben, können Sie
@@ -35,7 +35,9 @@ VERIFICATION_URL = '/verify/'
 
 def create_verification_link(user):
     verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
-    return '{}{}{}/{}/{}'.format(Site.objects.get_current().domain,
+    scheme = 'http' if settings.SITE_ID == 2 else 'https'
+    return '{}://{}{}{}/{}/{}'.format(scheme,
+                                 Site.objects.get_current().domain,
                                  VERIFICATION_URL,
                                  user.pk,
                                  user.verification_key,
@@ -65,7 +67,7 @@ def validate_true(value):
 
 
 class UserAccountManager(BaseUserManager):
-    def _create_user(self, username, email, password, address, zip_and_city,
+    def _create_user(self, username, email, password, address, city, postcode,
                      phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         if not username:
             raise ValueError('The given username must be set')
@@ -73,7 +75,8 @@ class UserAccountManager(BaseUserManager):
             username=self.model.normalize_username(username),
             email=self.normalize_email(email),
             address=address,
-            zip_and_city=zip_and_city,
+            postcode=postcode,
+            city=city,
             phone=phone,
             accepted_tos=accepted_tos,
             accepted_privacy_policy=accepted_privacy_policy,
@@ -82,15 +85,15 @@ class UserAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, email, password, address, zip_and_city,
+    def create_user(self, username, email, password, address, city, postcode,
                     phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(
-            username, email, password, address, zip_and_city, phone,
+            username, email, password, address, city, postcode, phone,
             accepted_tos, accepted_privacy_policy, **extra_fields)
 
-    def create_superuser(self, username, email, password, address, zip_and_city,
+    def create_superuser(self, username, email, password, address, city, postcode,
                          phone, accepted_tos, accepted_privacy_policy, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -98,19 +101,24 @@ class UserAccountManager(BaseUserManager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(username, email, password, address, zip_and_city,
+        return self._create_user(username, email, password, address, city, postcode,
                                  phone, accepted_tos, accepted_privacy_policy, **extra_fields)
 
 
 class UserAccount(AbstractUser):
     address = models.CharField(_('Address'), max_length=500)
-    zip_and_city = models.CharField(_('Zip and City'), max_length=200)
+    postcode = models.CharField(_('Postcode'), max_length=20)
+    city = models.CharField(_('City'), max_length=200)
     phone = models.CharField(_('Phone'), max_length=45, default='')
     accepted_tos = models.BooleanField(_('Accepted ToS'),
                                        validators=[validate_true])
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
                                                   validators=[validate_true])
-    verified = models.BooleanField(_('Email Verified'), default=False)
+    verified = models.BooleanField(_('Email Verified'), default=False,
+                                   help_text='<a href="../resend_verification">'
+                                             'Send key again'
+                                             '</a>'
+                                   )
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
 
@@ -118,7 +126,8 @@ class UserAccount(AbstractUser):
     REQUIRED_FIELDS = [  # used in the create_superuser management command
         "email",
         "address",
-        "zip_and_city",
+        "postcode",
+        "city",
         "phone",
         "accepted_tos",
         "accepted_privacy_policy",
@@ -128,7 +137,11 @@ class UserAccount(AbstractUser):
 class MailingListEntry(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
-    verified = models.BooleanField(_('Email Verified'), default=False)
+    verified = models.BooleanField(_('Email Verified'), default=False,
+                                   help_text='<a href="../resend_verification">'
+                                             'Send key again'
+                                             '</a>'
+                                   )
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),

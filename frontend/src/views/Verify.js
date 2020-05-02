@@ -31,7 +31,7 @@ function Verify({ match, history }) {
   }, [history, isVerified, type]);
 
   return (
-    <ViewWrappers.View withPadding>
+    <ViewWrappers.View withPadding container>
       <div className="Intro">
         {!isVerified && <Loader/>}
         {isVerified === 1 && <><h1>Successfully verified</h1><p>Everything good. You will be redirected in five seconds.</p></>}

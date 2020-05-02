@@ -1,10 +1,15 @@
 @import "stylebase/variables";
 @import "stylebase/utils";
 
+.StoreList {
+  background: $color-light-gray;
+  min-height: 100%;
+}
+
 .StoreList-heading {
   margin-bottom: 15px;
   margin-left: 40px;
-  margin-top: 40px;
+  padding-top: 40px;
 }
 
 .StoreList-store {
@@ -21,7 +26,8 @@
 }
 
 .StoreList-store-img {
-  flex: 1 1 0;
+  width: 33.333%;
+  object-fit: cover;
 }
 
 .StoreList-store-body {

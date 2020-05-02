@@ -46,9 +46,9 @@ const PhotoSelect = ({ match, history }) => {
   const footer = selectedPhoto && <Button onClick={onNext} label="Next →" />;
 
   return (
-    <ViewWrappers.MobileView renderFn={isBigScreen => (
+    <ViewWrappers.View className="PhotoSelect" container renderFn={isBigScreen => (
       <>
-        <ViewWrappers.ViewSplitter className="PhotoSelect" withPadding>
+        <ViewWrappers.ViewSplitter withPadding>
           <div className="Intro">
             <h1>Choose a photo</h1>
             <p>Choose a profile picture to represent your business on the first

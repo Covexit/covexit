@@ -26,8 +26,10 @@ const BusinessForm = ({ location, history }) => {
     phone: '',
     country: 'DE',
     line1: '',
-    line2: '',
+    line4: '',
+    postcode: '',
     description: '',
+    vat_no: '',
     mapsPlaceObject: {},
   });
 
@@ -44,8 +46,8 @@ const BusinessForm = ({ location, history }) => {
         phone: event.formatted_phone_number,
         line1: getItemFromAddress('route', event.address_components) + ' ' +
           getItemFromAddress('street_number', event.address_components),
-        line2: getItemFromAddress('postal_code', event.address_components) + ' ' +
-          getItemFromAddress('locality', event.address_components),
+        line4: getItemFromAddress('locality', event.address_components),
+        postcode: getItemFromAddress('postal_code', event.address_components),
         mapsPlaceObject: event,
       };
     }
@@ -55,7 +57,7 @@ const BusinessForm = ({ location, history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let searchString = data.line1 + " , " + data.line2;
+    let searchString = `${data.line1}, ${data.postcode} ${data.line4}`;
     const getLocation = await axios(
         `https://eu1.locationiq.com/v1/search.php?key=pk.4c61e48b53acaa5cd9ae20ab6f019f18&q=${searchString}&format=json`);
     const latitude = Number(getLocation.data[0].lat).toFixed(5);
@@ -75,7 +77,11 @@ const BusinessForm = ({ location, history }) => {
   const fields = <>
     <Fields.TextInput onChange={changeHandler} placeholder={t('name')} name="name" value={data.name}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('address')} name="line1" value={data.line1}/>
-    <Fields.TextInput onChange={changeHandler} placeholder={t('zipAndCity')} name="line2" value={data.line2}/>
+    <Fields.FieldGroup>
+      <Fields.TextInput onChange={changeHandler} placeholder={t('city')} name="line4" value={data.line4}/>
+      <Fields.TextInput onChange={changeHandler} placeholder={t('zip')} name="postcode" value={data.postcode}/>
+    </Fields.FieldGroup>
+    <Fields.TextInput onChange={changeHandler} placeholder={t('vatNo')} name="vat_no" value={data.vat_no}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('email')} name="mail" value={data.mail}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('website')} optional

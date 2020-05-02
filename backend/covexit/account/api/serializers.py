@@ -27,7 +27,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "address",
-            "zip_and_city",
+            "city",
+            "postcode",
             "phone",
             "accepted_tos",
             "accepted_privacy_policy",
@@ -35,16 +36,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = UserAccount.objects.create(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
+            **validated_data,
             is_active=False,  # inactive until email is verified
-            phone=validated_data['phone'],
-            zip_and_city=validated_data['zip_and_city'],
-            address=validated_data['address'],
-            accepted_tos=validated_data['accepted_tos'],
-            accepted_privacy_policy=validated_data['accepted_privacy_policy'],
             verified=False,
             verification_key=create_verification_key(),
         )

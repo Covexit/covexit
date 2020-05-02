@@ -148,3 +148,25 @@
     }
   }
 }
+
+select {
+  background: $color-gray;
+  border-radius: 5px;
+  border: 0;
+  padding: 5px 10px;
+  font-style: italic;
+  position: relative;
+}
+
+.FieldGroup {
+  display: flex;
+
+  .FieldGroup-field {
+    flex: 1;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
