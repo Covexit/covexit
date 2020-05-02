@@ -56,7 +56,7 @@ const ProductForm = ({ id, editId }) => {
       };
       getCurrentProduct();
     };
-  }, []);
+  }, [id, editId]);
 
 
 
