@@ -42,16 +42,15 @@ const ProductForm = ({ id, editId }) => {
   useEffect(() => {
     if (editId){
       const getCurrentProduct = async () => {
-        const response = await API.products.get(id);
-        const currentProduct = response.data.find(product => product.id === Number(editId));
+        const response = await API.products.get({id: editId});
         setProduct({
-          title: currentProduct.title,
-          categories: currentProduct.url,
-          product_class: currentProduct.product_class,
-          price: currentProduct.stockrecords[0].price_excl_tax,
-          sku: currentProduct.stockrecords[0].partner_sku,
-          stock: currentProduct.stockrecords[0].num_in_stock,
-          description: currentProduct.description
+          title: response.data.title,
+          categories: response.data.url,
+          product_class: response.data.product_class,
+          price: response.data.stockrecords[0].price_excl_tax,
+          sku: response.data.stockrecords[0].partner_sku,
+          stock: response.data.stockrecords[0].num_in_stock,
+          description: response.data.description
         });
       };
       getCurrentProduct();
