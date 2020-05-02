@@ -20,7 +20,7 @@ To activate your account, please visit this link:
 Damit wir dir wichtige Informationen und Updates zusenden können, müssen wir
 überprüfen, ob dies auch die richtige Email-Adresse ist.
 
-{}
+<a href="{}">E-Mail-Adresse bestätigen</a>
 
 Wir freuen uns über deine Unterstützung!
 Wenn Sie glauben, dass Sie diese E-Mail irrtümlich erhalten haben, können Sie
@@ -35,7 +35,9 @@ VERIFICATION_URL = '/verify/'
 
 def create_verification_link(user):
     verify_type = 'mailinglist' if isinstance(user, MailingListEntry) else 'signup'
-    return '{}{}{}/{}/{}'.format(Site.objects.get_current().domain,
+    scheme = 'http' if settings.SITE_ID == 2 else 'https'
+    return '{}://{}{}{}/{}/{}'.format(scheme,
+                                 Site.objects.get_current().domain,
                                  VERIFICATION_URL,
                                  user.pk,
                                  user.verification_key,
@@ -112,7 +114,11 @@ class UserAccount(AbstractUser):
                                        validators=[validate_true])
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
                                                   validators=[validate_true])
-    verified = models.BooleanField(_('Email Verified'), default=False)
+    verified = models.BooleanField(_('Email Verified'), default=False,
+                                   help_text='<a href="../resend_verification">'
+                                             'Send key again'
+                                             '</a>'
+                                   )
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
 
@@ -131,7 +137,11 @@ class UserAccount(AbstractUser):
 class MailingListEntry(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
-    verified = models.BooleanField(_('Email Verified'), default=False)
+    verified = models.BooleanField(_('Email Verified'), default=False,
+                                   help_text='<a href="../resend_verification">'
+                                             'Send key again'
+                                             '</a>'
+                                   )
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
     accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),

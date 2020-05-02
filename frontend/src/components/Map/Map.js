@@ -45,7 +45,7 @@ const Map = () => {
     mapContainerClassName="Map"
     zoom={lng === 10.205347 ? 6 : 12}
     center={{lng: parseFloat(lng), lat: parseFloat(lat) }}
-    options={{ styles: mapStyles }}
+    options={{ styles: mapStyles, gestureHandling: 'greedy' }}
   >
     {locations.map( loc =>
       <Marker
