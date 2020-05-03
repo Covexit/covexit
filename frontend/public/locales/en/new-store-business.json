@@ -1,9 +1,9 @@
 {
   "name": "Name of your store",
   "address": "Address of your store",
-  "city": "",
-  "zip": "",
-  "vatNo": "",
+  "city": "City",
+  "zip": "ZIP",
+  "vatNo": "VAT identification number",
   "email": "E-mail address of your store",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",
@@ -15,9 +15,9 @@
     "button_manually": "Add store data manually"
   },
   "googleConfirm": {
-    "head": "Let's talk business!",
-    "text": "Next, we want to learn something about your company. Do you want to enter it manually or import it from Google Business? Don't worry, you can still change the data after the import.",
-    "continue": "Perfect we are finished, you are ready to go!"
+    "head": "Business information",
+    "text": "Now let's set up your business account! Please fill out the form below.",
+    "continue": "Save & Continue"
   },
   "searchGoogle": {
     "head": "Name your business",
