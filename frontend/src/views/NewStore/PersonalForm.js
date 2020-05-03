@@ -8,6 +8,7 @@ import { useUserContext } from '../../context/UserContext';
 
 
 const PersonalForm = ({ history, person }) => {
+  const { state: locationState } = history.location;
   const passwordRepeat = useRef();
   const { setUser } = useUserContext();
   const [t] = useTranslation(['new-store-owner', 'account']);
@@ -26,7 +27,6 @@ const PersonalForm = ({ history, person }) => {
   });
 
   useEffect(() => {
-    const { state: locationState } = history.location;
     if (locationState && locationState.useGoogle) {
       const { email, family_name: last_name, given_name: first_name } = locationState.person;
       setData({ ...data, first_name, last_name, email, })
@@ -58,14 +58,14 @@ const PersonalForm = ({ history, person }) => {
             <p>{t('new-store-owner:text')}</p>
           </>}
           body={<>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:name')} name="first_name" value={data.first_name}/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:name')} name="first_name" value={data.first_name} />
             <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:surname')} name="last_name" value={data.last_name}/>
             <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:address')} name="address" value={data.address}/>
             <Fields.FieldGroup>
               <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
               <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
             </Fields.FieldGroup>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
+            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email} readOnly={locationState.useGoogle}/>
             <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
             <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
             <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
