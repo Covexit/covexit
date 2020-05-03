@@ -10,6 +10,8 @@ import BusinessForm from './BusinessForm';
 import WaitingForVerify from './WaitingForVerify';
 import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
+import { signInWithGoogle } from "../../shared/firebase.utils";
+
 import './NewStore.scss';
 
 
@@ -17,6 +19,16 @@ const NewStore = (props) => {
   const [t] = useTranslation('new-store');
   const match = props.match;
   const { isVerified, isAuthenticated } = useUserContext();
+
+  const onGoogleAuth = (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+    .then((result) => {
+      const { profile: person } = result.additionalUserInfo;
+      props.history.push(`${match.path}/owner`, { useGoogle: true, person });
+    })
+    .catch((err) => console.log('google auth err', err));
+  }
 
   return (
     <ViewWrappers.View container withPadding>
@@ -38,7 +50,7 @@ const NewStore = (props) => {
               </>}
               footer={<>
                 <div className="Btn-group">
-                  <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
+                  <Button onClick={onGoogleAuth} label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
                   <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
                 </div>
               </>}
