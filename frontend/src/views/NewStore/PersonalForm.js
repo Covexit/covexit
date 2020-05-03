@@ -7,7 +7,7 @@ import API from '../../shared/api';
 import { useUserContext } from '../../context/UserContext';
 
 
-const PersonalForm = ({ history }) => {
+const PersonalForm = ({ history, person }) => {
   const passwordRepeat = useRef();
   const { setUser } = useUserContext();
   const [t] = useTranslation(['new-store-owner', 'account']);
@@ -24,6 +24,14 @@ const PersonalForm = ({ history }) => {
     accepted_tos: false,
     accepted_privacy_policy: false,
   });
+
+  useEffect(() => {
+    const { state: locationState } = history.location;
+    if (locationState && locationState.useGoogle) {
+      const { email, family_name: last_name, given_name: first_name } = locationState.person;
+      setData({ ...data, first_name, last_name, email, })
+    }
+  }, [person])
 
   useEffect(() => {
     if (data.password_repeat && data.password) {
