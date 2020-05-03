@@ -4,8 +4,8 @@
   "name": "First name",
   "surname": "Last name",
   "address": "Address",
-  "zip": "",
-  "city": "",
+  "zip": "ZIP",
+  "city": "City",
   "email": "E-mail address",
   "phoneNumber": "Phone number"
 }
