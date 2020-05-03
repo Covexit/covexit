@@ -4,7 +4,7 @@
   "logout": "Abmelden",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
-  "passwordMatchError": "Die Passwörter stimmen nicht überein",
+  "passwordMatchError": "Die Passwörter stimmen nicht überein.",
   "passwordRepeat": "Passwort wiederholen",
   "tos": "AGB",
   "edit": "Account bearbeiten",
