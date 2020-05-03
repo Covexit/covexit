@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useLocation, useRouteMatch,  Link } from "react-router-dom";
 
-import { ReactComponent as HomeIcon } from 'assets/home.svg';
-import { ReactComponent as InboxIcon } from 'assets/inbox.svg';
+import { FiHome } from 'react-icons/fi';
+import { FiInbox } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
 
 const Tab = () => {
@@ -11,8 +11,8 @@ const Tab = () => {
   const location = useLocation();
   const match = useRouteMatch();
   const links = [
-    { url: `/stores/${match.params.id}`, label: t('home'), image: <HomeIcon /> },
-    { url: '/order-view', label: t('order'), image: <InboxIcon /> }
+    { url: `/stores/${match.params.id}`, label: t('home'), image: <FiHome /> },
+    { url: '/order-view', label: t('order'), image: <FiInbox  /> }
   ];
 
   const handleFocusClass = (arg) =>
