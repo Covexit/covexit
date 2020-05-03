@@ -4,9 +4,9 @@
   "logout": "Abmelden",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
-  "passwordMatchError": "",
-  "passwordRepeat": "",
-  "tos": "",
+  "passwordMatchError": "Die Passwörter stimmen nicht überein",
+  "passwordRepeat": "Passwort wiederholen",
+  "tos": "AGB",
   "edit": "Account bearbeiten",
   "manageProduct": "Produkte bearbeiten",
   "addProduct": "Produkt hinzufügen"
