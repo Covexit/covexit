@@ -1,31 +1,31 @@
 {
   "name": "Name des Geschäfts",
   "address": "Adresse des Geschäfts",
-  "city": "",
-  "zip": "",
-  "vatNo": "",
+  "city": "Stadt",
+  "zip": "Postleitzahl",
+  "vatNo": "Ust.-ID-Nr.",
   "email": "E-Mail-Adresse des Geschäfts",
   "phoneNumber": "Telefonnummer des Geschäfts",
   "website": "Website (falls vorhanden)",
   "description": "Beschreibung des Geschäfts",
   "intro": {
     "head": "Willkommen!",
-    "text": "Sie haben eine großartige Entscheidung getroffen, sich bei Covexit zu registrieren. Wir begleiten Sie sehr gerne durch diesen Prozess.",
+    "text": "Du hast eine großartige Entscheidung getroffen, dich bei Covexit zu registrieren. Wir begleiten dich sehr gerne durch diesen Prozess.",
     "button_google": "Geschäftsdaten von Google übernehmen",
-    "button_manually": "Geschäftsdaten selber eintragen"
+    "button_manually": "Geschäftsdaten selbst eintragen"
   },
   "googleConfirm": {
-    "head": "Lassen Sie uns über Geschäftliches reden!",
-    "text": "Als nächstes wollen wir etwas über Ihr Unternehmen erfahren. Möchten Sie es manuell eingeben oder aus Google Business importieren? Keine Sorge, Sie können die Daten auch nach dem Import noch ändern.",
-    "continue": "Perfekt, los geht's!"
+    "head": "Geschäftsdaten",
+    "text": "Jetzt richten wir dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus.",
+    "continue": "Speichern & Fortfahren"
   },
   "searchGoogle": {
-    "head": "Nennen Sie Ihr Geschäft",
-    "text": "Unter welchem Namen ist Ihr Unternehmen bekannt? Geben Sie einen Namen ein."
+    "head": "Nenne dein Geschäft",
+    "text": "Unter welchem Namen ist dein Unternehmen bekannt? Gib einen Namen ein."
   },
   "manually": {
     "head": "Geschäftdaten",
-    "text": "Jetzt richten wir Ihr Geschäftskonto ein! Bitte füllen Sie zunächst die unteren Felder aus.",
+    "text": "Jetzt richten wir dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus.",
     "continue": "Speichern & Fortfahren"
   }
 }
