@@ -1,8 +1,10 @@
 .Tab {
-  width: 100%;
-  display: flex;
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  width: 30vw;
+  max-width: 550px;
+  min-width: 435px;
+  display: flex;
   justify-content: space-around;
   padding: 13px 0;
   padding-bottom: 0;
