@@ -7,9 +7,10 @@ import { useUserContext } from '../context/UserContext';
 import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 import Tab from '../components/Tab/Tab';
-import API from '../shared/api';
+import API, { axiosInstance } from '../shared/api';
 import './Store.scss';
 import { useMediaQuery } from 'react-responsive';
+import Cart from '../components/Cart/Cart';
 
 const Store = ({ match }) => {
   const [t] = useTranslation(['store-detail', 'account']);
@@ -27,12 +28,22 @@ const Store = ({ match }) => {
     };
     const getProducts = async () => {
       const response = await API.productList.get(id);
-      setProducts(response.data);
+      const products = await Promise.all(
+        response.data.map(async (product) => {
+          const records = (await axiosInstance.get(product.stockrecords)).data;
+          return {...product,
+            available: records[0].url,
+            stockrecord_url: records[0].url
+          }
+        })
+      );
+      setProducts(products);
     };
 
     getPartner();
     getProducts();
   }, [ id ]);
+
   return (
     <div className="Store">
       <section className="Store-showcase">
@@ -62,6 +73,7 @@ const Store = ({ match }) => {
       {ownsStore ? <Tab /> : ''}
 
       <ProductList products={products} type="add" />
+      <Cart />
     </div>
   );
 }

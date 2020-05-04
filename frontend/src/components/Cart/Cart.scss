@@ -1,0 +1,50 @@
+@import "stylebase/variables";
+
+.Cart {
+  position: fixed;
+  bottom: 0;
+  width: 30vw;
+  max-width: 550px;
+  min-width: 435px;
+
+  .Modal-close {
+    display: none;
+  }
+
+  .Modal-body {
+    position: static;
+  }
+
+  .Modal:after {
+    width: 30vw;
+    max-width: 550px;
+    min-width: 435px;
+    right: 0;
+    left: auto;
+    z-index: -1;
+    border-left: 1px solid $color-middle-gray;
+  }
+
+  .ProductItem {
+    text-align: left;
+    margin: 0 (-$padding-wrapper);
+
+    &:first-child {
+      margin-top: -$padding-wrapper;
+    }
+  }
+}
+
+.Cart-button {
+  background: $color-primary;
+  width: 100%;
+  height: 50px;
+  color: $color-white;
+  padding: 13px 10px;
+  font-weight: 600;
+
+  svg {
+    vertical-align: -5px;
+    margin-right: 15px;
+  }
+}

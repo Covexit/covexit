@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCartContext } from '../../context/CartContext';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { FiPlusCircle } from 'react-icons/fi';
 
 const ProductItem = ({ product }) => {
   const { addProduct } = useCartContext()
@@ -21,7 +21,7 @@ const ProductItem = ({ product }) => {
           //  and then check with useRouteMatch whether this will be edit or add or delete
         }
         <button onClick={() => addProduct(product)}>
-          <MdAddCircleOutline size={50} />
+          <FiPlusCircle size={50} />
         </button>
       </div>
     </div>

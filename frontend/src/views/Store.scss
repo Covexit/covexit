@@ -3,6 +3,8 @@
 .Store {
   background: $color-light-gray;
   min-height: 100%;
+  position: relative;
+  padding-bottom: 50px;
 
   .small-icon {
     height: 28px;

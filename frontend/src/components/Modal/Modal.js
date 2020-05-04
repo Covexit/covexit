@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./Modal.scss";
-import { FaTimes } from 'react-icons/fa';
+import { FiX } from 'react-icons/fi';
 
 const Modal = ({ header, children, footer, onClose }) => {
   const modalRef = useRef();
@@ -17,10 +17,10 @@ const Modal = ({ header, children, footer, onClose }) => {
       ref={modalRef}
     >
       <div className="Modal-body">
-        <div className="Modal-header">{header}</div>
+        {!!header && <div className="Modal-header">{header}</div>}
         <div className="Modal-content">{children}</div>
         <div className="Modal-footer">{footer}</div>
-        <button className="Close-modal-btn" onClick={onClose}><FaTimes size={25}/></button>
+        <button className="Modal-close" onClick={onClose}><FiX size={25}/></button>
       </div>
     </div>
   )

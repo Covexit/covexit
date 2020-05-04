@@ -24,7 +24,7 @@ const reducer = (originalState, action) => {
             if (productCopy.id === id) productCopy.quantity += 1
             return productCopy
           }),
-          total: state.total + addedProduct.price
+          total: state.total + addedProduct.price.incl_tax
         }
       } else {
         addedProduct = action.payload.product
@@ -33,13 +33,13 @@ const reducer = (originalState, action) => {
         return {
           ...state,
           cart: [...state.cart, addedProduct],
-          total: state.total + addedProduct.price
+          total: state.total + addedProduct.price.incl_tax
         }
       }
     case 'DEL_PRODUCT':
       const removedProduct = state.cart.find(product => product.id === action.payload)
       const updatedCart = state.cart.filter(product => product.id !== action.payload)
-      let newTotal = state.total - (removedProduct.price * removedProduct.quantity )
+      let newTotal = state.total - (removedProduct.price.incl_tax * removedProduct.quantity )
 
       return{
         ...state,
