@@ -6,6 +6,7 @@ import PhotoSelect from "views/Onboarding/PhotoSelect"
 import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding/Onboarding";
 import NewStore from "../views/NewStore/NewStore";
+import Order from "../views/Orders/Orders";
 import Stores from '../views/Stores';
 import Verify from '../views/Verify';
 import Login from '../views/Login'
@@ -16,6 +17,7 @@ function Routes() {
   return (
     <Switch>
       <Route path="/stores/new" component={NewStore} />
+      <Route path="/orders" component={Order} />
       <Route path="/stores/:id/product/:editId?" component={ProductCreateEdit} />
       <Route path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />
