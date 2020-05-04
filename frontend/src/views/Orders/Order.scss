@@ -1,0 +1,24 @@
+@import "../../stylebase/variables";
+@import "../../stylebase/utils";
+
+.Order-category {
+  display: flex;
+  width: 100%;
+  padding-top: $padding-wrapper;
+  .Order-category-item {
+    color: $medium-emphasis;
+    border-bottom: 2px solid $color-middle-gray;
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all $primary-transition;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+  .Order-category-item-active {
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
