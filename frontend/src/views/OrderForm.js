@@ -7,6 +7,7 @@ import OrderTable from "../components/OrderTable/OrderTable";
 import Form from "../components/Form/Form";
 import Fields from "../components/Fields/Fields";
 import { useTranslation } from 'react-i18next';
+import Yippey from 'components/Yippey/Yippey';
 
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
@@ -59,10 +60,7 @@ const OrderForm = (props) => {
       footer: <Button label={t('overview.button')} type="confirm" to={'/order/3'}/>,
     },
     {
-      body: <>
-        <img src={gift} alt="Gift"/>
-        <h1>Yippey!</h1>
-        <p>{t('finish.text')}</p></>,
+      body: <Yippey text={t('finish.text')} />,
       footer: <Button label={t('finish.button')} secondary to={'/map'}/>,
     },
   ];
