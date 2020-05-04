@@ -6,14 +6,14 @@ import Button from "../Button/Button";
 
 
 const TextInput = ({ onKeyDown, placeholder, type, onChange, onFocus, onBlur, name,
-                    value, optional }) => {
+                    value, optional, readOnly }) => {
   return (
     <div className="TextInput" onKeyDown={onKeyDown}>
       <label>
         <span className="TextInput-label-text">{placeholder}</span>
         <input type={type || 'text'} className="TextInput-field" onChange={onChange}
                onFocus={onFocus} onBlur={onBlur} name={name} required={!optional}
-               value={value} placeholder={placeholder}/>
+               value={value} placeholder={placeholder} readOnly={readOnly}/>
       </label>
     </div>
   );
