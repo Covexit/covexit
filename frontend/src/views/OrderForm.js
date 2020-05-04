@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import './OrderForm.scss';
-import gift from 'assets/gift.svg';
 import Button from "../components/Button/Button";
 import OrderTable from "../components/OrderTable/OrderTable";
 import Form from "../components/Form/Form";
