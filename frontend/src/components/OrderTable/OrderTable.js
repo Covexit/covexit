@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './OrderTable.scss';
 import { useTranslation } from 'react-i18next';
 import Button from 'components/Button/Button';
 
 function OrderTable(props) {
+  const [ready, OnReady] = useState(false)
   const { pathname: pathName} = useLocation();
   const matchPath = pathName === '/orders/overview';
 
@@ -50,7 +51,8 @@ function OrderTable(props) {
         </tbody>
       </table>
       {matchPath &&<div className="OrderTable-confirm">
-        <Button to="/orders/confirm" type="confirm" label="Mark accept" />
+        <Button onClick={() => OnReady(true)} to={!ready ? pathName : "/orders/confirm"} type="confirm"
+          label={!ready ? "Ready for shipping" : "Mark as sent"} />
       </div>
       }
     </Fragment>
