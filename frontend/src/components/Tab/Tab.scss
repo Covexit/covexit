@@ -6,14 +6,14 @@
   min-width: 435px;
   display: flex;
   justify-content: space-around;
-  padding: 13px 0;
-  padding-bottom: 0;
-  background: white;
+  padding: 13px 0 0;
+  background: $color-light-gray;
   border-bottom: 1px solid $color-gray;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   text-align: center;
   font-size: 14px;
   line-height: 17.5px;
+  height: 60px;
 }
 
 .Tab-button {
@@ -31,10 +31,11 @@
   border-radius: 0;
   background: white;
   padding-bottom: 5px;
+  border-bottom: 2px solid $color-middle-gray;
 }
 
 .Tab-button-active {
-  border-bottom: 1px solid $color-primary;
+  border-bottom: 2px solid $color-primary;
   color: $color-primary;
 }
 
