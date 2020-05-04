@@ -1,12 +1,12 @@
 {
-  "privacy": "I have read and accepted the privacy policy.",
+  "privacy": "I have read and accept the privacy policy.",
   "login": "Sign in",
   "logout": "Log out",
   "email": "E-Mail address",
   "password": "Password",
   "passwordMatchError": "Passwords do not match",
   "passwordRepeat": "Repeat password",
-  "tos": "Terms and conditions",
+  "tos": "I have read and accept the Terms and conditions",
   "edit": "Edit account",
   "manageProduct": "Manage products",
   "addProduct": "Add product"
