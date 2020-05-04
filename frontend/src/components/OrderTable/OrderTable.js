@@ -35,7 +35,7 @@ function OrderTable(props) {
             {matchPath && <>
               <br />
               <div className="view-on-maps">
-                <Button secondary label="View on Maps" />
+                <Button to="/customer/address" secondary label="View on Maps" />
               </div>
               </>}
           </td>
