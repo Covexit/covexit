@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import OrderTable from '../../components/OrderTable/OrderTable'
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Order from './Order';
-import { useTranslation } from 'react-i18next';
-import Yippey from 'components/Yippey/Yippey';
 
 import "./Orders.scss";
+import Yippey from 'components/Yippey/Yippey';
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
   {quantity: 1, name: 'Very great bread indeed', price: 3.45},
@@ -14,15 +13,7 @@ const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '784
 ]};
 
 const Orders = (props) => {
-  console.log('props.match', props)
-  const [t] = useTranslation('order-form');
-  const [formInput, setFormInput] = useState({});
   const match = props.match;
-  const step = match.params.step;
-
-  const onChange = (event) => {
-    setFormInput({ ...formInput, [event.target.name]: event.target.value });
-  };
 
   return (
     <div className="Orders">
@@ -35,6 +26,9 @@ const Orders = (props) => {
               <OrderTable {...orderTable} />
             </div>
           </ViewWrappers.View>
+        </Route>
+        <Route path="/orders/confirm">
+          <Yippey text="Tina will be more than happy" container />
         </Route>
         {/* initial view */}
         <Route path={match.path || `${match.path}/history`}>
