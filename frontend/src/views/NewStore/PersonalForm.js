@@ -29,9 +29,9 @@ const PersonalForm = ({ history, person }) => {
   useEffect(() => {
     if (locationState && locationState.useGoogle) {
       const { email, family_name: last_name, given_name: first_name } = locationState.person;
-      setData({ ...data, first_name, last_name, email, })
+      setData( prevData => ({ ...prevData, first_name, last_name, email, }))
     }
-  }, [person])
+  }, [person, locationState])
 
   useEffect(() => {
     if (data.password_repeat && data.password) {
