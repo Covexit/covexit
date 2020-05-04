@@ -1,0 +1,40 @@
+@import "../../stylebase/variables";
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0) rotateZ(4deg);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0) rotateZ(-4deg);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-2px, 0, 0) rotateZ(4deg);
+  }
+
+  40%, 60% {
+    transform: translate3d(2px, 0, 0) rotateZ(-4deg);
+  }
+}
+
+.Yippey--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: $color-white;
+  min-height: 92vh;
+  height: 100%;
+  padding: $padding-wrapper;
+  background: $color-green;
+}
+
+.Yippey {
+  img {
+    margin: 0 auto 20px;
+    transform-origin: center 0;
+    animation: shake 0.6s;
+  }
+}
+
