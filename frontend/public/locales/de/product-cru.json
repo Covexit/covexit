@@ -4,6 +4,6 @@
   "name": "Name des Produkts",
   "price": "Preis in € (Bsp: 2,99)",
   "sku": "Produktnummer",
-  "quantity": "In welcher Menge können Sie das Produkt anbieten? (In Stück)",
+  "quantity": "In welcher Menge kannst du das Produkt anbieten? (In Stück)",
   "description": "Produktbeschreibung"
 }

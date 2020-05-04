@@ -1,9 +1,13 @@
 {
+  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
   "login": "Anmelden",
   "logout": "Abmelden",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
+  "passwordMatchError": "Die Passwörter stimmen nicht überein.",
+  "passwordRepeat": "Passwort wiederholen",
+  "tos": "AGB",
   "edit": "Account bearbeiten",
-  "addProduct": "Produkt hinzufügen",
-  "manageProduct": "Produkte bearbeiten"
+  "manageProduct": "Produkte bearbeiten",
+  "addProduct": "Produkt hinzufügen"
 }
