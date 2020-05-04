@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { useLocation } from 'react-router-dom';
 import './OrderTable.scss';
 import { useTranslation } from 'react-i18next';
+import Button from 'components/Button/Button';
 
 function OrderTable(props) {
+  const { pathname: pathName} = useLocation();
+  const matchPath = pathName === '/orders/overview';
+
   const [t] = useTranslation('order-table');
+
   return (
+    <Fragment>
     <table className="OrderTable">
       <tbody>
       <tr>
         <th>{t('nameRow')}:</th>
         <td><h2>{props.name}</h2></td>
-      </tr>
-      <tr>
-        <th>{t('addressRow')}:</th>
-        <td>{props.street}<br/>{props.zipcity}</td>
       </tr>
       <tr>
         <th>{t('productsRow')}:</th>
@@ -26,6 +29,18 @@ function OrderTable(props) {
         </td>
       </tr>
       <tr>
+        <th>{t('addressRow')}:</th>
+        <td>
+          {props.street}<br/>{props.zipcity}
+          {matchPath && <>
+            <br />
+            <div className="view-on-maps">
+              <Button secondary label="View on Maps" />
+            </div>
+            </>}
+        </td>
+      </tr>
+      <tr>
         <th><h2>{t('totalRow')}</h2></th>
         <td className="OrderTable-total">
           <h2>{props.products.reduce((prev, current) => prev.price + current.price).toFixed(2)}€</h2>
@@ -34,6 +49,11 @@ function OrderTable(props) {
       </tr>
       </tbody>
     </table>
+      {matchPath &&<div className="OrderTable-confirm">
+        <Button to="/orders/confirm" type="confirm" label="Mark accept" />
+      </div>
+      }
+    </Fragment>
   );
 }
 
