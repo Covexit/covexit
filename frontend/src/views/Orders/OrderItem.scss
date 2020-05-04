@@ -1,0 +1,21 @@
+@import "../../stylebase/variables";
+@import "../../stylebase/utils";
+
+.OrderItem {
+  display: flex;
+  padding: 10px $padding-wrapper;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid $color-middle-gray;
+  .OrderItem-price {
+    color: $color-primary;
+  }
+  .OrderItem-product {
+    color: $medium-emphasis
+  }
+  .Btn--order-history {
+    background: transparent;
+    border: 1px solid $color-green;
+    color: $color-green;
+  }
+}
