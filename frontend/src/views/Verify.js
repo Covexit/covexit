@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader';
-import API from '../shared/api';
 import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import { useUserContext } from '../context/UserContext';
+import useApi from '../shared/api';
 
 function Verify({ match, history }) {
   const [isVerified, setIsVerified] = useState(0);
   const { id, token, type } = match.params;
   const { setVerified } = useUserContext();
+  const { API } = useApi();
 
   useEffect(() => {
     (async () => {
