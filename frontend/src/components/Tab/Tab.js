@@ -16,7 +16,7 @@ const Tab = () => {
   ];
 
   const handleFocusClass = (arg) =>
-    location.pathname === arg ? 'Tab-button-active' : '';
+    location.pathname === arg ? 'Tab-button--active' : '';
 
   return(
     <section className="Tab">
