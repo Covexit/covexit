@@ -25,7 +25,7 @@ const Orders = (props) => {
     <ViewWrappers.View className="Orders" container>
       <Switch>
         <Route path={`${match.path}/confirm`}>
-          <Yippey text={t('finish.text')} container />
+          <Yippey text={t('finish.text')} />
         </Route>
         {/* an order overview and history */}
         <Route path={`${match.path}/:orderId`}>
