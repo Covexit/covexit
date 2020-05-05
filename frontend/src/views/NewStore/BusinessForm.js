@@ -86,7 +86,7 @@ const BusinessForm = ({ location, history }) => {
     <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('website')} optional
                       name="website" value={data.website}/>
-    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} optional maxLength={300}
+    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} maxLength={300}
                      name="description" value={data.description}/>
   </>;
 
