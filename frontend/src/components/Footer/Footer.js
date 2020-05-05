@@ -20,7 +20,7 @@ function Footer() {
         <nav>
           <ul className="Footer-links">
             {
-              links.map(link => <li className="Footer-link"><Link to={link.route}>{link.label}</Link></li>)
+              links.map(link => <li key={link.label} className="Footer-link"><Link to={link.route}>{link.label}</Link></li>)
             }
           </ul>
         </nav>

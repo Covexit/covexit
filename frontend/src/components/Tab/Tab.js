@@ -21,7 +21,7 @@ const Tab = () => {
   return(
     <section className="Tab">
       {links.map( ({url, label, image}) =>
-        <Link to={url} className={`Tab-button ${handleFocusClass(url)}`} >
+        <Link to={url} key={label} className={`Tab-button ${handleFocusClass(url)}`} >
           {image}
           <p>{label}</p>
         </Link>

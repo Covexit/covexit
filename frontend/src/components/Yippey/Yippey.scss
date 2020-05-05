@@ -19,15 +19,19 @@
 }
 
 .Yippey--container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   color: $color-white;
-  min-height: 92vh;
+  min-height: calc(92vh - 260px);
   height: 100%;
   padding: $padding-wrapper;
   background: $color-green;
+  p {
+    padding-bottom: $padding-wrapper;
+  }
 }
 
 .Yippey {
