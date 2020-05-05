@@ -27,7 +27,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 100vh;
+  max-height: calc(85% - #{$header-height});
   overflow: auto;
 
   @include bp-large() {
