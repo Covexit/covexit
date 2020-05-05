@@ -14,7 +14,7 @@
   overflow: auto;
   align-items: flex-start;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  scrollbar-width: thin;
 
   > *:not(.ViewSplitter) {
     flex-grow: 1;
@@ -40,8 +40,8 @@
 }
 
 .ViewSplitter {
-  overscroll-behavior: contain;
   overflow: auto;
+  scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
   flex: 1 1 auto;
   position: relative;
