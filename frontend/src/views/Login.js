@@ -28,7 +28,7 @@ const Login = ({history}) => {
     if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
       setVerified(true);
-      history.push(`/stores/${response.data.partners[0]}`);
+      history.push('/');
     } else {
       console.error(response);
     }
