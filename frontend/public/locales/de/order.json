@@ -1,0 +1,15 @@
+{
+  "orders": "Bestellungen",
+  "orderHistory": "Bestellungen geschichte",
+  "viewOrder": "Aussicht bestellungen",
+  "newOrders": "Neue bestellungen",
+  "orderOverview": "Bestellungen Überblick",
+  "viewMaps": "Ansicht auf Karten",
+  "confirm": {
+    "ready": "Zum Versenden bereit",
+    "sent": "Als gesendet markieren"
+  },
+  "finish": {
+    "text": "Tina wird mehr als glücklich sein"
+  }
+}
