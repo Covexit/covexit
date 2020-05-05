@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, matchPath } from "react-router-dom";
 import OrderTable from '../../components/OrderTable/OrderTable'
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Order from './Order';
 
 import "./Orders.scss";
 import Yippey from 'components/Yippey/Yippey';
-import getParams from 'shared/getParams';
 import { useTranslation } from 'react-i18next';
 
 const style = { flexGrow: 0 };
@@ -18,7 +17,7 @@ const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '784
 
 const Orders = (props) => {
   const [t] = useTranslation('order');
-  const params = getParams(props.location.pathname, '/stores/:id/orders/:orderId');
+  const pathMatch = matchPath(props.location.pathname, { path: '/stores/:id/orders/:orderId' });
   const match = props.match;
 
   return (
@@ -29,20 +28,20 @@ const Orders = (props) => {
         </Route>
         {/* an order overview and history */}
         <Route path={`${match.path}/:orderId`}>
-          {params.orderId !== 'history' ?
+          {pathMatch && pathMatch.params.orderId !== 'history' ?
           <div className="Order-overview View--padded">
             <h1 style={style} className="Orders-heading">{t('orderOverview')}</h1>
             <OrderTable {...orderTable} />
           </div>
           : <>{/* order history */}
             <h1 style={style} className="Orders-heading Orders-heading-pl">{t('orders')}</h1>
-            <Order {...props} params={params} />
+            <Order {...props} />
           </>}
         </Route>
         {/* initial view */}
         <Route path={match.path}>
           <h1 style={style} className="Orders-heading Orders-heading-pl">{t('orders')}</h1>
-          <Order {...props} params={params} />
+          <Order {...props} />
         </Route>
       </Switch>
     </ViewWrappers.View>
