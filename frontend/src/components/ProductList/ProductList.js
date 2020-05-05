@@ -9,7 +9,7 @@ const ProductList = ({ products, type, editorView }) => {
   const [segment, setSegment] = useState('');
   const [t] = useTranslation('product-list');
   const categories = products.reduce((result, currentValue) => {
-    (result[currentValue.categories[0]] = result[currentValue.categories[0]] || []).push(
+    (result[currentValue.product_class] = result[currentValue.product_class] || []).push(
       currentValue,
     );
     return result;
@@ -23,8 +23,8 @@ const ProductList = ({ products, type, editorView }) => {
         <img src={magnifierIcon} alt="magnifier"/>
         <select onChange={(e) => setSegment(e.target.value)} value={segment}>
           <option value="">{t('chooseCategory')}</option>
-          {Object.keys(categories).map(category => (
-            <option value={category} key={category}>{category}</option>))
+          {Object.keys(categories).map(product_class => (
+            <option value={product_class} key={product_class}>{product_class}</option>))
           }
         </select>
       </div>
@@ -36,12 +36,12 @@ const ProductList = ({ products, type, editorView }) => {
             products={categories[segment]}
             type={type}
           /> :
-          Object.keys(categories).map(category => {
+          Object.keys(categories).map(product_class => {
             return (
               <ProductGroup
-                key={category}
-                groupName={category}
-                products={categories[category]}
+                key={product_class}
+                groupName={product_class}
+                products={categories[product_class]}
                 type={type}
               />
             )
