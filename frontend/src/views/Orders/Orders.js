@@ -6,6 +6,10 @@ import Order from './Order';
 
 import "./Orders.scss";
 import Yippey from 'components/Yippey/Yippey';
+import getParams from 'shared/getParams';
+import { useTranslation } from 'react-i18next';
+
+const style = { flexGrow: 0 };
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
   {quantity: 1, name: 'Very great bread indeed', price: 3.45},
@@ -13,32 +17,35 @@ const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '784
 ]};
 
 const Orders = (props) => {
+  const [t] = useTranslation('order');
+  const params = getParams(props.location.pathname, '/stores/:id/orders/:orderId');
   const match = props.match;
 
   return (
-    <div className="Orders">
+    <ViewWrappers.View className="Orders" container>
       <Switch>
-        {/* an order overview */}
-        <Route path={`${match.path}/overview`}>
-          <ViewWrappers.View container withPadding>
-            <div>
-              <h1 className="Orders-heading">Order Overview</h1>
-              <OrderTable {...orderTable} />
-            </div>
-          </ViewWrappers.View>
+        <Route path={`${match.path}/confirm`}>
+          <Yippey text={t('finish.text')} container />
         </Route>
-        <Route path="/orders/confirm">
-          <Yippey text="Tina will be more than happy" container />
+        {/* an order overview and history */}
+        <Route path={`${match.path}/:orderId`}>
+          {params.orderId !== 'history' ?
+          <div className="Order-overview View--padded">
+            <h1 style={style} className="Orders-heading">{t('orderOverview')}</h1>
+            <OrderTable {...orderTable} />
+          </div>
+          : <>{/* order history */}
+            <h1 style={style} className="Orders-heading Orders-heading-pl">{t('orders')}</h1>
+            <Order {...props} params={params} />
+          </>}
         </Route>
         {/* initial view */}
-        <Route path={match.path || `${match.path}/history`}>
-          <section>
-            <h1 className="Orders-heading Orders-heading-pl">Orders</h1>
-            <Order {...props} />
-          </section>
+        <Route path={match.path}>
+          <h1 style={style} className="Orders-heading Orders-heading-pl">{t('orders')}</h1>
+          <Order {...props} params={params} />
         </Route>
       </Switch>
-    </div>
+    </ViewWrappers.View>
   );
 };
 

@@ -1,12 +1,19 @@
-@import "../../stylebase/variables";
-@import "../../stylebase/utils";
+@import "stylebase/variables";
+@import "stylebase/utils";
 
 .Orders {
-  .Orders-heading {
-    padding-top: $padding-wrapper;
-    font-weight: 700;
-  }
-  .Orders-heading-pl {
-    padding-left: $padding-wrapper;
-  }
+  flex-direction: column;
+}
+
+.Order-overview {
+  width: 100%;
+}
+
+.Orders-heading {
+  padding-top: $padding-wrapper;
+  font-weight: 700;
+}
+
+.Orders-heading-pl {
+  padding-left: $padding-wrapper;
 }

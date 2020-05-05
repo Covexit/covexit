@@ -1,21 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-import OrderItem from './OrderItem';
-
+import OrderItem from 'components/OrderItem/OrderItem';
 import "./Order.scss";
 import Tab from 'components/Tab/Tab';
+import { useTranslation } from 'react-i18next';
 
-const activeOrderStyle = 'Order-category-item-active';
+const activeOrderStyle = 'Order-category-item--active';
 
 const Order = (props) => {
-  const pathName = props.location.pathname;
-  const matchPath = pathName === '/orders/history'
+  const [t] = useTranslation('order');
+  const params = useParams();
+  const { location: { pathname } } = props;
+  const historyUrl = `/stores/${params.id}/orders/history`;
+  const matchPath = pathname === historyUrl;
+
   return (
     <div className="Order">
       <div className="Order-category">
-        <Link to="/orders" className={`Order-category-item ${!matchPath? activeOrderStyle : ''}`}>New Orders</Link>
-        <Link to="/orders/history" className={`Order-category-item ${matchPath? activeOrderStyle : ''}`}>Order History</Link>
+        <Link to={historyUrl.replace('/history', '')} className={`Order-category-item ${!matchPath? activeOrderStyle : ''}`}>{t('newOrders')}</Link>
+        <Link to={historyUrl} className={`Order-category-item ${matchPath? activeOrderStyle : ''}`}>{t('orderHistory')}</Link>
       </div>
       <div className="OrderItems">
         <OrderItem {...props} />

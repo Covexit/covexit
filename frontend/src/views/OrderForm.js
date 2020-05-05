@@ -59,8 +59,8 @@ const OrderForm = (props) => {
       footer: <Button label={t('overview.button')} type="confirm" to={'/order/3'}/>,
     },
     {
-      body: <Yippey text={t('finish.text')} />,
-      footer: <Button label={t('finish.button')} secondary to={'/map'}/>,
+      body: <Yippey container text={t('finish.text')}
+              footer={<Button label={t('finish.button')} secondary to={'/map'}/>}/>,
     },
   ];
 
