@@ -48,9 +48,13 @@ class BaseProductSerializer(_BaseProductSerializer):
 
 class ProductLinkSerializer(_ProductLinkSerializer):
     price = serializers.SerializerMethodField()
+    product_class = serializers.SerializerMethodField()
 
     class Meta(_ProductLinkSerializer.Meta):
         pass
+
+    def get_product_class(self, obj: Product):
+        return obj.product_class.name
 
     def get_price(self, obj: Product):
         request = self.context['request']
