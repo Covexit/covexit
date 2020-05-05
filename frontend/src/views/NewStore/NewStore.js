@@ -11,6 +11,7 @@ import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
 import './NewStore.scss';
 import PrivateRoute from '../../components/PrivateRoute/PrivateRoute';
+import WaitingForVerify from './WaitingForVerify';
 
 
 const NewStore = (props) => {
@@ -27,6 +28,8 @@ const NewStore = (props) => {
         return isAuthenticated ? <Redirect to={`${match.path}/business`}/> :
           <PersonalForm {...props} />
       }}/>
+      {/* waiting for verification */}
+      <Route path={`${match.path}/verify`} component={WaitingForVerify}/>
       {/* initial view */}
       <Route path={match.path}>
         {isAuthenticated && <Redirect to={`${match.path}/business`}/>}

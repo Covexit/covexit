@@ -16,6 +16,10 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 
+  @include bp-large() {
+    overscroll-behavior: contain;
+  }
+
   > *:not(.ViewSplitter) {
     flex-grow: 1;
   }
@@ -49,6 +53,7 @@
 
   @include bp-large() {
     flex: 1 1 100%;
+    overscroll-behavior: contain;
 
     & + & {
       border-left: 1px solid $color-middle-gray;
