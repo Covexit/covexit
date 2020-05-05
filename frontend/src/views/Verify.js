@@ -3,11 +3,13 @@ import Loader from '../components/Loader/Loader';
 import ViewWrappers from '../components/ViewWrappers/ViewWrappers';
 import { useUserContext } from '../context/UserContext';
 import useApi from '../shared/api';
+import { useTranslation } from 'react-i18next';
 
 function Verify({ match, history }) {
   const [isVerified, setIsVerified] = useState(0);
   const { id, token, type } = match.params;
   const { setVerified } = useUserContext();
+  const [t] = useTranslation('account');
   const { API } = useApi();
 
   useEffect(() => {
@@ -35,8 +37,8 @@ function Verify({ match, history }) {
     <ViewWrappers.View withPadding container>
       <div className="Intro">
         {!isVerified && <Loader/>}
-        {isVerified === 1 && <><h1>Successfully verified</h1><p>Everything good. You will be redirected in five seconds.</p></>}
-        {isVerified === -1 && <h1>Something went wrong.</h1>}
+        {isVerified === 1 && <><h1>{t('verifySuccessHead')}</h1><p>{t('verifySuccessText')}</p></>}
+        {isVerified === -1 && <h1>{t('verifyFailed')}</h1>}
       </div>
     </ViewWrappers.View>
   )
