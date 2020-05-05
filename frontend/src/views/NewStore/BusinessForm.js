@@ -17,7 +17,8 @@ const getItemFromAddress = (wantedType, haystack) => {
 const BusinessForm = ({ location, history }) => {
   const state = !location.state ? 'init' :
     location.state.useGoogle ? 'google' : 'manual';
-  const { token, user, setPartners } = useUserContext();
+  const { API } = useApi();
+  const { user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
 
   const [data, setData] = useState({
