@@ -11,6 +11,8 @@ class PartnerList(_PartnerList):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        if self.request.user.is_superuser:
+            return qs
         if self.request.user and self.request.user.is_active:
             return qs.filter(Q(is_active=True) | Q(is_active=False,
                                                    users__exact=self.request.user.pk))
