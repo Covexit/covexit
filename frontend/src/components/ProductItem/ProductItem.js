@@ -23,6 +23,7 @@ const ProductItem = ({ product }) => {
         <button onClick={() => addProduct(product)}>
           <MdAddCircleOutline size={50} />
         </button>
+
       </div>
     </div>
   );

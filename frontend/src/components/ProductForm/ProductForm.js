@@ -12,7 +12,7 @@ import Button from '../Button/Button';
 const ProductForm = ({ id, editId }) => {
   const { token } = useUserContext();
   const history = useHistory();
-  const [t] = useTranslation('product-cru');
+  const [t] = useTranslation(['product-cru', 'first-product']);
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -43,6 +43,7 @@ const ProductForm = ({ id, editId }) => {
     if (editId){
       const getCurrentProduct = async () => {
         const response = await API.products.get({id: editId});
+        console.log(response.data);
         setProduct({
           title: response.data.title,
           categories: response.data.url,
@@ -50,7 +51,8 @@ const ProductForm = ({ id, editId }) => {
           price: response.data.stockrecords[0].price_excl_tax,
           sku: response.data.stockrecords[0].partner_sku,
           stock: response.data.stockrecords[0].num_in_stock,
-          description: response.data.description
+          description: response.data.description,
+          _photos: response.data.images[0].original
         });
       };
       getCurrentProduct();
@@ -116,8 +118,10 @@ const ProductForm = ({ id, editId }) => {
 
   return (
     <Form onSubmit={onSubmit} body={<>
+      {editId ? <h1> {t('first-product:edit')} </h1> : <h1> {t('first-product:next')} </h1> }
       {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photo')} name="_photos" value={product._photos}
            helpText={t('product-cru:photoHelp')} editView/> : null}
+
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
       <CategorySelect onSelected={onCategorySelect} />
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>

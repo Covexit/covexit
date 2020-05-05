@@ -23,6 +23,7 @@ const Store = ({ match }) => {
   useEffect(() => {
     const getPartner = async () => {
       const response = await API.partners.get(id);
+      console.log(response.data.id);
       setStore(response.data);
     };
     const getProducts = async () => {
@@ -52,8 +53,8 @@ const Store = ({ match }) => {
           <>
             <Button span label={t('account:edit')}/>
             <Button onClick={logoutSuccess} label={t('account:logout')} secondary/>
-            <Button to={`${match.url}/product`} label={t('account:manageProduct')} secondary/>
-            <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary/>
+            <Button to={`${match.url}/products`} label={t('account:manageProduct')} secondary/>
+            <Button to={`${match.url}/products`} label={t('account:addProduct')} secondary/>
           </>
         }
       </section>
@@ -61,7 +62,7 @@ const Store = ({ match }) => {
 
       {ownsStore ? <Tab /> : ''}
 
-      <ProductList products={products} type="add" />
+      <ProductList products={products} storeId={store.id} type="add" />
     </div>
   );
 }
