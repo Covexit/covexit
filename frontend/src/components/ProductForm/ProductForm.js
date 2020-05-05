@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useUserContext } from '../../context/UserContext';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import API from '../../shared/api';
 import slugify from 'slugify';
 import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
+import useApi from '../../shared/api';
 
 const ProductForm = ({ id, editId }) => {
-  const { token } = useUserContext();
   const history = useHistory();
+  const { API } = useApi();
   const [t] = useTranslation('product-cru');
   const [product, setProduct] = useState({
     title: '',
@@ -55,13 +54,12 @@ const ProductForm = ({ id, editId }) => {
       };
       getCurrentProduct();
     };
-  }, [id, editId]);
+  }, [id, editId, API]);
 
 
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const headers = { headers: { 'Authorization': `Token ${token}` }};
     if (product._photos.length) {
       const formData = new FormData();
       Array.from(product._photos).forEach(item => {
@@ -73,8 +71,7 @@ const ProductForm = ({ id, editId }) => {
       // const response =
       await API.products.patch({
         id: editId,
-        data,
-        config: headers,
+        data
       });
       // Image Patch request needs update
       // await API.productImages.patch(
@@ -86,15 +83,11 @@ const ProductForm = ({ id, editId }) => {
 
       //add new Product
     } else {
-      const response = await API.products.post({
-        data,
-        config: headers
-      });
+      const response = await API.products.post({ data });
       if (response.status === 201) {
         // if there are images patch them in later because we need form data here
           await API.productImages.post(
             formData,
-            headers,
             response.data.id
           )
         history.push(`/stores/${id}`);
