@@ -7,13 +7,14 @@ import { useUserContext } from '../context/UserContext';
 import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 import Tab from '../components/Tab/Tab';
-import API from '../shared/api';
 import './Store.scss';
 import { useMediaQuery } from 'react-responsive';
+import useApi from '../shared/api';
 
 const Store = ({ match }) => {
   const [t] = useTranslation(['store-detail', 'account']);
   const { partners, logoutSuccess } = useUserContext();
+  const { API } = useApi();
   const [store, setStore] = useState({});
   const [products, setProducts] = useState([]);
   const { id } = match.params;
@@ -32,7 +33,7 @@ const Store = ({ match }) => {
 
     getPartner();
     getProducts();
-  }, [ id ]);
+  }, [ id, API ]);
   return (
     <div className="Store">
       <section className="Store-showcase">

@@ -6,13 +6,13 @@ import marker from '../../assets/marker.svg'
 import Button from '../Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useLocationContext } from '../../context/useCurrentLocation';
-import API from '../../shared/api';
+import useApi from '../../shared/api';
 
 
 const Map = () => {
   const [t] = useTranslation();
   const [locations, setLocations] = useState([]);
-
+  const { API } = useApi();
   const [selectedLocation, setSelect] = useState({
     title: "",
     description: "",
@@ -29,7 +29,6 @@ const Map = () => {
     setCurrentLocation();
     const getLocations = async () => {
       const response = await API.partners.get();
-
       setLocations(response.data);
     };
     getLocations();

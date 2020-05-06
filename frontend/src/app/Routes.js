@@ -2,7 +2,6 @@ import { Route, Switch } from "react-router-dom"
 import React from "react"
 import NoMatch from "views/NoMatch"
 import Home from "views/Home"
-import PhotoSelect from "views/Onboarding/PhotoSelect"
 import OrderForm from "../views/OrderForm";
 import Onboarding from "../views/Onboarding/Onboarding";
 import NewStore from "../views/NewStore/NewStore";
@@ -12,6 +11,7 @@ import Verify from '../views/Verify';
 import Login from '../views/Login'
 import ProductCreateEdit from '../views/ProductCreateEdit';
 import createTextPage from '../views/TextPage';
+import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 
 function Routes() {
   return (
@@ -21,7 +21,6 @@ function Routes() {
       <Route path="/stores/:id/product/:editId?" component={ProductCreateEdit} />
       <Route path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />
-      <Route path="/company/photo-select" component={PhotoSelect} />
       <Route path="/order/:step" component={OrderForm} />
       <Route path="/verify/:id/:token/:type" component={Verify} />
       <Route path="/login" component={Login} />
