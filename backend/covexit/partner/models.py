@@ -14,6 +14,7 @@ class Partner(AbstractPartner):
 
     created = models.DateTimeField(_("Created"), auto_now_add=True)
     updated = models.DateTimeField(_("Last updated"), auto_now=True)
+    is_active = models.BooleanField(_("Is active"), default=False)
     image = models.CharField(max_length=50, blank=True, null=True, choices=[
         ('business_books.jpg', _('books')),
         ('business_clothes.jpg', _('clothes')),
