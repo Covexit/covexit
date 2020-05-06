@@ -1,7 +1,7 @@
 {
   "address": {
     "head": "Lieferadressdaten",
-    "text": "Vielen Dank für deine Unterstützung! Du bist eine große Hilfe im Kampf gegen diese Krise. Folge den untenstehenden Schritten, um deine Bestellung abzuschließen.",
+    "text": "Vielen Dank für Deine Unterstützung! Du bist eine große Hilfe im Kampf gegen diese Krise. Folge den untenstehenden Schritten, um Deine Bestellung abzuschließen.",
     "button": "Weiter",
     "name": "Vorname",
     "surname": "Nachname",
@@ -17,11 +17,11 @@
   },
   "overview": {
     "head": "Bestellübersicht",
-    "text": "Bitte überprüfe deine Bestellung noch einmal.",
+    "text": "Bitte überprüfe Deine Bestellung noch einmal.",
     "button": "Jetzt bezahlen und Kauf abschließen"
   },
   "finish": {
-    "text": "Vielen lieben Dank für deine Bestellung! Darüber wird sich der Einzelhändler um die Ecke sehr freuen!",
+    "text": "Vielen lieben Dank für Deine Bestellung! Darüber wird sich der Einzelhändler um die Ecke sehr freuen!",
     "button": "Weiter bummeln"
   }
 }
