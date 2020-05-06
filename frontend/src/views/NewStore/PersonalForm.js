@@ -44,33 +44,33 @@ const PersonalForm = ({ history }) => {
 
   return (
     <ViewWrappers.View container withPadding>
-    <Form onSubmit={submitHandler}
-          head={<>
-            <h1>{t('new-store-owner:head')}</h1>
-            <p>{t('new-store-owner:text')}</p>
-          </>}
-          body={<>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:name')} name="first_name" value={data.first_name}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:surname')} name="last_name" value={data.last_name}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:address')} name="address" value={data.address}/>
-            <Fields.FieldGroup>
-              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
-              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
-            </Fields.FieldGroup>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
-            <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
-            <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
-            <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
-                                  placeholder={t('account:passwordRepeat')} ref={passwordRepeat}/>
-            <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
-                             placeholder={t('account:tos')}/>
-            <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                             placeholder={t('account:privacy')}/>
-          </>}
-          stepperProps={{count: 3, activeIndex:1}}
-          footer={<Button label={t('Next')}/>}
+      <Form onSubmit={submitHandler}
+            head={<>
+              <h1>{t('new-store-owner:head')}</h1>
+              <p>{t('new-store-owner:text')}</p>
+            </>}
+            body={<>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:name')} name="first_name" value={data.first_name}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:surname')} name="last_name" value={data.last_name}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:address')} name="address" value={data.address}/>
+              <Fields.FieldGroup>
+                <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
+                <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
+              </Fields.FieldGroup>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
+              <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
+              <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
+                                    placeholder={t('account:passwordRepeat')} ref={passwordRepeat}/>
+              <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
+                               placeholder={t('account:tos')}/>
+              <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
+                               placeholder={t('account:privacy')}/>
+            </>}
+            stepperProps={{ count: 3, activeIndex: 1 }}
+            footer={<Button label={t('Next')}/>}
       />
-      </ViewWrappers.View>
+    </ViewWrappers.View>
   );
 }
 

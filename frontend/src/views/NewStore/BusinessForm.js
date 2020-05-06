@@ -103,9 +103,7 @@ const BusinessForm = ({ location, history }) => {
     }
 
   return <ViewWrappers.View container withPadding>
-    <Form head={formProps.head} body={formProps.body}
-          onSubmit={submitHandler} footer={formProps.footer}
-          stepperProps={formProps.stepperProps}/>
+    <Form {...formProps} onSubmit={submitHandler}/>
   </ViewWrappers.View>
 };
 
