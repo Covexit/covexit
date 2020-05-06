@@ -6,11 +6,11 @@ import Form from "components/Form/Form";
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import { useUserContext } from '../context/UserContext';
 import { useTranslation } from 'react-i18next';
-import API from '../shared/api';
+import useApi from '../shared/api';
 
 const Login = ({history}) => {
-
-  const { setUser, setVerified } = useUserContext();
+  const { API } = useApi();
+  const { setUser } = useUserContext();
   const [t] = useTranslation('account');
 
   const [user, updateUser] = useState({
@@ -25,10 +25,9 @@ const Login = ({history}) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await API.authToken.post({username: user.email, password: user.password});
-    if(response.data.token){
+    if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
-      setVerified(true);
-      history.push(`/stores/${response.data.partners[0]}`);
+      history.push('/');
     } else {
       console.error(response);
     }

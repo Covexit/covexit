@@ -1,0 +1,16 @@
+{
+  "inclVat": "inkl. MwSt.",
+  "viewOrder": "Bestellungen öffnen",
+  "viewMaps": "Auf Karte ansehen",
+  "confirm": {
+    "ready": "Bestellung ist versandfertig",
+    "sent": "Bestellung wurde versandt"
+  },
+  "newOrders": "Neue Bestellungen",
+  "orderHistory": "Bestellhistorie",
+  "finish": {
+    "text": "Tina wird mehr als glücklich sein!"
+  },
+  "orderOverview": "Bestellübersicht",
+  "orders": "Bestellungen"
+}

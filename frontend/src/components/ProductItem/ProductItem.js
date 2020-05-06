@@ -8,7 +8,9 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className="ProductItem">
-      {!!images.length && <img className="ProductItem-img" src={images[0].original} alt="" />}
+      <div className="ProductItem-img">
+      {!!images.length && <img src={images[0].original} alt="" />}
+      </div>
       <div className="ProductItem-content">
         <div className="ProductItem-review">
           <h4>{title}</h4>

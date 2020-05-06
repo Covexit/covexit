@@ -5,8 +5,9 @@ import Form from '../../components/Form/Form';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import API from '../../shared/api';
 import axios from 'axios'
+import useApi from '../../shared/api';
+import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 
 const getItemFromAddress = (wantedType, haystack) => {
   const needle = haystack.find(item => item.types.some(type => type === wantedType))
@@ -14,9 +15,8 @@ const getItemFromAddress = (wantedType, haystack) => {
 };
 
 const BusinessForm = ({ location, history }) => {
-  const state = !location.state ? 'init' :
-    location.state.useGoogle ? 'google' : 'manual';
-  const { token, user, setPartners } = useUserContext();
+  const { API } = useApi();
+  const { user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
 
   const [data, setData] = useState({
@@ -30,7 +30,7 @@ const BusinessForm = ({ location, history }) => {
     postcode: '',
     description: '',
     vat_no: '',
-    mapsPlaceObject: {},
+    mapsPlaceObject: false,
   });
 
   const changeHandler = (event) => {
@@ -65,7 +65,7 @@ const BusinessForm = ({ location, history }) => {
 
     const response = await API.partners.post({
       ...data, address: { ...data, latitude, longitude }, users: [user.id]
-    },{headers: {'Authorization': `Token ${token}`}});
+    });
     if (response.status === 201) {
       setPartners(response.data.id);
       history.push(`/stores/${response.data.id}/onboarding`);
@@ -86,37 +86,25 @@ const BusinessForm = ({ location, history }) => {
     <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('website')} optional
                       name="website" value={data.website}/>
-    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} optional maxLength={300}
+    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} maxLength={300}
                      name="description" value={data.description}/>
   </>;
 
   const formProps = {
-    head: {
-      init: <><h1>{t('intro.head')}</h1><p>{t('intro.text')}</p></>,
-      google: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
+    head: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
           <p>{t('googleConfirm.text')}</p></>
         : // or
         <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
-      manual: <><h1>{t('manually.head')}</h1><p>{t('manually.text')}</p></>,
-    },
-    body: {
-      google: data.mapsPlaceObject ? fields :
+    body: data.mapsPlaceObject ? fields :
         <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-      manual: fields,
-    },
-    footer: {
-      init: <div className="Btn-group">
-        <Button label={t('intro.button_google')} onClick={() => changeHandler(false)}
-                to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
-        <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
-      </div>,
-      manual: <Button label={t('manually.continue')} />,
-      google: <Button label={t('googleConfirm.continue')} />,
-    },
-  };
+    footer: data.mapsPlaceObject ? <Button label={t('googleConfirm.continue')} />
+        : <Button onClick={() => setData({mapsPlaceObject: true})} label={t('intro.button_manually')} secondary />,
+    stepperProps: data.mapsPlaceObject ? {count: 3, activeIndex:3} : {count: 3, activeIndex:2}
+    }
 
-  return <Form head={formProps.head[state]} body={formProps.body[state]}
-               onSubmit={submitHandler} footer={formProps.footer[state]}/>;
+  return <ViewWrappers.View container withPadding>
+    <Form {...formProps} onSubmit={submitHandler}/>
+  </ViewWrappers.View>
 };
 
 export default BusinessForm;

@@ -71,9 +71,7 @@ class RegisterView(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response({'user': serializer.data,
-                         'token': serializer.instance.auth_token.key},
-                        status=status.HTTP_201_CREATED, headers=headers)
+        return Response(status=status.HTTP_201_CREATED, headers=headers)
 
 
 class AddToMailingListView(CreateAPIView):
@@ -111,5 +109,10 @@ class VerifyView(APIView):
             instance.is_active = True
             instance.verified = True
             instance.save()
-            return Response("Successfully verified")
+            if request.resolver_match.kwargs['verify_type'] == 'signup':
+                return Response({
+                    'token': instance.auth_token.key,
+                    'user': {'id': instance.pk, 'email': instance.email}
+                }, status=status.HTTP_200_OK)
+            return Response('verified', status=status.HTTP_200_OK)
         return Response(ser.errors, status=status.HTTP_401_UNAUTHORIZED)

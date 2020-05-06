@@ -1,0 +1,16 @@
+{
+  "inclVat": "incl. VAT",
+  "viewOrder": "View order",
+  "viewMaps": "View on Maps",
+  "confirm": {
+    "ready": "Ready for shipping",
+    "sent": "Mark as sent"
+  },
+  "newOrders": "New orders",
+  "orderHistory": "Order history",
+  "finish": {
+    "text": "Tina will be more than happy!"
+  },
+  "orderOverview": "Order overview",
+  "orders": "Orders"
+}
