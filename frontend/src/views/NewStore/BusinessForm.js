@@ -4,7 +4,6 @@ import Button from '../../components/Button/Button';
 import Form from '../../components/Form/Form';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios'
 import useApi from '../../shared/api';
@@ -33,10 +32,6 @@ const BusinessForm = ({ location, history }) => {
     vat_no: '',
     mapsPlaceObject: false,
   });
-
-  const [step, setStep] = useState({
-    value: 0
-  })
 
   const changeHandler = (event) => {
     let _data = {...data, mapsPlaceObject: false};
@@ -102,7 +97,8 @@ const BusinessForm = ({ location, history }) => {
         <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
     body: data.mapsPlaceObject ? fields :
         <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-    footer: <Button label={t('googleConfirm.continue')} />,
+    footer: data.mapsPlaceObject ? <Button label={t('googleConfirm.continue')} />
+        : <Button onClick={() => setData({mapsPlaceObject: true})} label={t('intro.button_manually')} />,
     stepperProps: data.mapsPlaceObject ? {count: 3, activeIndex:3} : {count: 3, activeIndex:2}
     }
 
@@ -113,4 +109,4 @@ const BusinessForm = ({ location, history }) => {
   </ViewWrappers.View>
 };
 
-export default withRouter(BusinessForm);
+export default BusinessForm;

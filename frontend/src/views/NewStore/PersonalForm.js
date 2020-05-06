@@ -5,13 +5,11 @@ import Button from '../../components/Button/Button';
 import { useTranslation } from 'react-i18next';
 import useApi from '../../shared/api';
 import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
-import { useUserContext } from '../../context/UserContext';
 
 
 const PersonalForm = ({ history }) => {
   const passwordRepeat = useRef();
   const { API } = useApi();
-  const { setUser } = useUserContext();
   const [t] = useTranslation(['new-store-owner', 'account']);
   const [data, setData] = useState({
     first_name: '',
@@ -41,7 +39,6 @@ const PersonalForm = ({ history }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await API.register.post({ ...data, username: data.email });
-    setUser({id: response.data.user.id, email: response.data.user.username}, response.data.token)
     history.push('/stores/new/verify');
   };
 
