@@ -17,9 +17,9 @@ function Routes() {
   return (
     <Switch>
       <Route path="/stores/new" component={NewStore} />
-      <Route path="/stores/:id/orders" component={Order} />
-      <Route path="/stores/:id/product/:editId?" component={ProductCreateEdit} />
-      <Route path="/stores/:id/onboarding/" component={Onboarding} />
+      <PrivateRoute path="/stores/:id/orders" component={Order} />
+      <PrivateRoute path="/stores/:id/product/:editId?" component={ProductCreateEdit} />
+      <PrivateRoute path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />
       <Route path="/order/:step" component={OrderForm} />
       <Route path="/verify/:id/:token/:type" component={Verify} />
