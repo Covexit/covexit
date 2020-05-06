@@ -10,7 +10,7 @@ import BusinessForm from './BusinessForm';
 import WaitingForVerify from './WaitingForVerify';
 import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
-// import { signInWithGoogle } from "../../shared/firebase.utils";
+import { GoogleLogin } from 'react-google-login';
 
 import './NewStore.scss';
 
@@ -20,14 +20,8 @@ const NewStore = (props) => {
   const match = props.match;
   const { isVerified, isAuthenticated } = useUserContext();
 
-  const onGoogleAuth = (e) => {
-    e.preventDefault();
-    // signInWithGoogle()
-    // .then((result) => {
-    //   const { profile: person } = result.additionalUserInfo;
-    //   props.history.push(`${match.path}/owner`, { useGoogle: true, person });
-    // })
-    // .catch((err) => console.log('google auth err', err));
+  const onGoogleAuthResponse = (response) => {
+    props.history.push(`${match.path}/owner`, { useGoogle: true, person: response.profileObj })
   }
 
   return (
@@ -50,7 +44,13 @@ const NewStore = (props) => {
               </>}
               footer={<>
                 <div className="Btn-group">
-                  <Button onClick={onGoogleAuth} label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
+                  <GoogleLogin
+                    clientId="279385128176-mbvi6s6ugouh059f7r58oms3ij3ufqbb.apps.googleusercontent.com"
+                    render={renderProps => (<Button onClick={renderProps.onClick} label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>)}
+                    onSuccess={onGoogleAuthResponse}
+                    onFailure={(err) => console.log(`google auth. error ${err}`)}
+                    cookiePolicy={'single_host_origin'}
+                  />
                   <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
                 </div>
               </>}
