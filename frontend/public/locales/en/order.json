@@ -1,0 +1,16 @@
+{
+  "orders": "Orders",
+  "orderHistory": "Order history",
+  "inclVat": "inkl. MwSt",
+  "viewOrder": "View order",
+  "newOrders": "New orders",
+  "orderOverview": "Order overview",
+  "viewMaps": "View on Maps",
+  "confirm": {
+    "ready": "Ready for shipping",
+    "sent": "Mark as sent"
+  },
+  "finish": {
+    "text": "Tina wird mehr als glücklich sein"
+  }
+}
