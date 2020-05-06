@@ -7,18 +7,19 @@ import { useTranslation } from 'react-i18next';
 
 function Verify({ match, history }) {
   const [isVerified, setIsVerified] = useState(0);
-  const { id, token, type } = match.params;
-  const { setVerified } = useUserContext();
+  const { id, verificationKey, type } = match.params;
+  const { setUser } = useUserContext();
   const [t] = useTranslation('account');
   const { API } = useApi();
 
   useEffect(() => {
     (async () => {
-      if (id && token) {
+      if (id && verificationKey) {
         try {
-          await API.verify.post({ user_id: id, verification_key: token}, type);
+          const response = await API.verify.post({ user_id: id, verification_key: verificationKey}, type);
           setIsVerified(1);
-          setVerified(true);
+          if (response.data.token)
+            setUser({id: response.data.user.id, email: response.data.user.username}, response.data.token)
         }
         catch (e) {
           console.error(e);
