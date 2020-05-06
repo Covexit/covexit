@@ -2,12 +2,20 @@
   "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
   "login": "Anmelden",
   "logout": "Abmelden",
+  "authenticationNeeded": "Authentifizierung erforderlich",
+  "authenticationNeededText": "Du musst angemeldet sein, um auf diese Seite zugreifen zu können. Wenn Du ein Konto hast, kannst Du Dich <1>hier</1> anmelden. Andernfalls kannst Du Dich als Ladenbesitzer <3>hier</3> registrieren .",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
   "passwordMatchError": "Die Passwörter stimmen nicht überein.",
   "passwordRepeat": "Passwort wiederholen",
   "tos": "Ich habe die AGB gelesen und akzeptiert.",
+  "createAccount": "Account erstellen und weiter",
+  "verifyHead": "Verifizieren",
+  "verifyText": "Wir haben Dir eine E-Mail mit einem Verifizierungslink gesendet. Bitte klicke auf diesen Link, um deinen Account zu verifizieren und fortfahren zu können.",
   "edit": "Account bearbeiten",
   "manageProduct": "Produkte bearbeiten",
-  "addProduct": "Produkt hinzufügen"
+  "addProduct": "Produkt hinzufügen",
+  "verifySuccessHead": "Verifizierung war erfolgreich!",
+  "verifySuccessText": "Du hast Deinen Account erfolgreich verifiziert. Bitte klicke auf den unteren Button, um fortzufahren.",
+  "verifyFailed": "Verifizierung fehlgeschlagen"
 }

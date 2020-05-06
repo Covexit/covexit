@@ -1,7 +1,7 @@
 {
   "nameRow": "Name",
-  "addressRow": "Address",
   "productsRow": "Products",
+  "addressRow": "Address",
   "totalRow": "Total",
   "VAT": "incl. 19% VAT."
 }

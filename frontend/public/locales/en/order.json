@@ -1,16 +1,16 @@
 {
-  "orders": "Orders",
-  "orderHistory": "Order history",
-  "inclVat": "inkl. MwSt",
+  "inclVat": "incl. VAT",
   "viewOrder": "View order",
-  "newOrders": "New orders",
-  "orderOverview": "Order overview",
   "viewMaps": "View on Maps",
   "confirm": {
     "ready": "Ready for shipping",
     "sent": "Mark as sent"
   },
+  "newOrders": "New orders",
+  "orderHistory": "Order history",
   "finish": {
-    "text": "Tina wird mehr als glücklich sein"
-  }
+    "text": "Tina will be more than happy!"
+  },
+  "orderOverview": "Order overview",
+  "orders": "Orders"
 }
