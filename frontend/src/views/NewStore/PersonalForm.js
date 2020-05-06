@@ -38,11 +38,12 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.register.post({ ...data, username: data.email });
+    await API.register.post({ ...data, username: data.email });
     history.push('/stores/new/verify');
   };
 
   return (
+    <ViewWrappers.View container withPadding>
     <Form onSubmit={submitHandler}
           head={<>
             <h1>{t('new-store-owner:head')}</h1>
@@ -68,8 +69,8 @@ const PersonalForm = ({ history }) => {
           </>}
           stepperProps={{count: 3, activeIndex:1}}
           footer={<Button label={t('Next')}/>}
-
-    />
+      />
+      </ViewWrappers.View>
   );
 }
 
