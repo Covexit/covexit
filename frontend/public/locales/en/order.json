@@ -1,5 +1,5 @@
 {
-  "inclVat": "inkl. MwSt",
+  "inclVat": "incl. VAT",
   "viewOrder": "View order",
   "viewMaps": "View on Maps",
   "confirm": {
@@ -9,7 +9,7 @@
   "newOrders": "New orders",
   "orderHistory": "Order history",
   "finish": {
-    "text": "Tina wird mehr als glücklich sein"
+    "text": "Tina will be more than happy!"
   },
   "orderOverview": "Order overview",
   "orders": "Orders"
