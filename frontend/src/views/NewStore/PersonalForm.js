@@ -68,6 +68,7 @@ const PersonalForm = ({ history }) => {
                              placeholder={t('account:privacy')}/>
           </>}
           footer={<Button label={t('Next')}/>}
+          stepperProps={{count: 4, activeIndex:1}}
     />
   );
 }

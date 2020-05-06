@@ -23,14 +23,14 @@ const NewStore = (props) => {
       {!isVerified && isAuthenticated ? <WaitingForVerify /> :
         <Switch>
           {/* create a business */}
-          <Route path={`${match.path}/business`} component={BusinessForm} />
+          <Route path={`${match.path}/business/:step`} component={BusinessForm} />
           {/* create an owner */}
           <Route path={`${match.path}/owner`} render={(props) => {
-            return isVerified ? <Redirect to={`${match.path}/business`} /> : <PersonalForm {...props} />
+            return isVerified ? <Redirect to={`${match.path}/business/0`} /> : <PersonalForm {...props} />
           }}/>
           {/* initial view */}
           <Route path={match.path}>
-            {isVerified && <Redirect to={`${match.path}/business`} />}
+            {isVerified && <Redirect to={`${match.path}/business/0`} />}
             <Form
               head={<>
                 <h1>{t('head')}</h1>
@@ -38,8 +38,8 @@ const NewStore = (props) => {
               </>}
               footer={<>
                 <div className="Btn-group">
-                  <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
-                  <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
+                  <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner/1`, state: { useGoogle: true } }}/>
+                  <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner/1`, state: { useGoogle: false } }} secondary/>
                 </div>
               </>}
             />
