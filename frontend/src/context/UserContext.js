@@ -6,7 +6,6 @@ import useLocalStorage from '../shared/useLocalStorage';
 export const initialState = {
   token: '',
   isAuthenticated: null,
-  isVerified: false,
   enlistHide: false,
   partners: [],
   user: null,
@@ -26,9 +25,6 @@ const reducer = (state, action) => {
 
     case 'SET_PARTNERS':
       return {...state, partners: action.data};
-
-    case 'SET_VERIFIED':
-      return {...state, ...action.data, isVerified: true, isAuthenticated: true};
 
     case 'LOGOUT_SUCCESSFUL':
       return {
@@ -59,7 +55,6 @@ const useUser = () => {
     token,
     partners,
     isAuthenticated,
-    isVerified,
     enlistHide
   } = state;
 
@@ -68,13 +63,6 @@ const useUser = () => {
       type: 'SET_USER',
       payload: { user },
       data: { token, partners }
-    })
-  };
-
-  const setVerified = (isVerified) => {
-    dispatch({
-      type: 'SET_VERIFIED',
-      data: { isVerified }
     })
   };
 
@@ -103,14 +91,12 @@ const useUser = () => {
     user,
     token,
     isAuthenticated,
-    isVerified,
     enlistHide,
     partners,
     // methods
     setUser,
     setPartners,
     logoutSuccess,
-    setVerified,
     setEnlistHide
   }
 };

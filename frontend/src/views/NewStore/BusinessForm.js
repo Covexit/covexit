@@ -15,8 +15,6 @@ const getItemFromAddress = (wantedType, haystack) => {
 };
 
 const BusinessForm = ({ location, history }) => {
-  const state = !location.state ? 'init' :
-    location.state.useGoogle ? 'google' : 'manual';
   const { API } = useApi();
   const { user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
@@ -32,7 +30,7 @@ const BusinessForm = ({ location, history }) => {
     postcode: '',
     description: '',
     vat_no: '',
-    mapsPlaceObject: {},
+    mapsPlaceObject: false,
   });
 
   const changeHandler = (event) => {
@@ -88,39 +86,25 @@ const BusinessForm = ({ location, history }) => {
     <Fields.TextInput onChange={changeHandler} placeholder={t('phoneNumber')} name="phone" value={data.phone}/>
     <Fields.TextInput onChange={changeHandler} placeholder={t('website')} optional
                       name="website" value={data.website}/>
-    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} optional maxLength={300}
+    <Fields.TextArea onChange={changeHandler} placeholder={t('description')} maxLength={300}
                      name="description" value={data.description}/>
   </>;
 
   const formProps = {
-    head: {
-      init: <><h1>{t('intro.head')}</h1><p>{t('intro.text')}</p></>,
-      google: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
+    head: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
           <p>{t('googleConfirm.text')}</p></>
         : // or
         <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
-      manual: <><h1>{t('manually.head')}</h1><p>{t('manually.text')}</p></>,
-    },
-    body: {
-      google: data.mapsPlaceObject ? fields :
+    body: data.mapsPlaceObject ? fields :
         <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-      manual: fields,
-    },
-    footer: {
-      init: <div className="Btn-group">
-        <Button label={t('intro.button_google')} onClick={() => changeHandler(false)}
-                to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
-        <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business', state: { useGoogle: false } }} secondary/>
-      </div>,
-      manual: <Button label={t('manually.continue')} />,
-      google: <Button label={t('googleConfirm.continue')} />,
-    },
-  };
+    footer: data.mapsPlaceObject ? <Button label={t('googleConfirm.continue')} />
+        : <Button onClick={() => setData({mapsPlaceObject: true})} label={t('intro.button_manually')} />,
+    stepperProps: data.mapsPlaceObject ? {count: 3, activeIndex:3} : {count: 3, activeIndex:2}
+    }
 
   return <ViewWrappers.View container withPadding>
-    <Form head={formProps.head[state]} body={formProps.body[state]}
-          onSubmit={submitHandler} footer={formProps.footer[state]}/>
-  </ViewWrappers.View>;
+    <Form {...formProps} onSubmit={submitHandler}/>
+  </ViewWrappers.View>
 };
 
 export default BusinessForm;

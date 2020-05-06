@@ -107,7 +107,8 @@ class PlacesSuggest extends React.Component {
         <Fields.TextInput type="text" value={this.state.value} placeholder="Your business name as on Google"
                 onChange={this.onChange} onKeyDown={(e) => this.onKeyDown(e)}
                 onFocus={() => this.setState({ hasFocus: true })}
-                onBlur={() => this.setState({ hasFocus: false })} />
+                onBlur={() => this.setState({ hasFocus: false })}
+                optional />
         <div className={'PlacesSuggest-wrapper ' + (shouldShowSuggestions ? 'PlacesSuggest-wrapper--active' : '')}>
           {shouldShowSuggestions ? this.state.suggestions.map(this.renderSuggestion.bind(this)) : ''}
         </div>
