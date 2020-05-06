@@ -10,7 +10,7 @@ import BusinessForm from './BusinessForm';
 import WaitingForVerify from './WaitingForVerify';
 import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
-import { signInWithGoogle } from "../../shared/firebase.utils";
+// import { signInWithGoogle } from "../../shared/firebase.utils";
 
 import './NewStore.scss';
 
@@ -22,12 +22,12 @@ const NewStore = (props) => {
 
   const onGoogleAuth = (e) => {
     e.preventDefault();
-    signInWithGoogle()
-    .then((result) => {
-      const { profile: person } = result.additionalUserInfo;
-      props.history.push(`${match.path}/owner`, { useGoogle: true, person });
-    })
-    .catch((err) => console.log('google auth err', err));
+    // signInWithGoogle()
+    // .then((result) => {
+    //   const { profile: person } = result.additionalUserInfo;
+    //   props.history.push(`${match.path}/owner`, { useGoogle: true, person });
+    // })
+    // .catch((err) => console.log('google auth err', err));
   }
 
   return (
