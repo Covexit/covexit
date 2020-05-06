@@ -68,7 +68,7 @@ const PersonalForm = ({ history }) => {
                                placeholder={t('account:privacy')}/>
             </>}
             stepperProps={{ count: 3, activeIndex: 1 }}
-            footer={<Button label={t('Next')}/>}
+            footer={<Button label={t('account:createAccount')}/>}
       />
     </ViewWrappers.View>
   );
