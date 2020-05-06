@@ -18,7 +18,7 @@
   @include bp-large() {
     border-bottom-color: $color-middle-gray;
     font-size: 20px;
-    padding: 5px 40px;
+    padding: 0 40px;
     height: $header-height--desktop;
   }
 
@@ -36,5 +36,29 @@
   @include bp-large() {
     margin: 0;
     width: 120px;
+  }
+}
+
+
+$header-partner-offset: 15px;
+.Header-partners {
+  display: flex;
+  align-items: center;
+  margin-left: $header-partner-offset;
+  height: 100%;
+  padding-left: $header-partner-offset;
+  border-left: 1px solid $color-dark-gray;
+  font-size: 14px;
+}
+
+.Header-partners-img {
+  margin-right: $header-partner-offset;
+
+  img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid $color-primary;
   }
 }
