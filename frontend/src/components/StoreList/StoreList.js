@@ -27,7 +27,9 @@ const StoreList = () => {
       <div className="StoreList-stores">
         {stores.map(store => (
           <Link key={store.id} to={`/stores/${store.id}`} className="StoreList-store">
-            <img src={`/photos/${store.image}`} alt="" className="StoreList-store-img"/>
+            <div className="StoreList-store-img">
+            <img src={`/photos/${store.image}`} alt="" />
+            </div>
             <div className="StoreList-store-body">
               <h4>{store.name}</h4>
               <p>{store.description}</p>
