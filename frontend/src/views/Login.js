@@ -10,7 +10,7 @@ import useApi from '../shared/api';
 
 const Login = ({history}) => {
   const { API } = useApi();
-  const { setUser, setVerified } = useUserContext();
+  const { setUser } = useUserContext();
   const [t] = useTranslation('account');
 
   const [user, updateUser] = useState({
