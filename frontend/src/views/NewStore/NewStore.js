@@ -7,46 +7,48 @@ import Button from "components/Button/Button";
 import Form from "components/Form/Form";
 import PersonalForm from './PersonalForm';
 import BusinessForm from './BusinessForm';
-import WaitingForVerify from './WaitingForVerify';
 import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
 import './NewStore.scss';
+import PrivateRoute from '../../components/PrivateRoute/PrivateRoute';
+import WaitingForVerify from './WaitingForVerify';
 
 
 const NewStore = (props) => {
   const [t] = useTranslation('new-store');
   const match = props.match;
-  const { isVerified, isAuthenticated } = useUserContext();
+  const { isAuthenticated } = useUserContext();
 
   return (
-    <ViewWrappers.View container withPadding>
-      {!isVerified && isAuthenticated ? <WaitingForVerify /> :
-        <Switch>
-          {/* create a business */}
-          <Route path={`${match.path}/business/:step`} component={BusinessForm} />
-          {/* create an owner */}
-          <Route path={`${match.path}/owner`} render={(props) => {
-            return isVerified ? <Redirect to={`${match.path}/business/0`} /> : <PersonalForm {...props} />
-          }}/>
-          {/* initial view */}
-          <Route path={match.path}>
-            {isVerified && <Redirect to={`${match.path}/business/0`} />}
-            <Form
-              head={<>
-                <h1>{t('head')}</h1>
-                <p>{t('text')}</p>
-              </>}
-              footer={<>
-                <div className="Btn-group">
-                  <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner/1`, state: { useGoogle: true } }}/>
-                  <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner/1`, state: { useGoogle: false } }} secondary/>
-                </div>
-              </>}
-            />
-          </Route>
-        </Switch>
-      }
-    </ViewWrappers.View>
+    <Switch>
+      {/* create a business */}
+      <PrivateRoute path={`${match.path}/business`} component={BusinessForm}/>
+      {/* create an owner */}
+      <Route path={`${match.path}/owner`} render={(props) => {
+        return isAuthenticated ? <Redirect to={`${match.path}/business`}/> :
+          <PersonalForm {...props} />
+      }}/>
+      {/* waiting for verification */}
+      <Route path={`${match.path}/verify`} component={WaitingForVerify}/>
+      {/* initial view */}
+      <Route path={match.path}>
+        {isAuthenticated && <Redirect to={`${match.path}/business`}/>}
+        <ViewWrappers.View container withPadding>
+          <Form
+            head={<>
+              <h1>{t('head')}</h1>
+              <p>{t('text')}</p>
+            </>}
+            footer={<>
+              <div className="Btn-group">
+                <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
+                <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
+              </div>
+            </>}
+          />
+        </ViewWrappers.View>
+      </Route>
+    </Switch>
   );
 };
 

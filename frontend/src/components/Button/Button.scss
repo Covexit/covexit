@@ -26,6 +26,16 @@
     padding: 18px 25px;
   }
 
+  &--bordered {
+    background: transparent;
+    border: 1px solid $color-green;
+    color: $color-green;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
   &--secondary {
     color: $color-dark-gray;
     background: $color-gray;

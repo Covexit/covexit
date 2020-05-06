@@ -5,13 +5,12 @@ import { bakeryImages } from 'shared/businessImages'
 import './PhotoSelect.scss'
 import ViewWrappers from 'components/ViewWrappers/ViewWrappers';
 import Button from 'components/Button/Button';
-import API from '../../shared/api';
-import { useUserContext } from '../../context/UserContext';
+import useApi from '../../shared/api';
 
 
 const PhotoSelect = ({ match, history }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(false);
-  const { token } = useUserContext();
+  const { API } = useApi();
   const googleBusiness = false;
 
   const getImages = () => {
@@ -35,7 +34,6 @@ const PhotoSelect = ({ match, history }) => {
     const response = await API.partners.patch(
       match.params.id,
       { image: selectedPhoto },
-      { headers: {'Authorization': `Token ${token}`}}
       );
     if (response.status === 200) {
       history.push(`/stores/${match.params.id}/onboarding/product`);

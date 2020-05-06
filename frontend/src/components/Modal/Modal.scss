@@ -27,7 +27,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  max-height: calc(85% - #{$header-height});
+  overflow: auto;
 
   @include bp-large() {
     max-width: 600px;

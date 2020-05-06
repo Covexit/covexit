@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './CategorySelect.scss';
-import API from '../../shared/api';
 import Button from '../Button/Button';
+import useApi from '../../shared/api';
 
 
 function CategorySelect({ onSelected }) {
   const [categories, setCategories] = useState([]);
   const [breadcrumbs, setBreadcrumb] = useState([]);
+  const { API } = useApi();
+
 
   const updateCategories = (item, reset) => {
     const _breadcrumbs = [...breadcrumbs.slice(
@@ -28,7 +30,7 @@ function CategorySelect({ onSelected }) {
 
     const item = breadcrumbs[breadcrumbs.length - 1];
     fetchCategories((item && item.children) || '')
-  }, [onSelected, breadcrumbs]);
+  }, [onSelected, breadcrumbs, API]);
 
   return (<div className="CategorySelect">
     <div className="CategorySelect__breadcrumbs">

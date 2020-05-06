@@ -3,13 +3,13 @@ import Fields from '../../components/Fields/Fields';
 import Form from '../../components/Form/Form';
 import Button from '../../components/Button/Button';
 import { useTranslation } from 'react-i18next';
-import API from '../../shared/api';
-import { useUserContext } from '../../context/UserContext';
+import useApi from '../../shared/api';
+import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 
 
 const PersonalForm = ({ history }) => {
   const passwordRepeat = useRef();
-  const { setUser } = useUserContext();
+  const { API } = useApi();
   const [t] = useTranslation(['new-store-owner', 'account']);
   const [data, setData] = useState({
     first_name: '',
@@ -38,9 +38,8 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.register.post({ ...data, username: data.email });
-    setUser({ id: response.data.user.id, email: response.data.user.email }, response.data.token);
-    history.push('/stores/new/business');
+    await API.register.post({ ...data, username: data.email });
+    history.push('/stores/new/verify');
   };
 
   return (

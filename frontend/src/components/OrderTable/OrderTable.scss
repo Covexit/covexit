@@ -38,3 +38,15 @@
 .OrderTable-price {
   margin-left: auto;
 }
+
+.OrderTable-mapLink {
+  display: inline-flex;
+  padding: 10px 0;
+}
+
+.OrderTable-confirm {
+  width: 100%;
+  margin: 50px -25px 0;
+  padding: 25px;
+  border-top: 1px solid $color-middle-gray;
+}
