@@ -3,9 +3,14 @@
 }
 
 .ProductItem-img {
-  object-fit: cover;
   width: 100px;
-  min-height: 0;
+  flex: 0 0 100px;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .ProductItem-content {
