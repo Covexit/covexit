@@ -5,8 +5,9 @@ import Form from '../../components/Form/Form';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import API from '../../shared/api';
 import axios from 'axios'
+import useApi from '../../shared/api';
+import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 
 const getItemFromAddress = (wantedType, haystack) => {
   const needle = haystack.find(item => item.types.some(type => type === wantedType))
@@ -16,7 +17,8 @@ const getItemFromAddress = (wantedType, haystack) => {
 const BusinessForm = ({ location, history }) => {
   const state = !location.state ? 'init' :
     location.state.useGoogle ? 'google' : 'manual';
-  const { token, user, setPartners } = useUserContext();
+  const { API } = useApi();
+  const { user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
 
   const [data, setData] = useState({
@@ -65,7 +67,7 @@ const BusinessForm = ({ location, history }) => {
 
     const response = await API.partners.post({
       ...data, address: { ...data, latitude, longitude }, users: [user.id]
-    },{headers: {'Authorization': `Token ${token}`}});
+    });
     if (response.status === 201) {
       setPartners(response.data.id);
       history.push(`/stores/${response.data.id}/onboarding`);
@@ -115,8 +117,10 @@ const BusinessForm = ({ location, history }) => {
     },
   };
 
-  return <Form head={formProps.head[state]} body={formProps.body[state]}
-               onSubmit={submitHandler} footer={formProps.footer[state]}/>;
+  return <ViewWrappers.View container withPadding>
+    <Form head={formProps.head[state]} body={formProps.body[state]}
+          onSubmit={submitHandler} footer={formProps.footer[state]}/>
+  </ViewWrappers.View>;
 };
 
 export default BusinessForm;
