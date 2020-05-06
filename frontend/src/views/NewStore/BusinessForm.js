@@ -98,7 +98,7 @@ const BusinessForm = ({ location, history }) => {
     body: data.mapsPlaceObject ? fields :
         <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
     footer: data.mapsPlaceObject ? <Button label={t('googleConfirm.continue')} />
-        : <Button onClick={() => setData({mapsPlaceObject: true})} label={t('intro.button_manually')} />,
+        : <Button onClick={() => setData({mapsPlaceObject: true})} label={t('intro.button_manually')} secondary />,
     stepperProps: data.mapsPlaceObject ? {count: 3, activeIndex:3} : {count: 3, activeIndex:2}
     }
 

@@ -27,7 +27,6 @@ const Login = ({history}) => {
     const response = await API.authToken.post({username: user.email, password: user.password});
     if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
-      setVerified(true);
       history.push('/');
     } else {
       console.error(response);
