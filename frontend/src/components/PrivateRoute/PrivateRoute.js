@@ -2,14 +2,14 @@ import React from 'react';
 import ViewWrappers from '../ViewWrappers/ViewWrappers';
 import { useUserContext } from 'context/UserContext';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 
 const PrivateRoute = (props) => {
   const { isAuthenticated } = useUserContext();
   const [t] = useTranslation('account')
 
-  return isAuthenticated ? <props.component {...props} /> :
+  return isAuthenticated ? <Route {...props} /> :
     <ViewWrappers.View container withPadding>
       <div className="Intro">
         <h1>{t('authenticationNeeded')}</h1>
