@@ -5,11 +5,13 @@ import Button from '../../components/Button/Button';
 import { useTranslation } from 'react-i18next';
 import useApi from '../../shared/api';
 import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
+import { useUserContext } from '../../context/UserContext';
 
 
 const PersonalForm = ({ history }) => {
   const passwordRepeat = useRef();
   const { API } = useApi();
+  const { setUser } = useUserContext();
   const [t] = useTranslation(['new-store-owner', 'account']);
   const [data, setData] = useState({
     first_name: '',
@@ -38,7 +40,8 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await API.register.post({ ...data, username: data.email });
+    const response = await API.register.post({ ...data, username: data.email });
+    setUser({id: response.data.user.id, email: response.data.user.username}, response.data.token)
     history.push('/stores/new/verify');
   };
 
@@ -66,8 +69,9 @@ const PersonalForm = ({ history }) => {
             <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
                              placeholder={t('account:privacy')}/>
           </>}
-          footer={<Button label={t('Next')}/>}
           stepperProps={{count: 3, activeIndex:1}}
+          footer={<Button label={t('Next')}/>}
+
     />
   );
 }
