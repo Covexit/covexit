@@ -34,6 +34,10 @@ const BusinessForm = ({ location, history }) => {
     mapsPlaceObject: false,
   });
 
+  const [step, setStep] = useState({
+    value: 0
+  })
+
   const changeHandler = (event) => {
     let _data = {...data, mapsPlaceObject: false};
     if (event === false)
@@ -99,7 +103,7 @@ const BusinessForm = ({ location, history }) => {
     body: data.mapsPlaceObject ? fields :
         <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
     footer: <Button label={t('googleConfirm.continue')} />,
-    stepperProps: {count: 3, activeIndex:2}
+    stepperProps: data.mapsPlaceObject ? {count: 3, activeIndex:3} : {count: 3, activeIndex:2}
     }
 
   return <ViewWrappers.View container withPadding>
