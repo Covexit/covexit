@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './StoreList.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import API from '../../shared/api';
+import useApi from '../../shared/api';
 
 
 const StoreList = () => {
   const [t] = useTranslation('store-list');
   const [stores, setStores] = useState([])
+  const { API } = useApi();
 
   useEffect(() => {
     const getStores = async () => {
@@ -16,7 +17,7 @@ const StoreList = () => {
     }
     getStores();
 
-  }, [])
+  }, [API])
 
 
   return (
@@ -26,7 +27,9 @@ const StoreList = () => {
       <div className="StoreList-stores">
         {stores.map(store => (
           <Link key={store.id} to={`/stores/${store.id}`} className="StoreList-store">
-            <img src={`/photos/${store.image}`} alt="" className="StoreList-store-img"/>
+            <div className="StoreList-store-img">
+            <img src={`/photos/${store.image}`} alt="" />
+            </div>
             <div className="StoreList-store-body">
               <h4>{store.name}</h4>
               <p>{store.description}</p>

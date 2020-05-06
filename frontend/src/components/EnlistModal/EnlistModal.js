@@ -6,8 +6,8 @@ import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
 import { useTranslation } from 'react-i18next';
 import Button from '../Button/Button';
-import API from '../../shared/api';
 import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa'
+import useApi from '../../shared/api';
 
 const social = [
   { icon: <FaTwitter />, link: 'https://twitter.com/covexit' },
@@ -18,6 +18,7 @@ const social = [
 
 const EnlistModal = () => {
   const { enlistHide, setEnlistHide } = useUserContext();
+  const { API } = useApi();
   const [ showModal, setShowModal ] = useState(true);
   const [ sent, setSent ] = useState(false);
   const [ data, setData ] = useState({

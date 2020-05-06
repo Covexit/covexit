@@ -1,7 +1,7 @@
 {
   "address": {
     "head": "Lieferadressdaten",
-    "text": "Vielen Dank für Ihre Unterstützung! Sie sind eine große Hilfe im Kampf gegen diese Krise. Folgen Sie den untenstehenden Schritten, um Ihre Bestellung abzuschließen.",
+    "text": "Vielen Dank für deine Unterstützung! Du bist eine große Hilfe im Kampf gegen diese Krise. Folge den untenstehenden Schritten, um deine Bestellung abzuschließen.",
     "button": "Weiter",
     "name": "Vorname",
     "surname": "Nachname",
@@ -11,13 +11,13 @@
     "zipAndCity": "Postleitzahl und Ort"
   },
   "pay": {
-    "head": "Bezahlen Sie mit PayPal",
-    "text": "Klicken Sie auf die Schaltfläche unten, um mit PayPal fortzufahren.",
+    "head": "Bezahle mit PayPal",
+    "text": "Klicke auf die Schaltfläche unten, um mit PayPal fortzufahren.",
     "button": "Jetzt mit PayPal fortfahren"
   },
   "overview": {
     "head": "Bestellübersicht",
-    "text": "Bitte überprüfen Sie Ihre Bestellung noch einmal.",
+    "text": "Bitte überprüfe deine Bestellung noch einmal.",
     "button": "Jetzt bezahlen und Kauf abschließen"
   },
   "finish": {
