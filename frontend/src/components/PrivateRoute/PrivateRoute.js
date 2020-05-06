@@ -14,7 +14,7 @@ const PrivateRoute = (props) => {
       <div className="Intro">
         <h1>{t('authenticationNeeded')}</h1>
         <p>
-          <Trans i18nKey="authenticationNeededText">
+          <Trans i18nKey="authenticationNeededText" ns="account">
             You have to be signed in to access this page. If you have an account
             you can sign in <Link to="/login">here</Link>. Otherwise you can
             register as a store owner <Link to="/stores/new/">here</Link>.

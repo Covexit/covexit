@@ -2,12 +2,20 @@
   "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
   "login": "Anmelden",
   "logout": "Abmelden",
+  "authenticationNeeded": "",
+  "authenticationNeededText": "You have to be signed in to access this page. If you have an account you can sign in <1>here</1>. Otherwise you can register as a store owner <3>here</3>.",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
   "passwordMatchError": "Die Passwörter stimmen nicht überein.",
   "passwordRepeat": "Passwort wiederholen",
   "tos": "Ich habe die AGB gelesen und akzeptiert.",
+  "createAccount": "",
+  "verifyHead": "",
+  "verifyText": "",
   "edit": "Account bearbeiten",
   "manageProduct": "Produkte bearbeiten",
-  "addProduct": "Produkt hinzufügen"
+  "addProduct": "Produkt hinzufügen",
+  "verifySuccessHead": "",
+  "verifySuccessText": "",
+  "verifyFailed": ""
 }
