@@ -1,13 +1,17 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 
 
 const WaitingForVerify = () => {
-
+  const [t] = useTranslation('account')
   return (
-    <div className="Intro">
-      <h1>Waiting for you to verify your email address.</h1>
-      <p>You should have received a mail from us, please check your inbox and spam folder.</p>
-    </div>
+    <ViewWrappers.View container withPadding>
+      <div className="Intro">
+        <h1>{t('verifyHead')}</h1>
+        <p>{t('verifyText')}</p>
+      </div>
+    </ViewWrappers.View>
   );
 };
 
