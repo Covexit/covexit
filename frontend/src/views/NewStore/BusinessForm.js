@@ -4,6 +4,7 @@ import Button from '../../components/Button/Button';
 import Form from '../../components/Form/Form';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios'
 import useApi from '../../shared/api';
@@ -14,16 +15,10 @@ const getItemFromAddress = (wantedType, haystack) => {
   return needle ? needle.long_name : '';
 };
 
-const BusinessForm = ({ location, history, match }) => {
-  const state = !location.state ? 'init' :
-    location.state.useGoogle ? 'google' : 'manual';
+const BusinessForm = ({ location, history }) => {
   const { API } = useApi();
   const { user, setPartners } = useUserContext();
   const [t] = useTranslation('new-store-business');
-  const step = match.params.step;
-  console.log(step);
-  console.log(location);
-
 
   const [data, setData] = useState({
     name: '',
@@ -36,7 +31,7 @@ const BusinessForm = ({ location, history, match }) => {
     postcode: '',
     description: '',
     vat_no: '',
-    mapsPlaceObject: {},
+    mapsPlaceObject: false,
   });
 
   const changeHandler = (event) => {
@@ -96,72 +91,22 @@ const BusinessForm = ({ location, history, match }) => {
                      name="description" value={data.description}/>
   </>;
 
-  // const formProps = {
-  //   head: {
-  //     init: <><h1>{t('intro.head')}</h1><p>{t('intro.text')}</p></>,
-  //     google: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
-  //         <p>{t('googleConfirm.text')}</p></>
-  //       : // or
-  //       <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
-  //     manual: <><h1>{t('manually.head')}</h1><p>{t('manually.text')}</p></>,
-  //     stepperProps: {count: 4, activeIndex:2}
-  //   },
-  //   body: {
-  //     google: data.mapsPlaceObject ? fields :
-  //       <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-  //     manual: fields
-  //   },
-  //   footer: {
-  //     init: <div className="Btn-group">
-  //       <Button label={t('intro.button_google')} onClick={() => changeHandler(false)}
-  //               to={{ pathname: '/stores/new/business', state: { useGoogle: true } }}/>
-  //       <Button label={t('intro.button_manually')} to={{ pathname: '/stores/new/business',
-  //        state: { useGoogle: false } }} secondary/>
-  //     </div>,
-  //     manual: <Button label={t('manually.continue')} />,
-  //     google: <Button label={t('googleConfirm.continue')} />
-  //   },
-  // };
-
-  const steps = [
-    {
-      stepperProps: {count: 4, activeIndex: 2},
-      head: (<>
-        <h1>{t('intro.head')}</h1>
-        <p>{t('intro.text')}</p>
-        </>),
-      footer: <Button label={t('intro.button_google')} onClick={() => changeHandler(false)}
-                  to={{ pathname: '/stores/new/business/1', state: { useGoogle: true } }}/>,
-    },
-    {
-      stepperProps: {count: 4, activeIndex: 3},
-      head: (data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
-            <p>{t('googleConfirm.text')}</p></>
-          : // or
-          <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p>
-          </>),
-      body: data.mapsPlaceObject ? fields :
-              <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-      footer: <Button label={t('googleConfirm.continue')} to={{ pathname: '/stores/new/business/2',
-        state: { useGoogle: true } }}/>
-    },
-    {
-      stepperProps: {count: 4, activeIndex: 4},
-      body: data.mapsPlaceObject ? fields :
-          <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
-      footer: <Button label={t('googleConfirm.continue')} />
+  const formProps = {
+    head: data.mapsPlaceObject ? <><h1>{t('googleConfirm.head')}</h1>
+          <p>{t('googleConfirm.text')}</p></>
+        : // or
+        <><h1>{t('searchGoogle.head')}</h1><p>{t('searchGoogle.text')}</p></>,
+    body: data.mapsPlaceObject ? fields :
+        <PlacesSuggest onSelected={(selected) => changeHandler(selected)}/>,
+    footer: <Button label={t('googleConfirm.continue')} />,
+    stepperProps: {count: 3, activeIndex:2}
     }
-  ]
 
+  return <ViewWrappers.View container withPadding>
+    <Form head={formProps.head} body={formProps.body}
+          onSubmit={submitHandler} footer={formProps.footer}
+          stepperProps={formProps.stepperProps}/>
+  </ViewWrappers.View>
+};
 
-   return  (
-     <Form { ...steps[step]}/>
-   )};
-
-//   return <ViewWrappers.View container withPadding>
-//     <Form head={formProps.head[state]} body={formProps.body[state]}
-//           onSubmit={submitHandler} footer={formProps.footer[state]}/>
-//   </ViewWrappers.View>;
-// };
-
-export default BusinessForm;
+export default withRouter(BusinessForm);
