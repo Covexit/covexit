@@ -3,7 +3,7 @@
   "address": "Address of your store",
   "city": "City",
   "zip": "ZIP",
-  "vatNo": "VAT Number  *This is required to verify your business before your store will be visible to customers.",
+  "vatNo": "VAT Number",
   "email": "E-mail address of your store",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",
