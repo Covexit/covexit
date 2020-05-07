@@ -3,14 +3,14 @@
   "address": "Address of your store",
   "city": "City",
   "zip": "ZIP",
-  "vatNo": "VAT Number  *This is required to verify your business before your store will be visible to customers.",
+  "vatNo": "VAT identification number",
   "email": "E-mail address of your store",
   "phoneNumber": "Phone number of your store",
   "website": "Website (if available)",
   "description": "Description of your store",
   "intro": {
     "head": "Welcome!",
-    "text": "You have made a great decision to sign up with Covexit. We are pleased to guide you through this process.",
+    "text": "You have made a great decision to sign up with Covexit. We are pleased to guide you through this process. *Please Note: Before you can start selling to customers we need to verify your VAT number. However, In the meantime, you can start adding products and setting up your store.",
     "button_google": "Search store data on google",
     "button_manually": "Add store data manually"
   },
@@ -25,7 +25,7 @@
   },
   "manually": {
     "head": "Business information",
-    "text": "Now we set up your business account! Please fill out the form below.",
+    "text": "Now we set up your business account! Please fill out the form below. *Please Note: Before you can start selling to customers we need to verify your VAT number. However, In the meantime, you can start adding products and setting up your store.",
     "continue": "Save & Continue"
   }
 }
