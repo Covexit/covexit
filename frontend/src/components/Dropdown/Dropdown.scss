@@ -1,0 +1,33 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
+.Dropdown {
+  position: relative;
+}
+
+.Dropdown-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $color-white;
+  padding-top: 10px;
+  margin-top: -10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+  border-radius: $border-radius;
+  z-index: -1;
+}
+
+.Dropdown-body-item {
+  border-bottom: 1px solid $color-middle-gray;
+  text-align: center;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+.Dropdown-body-item a {
+  display: block;
+  padding: 10px;
+
+}

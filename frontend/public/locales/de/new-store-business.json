@@ -8,12 +8,6 @@
   "phoneNumber": "Telefonnummer des Geschäfts",
   "website": "Website (falls vorhanden)",
   "description": "Beschreibung des Geschäfts",
-  "intro": {
-    "head": "Willkommen!",
-    "text": "Du hast eine großartige Entscheidung getroffen, Dich bei Covexit zu registrieren. Wir begleiten Dich sehr gerne durch diesen Prozess.",
-    "button_google": "Geschäftsdaten von Google übernehmen",
-    "button_manually": "Geschäftsdaten selbst eintragen"
-  },
   "googleConfirm": {
     "head": "Geschäftsdaten",
     "text": "Jetzt richten wir Dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus.",
@@ -23,9 +17,7 @@
     "head": "Nenne Dein Geschäft",
     "text": "Unter welchem Namen ist Dein Unternehmen bekannt? Gib einen Namen ein."
   },
-  "manually": {
-    "head": "Geschäftdaten",
-    "text": "Jetzt richten wir Dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus.",
-    "continue": "Speichern & Fortfahren"
+  "intro": {
+    "button_manually": "Geschäftsdaten selbst eintragen"
   }
 }
