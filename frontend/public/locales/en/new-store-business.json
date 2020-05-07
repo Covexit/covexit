@@ -10,13 +10,13 @@
   "description": "Description of your store",
   "intro": {
     "head": "Welcome!",
-    "text": "You have made a great decision to sign up with Covexit. We are pleased to guide you through this process. *Please Note: Before you can start selling to customers we need to verify your VAT number. However, In the meantime, you can start adding products and setting up your store.",
+    "text": "You have made a great decision to sign up with Covexit. We are pleased to guide you through this process.",
     "button_google": "Search store data on google",
     "button_manually": "Add store data manually"
   },
   "googleConfirm": {
     "head": "Business information",
-    "text": "Now let's set up your business account! Please fill out the form below.",
+    "text": "Now let's set up your business account! Please fill out the form below. *Please Note: Before you can start selling to customers we need to verify your VAT number. However, In the meantime, you can start adding products and setting up your store.",
     "continue": "Save & Continue"
   },
   "searchGoogle": {
