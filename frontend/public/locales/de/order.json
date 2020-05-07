@@ -1,15 +1,16 @@
 {
-  "orders": "Bestellungen",
-  "orderHistory": "Bestellungen geschichte",
-  "viewOrder": "Aussicht bestellungen",
-  "newOrders": "Neue bestellungen",
-  "orderOverview": "Bestellungen Überblick",
-  "viewMaps": "Ansicht auf Karten",
+  "inclVat": "inkl. MwSt.",
+  "viewOrder": "Bestellungen öffnen",
+  "viewMaps": "Auf Karte ansehen",
   "confirm": {
-    "ready": "Zum Versenden bereit",
-    "sent": "Als gesendet markieren"
+    "ready": "Bestellung ist versandfertig",
+    "sent": "Bestellung wurde versandt"
   },
+  "newOrders": "Neue Bestellungen",
+  "orderHistory": "Bestellhistorie",
   "finish": {
-    "text": "Tina wird mehr als glücklich sein"
-  }
+    "text": "Tina wird mehr als glücklich sein!"
+  },
+  "orderOverview": "Bestellübersicht",
+  "orders": "Bestellungen"
 }

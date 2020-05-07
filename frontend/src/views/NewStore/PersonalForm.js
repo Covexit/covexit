@@ -67,6 +67,7 @@ const PersonalForm = ({ history }) => {
               <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
                                placeholder={t('account:privacy')}/>
             </>}
+            stepperProps={{ count: 3, activeIndex: 1 }}
             footer={<Button label={t('account:createAccount')}/>}
       />
     </ViewWrappers.View>
