@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Footer.scss";
 import EnlistModal from "../EnlistModal/EnlistModal";
 import logo from "assets/logo.svg";
@@ -7,11 +7,11 @@ import { useTranslation } from 'react-i18next';
 
 function Footer() {
   const [t] = useTranslation('menu');
+  const [ modalShow, setShowModal ] = useState(false);
   const links = [
     {route: '/imprint', label: t('imprint')},
     {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
-    {label: t('Mailing list')},
   ];
 
   
@@ -25,7 +25,10 @@ function Footer() {
             {
               links.map(link => <li key={link.label} className="Footer-link"><Link to={link.route}>{link.label}</Link></li>)
             }
+             <li className="Footer-link"><Link onClick={()=> setShowModal(true)}>{t('Mailing list')}</Link></li>
+             {modalShow && <EnlistModal />}
           </ul>
+  
         </nav>
       </div>
     </div>
