@@ -1,7 +1,8 @@
 {
   "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
-  "login": "Anmelden",
   "logout": "Abmelden",
+  "signup": "Registrieren",
+  "login": "Anmelden",
   "authenticationNeeded": "Authentifizierung erforderlich",
   "authenticationNeededText": "Du musst angemeldet sein, um auf diese Seite zugreifen zu können. Wenn Du ein Konto hast, kannst Du Dich <1>hier</1> anmelden. Andernfalls kannst Du Dich als Ladenbesitzer <3>hier</3> registrieren .",
   "email": "E-Mail-Addresse",
