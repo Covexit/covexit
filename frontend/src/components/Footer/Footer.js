@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.scss";
+import EnlistModal from "../EnlistModal/EnlistModal";
 import logo from "assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -18,8 +19,10 @@ function Footer() {
     {route: '/imprint', label: t('imprint')},
     {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
+    {label: t('Mailing list')},
   ];
 
+  
   return (
     <div className="Footer">
       <div className="Footer-body">
