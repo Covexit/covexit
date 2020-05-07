@@ -22,7 +22,7 @@ function Footer() {
     {label: t('Mailing list')},
   ];
 
-  
+
   return (
     <div className="Footer">
       <div className="Footer-body">
