@@ -1,5 +1,5 @@
 {
-  "privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiert.",
+  "privacy": "Ich habe die <1>Datenschutzerklärung</1> gelesen und akzeptiert.",
   "logout": "Abmelden",
   "signup": "Registrieren",
   "login": "Anmelden",
@@ -9,7 +9,7 @@
   "password": "Passwort",
   "passwordMatchError": "Die Passwörter stimmen nicht überein.",
   "passwordRepeat": "Passwort wiederholen",
-  "tos": "Ich habe die AGB gelesen und akzeptiert.",
+  "tos": "Ich habe die <1>AGB</1> gelesen und akzeptiert.",
   "createAccount": "Account erstellen und weiter",
   "verifyHead": "Verifizieren",
   "verifyText": "Wir haben Dir eine E-Mail mit einem Verifizierungslink gesendet. Bitte klicke auf diesen Link, um deinen Account zu verifizieren und fortfahren zu können.",

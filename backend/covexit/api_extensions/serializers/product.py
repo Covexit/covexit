@@ -1,5 +1,5 @@
 from oscar.apps.catalogue.models import Category, Product
-from oscarapi.serializers.checkout import PriceSerializer
+from .checkout import PriceSerializer
 from oscarapi.serializers.product import \
     PartnerSerializer as _PartnerSerializer, \
     BaseProductSerializer as _BaseProductSerializer, \

@@ -29,6 +29,20 @@
   }
 }
 
+.Header--partner {
+  background: $color-dark-gray;
+  border-bottom: 0;
+  color: $color-white;
+
+  a {
+    color: $color-white;
+  }
+
+  .Header-logo g path {
+    fill: $color-white;
+  }
+}
+
 .Header-logo {
   margin: 0 auto;
   width: 90px;
@@ -47,7 +61,7 @@ $header-partner-offset: 15px;
   margin-left: $header-partner-offset;
   height: 100%;
   padding-left: $header-partner-offset;
-  border-left: 1px solid $color-dark-gray;
+  border-left: 1px solid $color-white;
   font-size: 14px;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Header.scss';
 
-import logo from 'assets/logo.svg';
+import {ReactComponent as Logo} from 'assets/logo.svg';
 import Menu from "../Menu/Menu";
 import Share from "../Share/Share";
 import { Link } from "react-router-dom";
@@ -27,7 +27,7 @@ function Header() {
       setPartner(false)
   }, [partners, API])
 
-  const partnerArea = isAuthenticated && partner && isBigScreen &&(
+  const partnerArea = isAuthenticated && partner && isBigScreen && (
     <div className="Header-partners">
       <div className="Header-partners-img">
         <img src={`/photos/${partner.image}`} alt=""/>
@@ -40,9 +40,9 @@ function Header() {
   )
 
   return (
-    <div className="Header">
+    <div className={`Header ${!!partner && 'Header--partner'}`}>
       <Menu partner={partner}/>
-      <Link to="/" className="Header-logo"><img src={logo} alt="Covexit - Unterstütze deine Lieblingsgeschäfte online"/></Link>
+      <Link to="/" className="Header-logo"><Logo className="Header-logo" /></Link>
       {partnerArea}
       <Share/>
     </div>

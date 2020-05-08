@@ -73,6 +73,16 @@
     }
   }
 
+  &--disabled {
+    background: $color-middle-gray;
+    color: $color-dark-gray;
+    opacity: 0.5;
+
+    &:hover {
+      color: $color-dark-gray;
+    }
+  }
+
   &--small {
     padding: .75rem 1.5rem;
   }
