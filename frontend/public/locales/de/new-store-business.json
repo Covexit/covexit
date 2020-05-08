@@ -10,7 +10,7 @@
   "description": "Beschreibung des Geschäfts",
   "googleConfirm": {
     "head": "Geschäftsdaten",
-    "text": "Jetzt richten wir Dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus.",
+    "text": "Jetzt richten wir dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus. *Bitte beachte, dass wir deine USt-ID-Nr verifizieren müssen, bevor du Produkte verkaufen kannst. Bis dahin kannst du jedoch schon deine Produkte anlegen und deinen Shop fertigstellen.",
     "continue": "Speichern & Fortfahren"
   },
   "searchGoogle": {

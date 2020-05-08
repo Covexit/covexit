@@ -10,7 +10,7 @@
   "description": "Description of your store",
   "googleConfirm": {
     "head": "Business information",
-    "text": "Now let's set up your business account! Please fill out the form below.",
+    "text": "Now let's set up your business account! Please fill out the form below. *Please Note: Before you can start selling to customers we need to verify your VAT number. However, In the meantime, you can start adding products and setting up your store.",
     "continue": "Save & Continue"
   },
   "searchGoogle": {
