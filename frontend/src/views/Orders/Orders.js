@@ -12,8 +12,8 @@ import Button from '../../components/Button/Button';
 const style = { flexGrow: 0 };
 
 const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '78464 Konstanz', products: [
-  {quantity: 1, name: 'Very great bread indeed', price: 3.45},
-  {quantity: 3, name: 'Very great tea indeed', price: 10.35}
+  {quantity: 2, name: 'Seife', price: 3.45},
+  {quantity: 1, name: 'Toilettenpapier', price: 10.35}
 ]};
 
 const Orders = (props) => {
