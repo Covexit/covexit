@@ -2,6 +2,7 @@
   "photo": "Upload a product photo",
   "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted).",
   "name": "Name of the product",
+  "category": "Product category",
   "price": "Price in € (E.g. 2,99)",
   "sku": "Product number",
   "quantity": "Please indicate the quantity of the product you can offer. (In pieces)",
