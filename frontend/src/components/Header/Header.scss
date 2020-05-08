@@ -37,8 +37,10 @@
   border-bottom: 0;
   color: $color-white;
 
-  a {
-    color: $color-white;
+  @include bp-medium() {
+    a {
+      color: $color-white;
+    }
   }
 
   .Header-logo g path {

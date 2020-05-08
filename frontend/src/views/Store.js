@@ -63,10 +63,8 @@ const Store = ({ match, history }) => {
         }
       </section>
       }
-
-      {ownsStore ? <Tab /> : ''}
-
       <ProductList products={products} edit={ownsStore} />
+      {ownsStore ? <Tab /> : ''}
     </div>
   );
 }

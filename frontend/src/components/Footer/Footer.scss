@@ -3,7 +3,7 @@
 
 .Footer {
   width: 100%;
-  height: 150px;
+  flex: 0 0 150px;
   background: $color-gray;
   padding: $padding-wrapper;
   display: flex;
@@ -13,10 +13,15 @@
 .Footer-links {
   list-style: none;
   padding: 0;
+  margin-top: 10px;
 
   li {
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 15px;
+
+    @include bp-medium() {
+      margin-left: 40px;
+    }
 
     &:first-child {
       margin-left: 0;
@@ -25,8 +30,9 @@
 }
 
 .Footer-copyright {
+  margin-top: 10px;
 
-  @include bp-large() {
+  @include bp-medium() {
     margin: 0 auto;
   }
 }
@@ -53,3 +59,13 @@
   }
 }
 
+.Footer-links--social {
+  margin-top: 10px;
+  li {
+    margin-left: 15px;
+  }
+
+  @include bp-medium() {
+    text-align: right;
+  }
+}
