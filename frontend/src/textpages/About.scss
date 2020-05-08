@@ -14,12 +14,11 @@
 li.Team-member {
   list-style: none;
   padding: $padding-wrapper;
-  justify-content: space-evenly;
-  margin-left: 40px;
+  justify-content: space-around;
 }
 
 .Team-members{
   display: inline-flex;
-  text-align: center;
   flex-flow: wrap;
+  text-align: center;
 }
