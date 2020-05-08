@@ -4,6 +4,6 @@
   "name": "Name of the product",
   "price": "Price in € (E.g. 2,99)",
   "sku": "Product number",
-  "quantity": "Please indicate the quantity of the product you can offer. (In pieces)",
+  "quantity": "Please indicate the quantity of the products you can offer. (per Item)",
   "description": "Product description"
 }
