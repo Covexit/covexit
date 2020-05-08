@@ -30,7 +30,7 @@
   max-height: calc(85% - #{$header-height});
   overflow: auto;
 
-  @include bp-large() {
+  @include bp-medium() {
     max-width: 600px;
     margin: auto;
     bottom: $padding-wrapper;

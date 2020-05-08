@@ -37,7 +37,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @include bp-large() {
+  @include bp-medium() {
     margin: 0 auto;
     max-width: 90%;
     align-items: center;

@@ -16,7 +16,7 @@
   .ViewSplitter--padded {
     flex-shrink: 0;
     height: auto;
-    @include bp-large() {
+    @include bp-medium() {
       flex-shrink: 1;
       height: 100%;
       display: flex;
@@ -24,14 +24,14 @@
     }
   }
 
-  @include bp-large() {
+  @include bp-medium() {
     flex-direction: row;
     flex-shrink: 1;
   }
 }
 
 .PhotoSelect .Intro {
-  @include bp-large() {
+  @include bp-medium() {
     margin-bottom: auto;
   }
 }
