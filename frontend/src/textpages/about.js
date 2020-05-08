@@ -1,6 +1,7 @@
 import React from 'react';
 import "./About.scss";
 import { Link } from 'react-router-dom';
+import Naomi from '../assets/team/naomi.jpeg';
 
 
 const teamMembers = [
@@ -21,7 +22,7 @@ const teamMembers = [
     {id: '15', name: 'David Doan', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
     {id: '16', name: 'Akolade Adesanmi', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
     {id: '17', name: 'Cynthia Mulenga', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
-    {id: '18', name: 'Naomi Wickham', image: "", link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'}, 
+    {id: '18', name: 'Naomi Wickham', image: "team/naomi.jpeg", link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'}, 
 ]
 
 
@@ -38,19 +39,19 @@ export default (<>
     <p>We, the Covexit Team, are happy that you found your way to this platform and are interested in the project. Feel free to reach out to us! </p>
 </div>
     <section className="Team">
-    <p><strong>Meet the Team!</strong></p>
+     <p><strong>Meet the Team!</strong></p>
       <div className="Team-members">
         {teamMembers.map(teamMember => (
-      <ul>
-       <li key={teamMember.id} className="Team-member">
+        <ul>
+         <li key={teamMember.id} className="Team-member">
             <div className="Team-member-image">
             <a href={teamMember.link} rel="noopener noreferrer" target="_blank" ><img src={`assets/${teamMember.image}`} alt="" /></a> 
-            </div>
             <div className="Team-member-body">
-              <p><strong>{teamMember.name}</strong></p>
-              <p>{teamMember.position}</p>
+            <p><strong>{teamMember.name}</strong></p>
+            <p>{teamMember.position}</p>
             </div>
-          </li>
+          </div>
+         </li>
         </ul>
         ))}
       </div>
