@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import Fields from '../../components/Fields/Fields';
 import Form from '../../components/Form/Form';
 import Button from '../../components/Button/Button';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import useApi from '../../shared/api';
 import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
+import { Link } from 'react-router-dom';
 
 
 const PersonalForm = ({ history }) => {
@@ -63,9 +64,9 @@ const PersonalForm = ({ history }) => {
               <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
                                     placeholder={t('account:passwordRepeat')} ref={passwordRepeat}/>
               <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
-                               placeholder={t('account:tos')}/>
+                               placeholder={<Trans i18nKey="tos" ns="account">I have read and accept the <Link to="/agb/">Terms and conditions</Link>.</Trans>}/>
               <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                               placeholder={t('account:privacy')}/>
+                               placeholder={<Trans i18nKey="privacy" ns="account">I have read and accept the <Link to="/privacy/">privacy policy</Link>.</Trans>}/>
             </>}
             stepperProps={{ count: 3, activeIndex: 1 }}
             footer={<Button label={t('account:createAccount')}/>}

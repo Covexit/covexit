@@ -87,6 +87,10 @@
     display: flex;
   }
 
+  a {
+    border-bottom: 1px solid currentColor;
+  }
+
   path {
     fill: none;
     stroke: $color-primary;
