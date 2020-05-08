@@ -10,3 +10,6 @@ class AdminStockRecordSerializer(_AdminStockRecordSerializer):
         many=False, required=True, queryset=Partner.objects
     )
 
+    price_excl_tax = serializers.DecimalField(decimal_places=2, max_digits=12,
+                                               localize=True)
+
