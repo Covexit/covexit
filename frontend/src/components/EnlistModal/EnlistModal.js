@@ -39,7 +39,7 @@ const EnlistModal = () => {
       setSent(true);
     }
     catch (e) {
-      setData({...data, message: Object.values(e.response.data)});
+      console.error(e);
     }
   };
 
