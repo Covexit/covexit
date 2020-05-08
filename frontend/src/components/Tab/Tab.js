@@ -12,7 +12,7 @@ const Tab = () => {
   const match = useRouteMatch();
   const links = [
     { url: `/stores/${match.params.id}`, label: t('home'), image: <FiHome size={25} /> },
-    { url: '/order-view', label: t('order'), image: <FiInbox size={25}  /> }
+    { url: `/stores/${match.params.id}/orders`, label: t('order'), image: <FiInbox size={25}  /> }
   ];
 
   const handleFocusClass = (arg) =>

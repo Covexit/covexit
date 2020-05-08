@@ -3,9 +3,16 @@ import { useParams, useLocation } from 'react-router-dom';
 import './OrderTable.scss';
 import { useTranslation } from 'react-i18next';
 import Button from 'components/Button/Button';
+import { FiCircle, FiCheckCircle } from 'react-icons/fi';
+
+const states = [
+  {label: 'in Bearbeitung', readyState: 0},
+  {label: 'versandfertig', readyState: 1},
+  {label: 'versendet', readyState: 2},
+]
 
 function OrderTable(props) {
-  const [ready, OnReady] = useState(false)
+  const [ready, OnReady] = useState(0)
   const { id, orderId } = useParams()
   const { pathname } = useLocation()
   const [t] = useTranslation(['order-table', 'order']);
@@ -49,10 +56,19 @@ function OrderTable(props) {
         </tr>
         </tbody>
       </table>
-      {orderId &&<div className="OrderTable-confirm">
-        <Button onClick={() => OnReady(true)} to={!ready ? pathname : `/stores/${id}/orders/confirm`}
-          type="confirm" label={!ready ? t('order:confirm.ready') : t('order:confirm.sent')} />
-      </div>
+      {orderId &&
+        <div className="OrderTable-confirm">
+          <div className="OrderTable-states">
+            {states.map(state =>
+              <div className="OrderTable-state">
+                {ready >= state.readyState ? <FiCheckCircle size="20" /> : <FiCircle size="20" />}
+                {state.label}
+              </div>
+            )}
+          </div>
+          <Button onClick={() => OnReady(ready + 1)} to={ready !== 1 ? pathname : `/stores/${id}/orders/confirm`}
+            type="confirm" label={!ready ? t('order:confirm.ready') : t('order:confirm.sent')} />
+        </div>
       }
     </Fragment>
   );

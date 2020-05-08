@@ -51,9 +51,13 @@ const Store = ({ match }) => {
           <Button label={t('store-detail:callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary/>
           :
           <>
+          {/*
             <Button span label={t('account:edit')}/>
+          */}
             <Button onClick={logoutSuccess} label={t('account:logout')} secondary/>
+          {/*
             <Button to={`${match.url}/product`} label={t('account:manageProduct')} secondary/>
+          */}
             <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary/>
           </>
         }
