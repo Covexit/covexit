@@ -2,7 +2,7 @@
 @import "stylebase/utils";
 
 .Menu {
-  @include bp-large() {
+  @include bp-medium() {
     order: 3;
     margin-left: auto;
   }
@@ -16,7 +16,7 @@
   border: 0;
   border-radius: 0;
 
-  @include bp-large() {
+  @include bp-medium() {
     display: none;
   }
 }
@@ -90,7 +90,7 @@
   width: 70%;
   background: $color-gray;
 
-  @include bp-large() {
+  @include bp-medium() {
     display: flex;
     position: static;
     background: 0;
@@ -117,12 +117,12 @@
     font-weight: 400;
     background: 0;
     padding: 10px 0 0 15px;
-    @include bp-large() {
+    @include bp-medium() {
       padding: 15px;
     }
   }
 
-  @include bp-large() {
+  @include bp-medium() {
     background: 0;
     font-weight: 400;
     color: $color-black;
@@ -131,7 +131,7 @@
 }
 
 .Menu-list-item {
-  @include bp-large() {
+  @include bp-medium() {
     display: inline-block;
   }
 }
@@ -141,7 +141,7 @@
   padding: 15px;
   color: #fff;
 
-  @include bp-large() {
+  @include bp-medium() {
     display: none;
   }
 }

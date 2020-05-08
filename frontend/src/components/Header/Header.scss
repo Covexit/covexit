@@ -15,15 +15,18 @@
   background: #fff;
   font-size: 16px;
 
-  @include bp-large() {
+  @include bp-medium() {
     border-bottom-color: $color-middle-gray;
-    font-size: 20px;
     padding: 0 40px;
     height: $header-height--desktop;
   }
 
+  @include bp-large() {
+    font-size: 20px;
+  }
+
   .Share {
-    @include bp-large() {
+    @include bp-medium() {
       display: none;
     }
   }
@@ -47,7 +50,7 @@
   margin: 0 auto;
   width: 90px;
 
-  @include bp-large() {
+  @include bp-medium() {
     margin: 0;
     width: 120px;
   }
