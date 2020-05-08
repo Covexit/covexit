@@ -8,6 +8,7 @@ import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
 import useApi from '../../shared/api';
 
+
 const ProductForm = ({ id, editId }) => {
   const history = useHistory();
   const { API } = useApi();
@@ -25,23 +26,23 @@ const ProductForm = ({ id, editId }) => {
   });
 
   const data = {
-     ...product,
-     slug: slugify(product.title),
-     structure: 'standalone',
-     stockrecords: [
-       {
-         partner: id,
-         partner_sku: product.sku,
-         price_excl_tax: product.price,
-         num_in_stock: product.stock,
-       }
-     ]
-   };
+    ...product,
+    slug: slugify(product.title),
+    structure: 'standalone',
+    stockrecords: [
+      {
+        partner: id,
+        partner_sku: product.sku,
+        price_excl_tax: product.price,
+        num_in_stock: product.stock,
+      },
+    ],
+  };
 
   useEffect(() => {
     if (editId) {
       const getCurrentProduct = async () => {
-        const response = await API.products.get({id: editId});
+        const response = await API.products.get({ id: editId });
         setProduct({
           title: response.data.title,
           categories: response.data.url,
@@ -50,7 +51,7 @@ const ProductForm = ({ id, editId }) => {
           sku: response.data.stockrecords[0].partner_sku,
           stock: response.data.stockrecords[0].num_in_stock,
           description: response.data.description,
-          _photos: response.data.images && response.data.images[0].original
+          _photos: response.data.images && response.data.images[0].original,
         });
       };
       getCurrentProduct();
@@ -66,40 +67,40 @@ const ProductForm = ({ id, editId }) => {
       });
 
       // edit existing Product
-    if (editId){
-      // const response =
-      await API.products.patch({
-        id: editId,
-        data
-      });
-      // Image Patch request needs update
-      // await API.productImages.patch(
-      //   response.data.id,
-      //   formData,
-      //   headers,
-      // )
-      history.push(`/stores/${id}`);
-
-      //add new Product
-    } else {
-      const response = await API.products.post({ data });
-      if (response.status === 201) {
-        // if there are images patch them in later because we need form data here
-        await API.productImages.post(
-          formData,
-          response.data.id
-        )
+      if (editId) {
+        // const response =
+        await API.products.patch({
+          id: editId,
+          data,
+        });
+        // Image Patch request needs update
+        // await API.productImages.patch(
+        //   response.data.id,
+        //   formData,
+        //   headers,
+        // )
         history.push(`/stores/${id}`);
+
+        //add new Product
       } else {
-        console.error(response);
+        const response = await API.products.post({ data });
+        if (response.status === 201) {
+          // if there are images patch them in later because we need form data here
+          await API.productImages.post(
+            formData,
+            response.data.id,
+          )
+          history.push(`/stores/${id}`);
+        } else {
+          console.error(response);
+        }
       }
     }
-  }
-};
+  };
 
   const onCategorySelect = React.useCallback(
-    (obj) => setProduct(product => ({...product, categories: (obj.url && [obj.url]) || obj, product_class: obj.class})),
-    []
+    (obj) => setProduct(product => ({ ...product, categories: (obj.url && [obj.url]) || obj, product_class: obj.class })),
+    [],
   );
 
   const onChange = (event) => {
@@ -108,18 +109,21 @@ const ProductForm = ({ id, editId }) => {
 
   return (
     <Form onSubmit={onSubmit} body={<>
-      {editId ? <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
-           helpText={t('product-cru:photoHelp')} editView/> : null}
+      {/*editId ?
+        <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
+                           helpText={t('product-cru:photoHelp')} editView/> : null*/}
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
       <Fields.Label>{t('product-cru:category')}</Fields.Label>
-      <CategorySelect onSelected={onCategorySelect} />
+      <CategorySelect onSelected={onCategorySelect}/>
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku} readOnly={!!editId}/>
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')}  type="number" name="stock" value={product.stock}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="stock" value={product.stock}/>
       <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
-      {editId ? null : <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
-                         helpText={t('product-cru:photoHelp')}/>}
-      </>} footer={<Button label={`${t('first-product:next')} →`} disabled={!product.categories.length}/>}
+      {editId ? null :
+        <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
+                           helpText={t('product-cru:photoHelp')}/>}
+    </>} footer={
+      <Button label={`${t('first-product:next')} →`} disabled={!product.categories.length}/>}
     />
   )
 }

@@ -28,7 +28,7 @@ function Header() {
   }, [partners, API])
 
   const partnerArea = isAuthenticated && partner && isBigScreen && (
-    <div className="Header-partners">
+    <Link to={`/stores/${partner.id}`} className="Header-partners">
       <div className="Header-partners-img">
         <img src={`/photos/${partner.image}`} alt=""/>
       </div>
@@ -36,7 +36,7 @@ function Header() {
         <strong>{partner.name}</strong> <br />
         {partner.addresses[0].line1}, {partner.addresses[0].postcode} {partner.addresses[0].line4}
       </div>
-    </div>
+    </Link>
   )
 
   return (
