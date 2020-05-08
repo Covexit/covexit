@@ -45,7 +45,7 @@ const ProductForm = ({ id, editId }) => {
         const response = await API.products.get({ id: editId });
         setProduct({
           title: response.data.title,
-          categories: response.data.url,
+          categories: response.data.categories,
           product_class: response.data.product_class,
           price: response.data.stockrecords[0].price_excl_tax,
           sku: response.data.stockrecords[0].partner_sku,
@@ -113,8 +113,9 @@ const ProductForm = ({ id, editId }) => {
         <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
                            helpText={t('product-cru:photoHelp')} editView/> : null*/}
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
-      <Fields.Label>{t('product-cru:category')}</Fields.Label>
-      <CategorySelect onSelected={onCategorySelect}/>
+      {!editId && (
+        <CategorySelect onSelected={onCategorySelect} value={product.categories} />
+      )}
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku} readOnly={!!editId}/>
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="stock" value={product.stock}/>
@@ -123,7 +124,7 @@ const ProductForm = ({ id, editId }) => {
         <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
                            helpText={t('product-cru:photoHelp')}/>}
     </>} footer={
-      <Button label={`${t('first-product:next')} →`} disabled={!product.categories.length}/>}
+      <Button label={`${t('product-cru:editProduct')} →`} disabled={!product.categories.length}/>}
     />
   )
 }

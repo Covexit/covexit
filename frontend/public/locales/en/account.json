@@ -5,6 +5,7 @@
   "login": "Sign in",
   "authenticationNeeded": "Authentication required",
   "authenticationNeededText": "You have to be signed in to access this page. If you have an account you can sign in <1>here</1>. Otherwise you can register as a store owner <3>here</3>.",
+  "addToCart": "Add to cart",
   "email": "E-Mail address",
   "password": "Password",
   "passwordMatchError": "Passwords do not match",

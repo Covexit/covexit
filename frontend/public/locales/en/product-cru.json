@@ -1,11 +1,12 @@
 {
-  "photoEdit": "Edit product photo",
-  "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted).",
-  "name": "Name of the product",
   "category": "Product category",
+  "name": "Name of the product",
   "price": "Price in € (E.g. 2,99)",
   "sku": "Product number",
   "quantity": "Please indicate the quantity of the product you can offer. (In pieces)",
   "description": "Product description",
-  "photo": "Upload a product photo"
+  "photoEdit": "Edit product photo",
+  "photo": "Upload a product photo",
+  "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted).",
+  "editProduct": "Edit product"
 }

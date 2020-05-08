@@ -5,6 +5,7 @@
   "login": "Anmelden",
   "authenticationNeeded": "Authentifizierung erforderlich",
   "authenticationNeededText": "Du musst angemeldet sein, um auf diese Seite zugreifen zu können. Wenn Du ein Konto hast, kannst Du Dich <1>hier</1> anmelden. Andernfalls kannst Du Dich als Ladenbesitzer <3>hier</3> registrieren .",
+  "addToCart": "in den Warenkorb",
   "email": "E-Mail-Addresse",
   "password": "Passwort",
   "passwordMatchError": "Die Passwörter stimmen nicht überein.",

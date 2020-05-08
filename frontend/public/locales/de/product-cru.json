@@ -1,11 +1,12 @@
 {
-  "photoEdit": "Produktfoto bearbeiten",
-  "photoHelp": ".JPEG, .JPG, .PNG (Nur diese Dateitypen werden akzeptiert).",
-  "name": "Name des Produkts",
   "category": "Produktkategorie",
+  "name": "Name des Produkts",
   "price": "Preis in € (Bsp: 2,99)",
   "sku": "Produktnummer",
   "quantity": "In welcher Menge kannst Du das Produkt anbieten? (In Stück)",
   "description": "Produktbeschreibung",
-  "photo": "Produktfoto hochladen"
+  "photoEdit": "Produktfoto bearbeiten",
+  "photo": "Produktfoto hochladen",
+  "photoHelp": ".JPEG, .JPG, .PNG (Nur diese Dateitypen werden akzeptiert).",
+  "editProduct": "Produkt bearbeiten"
 }

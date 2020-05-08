@@ -3,12 +3,14 @@ import { useCartContext } from '../../context/CartContext';
 import { FiPlusCircle } from 'react-icons/fi';
 import { FiEdit } from 'react-icons/fi';
 import { useHistory, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const ProductItem = ({ product, edit }) => {
   const { addProduct } = useCartContext()
   const { id } = useParams();
   const history = useHistory();
+  const [t] = useTranslation(['product-cru', 'account']);
   const { title, description, price, images } = product
 
   const onClick = () => {
@@ -30,7 +32,7 @@ const ProductItem = ({ product, edit }) => {
           <p>{description}</p>
           <h4 className="variant-price">{price.incl_tax}€</h4>
         </div>
-        <button onClick={() => onClick()}>
+        <button onClick={() => onClick()} title={edit ? t('product-cru:editProduct') : t('account:addToCart')}>
           {edit ? <FiEdit size="40" /> : <FiPlusCircle size="50" />}
         </button>
       </div>
