@@ -37,7 +37,7 @@ function Menu({ partner }) {
       </button>
       <div className="Menu-body">
         <ul className="Menu-list">
-          {links.map(component => <li className="Menu-list-item Menu-link" key={component}>{component}</li>)}
+          {links.map((component, index) => <li className="Menu-list-item Menu-link" key={index}>{component}</li>)}
         </ul>
         <div className="Menu-footer">© 2020 Covexit</div>
       </div>

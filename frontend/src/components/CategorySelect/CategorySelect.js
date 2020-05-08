@@ -33,12 +33,15 @@ function CategorySelect({ onSelected }) {
   }, [onSelected, breadcrumbs, API]);
 
   return (<div className="CategorySelect">
-    <div className="CategorySelect__breadcrumbs">
-      <button className="CategorySelect__breadcrumb" onClick={() => setBreadcrumb([])}>Reset</button>
-      {breadcrumbs.map(item => (
-        <button key={item.slug} className="CategorySelect__breadcrumb" onClick={() => updateCategories(item, true)}>{item.name}</button>
-      ))}
-    </div>
+    {
+      !!breadcrumbs.length &&
+      <div className="CategorySelect__breadcrumbs">
+        <button className="CategorySelect__breadcrumb" onClick={() => setBreadcrumb([])}>Reset</button>
+        {breadcrumbs.map(item => (
+          <button key={item.slug} className="CategorySelect__breadcrumb" onClick={() => updateCategories(item, true)}>{item.name}</button>
+        ))}
+      </div>
+    }
     {categories.map(item => (
       <div className="CategorySelect__choice" key={item.slug}><Button secondary onClick={() => updateCategories(item)}>{item.name}</Button></div>
     ))}

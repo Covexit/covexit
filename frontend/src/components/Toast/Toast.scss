@@ -1,0 +1,26 @@
+@import "stylebase/variables";
+@import "stylebase/utils";
+
+.Toast {
+  @include container;
+  width: 100%;
+  left: 0;
+  right: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+  padding: 20px 10px;
+  position: fixed;
+  z-index: 4;
+  top: 100px;
+  background: $color-light-gray;
+  font-size: 18px;
+  border-radius: 3px;
+}
+
+$type-colors: (error: #e74c3c, success: #2ecc71, warning: #f1c40f);
+
+@each $type, $color in $type-colors {
+  .Toast--#{$type} {
+    background-color: $color;
+    color: $color-white;
+  }
+}

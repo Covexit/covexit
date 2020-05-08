@@ -102,4 +102,8 @@ const FieldGroup = ({ children }) => (
   </div>
 );
 
-export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox, FieldGroup }
+const Label = ({ children }) => (
+  <p className="Label">{children}</p>
+)
+
+export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox, FieldGroup, Label }

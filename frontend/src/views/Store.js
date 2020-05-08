@@ -62,7 +62,7 @@ const Store = ({ match }) => {
 
       {ownsStore ? <Tab /> : ''}
 
-      <ProductList products={products} type="add" />
+      <ProductList products={products} edit={ownsStore} />
     </div>
   );
 }

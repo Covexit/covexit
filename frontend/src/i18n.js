@@ -10,7 +10,7 @@ i18n
   .use(LanguageDetector)
   .init({
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     nsSeparator: ':',
     detection: {
       order: ['navigator'],

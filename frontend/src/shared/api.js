@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useUserContext } from '../context/UserContext';
-import React from 'react';
+import React, { useEffect } from 'react';
+import i18n from 'i18n';
+import { useToastContext } from '../context/ToastContext';
+import { useTranslation } from 'react-i18next';
 
 
 const axiosInstance = axios.create({
@@ -20,25 +23,67 @@ function createEndpoint(endpoint) {
     get: (id) => axiosInstance.get(endpointTransform(endpoint, id)),
     put: (id, data, config) => axiosInstance.put(endpointTransform(endpoint, id), data, config),
     patch: (id, data, config) => axiosInstance.patch(endpointTransform(endpoint, id), data, config),
-    post: (data, config, id) => axiosInstance.post(endpointTransform(endpoint, id), data, config),
+    post: (data, id) => axiosInstance.post(endpointTransform(endpoint, id), data),
   }
 }
 
 function createHyperlinkedEndpoint(endpoint) {
   return {
-    get: ({ id, url }) => axios.get(url || `/api/v1/${endpointTransform(endpoint, id)}`),
-    patch: ({ id, url, data, config }) => axios.patch(url || `/api/v1/${endpointTransform(endpoint, id)}`, data, config),
-    post: ({ data, config, id }) => axios.post(`/api/v1/${endpointTransform(endpoint, id)}`, data, config),
+    get: ({ id, url }) => axiosInstance.get(url || endpointTransform(endpoint, id)),
+    patch: ({ id, url, data, config }) => axiosInstance.patch(url || endpointTransform(endpoint, id), data, config),
+    post: ({ data, id }) => axiosInstance.post(endpointTransform(endpoint, id), data),
   }
 }
 
 const useApi = () => {
+  const { setToast } = useToastContext();
+  const [t] = useTranslation();
   const { token } = useUserContext();
-  axiosInstance.interceptors.request.use(config => {
-    if (token)
-      config = { ...config, headers: { 'Authorization': `Token ${token}` } };
-    return config;
-  })
+
+  useEffect(() => {
+    let interceptor;
+    if (token) {
+      interceptor = axiosInstance.interceptors.request.use(config => {
+        return { ...config, headers: { 'Authorization': `Token ${token}`, ...config.headers } };
+      })
+    }
+    return () => {
+      if (interceptor) {
+        axiosInstance.interceptors.request.eject(interceptor);
+        }
+    }
+  }, [token])
+
+  useEffect(() => {
+    axiosInstance.interceptors.request.use(config => {
+      return { ...config, headers: { 'Accept-Language': i18n.language.toLowerCase() } };
+    });
+  }, [])
+
+  axiosInstance.interceptors.response.use(res => res, err => {
+    switch (err.response.status) {
+      case 404:
+        setToast({ message: t('notFoundError'), type: 'error' })
+        break;
+
+      case 401:
+        setToast({ message: t('unauthorizedError'), type: 'error' })
+        break;
+
+      default:
+        if (err.response.data) {
+          const strings = Object.values(err.response.data).flat();
+          setToast({ message: strings.map(str => <>{str}<br/></>), type: 'error' })
+          break;
+        }
+
+      // eslint-disable-next-line no-fallthrough
+      case 500:
+        setToast({ message: t('serverError'), type: 'error' })
+        break;
+    }
+    throw err
+  });
 
   const API = React.useMemo(() => ({
     categories: createHyperlinkedEndpoint('categories/'),
