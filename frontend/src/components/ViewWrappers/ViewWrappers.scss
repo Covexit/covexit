@@ -16,7 +16,7 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 
-  @include bp-large() {
+  @include bp-medium() {
     overscroll-behavior: contain;
   }
 
@@ -27,13 +27,13 @@
   &--mobile {
     flex-direction: column;
 
-    @include bp-large() {
+    @include bp-medium() {
       flex-direction: row;
     }
   }
 }
 
-@include bp-large() {
+@include bp-medium() {
   .View--container {
     @include container;
     box-shadow: 2px 3px 20px rgba($color-black, 0.2);
@@ -51,7 +51,7 @@
   position: relative;
   height: 100%;
 
-  @include bp-large() {
+  @include bp-medium() {
     flex: 1 1 100%;
     overscroll-behavior: contain;
 
@@ -61,7 +61,7 @@
   }
 }
 
-@include bp-large() {
+@include bp-medium() {
   .ViewSplitter--sm {
     flex: 0 0 40vw;
     max-width: 700px;

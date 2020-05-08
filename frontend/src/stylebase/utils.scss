@@ -26,8 +26,13 @@
   opacity: .75;
 }
 
-@mixin bp-large {
+@mixin bp-medium {
   @media (min-width: 960px) {
+    @content;
+  }
+}
+@mixin bp-large {
+  @media (min-width: 1440px) {
     @content;
   }
 }
