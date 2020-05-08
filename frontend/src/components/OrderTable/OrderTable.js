@@ -42,7 +42,7 @@ function OrderTable(props) {
             {orderId && <>
               <br />
               <div className="OrderTable-mapLink">
-                <Button to="/map" secondary label={t('order:viewMaps')} />
+                <Button external="https://maps.google.com/?q=Allmannsdorfer+Str+45+78464+Konstanz" secondary label={t('order:viewMaps')} />
               </div>
               </>}
           </td>

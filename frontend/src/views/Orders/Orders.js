@@ -7,6 +7,7 @@ import Order from './Order';
 import "./Orders.scss";
 import Yippey from 'components/Yippey/Yippey';
 import { useTranslation } from 'react-i18next';
+import Button from '../../components/Button/Button';
 
 const style = { flexGrow: 0 };
 
@@ -24,7 +25,7 @@ const Orders = (props) => {
     <ViewWrappers.View className="Orders" container>
       <Switch>
         <Route path={`${match.path}/confirm`}>
-          <Yippey text={t('finish.text')} />
+          <Yippey text={t('finish.text')} footer={<Button label={t('finish.next')} secondary to={`/stores/${match.params.id}/orders`}/>}/>
         </Route>
         {/* an order overview and history */}
         <Route path={`${match.path}/:orderId`}>

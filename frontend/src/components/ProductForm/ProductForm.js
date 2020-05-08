@@ -124,7 +124,7 @@ const ProductForm = ({ id, editId }) => {
         <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
                            helpText={t('product-cru:photoHelp')}/>}
     </>} footer={
-      <Button label={`${t('product-cru:editProduct')} →`} disabled={!product.categories.length}/>}
+      <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>}
     />
   )
 }
