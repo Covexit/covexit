@@ -1,28 +1,26 @@
 import React from 'react';
 import "./About.scss";
-import { Link } from 'react-router-dom';
-import Naomi from '../assets/team/naomi.jpeg';
 
 
 const teamMembers = [
-    {id: '1', name: 'Fabian Katz', image: "", link: 'https://www.linkedin.com/in/', position: 'Innovation'},
-    {id: '2', name: 'Moritz Giebel', image: "", link: 'https://www.linkedin.com/in/', position: 'Innovation'},
-    {id: '3', name: 'Marco Schmid', image: "", link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/', position: 'Project co-ordination'},
-    {id: '4', name: 'Nicolai Huss', image: "", link: 'https://www.linkedin.com/in/nicolai-huss/', position: 'Project co-ordination'},
-    {id: '5', name: 'Fabian Ochs', image: "", link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', position: 'Marketing'},
-    {id: '6', name: 'Lea Joos', image: "", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
-    {id: '7', name: 'Silvia Mogas', image: "", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
-    {id: '8', name: 'Lisa Heite', image: "", link: 'https://linkedin.com/in/lisa-heite', position: 'Marketing'},
-    {id: '9', name: 'Laura Maria Kassovicova', image: "", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
-    {id: '10', name: 'Volker Jetter', image: "", link: 'https://www.linkedin.com/in/', position: 'Funding'},
-    {id: '11', name: 'Nico Buchsenstein', image: "", link: 'https://www.linkedin.com/in/', position: 'Funding'},
-    {id: '12', name: 'Balint Csizmadia', image: "", link: 'https://www.linkedin.com/in/', position: 'Branding/UX design'},
-    {id: '13', name: 'Ines Filipp', image: "", link: 'https://www.linkedin.com/in/', position: 'Branding/UX design'},
-    {id: '14', name: 'Philipp Veller', image: "", link: 'https://www.linkedin.com/in/', position: 'Lead Developer'},
-    {id: '15', name: 'David Doan', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
-    {id: '16', name: 'Akolade Adesanmi', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
-    {id: '17', name: 'Cynthia Mulenga', image: "", link: 'https://www.linkedin.com/in/', position: 'Developer'},
-    {id: '18', name: 'Naomi Wickham', image: "team/naomi.jpeg", link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'}, 
+    {id: '1', name: 'Fabian Katz', image: "./team/fabian_katz.png ", link: 'https://www.linkedin.com/in/', position: 'Innovation'},
+    {id: '2', name: 'Moritz Giebel', image: "./team/moritz.png", link: 'https://www.linkedin.com/in/', position: 'Innovation'},
+    {id: '3', name: 'Marco Schmid', image: "./team/marco.png", link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/', position: 'Project co-ordination'},
+    {id: '4', name: 'Nicolai Huss', image: "./team/nicolai.png", link: 'https://www.linkedin.com/in/nicolai-huss/', position: 'Project co-ordination'},
+    {id: '5', name: 'Fabian Ochs', image: "./team/fabian.png", link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', position: 'Marketing'},
+    {id: '6', name: 'Lea Joos', image: "./team/lea.png", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
+    {id: '7', name: 'Silvia Mogas', image: "./team/silvia.png", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
+    {id: '8', name: 'Lisa Heite', image: "./team/lisa.png", link: 'https://linkedin.com/in/lisa-heite', position: 'Marketing'},
+    {id: '9', name: 'Laura Maria Kassovicova', image: "./team/laura.png", link: 'https://www.linkedin.com/in/', position: 'Marketing'},
+    {id: '10', name: 'Volker Jetter', image: "./team/volker.png", link: 'https://www.linkedin.com/in/', position: 'Funding'},
+    {id: '11', name: 'Nico Buchsenstein', image: "./team/nico.png", link: 'https://www.linkedin.com/in/', position: 'Funding'},
+    {id: '12', name: 'Balint Csizmadia', image: "./team/balint.png", link: 'https://www.linkedin.com/in/', position: 'Branding/UX design'},
+    {id: '13', name: 'Ines Filipp', image: "./team/ines.png", link: 'https://www.linkedin.com/in/', position: 'Branding/UX design'},
+    {id: '14', name: 'Philipp Veller', image: "./team/philipp.png", link: 'https://www.linkedin.com/in/', position: 'Lead Developer'},
+    {id: '15', name: 'David Doan', image: "./team/david.png", link: 'https://www.linkedin.com/in/', position: 'Developer'},
+    {id: '16', name: 'Akolade Adesanmi', image: "./team/akolade.png", link: 'https://www.linkedin.com/in/', position: 'Developer'},
+    {id: '17', name: 'Cynthia Mulenga', image: "./team/cynthia.png", link: 'https://www.linkedin.com/in/', position: 'Developer'},
+    {id: '18', name: 'Naomi Wickham', image: "./team/naomi.png", link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'}, 
 ]
 
 
@@ -45,12 +43,13 @@ export default (<>
         <ul>
          <li key={teamMember.id} className="Team-member">
             <div className="Team-member-image">
-            <a href={teamMember.link} rel="noopener noreferrer" target="_blank" ><img src={`assets/${teamMember.image}`} alt="" /></a> 
+            <a href={teamMember.link} rel="noopener noreferrer" target="_blank" ><img src={teamMember.image} alt="" />
+            </a>
+            </div>
             <div className="Team-member-body">
             <p><strong>{teamMember.name}</strong></p>
             <p>{teamMember.position}</p>
             </div>
-          </div>
          </li>
         </ul>
         ))}
