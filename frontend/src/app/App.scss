@@ -2,10 +2,12 @@
 @import "stylebase/utils";
 
 .App {
-  height: 100%;
   padding-top: $header-height;
+  flex: 1 0 100%;
 
   @include bp-medium() {
+    flex-grow: 0;
+    max-height: 100vh;
     padding-top: $header-height--desktop;
   }
 }

@@ -4,7 +4,12 @@
   box-sizing: border-box;
 }
 
-html, body, #root{
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+html, body, .root{
   height: 100%;
 }
 
