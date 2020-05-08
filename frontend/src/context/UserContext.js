@@ -19,7 +19,7 @@ const reducer = (state, action) => {
         ...state,
         user: {...state.user, ...action.payload.user },
         token: action.data.token,
-        partners: action.data.partners,
+        partners: action.data.partners || [],
         isAuthenticated: true
       };
 
