@@ -19,7 +19,7 @@ function Footer() {
     {route: '/imprint', label: t('imprint')},
     {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
-    {label: t('Mailing list')},
+    {route: '/about', label: t('About')},
   ];
 
 
