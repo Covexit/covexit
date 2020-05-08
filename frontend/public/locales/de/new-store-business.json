@@ -8,24 +8,16 @@
   "phoneNumber": "Telefonnummer des Geschäfts",
   "website": "Website (falls vorhanden)",
   "description": "Beschreibung des Geschäfts",
-  "intro": {
-    "head": "Willkommen!",
-    "text": "Du hast eine großartige Entscheidung getroffen, dich bei Covexit zu registrieren. Wir begleiten dich sehr gerne durch diesen Prozess.",
-    "button_google": "Geschäftsdaten von Google übernehmen",
-    "button_manually": "Geschäftsdaten selbst eintragen"
-  },
   "googleConfirm": {
     "head": "Geschäftsdaten",
     "text": "Jetzt richten wir dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus. *Bitte beachte, dass wir deine USt-ID-Nr verifizieren müssen, bevor du Produkte verkaufen kannst. Bis dahin kannst du jedoch schon deine Produkte anlegen und deinen Shop fertigstellen.",
     "continue": "Speichern & Fortfahren"
   },
   "searchGoogle": {
-    "head": "Nenne dein Geschäft",
-    "text": "Unter welchem Namen ist dein Unternehmen bekannt? Gib einen Namen ein."
+    "head": "Nenne Dein Geschäft",
+    "text": "Unter welchem Namen ist Dein Unternehmen bekannt? Gib einen Namen ein."
   },
-  "manually": {
-    "head": "Geschäftdaten",
-    "text": "Jetzt richten wir dein Geschäftskonto ein! Bitte fülle zunächst die unteren Felder aus. *Bitte beachte, dass wir deine USt-ID-Nr verifizieren müssen, bevor du Produkte verkaufen kannst. Bis dahin kannst du jedoch schon deine Produkte anlegen und deinen Shop fertigstellen.",
-    "continue": "Speichern & Fortfahren"
+  "intro": {
+    "button_manually": "Geschäftsdaten selbst eintragen"
   }
 }

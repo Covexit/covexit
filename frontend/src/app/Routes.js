@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch } from 'react-router-dom'
 import React from "react"
 import NoMatch from "views/NoMatch"
 import Home from "views/Home"
@@ -22,7 +22,7 @@ function Routes() {
       <PrivateRoute path="/stores/:id/onboarding/" component={Onboarding} />
       <Route path="/stores" component={Stores} />
       <Route path="/order/:step" component={OrderForm} />
-      <Route path="/verify/:id/:token/:type" component={Verify} />
+      <Route path="/verify/:id/:verificationKey/:type" component={Verify} />
       <Route path="/login" component={Login} />
       <Route exact path="/imprint" component={createTextPage('imprint')} />
       <Route exact path="/agb" component={createTextPage('agb')} />

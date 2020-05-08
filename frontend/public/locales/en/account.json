@@ -1,13 +1,22 @@
 {
   "privacy": "I have read and accept the privacy policy.",
-  "login": "Sign in",
   "logout": "Log out",
+  "signup": "Sign up",
+  "login": "Sign in",
+  "authenticationNeeded": "Authentication required",
+  "authenticationNeededText": "You have to be signed in to access this page. If you have an account you can sign in <1>here</1>. Otherwise you can register as a store owner <3>here</3>.",
   "email": "E-Mail address",
   "password": "Password",
   "passwordMatchError": "Passwords do not match",
   "passwordRepeat": "Repeat password",
   "tos": "I have read and accept the Terms and conditions",
+  "createAccount": "Create account and continue",
+  "verifyHead": "Verification",
+  "verifyText": "We have sent you an email with a verification link. Please click on this link to verify your account and continue.",
   "edit": "Edit account",
   "manageProduct": "Manage products",
-  "addProduct": "Add product"
+  "addProduct": "Add product",
+  "verifySuccessHead": "Verification was successful!",
+  "verifySuccessText": "You have successfully verified your account. Please click on the button below to continue.",
+  "verifyFailed": "Verification failed"
 }
