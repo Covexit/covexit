@@ -1,0 +1,14 @@
+@import "stylebase/variables";
+
+.Team-member-image {
+    border-radius: 50%;
+    img {
+      object-fit: cover;
+    }
+}
+
+li.Team-member {
+  list-style: none;
+  padding: 0;
+  margin-bottom: auto;
+}
