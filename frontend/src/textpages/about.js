@@ -20,46 +20,41 @@ import akolade from '../assets/team/akolade.png';
 import cynthia from '../assets/team/cynthia.png';
 import chiara from '../assets/team/chiara.png';
 import thomas from '../assets/team/thomas.png';
+import { MdStayCurrentLandscape } from 'react-icons/md';
 
 
-const managers = [
-    {id: '1', name: 'Fabian Katz', image: fabian_katz, link: 'https://www.linkedin.com/in/fabian-katz/', position: 'Project coordination'},
-    {id: '2', name: 'Marco Schmid', image: marco, link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/', position: 'Project coordination'},
-    {id: '3', name: 'Nicolai Huss', image: nicolai, link: 'https://www.linkedin.com/in/nicolai-huss/', position: 'Project coordination'},
+
+const teamMembers = [
+    {id: '1', name: 'Fabian Katz', image: fabian_katz, link: 'https://www.linkedin.com/in/fabian-katz/',department:'Project coordination', position: 'Project coordination'},
+    {id: '2', name: 'Marco Schmid', image: marco, link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/', department:'Project coordination', position: 'Project coordination'},
+    {id: '3', name: 'Nicolai Huss', image: nicolai, link: 'https://www.linkedin.com/in/nicolai-huss/',  department:'Project coordination', position: 'Project coordination'},
+    {id: '4', name: 'Moritz Giebel', image: moritz, link: 'https://www.linkedin.com/in/moritz-giebel-030054153/',  department:'Innovation', position: 'Innovation'},
+    {id: '5', name: 'Chiara Demming', image: chiara, link: 'https://www.linkedin.com/in/chiara-demming-5b81171a8/',  department:'Innovation', position: 'Innovation'},
+    {id: '6', name: 'Thomas Betz-Mors', image: thomas, link: 'https://www.linkedin.com/in/thomas-b-288a08136/',  department:'Innovation', position: 'Innovation'}, 
+    {id: '7', name: 'Fabian Ochs', image: fabian, link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', department:'Marketing',  position: 'Marketing'},
+    {id: '8', name: 'Lea Joos', image: lea, link: 'https://www.linkedin.com/in/lea-joos-5808a5174/', department:'Marketing',  position: 'Marketing'},
+    {id: '9', name: 'Silvia Mogas', image: silvia, link: 'https://www.linkedin.com/in/silviamogas/',  department:'Marketing', position: 'Marketing'},
+    {id: '10', name: 'Lisa Heite', image: lisa, link: 'https://linkedin.com/in/lisa-heite',  department:'Marketing', position: 'Marketing'},
+    {id: '11', name: 'Laura Maria Kassovicova', image: laura, link: 'https://www.linkedin.com/in/lauramariak/', department:'Marketing', position: 'Marketing'},
+    {id: '12', name: 'Volker Jetter', image: volker, link: 'https://www.linkedin.com/in/volker-jetter-0bb412ba/', department:'Finance', position: 'Finance'},
+    {id: '13', name: 'Nico Buchsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/',  department:'Finance', position: 'Finance'},
+    {id: '14', name: 'Balint Csizmadia', image: balint, link: 'https://www.linkedin.com/in/balint-design/',  department:'Design', position: 'Branding/UX design'},
+    {id: '15', name: 'Ines Filipp', image: ines, link: 'https://www.linkedin.com/company/wearecovexit/',  department:'Design', position: 'Branding/UX design'},
+    {id: '16', name: 'Philipp Veller', image: philipp, link: 'https://www.linkedin.com/in/philipp-veller-webdev/', department:'Development', position: 'Lead Developer'},
+    {id: '17', name: 'David Doan', image: david, link: 'https://www.linkedin.com/in/ddoan89/', department:'Development', position: 'Developer'},
+    {id: '18', name: 'Naomi Wickham', image: naomi, link: 'https://www.linkedin.com/in/naomiwickham/',  department:'Development', position: 'Developer'},
+    {id: '19', name: 'Akolade Adesanmi', image: akolade, link: 'https://www.linkedin.com/in/akolade-adesanmi-156276142/',  department:'Development', position: 'Developer'},
+    {id: '20', name: 'Cynthia Mulenga', image: cynthia, link: 'https://www.linkedin.com/in/cynthiammulenga/', department:'Development', position: 'Developer'},
 ]
 
-const innovation = [
-    {id: '4', name: 'Moritz Giebel', image: moritz, link: 'https://www.linkedin.com/in/moritz-giebel-030054153/', position: 'Innovation'},
-    {id: '5', name: 'Chiara Demming', image: chiara, link: 'https://www.linkedin.com/in/chiara-demming-5b81171a8/', position: 'Innovation'},
-    {id: '6', name: 'Thomas Betz-Mors', image: thomas, link: 'https://www.linkedin.com/in/thomas-b-288a08136/', position: 'Innovation'}, 
+const departments = [
+  'Project coordination',
+  'Innovation',
+  'Marketing',
+  'Finance',
+  'Design',
+  'Development',
 ]
-
-const marketing = [
-    {id: '7', name: 'Fabian Ochs', image: fabian, link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', position: 'Marketing'},
-    {id: '8', name: 'Lea Joos', image: lea, link: 'https://www.linkedin.com/in/lea-joos-5808a5174/', position: 'Marketing'},
-    {id: '9', name: 'Silvia Mogas', image: silvia, link: 'https://www.linkedin.com/in/silviamogas/', position: 'Marketing'},
-    {id: '10', name: 'Lisa Heite', image: lisa, link: 'https://linkedin.com/in/lisa-heite', position: 'Marketing'},
-    {id: '11', name: 'Laura Maria Kassovicova', image: laura, link: 'https://www.linkedin.com/in/lauramariak/', position: 'Marketing'},
-]
-
-const finance = [
-    {id: '12', name: 'Volker Jetter', image: volker, link: 'https://www.linkedin.com/in/volker-jetter-0bb412ba/', position: 'Finance'},
-    {id: '13', name: 'Nico Buchsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/', position: 'Finance'},
-]
-
-const branding = [
-  {id: '14', name: 'Balint Csizmadia', image: balint, link: 'https://www.linkedin.com/in/balint-design/', position: 'Branding/UX design'},
-  {id: '15', name: 'Ines Filipp', image: ines, link: 'https://www.linkedin.com/company/wearecovexit/', position: 'Branding/UX design'},
-]
-
-const developers = [
-    {id: '16', name: 'Philipp Veller', image: philipp, link: 'https://www.linkedin.com/in/philipp-veller-webdev/', position: 'Lead Developer'},
-    {id: '17', name: 'David Doan', image: david, link: 'https://www.linkedin.com/in/ddoan89/', position: 'Developer'},
-    {id: '18', name: 'Naomi Wickham', image: naomi, link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'},
-    {id: '19', name: 'Akolade Adesanmi', image: akolade, link: 'https://www.linkedin.com/in/akolade-adesanmi-156276142/', position: 'Developer'},
-    {id: '20', name: 'Cynthia Mulenga', image: cynthia, link: 'https://www.linkedin.com/in/cynthiammulenga/', position: 'Developer'},
-]
-
 
 export default (<>
   <div className="About">
@@ -75,105 +70,20 @@ export default (<>
 </div>
     <h1>Meet the Team!</h1>
     <section className="Team-members">
-     <p><strong>Project coordination</strong></p>
       <div className="Team">
-        {managers.map(manager => (
+        {teamMembers.map(teamMember => (
         <ul>
-         <li key={manager.id} className="Team-member">
+          <p><strong >{departments.department}</strong></p>
+          <li key={teamMember.id} className="Team-member">
             <div className="Team-member-image">
-            <a href={manager.link} rel="noopener noreferrer" target="_blank" ><img src={manager.image} alt="" />
+            <a href={teamMember.link} rel="noopener noreferrer" target="_blank" ><img src={teamMember.image} alt="" />
             </a>
             </div>
             <div className="Team-member-body">
-            <p><strong>{manager.name}</strong></p>
-            <p>{manager.position}</p>
+            <p><strong>{teamMember.name}</strong></p>
+            <p>{teamMember.position}</p>
             </div>
-         </li>
-        </ul>
-        ))}
-      </div>
-      <p><strong>Marketing</strong></p>
-      <div className="Team">
-        {marketing.map(marketing => (
-        <ul>
-         <li key={marketing.id} className="Team-member">
-            <div className="Team-member-image">
-            <a href={marketing.link} rel="noopener noreferrer" target="_blank" ><img src={marketing.image} alt="" />
-            </a>
-            </div>
-            <div className="Team-member-body">
-            <p><strong>{marketing.name}</strong></p>
-            <p>{marketing.position}</p>
-            </div>
-         </li>
-        </ul>
-        ))}
-      </div>
-      <p><strong>Innovation</strong></p>
-      <div className="Team">
-        {innovation.map(innovation => (
-        <ul>
-         <li key={innovation.id} className="Team-member">
-            <div className="Team-member-image">
-            <a href={innovation.link} rel="noopener noreferrer" target="_blank" ><img src={innovation.image} alt="" />
-            </a>
-            </div>
-            <div className="Team-member-body">
-            <p><strong>{innovation.name}</strong></p>
-            <p>{innovation.position}</p>
-            </div>
-         </li>
-        </ul>
-        ))}
-      </div>
-      <p><strong>Finance</strong></p>
-      <div className="Team">
-        {finance.map(finance => (
-        <ul>
-         <li key={finance.id} className="Team-member">
-            <div className="Team-member-image">
-            <a href={finance.link} rel="noopener noreferrer" target="_blank" ><img src={finance.image} alt="" />
-            </a>
-            </div>
-            <div className="Team-member-body">
-            <p><strong>{finance.name}</strong></p>
-            <p>{finance.position}</p>
-            </div>
-         </li>
-        </ul>
-        ))}
-      </div>
-      <p><strong>Design</strong></p>
-      <div className="Team">
-        {branding.map(branding => (
-        <ul>
-         <li key={branding.id} className="Team-member">
-            <div className="Team-member-image">
-            <a href={branding.link} rel="noopener noreferrer" target="_blank" ><img src={branding.image} alt="" />
-            </a>
-            </div>
-            <div className="Team-member-body">
-            <p><strong>{branding.name}</strong></p>
-            <p>{branding.position}</p>
-            </div>
-         </li>
-        </ul>
-        ))}
-      </div>
-      <p><strong>Development</strong></p>
-      <div className="Team">
-        {developers.map(developer => (
-        <ul>
-         <li key={developer.id} className="Team-member">
-            <div className="Team-member-image">
-            <a href={developer.link} rel="noopener noreferrer" target="_blank" ><img src={developer.image} alt="" />
-            </a>
-            </div>
-            <div className="Team-member-body">
-            <p><strong>{developer.name}</strong></p>
-            <p>{developer.position}</p>
-            </div>
-         </li>
+          </li>
         </ul>
         ))}
       </div>
