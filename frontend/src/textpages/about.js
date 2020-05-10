@@ -20,43 +20,73 @@ import akolade from '../assets/team/akolade.png';
 import cynthia from '../assets/team/cynthia.png';
 import chiara from '../assets/team/chiara.png';
 import thomas from '../assets/team/thomas.png';
-import { MdStayCurrentLandscape } from 'react-icons/md';
 
-
-
-const teamMembers = [
-    {id: '1', name: 'Fabian Katz', image: fabian_katz, link: 'https://www.linkedin.com/in/fabian-katz/',department:'Project coordination', position: 'Project coordination'},
-    {id: '2', name: 'Marco Schmid', image: marco, link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/', department:'Project coordination', position: 'Project coordination'},
-    {id: '3', name: 'Nicolai Huss', image: nicolai, link: 'https://www.linkedin.com/in/nicolai-huss/',  department:'Project coordination', position: 'Project coordination'},
-    {id: '4', name: 'Moritz Giebel', image: moritz, link: 'https://www.linkedin.com/in/moritz-giebel-030054153/',  department:'Innovation', position: 'Innovation'},
-    {id: '5', name: 'Chiara Demming', image: chiara, link: 'https://www.linkedin.com/in/chiara-demming-5b81171a8/',  department:'Innovation', position: 'Innovation'},
-    {id: '6', name: 'Thomas Betz-Mors', image: thomas, link: 'https://www.linkedin.com/in/thomas-b-288a08136/',  department:'Innovation', position: 'Innovation'}, 
-    {id: '7', name: 'Fabian Ochs', image: fabian, link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', department:'Marketing',  position: 'Marketing'},
-    {id: '8', name: 'Lea Joos', image: lea, link: 'https://www.linkedin.com/in/lea-joos-5808a5174/', department:'Marketing',  position: 'Marketing'},
-    {id: '9', name: 'Silvia Mogas', image: silvia, link: 'https://www.linkedin.com/in/silviamogas/',  department:'Marketing', position: 'Marketing'},
-    {id: '10', name: 'Lisa Heite', image: lisa, link: 'https://linkedin.com/in/lisa-heite',  department:'Marketing', position: 'Marketing'},
-    {id: '11', name: 'Laura Maria Kassovicova', image: laura, link: 'https://www.linkedin.com/in/lauramariak/', department:'Marketing', position: 'Marketing'},
-    {id: '12', name: 'Volker Jetter', image: volker, link: 'https://www.linkedin.com/in/volker-jetter-0bb412ba/', department:'Finance', position: 'Finance'},
-    {id: '13', name: 'Nico Buchsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/',  department:'Finance', position: 'Finance'},
-    {id: '14', name: 'Balint Csizmadia', image: balint, link: 'https://www.linkedin.com/in/balint-design/',  department:'Design', position: 'Branding/UX design'},
-    {id: '15', name: 'Ines Filipp', image: ines, link: 'https://www.linkedin.com/company/wearecovexit/',  department:'Design', position: 'Branding/UX design'},
-    {id: '16', name: 'Philipp Veller', image: philipp, link: 'https://www.linkedin.com/in/philipp-veller-webdev/', department:'Development', position: 'Lead Developer'},
-    {id: '17', name: 'David Doan', image: david, link: 'https://www.linkedin.com/in/ddoan89/', department:'Development', position: 'Developer'},
-    {id: '18', name: 'Naomi Wickham', image: naomi, link: 'https://www.linkedin.com/in/naomiwickham/',  department:'Development', position: 'Developer'},
-    {id: '19', name: 'Akolade Adesanmi', image: akolade, link: 'https://www.linkedin.com/in/akolade-adesanmi-156276142/',  department:'Development', position: 'Developer'},
-    {id: '20', name: 'Cynthia Mulenga', image: cynthia, link: 'https://www.linkedin.com/in/cynthiammulenga/', department:'Development', position: 'Developer'},
-]
 
 const departments = [
-  'Project coordination',
-  'Innovation',
-  'Marketing',
-  'Finance',
-  'Design',
-  'Development',
-]
 
+    { 
+      title: 'Project coordination', 
+      people: [
+        {name: 'Fabian Katz', image: fabian_katz, link: 'https://www.linkedin.com/in/fabian-katz/', position: 'Project coordination'},
+        {name: 'Marco Schmid', image: marco, link: 'https://www.linkedin.com/in/marco-schmid-1a39861a4/',  position: 'Project coordination'},
+        {name: 'Nicolai Huss', image: nicolai, link: 'https://www.linkedin.com/in/nicolai-huss/', position: 'Project coordination'}, 
+
+      ]
+    }, 
+  
+    { 
+      title: 'Innovation', 
+      people: [
+        {name: 'Moritz Giebel', image: moritz, link: 'https://www.linkedin.com/in/moritz-giebel-030054153/', position: 'Innovation'},
+        {name: 'Chiara Demming', image: chiara, link: 'https://www.linkedin.com/in/chiara-demming-5b81171a8/', position: 'Innovation'},
+        {name: 'Thomas Betz-Mors', image: thomas, link: 'https://www.linkedin.com/in/thomas-b-288a08136/', position: 'Innovation'}, 
+
+      ]
+    }, 
+  
+    { 
+      title: 'Finance', 
+      people: [
+        {name: 'Volker Jetter', image: volker, link: 'https://www.linkedin.com/in/volker-jetter-0bb412ba/', position: 'Finance'},
+        {name: 'Nico Buchsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/', position: 'Finance'},
+
+      ]
+    }, 
+  
+    { 
+      title: 'Marketing', 
+      people: [
+        {name: 'Fabian Ochs', image: fabian, link: 'https://www.linkedin.com/in/fabian-ochs-395b701a7/', position: 'Marketing'},
+        {name: 'Lea Joos', image: lea, link: 'https://www.linkedin.com/in/lea-joos-5808a5174/', position: 'Marketing'},
+        {name: 'Silvia Mogas', image: silvia, link: 'https://www.linkedin.com/in/silviamogas/', position: 'Marketing'},
+        {name: 'Lisa Heite', image: lisa, link: 'https://linkedin.com/in/lisa-heite', position: 'Marketing'},
+        {name: 'Laura Maria Kassovicova', image: laura, link: 'https://www.linkedin.com/in/lauramariak/', position: 'Marketing'}, 
+
+      ]
+    }, 
+    { 
+      title: 'Design', 
+      people: [
+        {name: 'Balint Csizmadia', image: balint, link: 'https://www.linkedin.com/in/balint-design/', position: 'Branding/UX design'},
+        {name: 'Ines Filipp', image: ines, link: 'https://www.linkedin.com/company/wearecovexit/', position: 'Branding/UX design'},
+    
+      ]
+    },    { 
+      title: 'Development', 
+      people: [
+        {name: 'Philipp Veller', image: philipp, link: 'https://www.linkedin.com/in/philipp-veller-webdev/', position: 'Lead Developer'},
+        {name: 'David Doan', image: david, link: 'https://www.linkedin.com/in/ddoan89/', position: 'Developer'},
+        {name: 'Naomi Wickham', image: naomi, link: 'https://www.linkedin.com/in/naomiwickham/', position: 'Developer'},
+        {name: 'Akolade Adesanmi', image: akolade, link: 'https://www.linkedin.com/in/akolade-adesanmi-156276142/', position: 'Developer'},
+        {name: 'Cynthia Mulenga', image: cynthia, link: 'https://www.linkedin.com/in/cynthiammulenga/', position: 'Developer'},   
+             
+      ]
+    }, 
+  ]
+    
+ 
 export default (<>
+
   <div className="About">
     <h1>About</h1>
     <p><strong>What is Covexit?</strong></p>
@@ -71,17 +101,17 @@ export default (<>
     <h1>Meet the Team!</h1>
     <section className="Team-members">
       <div className="Team">
-        {teamMembers.map(teamMember => (
+        {departments.map(department=> (
         <ul>
-          <p><strong >{departments.department}</strong></p>
-          <li key={teamMember.id} className="Team-member">
+          <p><strong >{department.title}</strong></p>
+          <li key={department.people.name} className="Team-member">
             <div className="Team-member-image">
-            <a href={teamMember.link} rel="noopener noreferrer" target="_blank" ><img src={teamMember.image} alt="" />
+            <a href="" rel="noopener noreferrer" target="_blank" ><img src="" alt="" />
             </a>
             </div>
             <div className="Team-member-body">
-            <p><strong>{teamMember.name}</strong></p>
-            <p>{teamMember.position}</p>
+            <p><strong></strong></p>
+            <p></p>
             </div>
           </li>
         </ul>
@@ -89,3 +119,4 @@ export default (<>
       </div>
     </section>
 </>);
+  
