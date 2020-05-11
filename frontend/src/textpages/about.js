@@ -108,7 +108,7 @@ export default (
           and are interested in the project. Feel free to reach out to us! </p>
       </Trans>
     </div>
-    <h2>Meet the Team!</h2>
+    <h2><Trans i18nKey="teamHeading" ns="about">Meet the Team!</Trans></h2>
     <section className="Team-members">
       <ul className="Team">
         {departments.map(department => (
