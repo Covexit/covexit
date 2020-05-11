@@ -12,7 +12,7 @@ const createTextPage = (textPage) => {
     const [content, setContent] = useState('');
     return (
       <ViewWrappers.View container withPadding>
-        <div className="Intro">
+        <div className="Richtext">
           {content ? content : <Loader>Please wait.</Loader>}
         </div>
       </ViewWrappers.View>
