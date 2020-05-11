@@ -20,7 +20,7 @@ import david from '../assets/team/david.png';
 import akolade from '../assets/team/akolade.png';
 import chiara from '../assets/team/chiara.png';
 import thomas from '../assets/team/thomas.png';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 
 const departments = [
@@ -78,60 +78,64 @@ const departments = [
   },
 ]
 
-
-export default (
-  <div className="About">
-    <div className="container">
-      <Trans i18nKey="content" ns="about">
-        <h1>About</h1>
-        <h2>What is Covexit?</h2>
-        <p>Covexit is an online marketplace that enables local retailers to easily
-          offer their products online and thereby help to overcome the corona
-          crisis.</p>
-        <p>A team of experts will support you with the preparations for your
-          account, so that it is as easy as possible for you to bring your
-          business
-          online</p>
-        <h2>Who are Covexit?</h2>
-        <p>Covexit started as an initiative by students from the KIT in Karlsruhe.
-          Seeing shops in their area having to close due to Covid-19 motivated
-          them
-          to start the online marketplace
-          and help particularly those local shops stay connected with their
-          customers and continue their business.</p>
-        <p>During the German #WirVsVirus Hackathon, then #TheGlobalHack and later
-          #EUvsVirus, the team grew and is now made up of developers, marketing
-          and
-          communications experts, business strategists and many more.</p>
-        <p>We, the Covexit Team, are happy that you found your way to this
-          platform
-          and are interested in the project. Feel free to reach out to us! </p>
-      </Trans>
+const AboutPage = () => {
+  const [t] = useTranslation('about');
+  return (
+    <div className="About">
+      <div className="container">
+        <Trans i18nKey="content" t={t}>
+          <h1>About</h1>
+          <h2>What is Covexit?</h2>
+          <p>Covexit is an online marketplace that enables local retailers to easily
+            offer their products online and thereby help to overcome the corona
+            crisis.</p>
+          <p>A team of experts will support you with the preparations for your
+            account, so that it is as easy as possible for you to bring your
+            business
+            online</p>
+          <h2>Who are Covexit?</h2>
+          <p>Covexit started as an initiative by students from the KIT in Karlsruhe.
+            Seeing shops in their area having to close due to Covid-19 motivated
+            them
+            to start the online marketplace
+            and help particularly those local shops stay connected with their
+            customers and continue their business.</p>
+          <p>During the German #WirVsVirus Hackathon, then #TheGlobalHack and later
+            #EUvsVirus, the team grew and is now made up of developers, marketing
+            and
+            communications experts, business strategists and many more.</p>
+          <p>We, the Covexit Team, are happy that you found your way to this
+            platform
+            and are interested in the project. Feel free to reach out to us! </p>
+        </Trans>
+      </div>
+      <h2><Trans i18nKey="teamHeading" t={t}>Meet the Team!</Trans></h2>
+      <section className="Team-members">
+        <ul className="Team">
+          {departments.map(department => (
+            <li className="Team-department" key={department.title}>
+              <h3>{department.title}</h3>
+              <ul>
+                {department.people.map(people => (
+                  <li key={people.name} className="Team-member">
+                    <div className="Team-member-image">
+                      <a href={people.link} rel="noopener noreferrer" target="_blank"><img src={people.image} alt=""/>
+                      </a>
+                    </div>
+                    <div className="Team-member-body">
+                      <p><strong>{people.name}</strong></p>
+                      <p>{people.position}<br />{people.sub}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
-    <h2><Trans i18nKey="teamHeading" ns="about">Meet the Team!</Trans></h2>
-    <section className="Team-members">
-      <ul className="Team">
-        {departments.map(department => (
-          <li className="Team-department">
-            <h3>{department.title}</h3>
-            <ul>
-              {department.people.map(people => (
-                <li key={people} className="Team-member">
-                  <div className="Team-member-image">
-                    <a href={people.link} rel="noopener noreferrer" target="_blank"><img src={people.image} alt=""/>
-                    </a>
-                  </div>
-                  <div className="Team-member-body">
-                    <p><strong>{people.name}</strong></p>
-                    <p>{people.position}<br />{people.sub}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </section>
-  </div>
-)
+  )
+}
+
+export default <AboutPage />;
 
