@@ -87,7 +87,7 @@ const departments = [
  
 export default (<>
 
-  <div className="About">
+<div className="About">
     <h1>About</h1>
     <p><strong>What is Covexit?</strong></p>
     <p>Covexit is an online marketplace that enables local retailers to easily offer their products online and thereby help to overcome the corona crisis.</p>
@@ -104,16 +104,17 @@ export default (<>
         {departments.map(department=> (
         <ul>
           <p><strong >{department.title}</strong></p>
-          <li key={department.people.name} className="Team-member">
+          {department.people.map(people => (<li key={people} className="Team-member">
             <div className="Team-member-image">
-            <a href="" rel="noopener noreferrer" target="_blank" ><img src="" alt="" />
+            <a href={people.link} rel="noopener noreferrer" target="_blank" ><img src={people.image}alt="" />
             </a>
             </div>
             <div className="Team-member-body">
-            <p><strong></strong></p>
-            <p></p>
+            <p><strong>{people.name}</strong></p>
+            <p>{people.position}</p>
             </div>
           </li>
+          ))}
         </ul>
         ))}
       </div>
