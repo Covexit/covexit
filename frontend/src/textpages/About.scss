@@ -14,11 +14,7 @@
 li.Team-member {
   list-style: none;
   padding: $padding-wrapper;
-}
-
-.Team {
-  display: inline-flex;
+  display: inline-block;
   flex-flow: wrap;
-  text-align: center;
-
 }
+

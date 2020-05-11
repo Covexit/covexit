@@ -111,7 +111,7 @@ export default (<>
             </div>
             <div className="Team-member-body">
             <p><strong>{people.name}</strong></p>
-            <p>{people.position}</p>
+            <div className="position">{people.position}</div>
             </div>
           </li>
           ))}
