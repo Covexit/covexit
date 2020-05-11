@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-
 import { useTranslation } from 'react-i18next';
-import { useUserContext } from '../context/UserContext';
+import { FiX } from 'react-icons/fi';
 
+import { useUserContext } from '../context/UserContext';
 import Button from '../components/Button/Button';
 import ProductList from '../components/ProductList/ProductList';
 import Tab from '../components/Tab/Tab';
@@ -11,7 +10,7 @@ import './Store.scss';
 import { useMediaQuery } from 'react-responsive';
 import useApi from '../shared/api';
 
-const Store = ({ match }) => {
+const Store = ({ match, history }) => {
   const [t] = useTranslation(['store-detail', 'account']);
   const { partners, logoutSuccess } = useUserContext();
   const { API } = useApi();
@@ -37,6 +36,7 @@ const Store = ({ match }) => {
   }, [ id, API ]);
   return (
     <div className="Store">
+      <button className="Store-close" onClick={() => history.push('/stores/')}><FiX size="30"/></button>
       <section className="Store-showcase">
         <div className="Store-image">
           <img src={`/photos/${store.image}`} alt="" style={{ width: "100%" }} />
@@ -52,18 +52,20 @@ const Store = ({ match }) => {
           <Button label={t('store-detail:callButton')} onClick={() => window.open(`tel:${store.addresses[0].phone}`)} secondary/>
           :
           <>
+          {/*
             <Button span label={t('account:edit')}/>
+          */}
             <Button onClick={logoutSuccess} label={t('account:logout')} secondary/>
-            <Button to={`${match.url}/products`} label={t('account:manageProduct')} secondary/>
-            <Button to={`${match.url}/products`} label={t('account:addProduct')} secondary/>
+          {/*
+            <Button to={`${match.url}/product`} label={t('account:manageProduct')} secondary/>
+          */}
+            <Button to={`${match.url}/product`} label={t('account:addProduct')} secondary/>
           </>
         }
       </section>
       }
-
+      <ProductList products={products} edit={ownsStore} />
       {ownsStore ? <Tab /> : ''}
-
-      <ProductList products={products} storeId={store.id} type="add" />
     </div>
   );
 }

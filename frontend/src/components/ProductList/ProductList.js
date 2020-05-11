@@ -5,7 +5,7 @@ import magnifierIcon from '../../assets/magnifier.svg'
 import { useTranslation } from 'react-i18next';
 
 
-const ProductList = ({ products, type, editorView }) => {
+const ProductList = ({ products, edit }) => {
   const [segment, setSegment] = useState('');
   const [t] = useTranslation('product-list');
   const categories = products.reduce((result, currentValue) => {
@@ -34,7 +34,7 @@ const ProductList = ({ products, type, editorView }) => {
           <ProductGroup
             groupName={segment}
             products={categories[segment]}
-            type={type}
+            edit={edit}
           /> :
           Object.keys(categories).map(product_class => {
             return (
@@ -42,7 +42,7 @@ const ProductList = ({ products, type, editorView }) => {
                 key={product_class}
                 groupName={product_class}
                 products={categories[product_class]}
-                type={type}
+                edit={edit}
               />
             )
           })

@@ -1,5 +1,7 @@
 {
   "cantLoadMap": "Karte kann leider nicht geladen werden",
-  "goToStoreButton": "Produkte und Informationen anzeigen",
-  "Next": "Weiter"
+  "goToStoreButton": "Produkte anzeigen",
+  "notFoundError": "Objekt nicht gefunden",
+  "unauthorizedError": "Zugang verweigert",
+  "serverError": "Oops. Etwas ist schiefgelaufen."
 }

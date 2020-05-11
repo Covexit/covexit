@@ -50,3 +50,19 @@
   padding: 25px;
   border-top: 1px solid $color-middle-gray;
 }
+
+.OrderTable-states {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.OrderTable-state {
+  margin: 0 10px;
+  font-size: 14px;
+
+  svg {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+}

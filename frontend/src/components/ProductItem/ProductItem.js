@@ -1,10 +1,25 @@
 import React from 'react';
 import { useCartContext } from '../../context/CartContext';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { FiPlusCircle } from 'react-icons/fi';
+import { FiEdit } from 'react-icons/fi';
+import { useHistory, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const ProductItem = ({ product }) => {
+
+const ProductItem = ({ product, edit }) => {
   const { addProduct } = useCartContext()
+  const { id } = useParams();
+  const history = useHistory();
+  const [t] = useTranslation(['product-cru', 'account']);
   const { title, description, price, images } = product
+
+  const onClick = () => {
+    if (edit) {
+      history.push(`/stores/${id}/product/${product.id}`)
+    } else {
+      addProduct(product)
+    }
+  }
 
   return (
     <div className="ProductItem">
@@ -17,13 +32,8 @@ const ProductItem = ({ product }) => {
           <p>{description}</p>
           <h4 className="variant-price">{price.incl_tax}€</h4>
         </div>
-
-        {
-          // TODO: Maybe change the route to stores/1/edit for edit mode
-          //  and then check with useRouteMatch whether this will be edit or add or delete
-        }
-        <button onClick={() => addProduct(product)}>
-          <MdAddCircleOutline size={50} />
+        <button onClick={() => onClick()} title={edit ? t('product-cru:editProduct') : t('account:addToCart')}>
+          {edit ? <FiEdit size="40" /> : <FiPlusCircle size="50" />}
         </button>
 
       </div>

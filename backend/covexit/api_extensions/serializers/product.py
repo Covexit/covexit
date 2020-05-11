@@ -1,5 +1,5 @@
 from oscar.apps.catalogue.models import Category, Product
-from oscarapi.serializers.checkout import PriceSerializer
+from .checkout import PriceSerializer
 from oscarapi.serializers.product import \
     PartnerSerializer as _PartnerSerializer, \
     BaseProductSerializer as _BaseProductSerializer, \
@@ -43,7 +43,7 @@ class PartnerSerializer(_PartnerSerializer):
 class BaseProductSerializer(_BaseProductSerializer):
     categories = serializers.HyperlinkedRelatedField(queryset=Category.objects,
                                                      view_name='category-detail',
-                                                     required=False, many=True)
+                                                     required=False, many=True,)
 
 
 class ProductLinkSerializer(_ProductLinkSerializer):

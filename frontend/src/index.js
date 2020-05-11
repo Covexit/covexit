@@ -5,7 +5,6 @@ import App from './app/App';
 import * as serviceWorker from 'serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import Loader from './components/Loader/Loader';
-
 import './i18n';
 
 ReactDOM.render(
