@@ -15,7 +15,7 @@ function Menu({ partner }) {
 
   if (partner.name)
     links = [
-      <NavLink to={`/stores/${partner.id}/`}>{t('menu:products')}</NavLink>,
+      <NavLink to={`/stores/${partner.id}/product`}>{t('menu:products')}</NavLink>,
       <NavLink to={`/stores/${partner.id}/orders`}>{t('menu:orders')}</NavLink>,
       <Button onClick={() => logoutSuccess()} to="/" label={t('account:logout')} type="small"/>
     ];

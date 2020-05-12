@@ -6,6 +6,7 @@ import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
+import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 import useApi from '../../shared/api';
 
 
@@ -79,7 +80,7 @@ const ProductForm = ({ id, editId }) => {
         //   formData,
         //   headers,
         // )
-        history.push(`/stores/${id}`);
+        history.push(`/stores/${id}/product`);
 
         //add new Product
       } else {
@@ -90,7 +91,7 @@ const ProductForm = ({ id, editId }) => {
             formData,
             response.data.id,
           )
-          history.push(`/stores/${id}`);
+          window.location.reload(false);
         } else {
           console.error(response);
         }
@@ -108,24 +109,29 @@ const ProductForm = ({ id, editId }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} body={<>
-      {/*editId ?
-        <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
-                           helpText={t('product-cru:photoHelp')} editView/> : null*/}
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
-      {!editId && (
+    <ViewWrappers.View withPadding>
+      <Form onSubmit={onSubmit}
+        head={editId ? <h1>{t('product-cru:editProduct')}</h1> : <h1>{t('product-cru:addProduct')}</h1>}
+        body={<>
+        {/* editId ?
+          <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
+                            helpText={t('product-cru:photoHelp')} editView/> : null */}
+          <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
+        {!editId && (
         <CategorySelect onSelected={onCategorySelect} value={product.categories} />
-      )}
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku} readOnly={!!editId}/>
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="stock" value={product.stock}/>
-      <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
-      {editId ? null :
+        )}
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku} readOnly={!!editId}/>
+        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="stock" value={product.stock}/>
+        <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
+        {editId ? null :
         <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
-                           helpText={t('product-cru:photoHelp')}/>}
-    </>} footer={
-      <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>}
-    />
+                            helpText={t('product-cru:photoHelp')}/>}
+        </>}
+        footer={
+        <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>}
+      />
+    </ViewWrappers.View>
   )
 }
 
