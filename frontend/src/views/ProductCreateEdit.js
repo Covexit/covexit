@@ -9,16 +9,15 @@ const ProductCreateEdit = ({ match }) => {
 
   const [products, setProducts] = useState([]);
   const { API } = useApi();
-
+  const id = match.params.id;
+  
   useEffect(() => {
     const getProducts = async () => {
-      const id = match.params.id;
       const response = await API.productList.get(id);
-      console.log(response.data);
       setProducts(response.data);
     };
     getProducts();
-  },[]);
+  },[id]);
 
   return   (
     <ViewWrappers.View className="PhotoSelect" container renderFn={isBigScreen => (
