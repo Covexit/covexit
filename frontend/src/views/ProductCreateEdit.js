@@ -10,14 +10,14 @@ const ProductCreateEdit = ({ match }) => {
   const [products, setProducts] = useState([]);
   const { API } = useApi();
   const id = match.params.id;
-  
+
   useEffect(() => {
     const getProducts = async () => {
       const response = await API.productList.get(id);
       setProducts(response.data);
     };
     getProducts();
-  },[id]);
+  },[id, API]);
 
   return   (
     <ViewWrappers.View className="PhotoSelect" container renderFn={isBigScreen => (

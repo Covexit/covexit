@@ -23,7 +23,6 @@ const Store = ({ match, history }) => {
   useEffect(() => {
     const getPartner = async () => {
       const response = await API.partners.get(id);
-      console.log(response.data.id);
       setStore(response.data);
     };
     const getProducts = async () => {
