@@ -18,7 +18,9 @@ function Footer() {
     {route: '/imprint', label: t('imprint')},
     {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
+    {route: '/about', label: t('About')},
   ];
+
 
   return (
     <div className="Footer">
