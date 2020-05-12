@@ -72,7 +72,7 @@ const departments = [
     title: 'Finance',
     people: [
       { name: 'Volker Jetter', image: volker, link: 'https://www.linkedin.com/in/volker-jetter-0bb412ba/', position: 'Finance' },
-      { name: 'Nico Buchsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/', position: 'Finance' },
+      { name: 'Nico Buechsenstein', image: nico, link: 'https://www.linkedin.com/in/nicobuechsenstein/', position: 'Finance' },
 
     ],
   },
