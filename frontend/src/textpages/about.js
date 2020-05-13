@@ -82,7 +82,7 @@ const AboutPage = () => {
   const [t] = useTranslation('about');
   return (
     <div className="About">
-      <div className="About-container">
+      <div className="container">
         <Trans i18nKey="content" t={t}>
           <h1>About</h1>
           <h2>What is Covexit?</h2>

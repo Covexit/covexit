@@ -27,14 +27,16 @@
 
 .Team-member {
   list-style: none;
-  flex-basis: 200px;
   flex-shrink: 0;
+  width: 100%;
   text-align: center;
   flex-flow: wrap;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px auto;
+
+  @include bp-medium {
+    flex-basis: 200px;
+    margin: 0 20px 20px 0;
+  }
 }
 
 .Team-department {
@@ -49,19 +51,5 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-  }
-}
-
-.About {
-  @include bp-large() {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-}
-
-
-.About-container {
-  @include bp-large() {
-   max-width: 80%;
   }
 }
