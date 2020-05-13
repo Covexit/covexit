@@ -68,6 +68,7 @@ h4, .h4 {
 
   a {
     border-bottom: 1px solid currentColor;
+    word-break: break-all;
   }
 }
 
@@ -88,10 +89,6 @@ h4, .h4 {
   }
 
   .container {
-    @include bp-medium() {
-      max-width: 700px;
-    }
-
     @include bp-large() {
       max-width: 1000px;
     }
