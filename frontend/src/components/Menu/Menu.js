@@ -15,12 +15,14 @@ function Menu({ partner }) {
 
   if (partner.name)
     links = [
+      <NavLink to="/about">{t('menu:About')}</NavLink>,
       <NavLink to={`/stores/${partner.id}/product`}>{t('menu:products')}</NavLink>,
       <NavLink to={`/stores/${partner.id}/orders`}>{t('menu:orders')}</NavLink>,
       <Button onClick={() => logoutSuccess()} to="/" label={t('account:logout')} type="small"/>
     ];
   else
     links = [
+      <NavLink to="/about">{t('menu:About')}</NavLink>,
       <a href="https://covexit.webflow.io/">{t('menu:howItWorks')}</a>,
       <NavLink to={`/stores`}>{t('menu:explore')}</NavLink>,
       <Dropdown label={t('menu:merchantSignUp')} type="small">
