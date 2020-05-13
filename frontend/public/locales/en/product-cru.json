@@ -10,5 +10,6 @@
   "photoHelp": "JPEG.JPG.PNG (Only these file types are accepted).",
   "saveProduct": "Save product",
   "editProduct": "Edit product",
-  "addProduct": "Add new product"
+  "addProduct": "Add new product",
+  "productList": "Product List"
 }

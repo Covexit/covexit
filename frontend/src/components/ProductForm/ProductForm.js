@@ -109,7 +109,7 @@ const ProductForm = ({ id, editId }) => {
   };
 
   return (
-    <ViewWrappers.View withPadding>
+    <ViewWrappers.View withPadding renderFn={isBigScreen => (
       <Form onSubmit={onSubmit}
         head={editId ? <h1>{t('product-cru:editProduct')}</h1> : <h1>{t('product-cru:addProduct')}</h1>}
         body={<>
@@ -129,9 +129,15 @@ const ProductForm = ({ id, editId }) => {
                             helpText={t('product-cru:photoHelp')}/>}
         </>}
         footer={
-        <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>}
-      />
-    </ViewWrappers.View>
+        <>
+        <div className="Btn-group">
+          {!isBigScreen ?
+          <Button label={`← ${t('product-cru:productList')}`} to={{pathname: `/stores/${id}/product`}} secondary/> : null }
+          <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>
+        </div>
+        </>}
+      /> ) } />
+
   )
 }
 
