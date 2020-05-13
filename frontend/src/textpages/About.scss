@@ -1,4 +1,5 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Team {
   list-style: none;
@@ -48,5 +49,19 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+  }
+}
+
+.About {
+  @include bp-large() {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+
+.About-container {
+  @include bp-large() {
+   max-width: 80%;
   }
 }
