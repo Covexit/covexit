@@ -9,9 +9,21 @@
   width: 100%;
 }
 
+.Order-overview-header {
+  margin-top: $margin-wrapper;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .Orders-heading {
-  padding-top: $padding-wrapper;
   font-weight: 700;
+}
+
+.Order-overview-back {
+  width: 30px;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .Orders-heading-pl {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, matchPath } from "react-router-dom";
+import { Route, Switch, matchPath, useHistory } from "react-router-dom";
 import OrderTable from '../../components/OrderTable/OrderTable'
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Order from './Order';
@@ -8,6 +8,7 @@ import "./Orders.scss";
 import Yippey from 'components/Yippey/Yippey';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Button/Button';
+import backArrow from '../../assets/back-arrow.svg'
 
 const style = { flexGrow: 0 };
 
@@ -17,6 +18,7 @@ const orderTable = {name: 'Tina Mayer', street: 'Hauptstraße 45', zipcity: '784
 ]};
 
 const Orders = (props) => {
+  const history = useHistory();
   const [t] = useTranslation('order');
   const pathMatch = matchPath(props.location.pathname, { path: '/stores/:id/orders/:orderId' });
   const match = props.match;
@@ -31,7 +33,13 @@ const Orders = (props) => {
         <Route path={`${match.path}/:orderId`}>
           {pathMatch && pathMatch.params.orderId !== 'history' ?
           <div className="Order-overview View--padded">
-            <h1 style={style} className="Orders-heading">{t('orderOverview')}</h1>
+            <div className="Order-overview-header">
+              <h1 style={style} className="Orders-heading">{t('orderOverview')}</h1>
+              <img
+                className='Order-overview-back'
+                onClick={() => history.goBack()}
+                src={backArrow} alt='Go Back'/>
+            </div>
             <OrderTable {...orderTable} />
           </div>
           : <>{/* order history */}
