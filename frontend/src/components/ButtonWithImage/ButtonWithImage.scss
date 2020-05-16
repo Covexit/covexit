@@ -1,0 +1,14 @@
+@import "stylebase/variables";
+
+.Button-with-image {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.Button-with-image-label {
+  margin-left: 3px;
+  font-family: $font-stack;
+  font-size: 16px;
+  font-weight: 600;
+}

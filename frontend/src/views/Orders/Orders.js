@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, matchPath, useHistory } from "react-router-dom";
+import { ArrowLeft } from "react-feather";
 import OrderTable from '../../components/OrderTable/OrderTable'
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Order from './Order';
@@ -8,7 +9,7 @@ import "./Orders.scss";
 import Yippey from 'components/Yippey/Yippey';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Button/Button';
-import backArrow from '../../assets/back-arrow.svg'
+import ButtonWithImage from '../../components/ButtonWithImage/ButtonWithImage'
 
 const style = { flexGrow: 0 };
 
@@ -35,10 +36,14 @@ const Orders = (props) => {
           <div className="Order-overview View--padded">
             <div className="Order-overview-header">
               <h1 style={style} className="Orders-heading">{t('orderOverview')}</h1>
-              <img
-                className='Order-overview-back'
+              <ButtonWithImage
                 onClick={() => history.goBack()}
-                src={backArrow} alt='Go Back'/>
+                label='back'
+                icon={<ArrowLeft color='#C2C2C2' size={15} />}
+                labelStyles={{
+                  color: '#C2C2C2'
+                }}
+              />
             </div>
             <OrderTable {...orderTable} />
           </div>
