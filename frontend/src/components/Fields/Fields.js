@@ -13,7 +13,8 @@ const TextInput = ({ onKeyDown, placeholder, type, onChange, onFocus, onBlur, na
         <Label>{placeholder}</Label>
         <input type={type || 'text'} className="TextInput-field" onChange={onChange}
                onFocus={onFocus} onBlur={onBlur} name={name} required={!optional}
-               value={value} placeholder={placeholder} readOnly={readOnly}/>
+               value={value.value || value} placeholder={placeholder} readOnly={readOnly}/>
+        {value.error && <p className="TextInput-error">{value.error}</p>}
       </label>
     </div>
   );

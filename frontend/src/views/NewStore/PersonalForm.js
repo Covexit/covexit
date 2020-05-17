@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import useApi from '../../shared/api';
 import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 import { Link } from 'react-router-dom';
+import { apiDataTransform, apiErrorTransform } from '../../shared/apiDataTransform';
 
 
 const PersonalForm = ({ history }) => {
@@ -18,7 +19,7 @@ const PersonalForm = ({ history }) => {
     address: '',
     postcode: '',
     city: '',
-    email: '',
+    username: '',
     phone: '',
     password: '',
     password_repeat: '',
@@ -31,7 +32,7 @@ const PersonalForm = ({ history }) => {
       const passwordsMatch = data.password === data.password_repeat;
       passwordRepeat.current.setCustomValidity(passwordsMatch ? '' : t('account:passwordMatchError'));
     }
-  });
+  }, [data.password, data.password_repeat, t]);
 
   const changeHandler = (event) => {
     setData({ ...data, [event.target.name]: event.target.checked || event.target.value })
@@ -39,8 +40,12 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await API.register.post({ ...data, username: data.email });
-    history.push('/stores/new/verify');
+    try {
+      await API.register.post(apiDataTransform(data));
+      history.push('/stores/new/verify');
+    } catch (e) {
+      setData((oldState) => apiErrorTransform(oldState, e.response.data))
+    }
   };
 
   return (
@@ -58,7 +63,7 @@ const PersonalForm = ({ history }) => {
                 <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
                 <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
               </Fields.FieldGroup>
-              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="username" type="email" value={data.username}/>
               <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
               <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
               <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
