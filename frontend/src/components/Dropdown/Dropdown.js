@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 
 function Dropdown({ label, children, ...rest }) {
   const [show, setShow] = useState(false);
-  console.log(rest);
+
   return (
     <div className="Dropdown">
       <Button className="Dropdown-button" onClick={() => setShow(!show)} {...rest}>{label}</Button>
