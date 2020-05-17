@@ -42,7 +42,7 @@ class RegisterView(CreateAPIView):
     Api for registering new users.
 
 
-    POST(username, password):
+    POST(email, password):
     1. A new user will be created.
 
     GET (enabled in DEBUG mode only):

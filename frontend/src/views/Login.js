@@ -24,7 +24,7 @@ const Login = ({history}) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.authToken.post({username: user.email, password: user.password});
+    const response = await API.authToken.post(user);
     if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
       history.push('/');

@@ -19,7 +19,7 @@ const PersonalForm = ({ history }) => {
     address: '',
     postcode: '',
     city: '',
-    username: '',
+    email: '',
     phone: '',
     password: '',
     password_repeat: '',
@@ -44,7 +44,8 @@ const PersonalForm = ({ history }) => {
       await API.register.post(apiDataTransform(data));
       history.push('/stores/new/verify');
     } catch (e) {
-      setData((oldState) => apiErrorTransform(oldState, e.response.data))
+      if (e.response && e.response.status === 400)
+        setData((oldState) => apiErrorTransform(oldState, e.response.data))
     }
   };
 
@@ -63,7 +64,7 @@ const PersonalForm = ({ history }) => {
                 <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:zip')} name="postcode" value={data.postcode}/>
                 <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:city')} name="city" value={data.city}/>
               </Fields.FieldGroup>
-              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="username" type="email" value={data.username}/>
+              <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:email')} name="email" type="email" value={data.email}/>
               <Fields.TextInput onChange={changeHandler} placeholder={t('new-store-owner:phoneNumber')} name="phone" value={data.phone}/>
               <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
               <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
