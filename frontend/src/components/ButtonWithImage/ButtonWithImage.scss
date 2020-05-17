@@ -4,6 +4,10 @@
   display: flex;
   cursor: pointer;
   align-items: center;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .Button-with-image-label {

@@ -3,18 +3,18 @@ import './ButtonWithImage.scss'
 
 function ButtonWithImage ({ label, icon, labelStyles, onClick }) {
   return (
-    <div
+    <button
       onClick={onClick}
       className="Button-with-image">
       {icon}
-      <p
+      <div
         style={{
           ...labelStyles
         }}
         className="Button-with-image-label">
         {label}
-      </p>
-    </div>
+      </div>
+    </button>
   )
 }
 
