@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TrackJS } from 'trackjs';
 import { useUserContext } from '../context/UserContext';
 import React, { useEffect } from 'react';
 import i18n from 'i18n';
@@ -61,6 +62,15 @@ const useApi = () => {
   }, [])
 
   axiosInstance.interceptors.response.use(res => res, err => {
+    TrackJS.console.log({
+        url: err.response.url,
+        status: err.response.status,
+        statusText: err.response.statusText,
+        request: err.response.data,
+    });
+
+    TrackJS.track(err.response.status + " " + err.response.statusText + ": " + err.response.url);
+
     switch (err.response.status) {
       case 404:
         setToast({ message: t('notFoundError'), type: 'error' })
