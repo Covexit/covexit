@@ -51,7 +51,7 @@ const useApi = () => {
     return () => {
       if (interceptor) {
         axiosInstance.interceptors.request.eject(interceptor);
-        }
+      }
     }
   }, [token])
 
@@ -61,39 +61,50 @@ const useApi = () => {
     });
   }, [])
 
-  axiosInstance.interceptors.response.use(res => res, err => {
-    TrackJS.console.log({
-        url: err.response.url,
-        status: err.response.status,
-        statusText: err.response.statusText,
-        request: err.response.data,
+
+  useEffect(() => {
+    const interceptor = axiosInstance.interceptors.response.use(res => res, err => {
+      if (process.env.NODE_ENV === 'production') {
+        TrackJS.console.log({
+          url: err.response.url,
+          status: err.response.status,
+          statusText: err.response.statusText,
+          request: err.response.data,
+        });
+
+        TrackJS.track(err.response.status + " " + err.response.statusText + ": " + err.response.url);
+      }
+
+      switch (err.response.status) {
+        case 404:
+          setToast({ message: t('notFoundError'), type: 'error' })
+          break;
+
+        case 401:
+          setToast({ message: t('unauthorizedError'), type: 'error' })
+          break;
+
+        default:
+          if (err.response.data) {
+            const strings = Object.values(err.response.data).flat();
+            setToast({ message: strings.map(str => <>{str}<br/></>), type: 'error' })
+            break;
+          }
+
+        // eslint-disable-next-line no-fallthrough
+        case 500:
+          setToast({ message: t('serverError'), type: 'error' })
+          break;
+      }
+      throw err
     });
 
-    TrackJS.track(err.response.status + " " + err.response.statusText + ": " + err.response.url);
-
-    switch (err.response.status) {
-      case 404:
-        setToast({ message: t('notFoundError'), type: 'error' })
-        break;
-
-      case 401:
-        setToast({ message: t('unauthorizedError'), type: 'error' })
-        break;
-
-      default:
-        if (err.response.data) {
-          const strings = Object.values(err.response.data).flat();
-          setToast({ message: strings.map(str => <>{str}<br/></>), type: 'error' })
-          break;
-        }
-
-      // eslint-disable-next-line no-fallthrough
-      case 500:
-        setToast({ message: t('serverError'), type: 'error' })
-        break;
+    return () => {
+      if (interceptor) {
+        axiosInstance.interceptors.response.eject(interceptor);
+      }
     }
-    throw err
-  });
+  }, [setToast, t])
 
   const API = React.useMemo(() => ({
     categories: createHyperlinkedEndpoint('categories/'),
