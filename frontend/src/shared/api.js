@@ -57,7 +57,7 @@ const useApi = () => {
 
   useEffect(() => {
     axiosInstance.interceptors.request.use(config => {
-      return { ...config, headers: { 'Accept-Language': i18n.language.toLowerCase() } };
+      return { ...config, headers: { 'Accept-Language': i18n.language.toLowerCase(), ...config.headers } };
     });
   }, [])
 
@@ -85,13 +85,6 @@ const useApi = () => {
           break;
 
         default:
-          if (err.response.data) {
-            const strings = Object.values(err.response.data).flat();
-            setToast({ message: strings.map(str => <>{str}<br/></>), type: 'error' })
-            break;
-          }
-
-        // eslint-disable-next-line no-fallthrough
         case 500:
           setToast({ message: t('serverError'), type: 'error' })
           break;
