@@ -70,7 +70,7 @@ const FileUpload = ({ helpText, label, onChange, name, value, editView, optional
       {editView && <img className="FileUpload-pen" src={edit} alt=""/>}
       <Button secondary label={label} span className="test" />
       <span className="TextInput-helpText">{helpText}</span>
-      <input type="file" className="FileUpload-field" onChange={onChange}
+      <input type="file" accept="image/*" className="FileUpload-field" onChange={onChange}
              name={name} required={!optional}/>
     </label>
   );
