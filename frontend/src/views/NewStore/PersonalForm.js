@@ -8,7 +8,8 @@ import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 import { Link } from 'react-router-dom';
 
 
-const PersonalForm = ({ history }) => {
+const PersonalForm = ({ history, person }) => {
+  const { state: locationState } = history.location;
   const passwordRepeat = useRef();
   const { API } = useApi();
   const [t] = useTranslation(['new-store-owner', 'account']);
@@ -25,6 +26,13 @@ const PersonalForm = ({ history }) => {
     accepted_tos: false,
     accepted_privacy_policy: false,
   });
+
+  useEffect(() => {
+    if (locationState && locationState.useGoogle) {
+      const { email, familyName: last_name, givenName: first_name } = locationState.person;
+      setData( prevData => ({ ...prevData, first_name, last_name, email, }))
+    }
+  }, [locationState])
 
   useEffect(() => {
     if (data.password_repeat && data.password) {

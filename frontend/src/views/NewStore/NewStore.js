@@ -9,6 +9,8 @@ import PersonalForm from './PersonalForm';
 import BusinessForm from './BusinessForm';
 import { useUserContext } from 'context/UserContext';
 import { useTranslation } from 'react-i18next';
+import { GoogleLogin } from 'react-google-login';
+
 import './NewStore.scss';
 import PrivateRoute from '../../components/PrivateRoute/PrivateRoute';
 import WaitingForVerify from './WaitingForVerify';
@@ -18,6 +20,10 @@ const NewStore = (props) => {
   const [t] = useTranslation('new-store');
   const match = props.match;
   const { isAuthenticated } = useUserContext();
+
+  const onGoogleAuthResponse = (response) => {
+    props.history.push(`${match.path}/owner`, { useGoogle: true, person: response.profileObj })
+  }
 
   return (
     <Switch>
@@ -41,7 +47,13 @@ const NewStore = (props) => {
             </>}
             footer={<>
               <div className="Btn-group">
-                <Button label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>
+                <GoogleLogin
+                  clientId="603706262013-3o2nra59mmnq9vivn93ee2g93umsurs6.apps.googleusercontent.com"
+                  render={renderProps => (<Button onClick={renderProps.onClick} label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>)}
+                  onSuccess={onGoogleAuthResponse}
+                  onFailure={(err) => console.log(`google auth. error ${err.message}`, err)}
+                  cookiePolicy={'single_host_origin'}
+                />
                 <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
               </div>
             </>}
