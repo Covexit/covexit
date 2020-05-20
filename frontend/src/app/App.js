@@ -19,7 +19,6 @@ const App = () => (
         <ToastProvider>
           <Header/>
           <Toast/>
-
           <div className="App">
             <Routes/>
           </div>

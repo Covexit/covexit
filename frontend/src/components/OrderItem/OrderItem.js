@@ -24,7 +24,7 @@ const OrderItem = ({ location, match: { params } }) => {
         <div className="OrderItem-product" key={e.name}>
         {e.quantity} x {e.name}
         </div>)}
-      <h4 className="OrderItem-price">{t('inclVat')}: {price.incl_tax}€</h4>
+      <h4 className="OrderItem-price">{t('inclVat')}: {price.incl_tax.toFixed(2)}€</h4>
       </div>
       <div>
         <Button type={matchStyling} to={`/stores/${params.id}/orders/1`} label={t('viewOrder')} />
