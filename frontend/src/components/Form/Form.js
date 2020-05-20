@@ -3,7 +3,7 @@ import React from "react";
 import './Form.scss'
 import Stepper from "../Stepper/Stepper";
 
-const Form = ({stepperProps, head, body, footer, onSubmit}) => {
+const Form = ({stepperProps, head, body, footer, onSubmit, errors}) => {
   const stepper = stepperProps && <Stepper {...stepperProps}/>;
 
   return (
@@ -12,6 +12,9 @@ const Form = ({stepperProps, head, body, footer, onSubmit}) => {
       <div className="Form-body">
         {body}
       </div>
+      {errors && <div className="Form-errors">
+        {errors}
+      </div>}
       <div className="Form-footer">{stepper}{footer}</div>
     </form>
   );

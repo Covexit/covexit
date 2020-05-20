@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TrackJS } from 'trackjs';
 import { useUserContext } from '../context/UserContext';
 import React, { useEffect } from 'react';
 import i18n from 'i18n';
@@ -50,40 +51,53 @@ const useApi = () => {
     return () => {
       if (interceptor) {
         axiosInstance.interceptors.request.eject(interceptor);
-        }
+      }
     }
   }, [token])
 
   useEffect(() => {
     axiosInstance.interceptors.request.use(config => {
-      return { ...config, headers: { 'Accept-Language': i18n.language.toLowerCase() } };
+      return { ...config, headers: { 'Accept-Language': i18n.language.toLowerCase(), ...config.headers } };
     });
   }, [])
 
-  axiosInstance.interceptors.response.use(res => res, err => {
-    switch (err.response.status) {
-      case 404:
-        setToast({ message: t('notFoundError'), type: 'error' })
-        break;
 
-      case 401:
-        setToast({ message: t('unauthorizedError'), type: 'error' })
-        break;
+  useEffect(() => {
+    const interceptor = axiosInstance.interceptors.response.use(res => res, err => {
+      if (process.env.NODE_ENV === 'production') {
+        TrackJS.console.log({
+          url: err.response.url,
+          status: err.response.status,
+          statusText: err.response.statusText,
+          request: err.response.data,
+        });
 
-      default:
-        if (err.response.data) {
-          const strings = Object.values(err.response.data).flat();
-          setToast({ message: strings.map(str => <>{str}<br/></>), type: 'error' })
+        TrackJS.track(err.response.status + " " + err.response.statusText + ": " + err.response.url);
+      }
+
+      switch (err.response.status) {
+        case 404:
+          setToast({ message: t('notFoundError'), type: 'error' })
           break;
-        }
 
-      // eslint-disable-next-line no-fallthrough
-      case 500:
-        setToast({ message: t('serverError'), type: 'error' })
-        break;
+        case 401:
+          setToast({ message: t('unauthorizedError'), type: 'error' })
+          break;
+
+        default:
+        case 500:
+          setToast({ message: t('serverError'), type: 'error' })
+          break;
+      }
+      throw err
+    });
+
+    return () => {
+      if (interceptor) {
+        axiosInstance.interceptors.response.eject(interceptor);
+      }
     }
-    throw err
-  });
+  }, [setToast, t])
 
   const API = React.useMemo(() => ({
     categories: createHyperlinkedEndpoint('categories/'),

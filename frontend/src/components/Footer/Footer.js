@@ -35,7 +35,7 @@ function Footer() {
           </ul>
           <ul className="Footer-links Footer-links--social">
             {
-              social.map(link => <li key={link.label} className="Footer-link"><a href={link.route}>{link.icon}</a></li>)
+              social.map((link, i) => <li key={i} className="Footer-link"><a href={link.route}>{link.icon}</a></li>)
             }
           </ul>
         </nav>

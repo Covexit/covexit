@@ -2,7 +2,7 @@
   "category": "Product category",
   "name": "Name of the product",
   "price": "Price in € (E.g. 2,99)",
-  "sku": "Product number",
+  "partner_sku": "Product number",
   "quantity": "Please indicate the quantity of the product you can offer. (In pieces)",
   "description": "Product description",
   "photoEdit": "Edit product photo",

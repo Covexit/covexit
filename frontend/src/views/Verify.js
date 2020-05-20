@@ -19,7 +19,7 @@ function Verify({ match, history }) {
           const response = await API.verify.post({ user_id: id, verification_key: verificationKey}, type);
           setIsVerified(1);
           if (response.data.token)
-            setUser({id: response.data.user.id, email: response.data.user.username}, response.data.token)
+            setUser({id: response.data.user.id, email: response.data.user.email}, response.data.token)
         }
         catch (e) {
           console.error(e);
