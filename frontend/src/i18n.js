@@ -9,8 +9,8 @@ i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
-    fallbackLng: 'en',
-    debug: true,
+    fallbackLng: 'de',
+    debug: false,
     nsSeparator: ':',
     detection: {
       order: ['navigator'],

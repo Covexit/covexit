@@ -3,6 +3,14 @@ import "./Footer.scss";
 import logo from "assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
+const social = [
+  { icon: <FaTwitter size="25"/>, route: 'https://twitter.com/covexit' },
+  { icon: <FaInstagram size="25"/>, route: 'https://www.instagram.com/covexit_de/' },
+  { icon: <FaLinkedin size="25"/>, route: 'https://www.linkedin.com/company/wearecovexit' },
+  { icon: <FaFacebook size="25"/>, route: 'https://www.facebook.com/Covexit/' },
+];
 
 function Footer() {
   const [t] = useTranslation('menu');
@@ -10,7 +18,9 @@ function Footer() {
     {route: '/imprint', label: t('imprint')},
     {route: '/agb', label: t('agb')},
     {route: '/privacy', label: t('privacy')},
+    {route: '/about', label: t('About')},
   ];
+
 
   return (
     <div className="Footer">
@@ -21,6 +31,11 @@ function Footer() {
           <ul className="Footer-links">
             {
               links.map(link => <li key={link.label} className="Footer-link"><Link to={link.route}>{link.label}</Link></li>)
+            }
+          </ul>
+          <ul className="Footer-links Footer-links--social">
+            {
+              social.map(link => <li key={link.label} className="Footer-link"><a href={link.route}>{link.icon}</a></li>)
             }
           </ul>
         </nav>

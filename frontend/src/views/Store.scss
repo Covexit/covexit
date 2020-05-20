@@ -3,7 +3,6 @@
 .Store {
   background: $color-light-gray;
   min-height: 100%;
-  padding-bottom: 60px;
 
   .small-icon {
     height: 28px;
@@ -12,6 +11,19 @@
        width: 46px;
     }
   }
+}
+
+.Store-close {
+  position: absolute;
+  top: $padding-wrapper;
+  right: $padding-wrapper;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-white;
 }
 
 .Store-header {

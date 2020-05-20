@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { matchPath } from 'react-router-dom';
 
 const items = { title: 'Tina Mayer', products: [
-  { name: 'bread', quantity: 2, }, { name: 'tea', quantity: 1, }
+  { name: 'Seife', quantity: 2, }, { name: 'Toilettenpapier', quantity: 1, }
 ], price: { incl_tax: 3.90 } };
 
 const OrderItem = ({ location, match: { params } }) => {
@@ -24,7 +24,7 @@ const OrderItem = ({ location, match: { params } }) => {
         <div className="OrderItem-product" key={e.name}>
         {e.quantity} x {e.name}
         </div>)}
-      <h4 className="OrderItem-price">{t('inclVat')}: {price.incl_tax}€</h4>
+      <h4 className="OrderItem-price">{t('inclVat')}: {price.incl_tax.toFixed(2)}€</h4>
       </div>
       <div>
         <Button type={matchStyling} to={`/stores/${params.id}/orders/1`} label={t('viewOrder')} />

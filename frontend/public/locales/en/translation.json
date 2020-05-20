@@ -1,4 +1,7 @@
 {
   "cantLoadMap": "Sorry, Map cannot be loaded",
-  "goToStoreButton": "Show products"
+  "goToStoreButton": "Show products",
+  "notFoundError": "Object not found",
+  "unauthorizedError": "Access denied. Try logging in or verifying your account.",
+  "serverError": "Oops. Something went wrong."
 }

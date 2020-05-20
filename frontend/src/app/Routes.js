@@ -27,6 +27,7 @@ function Routes() {
       <Route exact path="/imprint" component={createTextPage('imprint')} />
       <Route exact path="/agb" component={createTextPage('agb')} />
       <Route exact path="/privacy" component={createTextPage('privacy')} />
+      <Route exact path="/about" component={createTextPage('about')} />
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
     </Switch>

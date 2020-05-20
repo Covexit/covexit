@@ -87,6 +87,10 @@
     display: flex;
   }
 
+  a {
+    border-bottom: 1px solid currentColor;
+  }
+
   path {
     fill: none;
     stroke: $color-primary;
@@ -169,4 +173,10 @@ select {
       margin-right: 0;
     }
   }
+}
+
+.Label {
+  color: $color-dark-gray;
+  margin-bottom: 5px;
+  font-weight: 600;
 }

@@ -9,7 +9,7 @@
   padding: $padding-wrapper;
   background: center / cover no-repeat url('../assets/home_bg.png');
 
-  @include bp-large() {
+  @include bp-medium() {
     padding: 60px 40px;
 
     .Intro {

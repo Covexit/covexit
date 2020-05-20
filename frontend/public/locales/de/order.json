@@ -9,7 +9,8 @@
   "newOrders": "Neue Bestellungen",
   "orderHistory": "Bestellhistorie",
   "finish": {
-    "text": "Tina wird mehr als glücklich sein!"
+    "text": "Tina wird mehr als glücklich sein!",
+    "next": "Zurück"
   },
   "orderOverview": "Bestellübersicht",
   "orders": "Bestellungen"

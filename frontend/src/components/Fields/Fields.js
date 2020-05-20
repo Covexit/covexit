@@ -10,7 +10,7 @@ const TextInput = ({ onKeyDown, placeholder, type, onChange, onFocus, onBlur, na
   return (
     <div className="TextInput" onKeyDown={onKeyDown}>
       <label>
-        <span className="TextInput-label-text">{placeholder}</span>
+        <Label>{placeholder}</Label>
         <input type={type || 'text'} className="TextInput-field" onChange={onChange}
                onFocus={onFocus} onBlur={onBlur} name={name} required={!optional}
                value={value} placeholder={placeholder} readOnly={readOnly}/>
@@ -23,7 +23,7 @@ const PasswordInput = React.forwardRef(({ onKeyDown, onChange, onFocus, placehol
                          name, value }, ref) => (
   <div className="TextInput TextInput--password" onKeyDown={onKeyDown}>
     <label>
-      <span className="TextInput-label-text">{placeholder}</span>
+      <Label>{placeholder}</Label>
       <input type="password" className="TextInput-field" onChange={onChange}
              onFocus={onFocus} onBlur={onBlur} name={name} autoComplete="new-password"
              value={value} placeholder={placeholder} required minLength="8" ref={ref}/>
@@ -36,7 +36,7 @@ const TextArea = ({ onKeyDown, placeholder, rows, onChange, onFocus, onBlur, nam
   return (
     <div className="TextArea" onKeyDown={onKeyDown}>
       <label>
-        <span className="TextInput-label-text">{placeholder}</span>
+        <Label>{placeholder}</Label>
         <textarea className="TextInput-field" onChange={onChange} required={!optional}
                   onFocus={onFocus} onBlur={onBlur} name={name} rows={rows || 3}
                   value={value} placeholder={placeholder} maxLength={maxLength}/>
@@ -102,4 +102,8 @@ const FieldGroup = ({ children }) => (
   </div>
 );
 
-export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox, FieldGroup }
+const Label = ({ children }) => (
+  <p className="Label">{children}</p>
+)
+
+export default { TextInput, TextArea, FileUpload, PasswordInput, CheckBox, FieldGroup, Label }
