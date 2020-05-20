@@ -48,10 +48,10 @@ const NewStore = (props) => {
             footer={<>
               <div className="Btn-group">
                 <GoogleLogin
-                  clientId="279385128176-mbvi6s6ugouh059f7r58oms3ij3ufqbb.apps.googleusercontent.com"
+                  clientId="603706262013-3o2nra59mmnq9vivn93ee2g93umsurs6.apps.googleusercontent.com"
                   render={renderProps => (<Button onClick={renderProps.onClick} label={t('signUpGoogle')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: true } }}/>)}
                   onSuccess={onGoogleAuthResponse}
-                  onFailure={(err) => console.log(`google auth. error ${err}`)}
+                  onFailure={(err) => console.log(`google auth. error ${err.message}`, err)}
                   cookiePolicy={'single_host_origin'}
                 />
                 <Button label={t('signUpManually')} to={{ pathname: `${match.path}/owner`, state: { useGoogle: false } }} secondary/>
