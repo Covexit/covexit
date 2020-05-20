@@ -106,7 +106,7 @@ const BusinessForm = ({ location, history }) => {
     }
 
   return <ViewWrappers.View container withPadding>
-    <Form {...formProps} onSubmit={submitHandler}/>
+    <Form {...formProps} onSubmit={submitHandler} errors={data.non_field_errors}/>
   </ViewWrappers.View>
 };
 

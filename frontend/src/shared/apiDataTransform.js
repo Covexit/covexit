@@ -1,26 +1,31 @@
 export const apiErrorTransform = (data, errorResponse) => {
   const newState = { ...data };
   // recursively flatten object
-  console.log(errorResponse);
   const errorsFlat = Object.assign(
     {},
     ...function _flatten(o) {
       return [].concat(...Object.keys(o)
-        .map(k =>
-          typeof o[k] === 'object' && !Array.isArray(o[k])?
-            _flatten(o[k]) :
-            ({ [k]: o[k].join(' ') }),
+        .map(k => {
+            if ((typeof o[k] === 'object' && !Array.isArray(o[k])) || typeof o[k][0] === 'object') {
+              return _flatten(o[k]);
+            } else {
+              return { [k]: o[k].join(' ') };
+            }
+          },
         ),
       );
     }(errorResponse),
   )
-  console.log(errorsFlat);
+
   for (const [key, value] of Object.entries(errorsFlat)) {
-    console.log(data, key)
-    if (!data[key].error) {
+    if (data[key] && !data[key].error) {
       newState[key] = { value: data[key], error: value }
     }
   }
+  if (errorsFlat.non_field_errors) {
+    newState.non_field_errors = errorsFlat.non_field_errors;
+  }
+
   return newState;
 }
 

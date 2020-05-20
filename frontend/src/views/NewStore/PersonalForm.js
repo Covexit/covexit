@@ -51,7 +51,7 @@ const PersonalForm = ({ history }) => {
 
   return (
     <ViewWrappers.View container withPadding>
-      <Form onSubmit={submitHandler}
+      <Form onSubmit={submitHandler} errors={data.non_field_errors}
             head={<>
               <h1>{t('new-store-owner:head')}</h1>
               <p>{t('new-store-owner:text')}</p>

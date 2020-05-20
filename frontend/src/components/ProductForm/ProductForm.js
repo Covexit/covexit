@@ -7,6 +7,7 @@ import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
 import useApi from '../../shared/api';
+import { apiDataTransform, apiErrorTransform, } from '../../shared/apiDataTransform';
 
 
 const ProductForm = ({ id, editId }) => {
@@ -15,14 +16,13 @@ const ProductForm = ({ id, editId }) => {
   const [t] = useTranslation('product-cru');
   const [product, setProduct] = useState({
     title: '',
-    category: '',
-    price: '',
+    price_excl_tax: '',
     product_class: '',
     description: '',
-    stock: '',
-    sku: '',
+    num_in_stock: '',
+    partner_sku: '',
     categories: [],
-    _photos: [],
+    original: [],
   });
 
   const data = {
@@ -32,9 +32,9 @@ const ProductForm = ({ id, editId }) => {
     stockrecords: [
       {
         partner: id,
-        partner_sku: product.sku,
-        price_excl_tax: product.price,
-        num_in_stock: product.stock,
+        partner_sku: product.partner_sku,
+        price_excl_tax: product.price_excl_tax,
+        num_in_stock: product.num_in_stock,
       },
     ],
   };
@@ -47,11 +47,11 @@ const ProductForm = ({ id, editId }) => {
           title: response.data.title,
           categories: response.data.categories,
           product_class: response.data.product_class,
-          price: response.data.stockrecords[0].price_excl_tax,
-          sku: response.data.stockrecords[0].partner_sku,
-          stock: response.data.stockrecords[0].num_in_stock,
+          price_excl_tax: response.data.stockrecords[0].price_excl_tax,
+          partner_sku: response.data.stockrecords[0].partner_sku,
+          num_in_stock: response.data.stockrecords[0].num_in_stock,
           description: response.data.description,
-          _photos: response.data.images && response.data.images[0].original,
+          original: response.data.images && response.data.images[0].original,
         });
       };
       getCurrentProduct();
@@ -60,39 +60,42 @@ const ProductForm = ({ id, editId }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (product._photos.length && product.categories.length) {
+    if (product.original.length && product.categories.length) {
       const formData = new FormData();
-      Array.from(product._photos).forEach(item => {
+      Array.from(product.original).forEach(item => {
         formData.append('original', item);
       });
 
-      // edit existing Product
       if (editId) {
-        // const response =
-        await API.products.patch({
-          id: editId,
-          data,
-        });
-        // Image Patch request needs update
-        // await API.productImages.patch(
-        //   response.data.id,
-        //   formData,
-        //   headers,
-        // )
-        history.push(`/stores/${id}`);
+        try {
+          await API.products.patch({ id: editId, data: apiDataTransform(data) });
 
-        //add new Product
-      } else {
-        const response = await API.products.post({ data });
-        if (response.status === 201) {
-          // if there are images patch them in later because we need form data here
-          await API.productImages.post(
-            formData,
-            response.data.id,
-          )
+          // Image Patch request needs update
+          // await API.productImages.patch(
+          //   response.data.id,
+          //   formData,
+          //   headers,
+          // )
           history.push(`/stores/${id}`);
-        } else {
-          console.error(response);
+        } catch (e) {
+          if (e.response && e.response.status === 400)
+            setProduct((oldState) => apiErrorTransform(oldState, e.response.data))
+        }
+      } else {
+        try {
+          const response = await API.products.post(apiDataTransform({ data }));
+
+          if (response.status === 201) {
+            // images are separate because we need form data here
+            await API.productImages.post(
+              formData,
+              response.data.id,
+            )
+            history.push(`/stores/${id}`);
+          }
+        } catch (e) {
+          if (e.response && e.response.status === 400)
+            setProduct((oldState) => apiErrorTransform(oldState, e.response.data))
         }
       }
     }
@@ -108,20 +111,20 @@ const ProductForm = ({ id, editId }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} body={<>
+    <Form onSubmit={onSubmit} errors={product.non_field_errors} body={<>
       {/*editId ?
-        <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="_photos" value={product._photos}
+        <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="original" value={product.original}
                            helpText={t('product-cru:photoHelp')} editView/> : null*/}
       <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
       {!editId && (
         <CategorySelect onSelected={onCategorySelect} value={product.categories} />
       )}
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price" value={product.price}/>
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:sku')} name="sku" value={product.sku} readOnly={!!editId}/>
-      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="stock" value={product.stock}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price_excl_tax" value={product.price_excl_tax}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:partner_sku')} name="partner_sku" value={product.partner_sku} readOnly={!!editId}/>
+      <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="num_in_stock" value={product.num_in_stock}/>
       <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
       {editId ? null :
-        <Fields.FileUpload onChange={onChange} label={product._photos.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="_photos" value={product._photos}
+        <Fields.FileUpload onChange={onChange} label={product.original.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="original" value={product.original}
                            helpText={t('product-cru:photoHelp')}/>}
     </>} footer={
       <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>}
