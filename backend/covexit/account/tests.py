@@ -16,7 +16,7 @@ class AccountTests(TestCase):
         user = baker.make(settings.AUTH_USER_MODEL, email='x@y.com')
         entry = baker.make(MailingListEntry, email='x@y.com')
         send_verification_email(user)
-        send_verification_email(entry, 'mailinglist')
+        send_verification_email(entry)
         self.assertEqual(len(mail.outbox), 2)
         self.assertIn(create_verification_link(user), mail.outbox[0].body)
         self.assertIn(create_verification_link(entry), mail.outbox[1].body)

@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import useApi from '../../shared/api';
 import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 import { Link } from 'react-router-dom';
+import { apiDataTransform, apiErrorTransform } from '../../shared/apiDataTransform';
 
 
 const PersonalForm = ({ history }) => {
@@ -31,7 +32,7 @@ const PersonalForm = ({ history }) => {
       const passwordsMatch = data.password === data.password_repeat;
       passwordRepeat.current.setCustomValidity(passwordsMatch ? '' : t('account:passwordMatchError'));
     }
-  });
+  }, [data.password, data.password_repeat, t]);
 
   const changeHandler = (event) => {
     setData({ ...data, [event.target.name]: event.target.checked || event.target.value })
@@ -39,13 +40,18 @@ const PersonalForm = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await API.register.post({ ...data, username: data.email });
-    history.push('/stores/new/verify');
+    try {
+      await API.register.post(apiDataTransform(data));
+      history.push('/stores/new/verify');
+    } catch (e) {
+      if (e.response && e.response.status === 400)
+        setData((oldState) => apiErrorTransform(oldState, e.response.data))
+    }
   };
 
   return (
     <ViewWrappers.View container withPadding>
-      <Form onSubmit={submitHandler}
+      <Form onSubmit={submitHandler} errors={data.non_field_errors}
             head={<>
               <h1>{t('new-store-owner:head')}</h1>
               <p>{t('new-store-owner:text')}</p>

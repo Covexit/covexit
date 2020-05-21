@@ -41,7 +41,7 @@ function Header() {
 
   return (
     <div className={`Header ${!!partner && 'Header--partner'}`}>
-      <Menu partner={partner}/>
+      <Menu partner={partner} isAuthenticated={isAuthenticated}/>
       <Link to="/" className="Header-logo"><Logo className="Header-logo" /></Link>
       {partnerArea}
       <Share/>
