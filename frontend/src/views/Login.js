@@ -28,7 +28,7 @@ const Login = ({history}) => {
     const response = await API.authToken.post(user);
     if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
-      const redirect = locationState.redirectTo || '/'
+      const redirect = locationState ? locationState.redirectTo : '/';
       history.push(redirect);
     } else {
       console.error(response);

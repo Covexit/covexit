@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, matchPath, useHistory } from "react-router-dom";
-import { ArrowLeft } from "react-feather";
+import { FiArrowLeft } from "react-icons/fi";
 import OrderTable from '../../components/OrderTable/OrderTable'
 import ViewWrappers from "components/ViewWrappers/ViewWrappers";
 import Order from './Order';
@@ -39,7 +39,7 @@ const Orders = (props) => {
               <ButtonWithImage
                 onClick={() => history.goBack()}
                 label='back'
-                icon={<ArrowLeft color='#C2C2C2' size={15} />}
+                icon={<FiArrowLeft color='#C2C2C2' size={15} />}
                 labelStyles={{
                   color: '#C2C2C2'
                 }}

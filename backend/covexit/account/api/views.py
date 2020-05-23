@@ -8,7 +8,7 @@ from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 
 from covexit.account.api.serializers import RegisterSerializer, \
-    VerifySerializer, AddToMailingListSerializer
+    VerifySerializer, AddToMailingListSerializer, AuthTokenEmailSerializer
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
@@ -20,6 +20,7 @@ UserAccount = get_user_model()
 
 
 class CustomAuthToken(ObtainAuthToken):
+    serializer_class = AuthTokenEmailSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
