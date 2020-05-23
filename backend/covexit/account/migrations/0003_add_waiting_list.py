@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254)),
                 ('verified', models.BooleanField(default=False, verbose_name='Email Verified')),
                 ('verification_key', models.CharField(blank=True, max_length=30, verbose_name='Verification Key')),
-                ('accepted_privacy_policy', models.BooleanField(validators=[covexit.account.models.validate_true], verbose_name='Accepted Privacy Policy')),
+                ('accepted_privacy_policy', models.BooleanField(verbose_name='Accepted Privacy Policy')),
             ],
         ),
     ]

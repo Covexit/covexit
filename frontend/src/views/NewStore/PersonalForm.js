@@ -23,8 +23,6 @@ const PersonalForm = ({ history }) => {
     phone: '',
     password: '',
     password_repeat: '',
-    accepted_tos: false,
-    accepted_privacy_policy: false,
   });
 
   useEffect(() => {
@@ -69,10 +67,7 @@ const PersonalForm = ({ history }) => {
               <Fields.PasswordInput onChange={changeHandler} name="password" value={data.password} placeholder={t('account:password')}/>
               <Fields.PasswordInput onChange={changeHandler} name="password_repeat" value={data.password_repeat}
                                     placeholder={t('account:passwordRepeat')} ref={passwordRepeat}/>
-              <Fields.CheckBox onChange={changeHandler} name="accepted_tos" checked={data.accepted_tos}
-                               placeholder={<Trans i18nKey="tos" ns="account">I have read and accept the <Link to="/agb/">Terms and conditions</Link>.</Trans>}/>
-              <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                               placeholder={<Trans i18nKey="privacy" ns="account">I have read and accept the <Link to="/privacy/">privacy policy</Link>.</Trans>}/>
+              <p><Trans i18nKey="tos" ns="account"><Link to="/agb/" target="_blank">Terms and conditions</Link> apply.</Trans></p>
             </>}
             stepperProps={{ count: 3, activeIndex: 1 }}
             footer={<Button label={t('account:createAccount')}/>}

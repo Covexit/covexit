@@ -25,7 +25,6 @@ const EnlistModal = () => {
   const [ data, setData ] = useState({
     name: '',
     email: '',
-    accepted_privacy_policy: false,
     message: []
   });
   const [t] = useTranslation(['mailing-list', 'account']);
@@ -64,8 +63,6 @@ const EnlistModal = () => {
         body={<>
           <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:name')} name="name" value={data.name}/>
           <Fields.TextInput onChange={changeHandler} placeholder={t('mailing-list:email')} name="email" value={data.email} type="email"/>
-          <Fields.CheckBox onChange={changeHandler} name="accepted_privacy_policy" checked={data.accepted_privacy_policy}
-                           placeholder={<Trans i18nKey="privacy" ns="account">I have read and accept the <Link to="/privacy/">privacy policy</Link>.</Trans>}/>
           {(data.message && <p>{data.message}</p>) || ''}
         </>}
         footer={<>

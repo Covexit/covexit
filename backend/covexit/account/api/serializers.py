@@ -29,8 +29,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             "city",
             "postcode",
             "phone",
-            "accepted_tos",
-            "accepted_privacy_policy",
         )
 
     def create(self, validated_data):
@@ -53,7 +51,7 @@ class AddToMailingListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MailingListEntry
-        fields = ('name', 'email', 'accepted_privacy_policy')
+        fields = ('name', 'email')
 
     def create(self, validated_data):
         entry = MailingListEntry.objects.create(

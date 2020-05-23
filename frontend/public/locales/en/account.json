@@ -1,5 +1,4 @@
 {
-  "privacy": "I have read and accept the <1>privacy policy</1>.",
   "logout": "Log out",
   "signup": "Sign up",
   "login": "Sign in",
@@ -10,7 +9,7 @@
   "password": "Password",
   "passwordMatchError": "Passwords do not match",
   "passwordRepeat": "Repeat password",
-  "tos": "I have read and accept the <1>Terms and conditions</1>.",
+  "tos": "<0>Terms and conditions</0> apply.",
   "createAccount": "Create account and continue",
   "verifyHead": "Verification",
   "verifyText": "We have sent you an email with a verification link. Please click on this link to verify your account and continue.",

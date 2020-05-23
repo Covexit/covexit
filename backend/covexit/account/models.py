@@ -88,14 +88,9 @@ def send_verification_email(user):
     ))
 
 
-def validate_true(value):
-    if not value:
-        raise ValidationError(_('Field must be True!'))
-
-
 class UserAccountManager(BaseUserManager):
     def _create_user(self, email, password, address, city, postcode,
-                     phone, accepted_tos, accepted_privacy_policy, **extra_fields):
+                     phone, **extra_fields):
         if not email:
             raise ValueError('The given email must be set')
         user = self.model(
@@ -104,23 +99,21 @@ class UserAccountManager(BaseUserManager):
             postcode=postcode,
             city=city,
             phone=phone,
-            accepted_tos=accepted_tos,
-            accepted_privacy_policy=accepted_privacy_policy,
             **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_user(self, email, password, address, city, postcode,
-                    phone, accepted_tos, accepted_privacy_policy, **extra_fields):
+                    phone, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(
             email, password, address, city, postcode, phone,
-            accepted_tos, accepted_privacy_policy, **extra_fields)
+            **extra_fields)
 
     def create_superuser(self, email, password, address, city, postcode,
-                         phone, accepted_tos, accepted_privacy_policy, **extra_fields):
+                         phone, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         if extra_fields.get('is_staff') is not True:
@@ -128,7 +121,7 @@ class UserAccountManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         return self._create_user(email, password, address, city, postcode,
-                                 phone, accepted_tos, accepted_privacy_policy, **extra_fields)
+                                 phone, **extra_fields)
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
@@ -139,10 +132,6 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(_('City'), max_length=200)
     email = models.EmailField(_('email address'), unique=True)
     phone = models.CharField(_('Phone'), max_length=45, default='')
-    accepted_tos = models.BooleanField(_('Accepted ToS'),
-                                       validators=[validate_true])
-    accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
-                                                  validators=[validate_true])
     verified = models.BooleanField(_('Email Verified'), default=False,
                                    help_text='<a href="../resend_verification">'
                                              'Send key again'
@@ -172,8 +161,6 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         "postcode",
         "city",
         "phone",
-        "accepted_tos",
-        "accepted_privacy_policy",
     ]
     USERNAME_FIELD = 'email'
 
@@ -188,5 +175,3 @@ class MailingListEntry(models.Model):
                                    )
     verification_key = models.CharField(_('Verification Key'), blank=True,
                                         max_length=VERIFICATION_KEY_LENGTH)
-    accepted_privacy_policy = models.BooleanField(_('Accepted Privacy Policy'),
-                                                  validators=[validate_true])
