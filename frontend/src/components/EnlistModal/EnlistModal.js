@@ -4,11 +4,10 @@ import { useUserContext } from '../../context/UserContext';
 import Modal from '../Modal/Modal';
 import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from '../Button/Button';
 import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa'
 import useApi from '../../shared/api';
-import { Link } from 'react-router-dom';
 
 const social = [
   { icon: <FaTwitter />, link: 'https://twitter.com/covexit' },
