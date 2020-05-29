@@ -5,16 +5,17 @@ const ClickOut = ({
   onClickOut,
 }) => {
   const wrapperRef = useRef(null);
-  const handleClickOut = event => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      onClickOut(event);
-    }
-  };
 
   useEffect(() => {
+    function handleClickOut (event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        onClickOut(event);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOut);
     return () => document.removeEventListener('mousedown', handleClickOut);
-  }, []);
+  }, [onClickOut]);
 
   return (
     <div ref={wrapperRef}>
