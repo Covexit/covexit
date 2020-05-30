@@ -13,7 +13,8 @@ const TextInput = ({ onKeyDown, placeholder, type, onChange, onFocus, onBlur, na
         <Label>{placeholder}</Label>
         <input type={type || 'text'} className="TextInput-field" onChange={onChange}
                onFocus={onFocus} onBlur={onBlur} name={name} required={!optional}
-               value={value} placeholder={placeholder} readOnly={readOnly}/>
+               value={value.value || value} placeholder={placeholder} readOnly={readOnly}/>
+        {value.error && <p className="TextInput-error">{value.error}</p>}
       </label>
     </div>
   );
@@ -69,7 +70,7 @@ const FileUpload = ({ helpText, label, onChange, name, value, editView, optional
       {editView && <img className="FileUpload-pen" src={edit} alt=""/>}
       <Button secondary label={label} span className="test" />
       <span className="TextInput-helpText">{helpText}</span>
-      <input type="file" className="FileUpload-field" onChange={onChange}
+      <input type="file" accept="image/*" className="FileUpload-field" onChange={onChange}
              name={name} required={!optional}/>
     </label>
   );

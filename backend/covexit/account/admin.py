@@ -33,9 +33,9 @@ class VerificationModelMixin:
 
 class UserAccountAdmin(VerificationModelMixin, UserAdmin):
     fieldsets = (
-        (None, {'fields': ('username', 'password', 'verified', 'verification_key')}),
+        (None, {'fields': ('email', 'password', 'verified', 'verification_key')}),
         (_('Personal info'), {'fields': (
-            'first_name', 'last_name', 'email', 'postcode', 'city', 'address',
+            'first_name', 'last_name', 'postcode', 'city', 'address',
             'phone',
         )}),
         (_('Permissions'), {
@@ -43,7 +43,10 @@ class UserAccountAdmin(VerificationModelMixin, UserAdmin):
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
-
+    list_display = ('email', 'first_name', 'last_name', 'is_staff')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    search_fields = ('first_name', 'last_name', 'email')
+    ordering = ('email',)
 
 class WaitingListAdmin(VerificationModelMixin, ModelAdmin):
     pass

@@ -3,5 +3,7 @@
   "goToStoreButton": "Produkte anzeigen",
   "notFoundError": "Objekt nicht gefunden",
   "unauthorizedError": "Zugang verweigert",
-  "serverError": "Oops. Etwas ist schiefgelaufen."
+  "serverError": "Oops. Etwas ist schiefgelaufen.",
+  "content": "<0>About</0><1>What is Covexit?</1><2>Covexit is an online marketplace that enables local retailers to easily offer their products online and thereby help to overcome the corona crisis.</2><3>A team of experts will support you with the preparations for your account, so that it is as easy as possible for you to bring your business online</3><4>Who are Covexit?</4><5>Covexit started as an initiative by students from the KIT in Karlsruhe. Seeing shops in their area having to close due to Covid-19 motivated them to start the online marketplace and help particularly those local shops stay connected with their customers and continue their business.</5><6>During the German #WirVsVirus Hackathon, then #TheGlobalHack and later #EUvsVirus, the team grew and is now made up of developers, marketing and communications experts, business strategists and many more.</6><7>We, the Covexit Team, are happy that you found your way to this platform and are interested in the project. Feel free to reach out to us! </7>",
+  "teamHeading": "Meet the Team!"
 }

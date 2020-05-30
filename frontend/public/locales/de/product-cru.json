@@ -2,7 +2,7 @@
   "category": "Produktkategorie",
   "name": "Name des Produkts",
   "price": "Preis in € (Bsp: 2,99)",
-  "sku": "Produktnummer",
+  "partner_sku": "Produktnummer",
   "quantity": "In welcher Menge kannst Du das Produkt anbieten? (In Stück)",
   "description": "Produktbeschreibung",
   "photoEdit": "Produktfoto bearbeiten",

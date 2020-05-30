@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import useApi from '../shared/api';
 
 const Login = ({history}) => {
+  const { state: locationState } = history.location;
   const { API } = useApi();
   const { setUser } = useUserContext();
   const [t] = useTranslation('account');
@@ -24,10 +25,11 @@ const Login = ({history}) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await API.authToken.post({username: user.email, password: user.password});
+    const response = await API.authToken.post(user);
     if (response.data.token){
       setUser(response.data.user, response.data.token, response.data.partners);
-      history.push('/');
+      const redirect = locationState ? locationState.redirectTo : '/';
+      history.push(redirect);
     } else {
       console.error(response);
     }

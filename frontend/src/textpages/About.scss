@@ -1,4 +1,5 @@
 @import "stylebase/variables";
+@import "stylebase/utils";
 
 .Team {
   list-style: none;
@@ -26,12 +27,16 @@
 
 .Team-member {
   list-style: none;
-  flex-basis: 200px;
   flex-shrink: 0;
+  width: 100%;
   text-align: center;
   flex-flow: wrap;
-  margin-right: 20px;
-  margin-bottom: 10px;
+  margin: 10px auto;
+
+  @include bp-medium {
+    flex-basis: 200px;
+    margin: 0 20px 20px 0;
+  }
 }
 
 .Team-department {
