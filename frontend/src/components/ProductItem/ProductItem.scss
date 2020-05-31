@@ -1,5 +1,19 @@
 .ProductItem {
   display: flex;
+  transition: background $primary-transition;
+
+  &--simple:hover {
+    background: $color-light-gray;
+  }
+
+  &--active,
+  &--active:hover {
+    background: $color-gray;
+  }
+
+  &--simple {
+    cursor: pointer;
+  }
 }
 
 .ProductItem-img {
@@ -10,6 +24,11 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
+  }
+
+  .ProductItem--simple & {
+    width: 170px;
+    flex: 0 0 170px;
   }
 }
 

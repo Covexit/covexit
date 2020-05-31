@@ -6,9 +6,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 
-const ProductItem = ({ product, edit }) => {
+const ProductItem = ({ product, edit, simple }) => {
   const { addProduct } = useCartContext()
-  const { id } = useParams();
+  const { id, editId } = useParams();
   const history = useHistory();
   const [t] = useTranslation(['product-cru', 'account']);
   const { title, description, price, images } = product
@@ -22,7 +22,8 @@ const ProductItem = ({ product, edit }) => {
   }
 
   return (
-    <div className="ProductItem">
+    <div className={`ProductItem ${simple && 'ProductItem--simple'} ${parseInt(editId) === product.id ? 'ProductItem--active' : ''}`}
+         onClick={simple ? onClick : null}>
       <div className="ProductItem-img">
       {!!images.length && <img src={images[0].original} alt="" />}
       </div>
@@ -32,9 +33,10 @@ const ProductItem = ({ product, edit }) => {
           <p>{description}</p>
           <h4 className="variant-price">{price.incl_tax}€</h4>
         </div>
-        <button onClick={() => onClick()} title={edit ? t('product-cru:editProduct') : t('account:addToCart')}>
+        {!simple && <button onClick={onClick} title={edit ? t('product-cru:editProduct') : t('account:addToCart')}>
           {edit ? <FiEdit size="40" /> : <FiPlusCircle size="50" />}
         </button>
+        }
 
       </div>
     </div>

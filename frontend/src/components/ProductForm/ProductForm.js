@@ -6,15 +6,19 @@ import Form from '../Form/Form';
 import Fields from '../Fields/Fields';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Button from '../Button/Button';
-import ViewWrappers from '../../components/ViewWrappers/ViewWrappers';
 import useApi from '../../shared/api';
-import { apiDataTransform, apiErrorTransform, } from '../../shared/apiDataTransform';
+import {
+  apiDataTransform,
+  apiErrorTransform,
+} from '../../shared/apiDataTransform';
+import { useMediaQuery } from 'react-responsive';
 
 
-const ProductForm = ({ id, editId }) => {
+const ProductForm = ({ id, editId, onUpdate }) => {
   const history = useHistory();
   const { API } = useApi();
   const [t] = useTranslation('product-cru');
+  const isBigScreen = useMediaQuery({ minWidth: 960 });
   const [product, setProduct] = useState({
     title: '',
     price_excl_tax: '',
@@ -69,7 +73,7 @@ const ProductForm = ({ id, editId }) => {
 
       if (editId) {
         try {
-          await API.products.patch({ id: editId, data: apiDataTransform(data) });
+          const response = await API.products.patch({ id: editId, data: apiDataTransform(data) });
 
           // Image Patch request needs update
           // await API.productImages.patch(
@@ -77,7 +81,10 @@ const ProductForm = ({ id, editId }) => {
           //   formData,
           //   headers,
           // )
-          history.push(`/stores/${id}`);
+          if (!isBigScreen)
+            history.push(`/stores/${id}`);
+          else
+            onUpdate(response.data)
         } catch (e) {
           if (e.response && e.response.status === 400)
             setProduct((oldState) => apiErrorTransform(oldState, e.response.data))
@@ -112,34 +119,28 @@ const ProductForm = ({ id, editId }) => {
   };
 
   return (
-    <ViewWrappers.View withPadding errors={product.non_field_errors} renderFn={isBigScreen => (
-      <Form onSubmit={onSubmit}
-        head={editId ? <h2>{t('product-cru:editProduct')}</h2> : <h1>{t('product-cru:addProduct')}</h1>}
-        body={<>
-        {/* editId ?
+    <Form onSubmit={onSubmit} errors={product.non_field_errors}
+          body={<>
+            {/* editId ?
           <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="original" value={product.original}
                             helpText={t('product-cru:photoHelp')} editView/> : null */}
-          <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
-        {!editId && (
-        <CategorySelect onSelected={onCategorySelect} value={product.categories} />
-        )}
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price_excl_tax" value={product.price_excl_tax}/>
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:partner_sku')} name="partner_sku" value={product.partner_sku} readOnly={!!editId}/>
-        <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="num_in_stock" value={product.num_in_stock}/>
-        <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
-        {editId ? null :
-        <Fields.FileUpload onChange={onChange} label={product.original.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="original" value={product.original}
-                            helpText={t('product-cru:photoHelp')}/>}
-        </>}
-        footer={
-        <>
-        <div className="Btn-group">
-          {!isBigScreen ?
-          <Button label={`← ${t('product-cru:productList')}`} to={{pathname: `/stores/${id}/product`}} secondary/> : null }
-          <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>
-        </div>
-        </>}
-      /> ) } />
+            <Fields.TextInput onChange={onChange} placeholder={t('product-cru:name')} name="title" value={product.title}/>
+            {!editId && (
+              <CategorySelect onSelected={onCategorySelect} value={product.categories}/>
+            )}
+            <Fields.TextInput onChange={onChange} placeholder={t('product-cru:price')} name="price_excl_tax" value={product.price_excl_tax}/>
+            <Fields.TextInput onChange={onChange} placeholder={t('product-cru:partner_sku')} name="partner_sku" value={product.partner_sku} readOnly={!!editId}/>
+            <Fields.TextInput onChange={onChange} placeholder={t('product-cru:quantity')} type="number" name="num_in_stock" value={product.num_in_stock}/>
+            <Fields.TextArea onChange={onChange} placeholder={t('product-cru:description')} name="description" value={product.description}/>
+            {editId ? null :
+              <Fields.FileUpload onChange={onChange} label={product.original.length ? t('product-cru:photoEdit') : t('product-cru:photo')} name="original" value={product.original}
+                                 helpText={t('product-cru:photoHelp')}/>}
+          </>}
+          footer={
+            <>
+              <Button label={`${t('product-cru:saveProduct')} →`} disabled={!product.categories.length}/>
+            </>}
+    />
   )
 }
 

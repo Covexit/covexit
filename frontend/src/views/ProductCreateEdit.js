@@ -10,7 +10,6 @@ const ProductCreateEdit = ({ match }) => {
   const [products, setProducts] = useState([]);
   const { API } = useApi();
   const id = match.params.id;
-  const editId = match.params.editId;
 
   useEffect(() => {
     const getProducts = async () => {
@@ -20,12 +19,17 @@ const ProductCreateEdit = ({ match }) => {
     getProducts();
   }, [id, API]);
 
+  const onUpdate = async () => {
+    const response = await API.productList.get(id);
+    setProducts(response.data);
+  }
+
   return <ViewWrappers.View container>
     <ViewWrappers.ViewSplitter omitOnMobile>
-      <ProductList edit={!!editId} products={products}/>
+      <ProductList edit={true} products={products} simpleList/>
     </ViewWrappers.ViewSplitter>
-    <ViewWrappers.ViewSplitter>
-      <ProductForm id={match.params.id} editId={match.params.editId}/>
+    <ViewWrappers.ViewSplitter withPadding>
+      <ProductForm id={match.params.id} editId={match.params.editId} onUpdate={onUpdate}/>
     </ViewWrappers.ViewSplitter>
   </ViewWrappers.View>
 }
