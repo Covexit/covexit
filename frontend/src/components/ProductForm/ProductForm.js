@@ -52,7 +52,7 @@ const ProductForm = ({ id, editId }) => {
           partner_sku: response.data.stockrecords[0].partner_sku,
           num_in_stock: response.data.stockrecords[0].num_in_stock,
           description: response.data.description,
-          original: response.data.images && response.data.images[0].original,
+          original: response.data.images.length && response.data.images[0].original,
         });
       };
       getCurrentProduct();
@@ -114,7 +114,7 @@ const ProductForm = ({ id, editId }) => {
   return (
     <ViewWrappers.View withPadding errors={product.non_field_errors} renderFn={isBigScreen => (
       <Form onSubmit={onSubmit}
-        head={editId ? <h1>{t('product-cru:editProduct')}</h1> : <h1>{t('product-cru:addProduct')}</h1>}
+        head={editId ? <h2>{t('product-cru:editProduct')}</h2> : <h1>{t('product-cru:addProduct')}</h1>}
         body={<>
         {/* editId ?
           <Fields.FileUpload onChange={onChange} label={t('product-cru:photoEdit')} name="original" value={product.original}

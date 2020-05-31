@@ -18,42 +18,16 @@ const ProductCreateEdit = ({ match }) => {
       setProducts(response.data);
     };
     getProducts();
-  },[id, API]);
+  }, [id, API]);
 
-  const productOverview =
-  <ViewWrappers.View className="PhotoSelect" container renderFn={isBigScreen => (
-    <>
-        <ViewWrappers.ViewSplitter withPadding>
-          <ProductList edit={true} products={products}/>
-        </ViewWrappers.ViewSplitter>
-
-      {isBigScreen ?
-        <ViewWrappers.ViewSplitter withPadding>
-            <ProductForm id={match.params.id} editId={match.params.editId}/>
-        </ViewWrappers.ViewSplitter> : null }
-    </>
-  )} />
-
-  const editView =
-  <ViewWrappers.View className="PhotoSelect" container renderFn={isBigScreen => (
-    <>
-      {isBigScreen ?
-        <ViewWrappers.ViewSplitter withPadding>
-          <ProductList edit={true} products={products}/>
-        </ViewWrappers.ViewSplitter> : null }
-      {!isBigScreen && editId ?
-        <ViewWrappers.ViewSplitter withPadding>
-            <ProductForm id={match.params.id} editId={match.params.editId}/>
-        </ViewWrappers.ViewSplitter> : null }
-      {isBigScreen && editId ?
-        <ViewWrappers.ViewSplitter withPadding>
-            <ProductForm id={match.params.id} editId={match.params.editId}/>
-        </ViewWrappers.ViewSplitter> : null }
-    </>
-  )} />
-
-  return (  editId ? editView : productOverview
-  )
+  return <ViewWrappers.View container>
+    <ViewWrappers.ViewSplitter omitOnMobile>
+      <ProductList edit={!!editId} products={products}/>
+    </ViewWrappers.ViewSplitter>
+    <ViewWrappers.ViewSplitter>
+      <ProductForm id={match.params.id} editId={match.params.editId}/>
+    </ViewWrappers.ViewSplitter>
+  </ViewWrappers.View>
 }
 
 export default ProductCreateEdit
