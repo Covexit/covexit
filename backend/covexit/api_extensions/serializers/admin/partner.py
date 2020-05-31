@@ -11,13 +11,7 @@ from covexit.partner.models import Partner
 class AdminStockRecordSerializer(_AdminStockRecordSerializer):
 
     class Meta(_AdminStockRecordSerializer.Meta):
-        validators = [
-            serializers.UniqueTogetherValidator(
-                queryset=StockRecord.objects.all(),
-                fields=('partner', 'partner_sku'),
-                message=_("Product number has already been used.")
-            )
-        ]
+        pass
     partner = serializers.PrimaryKeyRelatedField(
         many=False, required=True, queryset=Partner.objects
     )

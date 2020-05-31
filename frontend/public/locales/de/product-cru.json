@@ -9,5 +9,7 @@
   "photo": "Produktfoto hochladen",
   "photoHelp": ".JPEG, .JPG, .PNG (Nur diese Dateitypen werden akzeptiert).",
   "saveProduct": "Produkt speichern",
-  "editProduct": "Produkt bearbeiten"
+  "editProduct": "Produkt bearbeiten",
+  "addProduct": "Neues Produkt hinzufügen",
+  "productList": "Produkt Liste"
 }
