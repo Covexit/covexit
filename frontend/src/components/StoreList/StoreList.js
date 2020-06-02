@@ -22,7 +22,7 @@ const StoreList = () => {
 
   const handleExternalHover = storeItem => {
     if (store) {
-      return storeItem.id === store.id ? '--is-hovered' : ''
+      return storeItem.id === store.id ? 'StoreList-store--hovered' : ''
     }
 
     return ''
