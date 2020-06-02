@@ -11,7 +11,6 @@ import Toast from '../components/Toast/Toast';
 
 import './App.scss';
 
-
 const App = () => (
   <CartProvider>
     <UserProvider>

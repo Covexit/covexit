@@ -25,6 +25,10 @@
   }
 }
 
+.StoreList-store--hovered {
+  color: $color-primary;
+}
+
 .StoreList-store-img {
   object-fit: cover;
   flex: 0 0 33.333%;

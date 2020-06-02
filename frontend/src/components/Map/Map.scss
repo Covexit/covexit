@@ -12,25 +12,29 @@
 .Map-infoWrapper {
   position: absolute;
   left: -10rem;
-  top: 4rem;
+  top: 1rem;
   width: 320px;
   height: 230px;
-  transform: scale(.8);
   background: white;
   border: 1px solid #ccc;
   border-radius: 10px;
   opacity: 0;
-  transition: opacity .2s ease-in-out,
-            transform .15s ease-in-out;
-
-  &--visible {
-    transform: scale(1);
-    opacity: 1;
-  }
+  transform: scale(.8);
 
   p {
     margin-bottom: 16px;
     font-size: 14px;
+  }
+}
+
+.Map-infoWrapper--visible {
+  animation: .15s ease-out fadeIn forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
