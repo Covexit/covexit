@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './ProductGroup.scss';
 import ProductItem from 'components/ProductItem/ProductItem';
 
