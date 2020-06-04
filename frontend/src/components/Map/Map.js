@@ -15,7 +15,7 @@ const Map = () => {
   const [locations, setLocations] = useState([]);
   const { API } = useApi();
   const [selectedLocation, setSelectedLocation] = useState({
-    title: "",
+    name: "",
     description: "",
     id: 0,
     latitude: "",
@@ -53,11 +53,11 @@ const Map = () => {
   useEffect(mountOnce, []);
 
   const handleMarkerClick = location => {
-    const { id, description, text, addresses } = location
+    const { id, description, name, addresses } = location
     setSelectedLocation({
       id,
       description,
-      title: text,
+      name,
       latitude: addresses[0].latitude,
       longitude: addresses[0].longitude
     })
@@ -122,7 +122,7 @@ const Map = () => {
         <div className='Map-infoWrapper Map-infoWrapper--visible'>
           <img className="Map-infoImg" src={banner} alt="banner"/>
           <div className="Map-info">
-            <h2>{selectedLocation.title}</h2>
+            <h2>{selectedLocation.name}</h2>
             <p>{selectedLocation.description}</p>
             <Button to={`/stores/${selectedLocation.id}`} label={t('goToStoreButton')} type="small"/>
           </div>
