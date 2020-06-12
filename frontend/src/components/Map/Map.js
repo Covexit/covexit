@@ -39,7 +39,7 @@ const Map = () => {
         lat: parseFloat(store.addresses[0].latitude)
       })
     }
-  }, [store, isSelfHovered])
+  }, [store])
 
   const mountOnce = () => {
     setCurrentLocation();
